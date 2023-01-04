@@ -1,0 +1,21 @@
+{
+  "pools": [
+    {
+      "name": "rawkr",
+      "rolls": 2,
+      "bonus_rolls": 2,
+      "entries": [
+        {
+          "type": "item",
+          "name": "jntm:rawkr"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "random_chance",
+          "chance": 1
+        }
+      ]
+    }
+  ]
+}

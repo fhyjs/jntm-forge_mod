@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YXY",
+    "XYX",
+    "XYX"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:wool",
+      "data": 0
+    },
+    "X": {
+      "item": "minecraft:wool",
+      "data": 15
+    }
+  },
+  "result": {
+    "item": "jntm:cxksegg"
+  }
+}

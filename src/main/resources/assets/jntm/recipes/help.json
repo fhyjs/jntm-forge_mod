@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "jntm:help_item",
+  "result": { "item": "jntm:jntm_help", "count": 1 },
+  "ingredients": [
+    { "item": "minecraft:dirt", "data": 0 },
+    { "item": "minecraft:chicken", "data": 0 }
+  ]
+}

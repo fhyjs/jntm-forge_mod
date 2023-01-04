@@ -1,0 +1,44 @@
+{
+  "xianga": {
+    "category": "player",
+    "subtitle": "sound.jntmxianga.name",
+    "sounds": [
+      "jntm:music/xianga"
+    ]
+  },
+  "ji": {
+    "category": "player",
+    "subtitle": "sound.jntmjijiao.name",
+    "sounds": [
+      "jntm:music/ji"
+    ]
+  },
+  "music_xjj": {
+    "category": "record",
+    "subtitle": "music.jntmxjj.name",
+    "sounds": [
+      "jntm:music/music_xjj"
+    ]
+  },
+  "music_kdj": {
+    "category": "record",
+    "subtitle": "music.jntmkdj.name",
+    "sounds": [
+      "jntm:music/music_kdj"
+    ]
+  },
+  "cxk_hurt": {
+    "category": "ambient",
+    "subtitle": "sound.jntmcxkss.name",
+    "sounds": [
+      "jntm:music/ngm"
+    ]
+  },
+  "cxk_die": {
+    "category": "ambient",
+    "subtitle": "sound.jntmcxksw.name",
+    "sounds": [
+      "jntm:music/hhay"
+    ]
+  }
+}
