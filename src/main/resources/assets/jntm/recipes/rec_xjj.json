@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "jntm:records",
+  "result": { "item": "jntm:record_jntm_kdj", "count": 1 },
+  "ingredients": [
+    { "item": "minecraft:record_11", "data": 0 },
+    { "item": "jntm:cxksegg", "data": 0 }
+  ]
+}

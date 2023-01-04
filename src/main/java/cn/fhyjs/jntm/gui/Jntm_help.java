@@ -101,7 +101,10 @@ public class Jntm_help extends GuiContainer {
             proxy.OpenFE(MP);
         }
         if (parButton==buttonfbc1){
-
+            proxy.openurl("https://github.com/fhyjs/jntm-forge_mod/issues/");
+        }
+        if (parButton==buttonfbc2){
+            proxy.openurl("https://hh27849339.icoc.ws/msgBoard.jsp");
         }
     }
     @Override
