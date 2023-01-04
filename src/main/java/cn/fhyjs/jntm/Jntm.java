@@ -69,8 +69,6 @@ public class Jntm {
         proxy.init(event);
 
         if(FMLCommonHandler.instance().getEffectiveSide()== Side.CLIENT) {
-            RenderRegistryHandler.register();
-            Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
         }
         SmeltingRegistryHandler.register();
     }

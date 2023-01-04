@@ -1,0 +1,18 @@
+{
+  "sortnum": 1,
+  "name": "鸡音唱片-仙剑鸡",
+  "icon": "jntm:record_jntm_xjj",
+  "category": "crafting",
+  "pages": [
+    {
+      "type": "text",
+      "text": "唱片机唱片."
+    },
+    {
+      "type": "crafting",
+      "title": "鸡音唱片-仙剑鸡",
+      "recipe": "jntm:record_jntm_xjj",
+      "text": ""
+    }
+  ]
+}
