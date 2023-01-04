@@ -7,6 +7,7 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
     }
 }
+
         
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -74,13 +75,21 @@ minecraft {
             }
 }
 repositories {
-
+    maven {
+        // JEI
+        name = "Progwml6 Maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
     maven { url 'https://maven.blamejared.com' }
 }
 
 dependencies {
-
+//  JEI
+    compile "mezz.jei:jei_1.12.2:4.16.1.302"
     compile "vazkii.patchouli:Patchouli:1.0-21.5"
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
