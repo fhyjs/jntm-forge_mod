@@ -3,6 +3,8 @@ package cn.fhyjs.jntm.item;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.kundan_st;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +21,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.List;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 import static sun.audio.AudioPlayer.player;
@@ -29,6 +35,12 @@ public class ggxdd extends ItemEgg {
         this.setUnlocalizedName(Jntm.MODID + "cxksegg");
         this.setMaxStackSize(16);
         this.setCreativeTab(jntm_Group);
+    }
+    @Override
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+        // TODO Auto-generated method stub
+        tooltip.add(I18n.format("tooltip.ggxdd.n1"));
+        super.addInformation(stack, player, tooltip, advanced);
     }
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
