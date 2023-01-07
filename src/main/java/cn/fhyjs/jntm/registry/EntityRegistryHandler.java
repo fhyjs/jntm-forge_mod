@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.cookedcxk;
+import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.entity.cxk;
 import cn.fhyjs.jntm.entity.kundan_st;
 import com.google.common.collect.Maps;
@@ -40,6 +41,13 @@ public class EntityRegistryHandler {
                 .entity(cxk.class)
                 .id(new ResourceLocation(Jntm.MODID, "cxk"), 123)
                 .name("cxk")
+                .tracker(80, 3, false)
+                .build()
+        );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(JGPDanmaku.class)
+                .id(new ResourceLocation(Jntm.MODID, "JGPD"), 111)
+                .name("JGPD")
                 .tracker(80, 3, false)
                 .build()
         );

@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.util.List;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
-import static sun.audio.AudioPlayer.player;
+
 
 public class ggxdd extends ItemEgg {
     public  ggxdd(){

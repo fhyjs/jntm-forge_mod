@@ -28,6 +28,7 @@ public class ItemRegistryHandler {
     public static final ItemBlock cookedcxk_item = new ItemBlock(BlockRegistryHandler.BLOCK_cookedcxk);
     public static music_xjj music_xjj,music_kdj;
     public static Jntm_help_item jntmHelpItem = new Jntm_help_item();
+    public static Jiguangpao JGP = new Jiguangpao();
 
 
     @SubscribeEvent
@@ -44,6 +45,7 @@ public class ItemRegistryHandler {
         music_kdj = new music_xjj("jntm_kdj",SoundEventRegistryHandler.music_kdj);
         registry.register(music_kdj);
         registry.register(jntmHelpItem);
+        registry.register(JGP);
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -54,6 +56,7 @@ public class ItemRegistryHandler {
         registryModel(music_kdj);
         registryModel(rawkr);
         registryModel(jntmHelpItem);
+        registryModel(JGP);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
