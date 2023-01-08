@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.registry;
 
+import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.item.*;
 import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -24,6 +25,7 @@ import static cn.fhyjs.jntm.registry.SoundEventRegistryHandler.prefix;
 @Mod.EventBusSubscriber
 public class ItemRegistryHandler {
     public static ggxdd ggxdd = new ggxdd();
+    public static JGPDTEX jgpdtex =new JGPDTEX();
     public static rawkr rawkr = new rawkr(3,3,true);
     public static final ItemBlock cookedcxk_item = new ItemBlock(BlockRegistryHandler.BLOCK_cookedcxk);
     public static music_xjj music_xjj,music_kdj;
@@ -46,6 +48,8 @@ public class ItemRegistryHandler {
         registry.register(music_kdj);
         registry.register(jntmHelpItem);
         registry.register(JGP);
+        registry.register(jgpdtex);
+
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -57,6 +61,7 @@ public class ItemRegistryHandler {
         registryModel(rawkr);
         registryModel(jntmHelpItem);
         registryModel(JGP);
+        registryModel(jgpdtex);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

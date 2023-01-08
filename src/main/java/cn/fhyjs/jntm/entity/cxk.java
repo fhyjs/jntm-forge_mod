@@ -3,6 +3,7 @@ package cn.fhyjs.jntm.entity;
 import cn.fhyjs.jntm.registry.JntmLootTableList;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -52,6 +53,11 @@ public class cxk extends EntityChicken {
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEventRegistryHandler.cxk_hurt;
+    }
+    @Override
+    public cxk createChild(EntityAgeable ageable)
+    {
+        return new cxk(this.world);
     }
     @Override
     protected SoundEvent getDeathSound() {return SoundEventRegistryHandler.cxk_die;}

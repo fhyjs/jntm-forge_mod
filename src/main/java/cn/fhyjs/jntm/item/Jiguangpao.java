@@ -1,13 +1,23 @@
 package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.entity.JGPDanmaku;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Enchantments;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,7 +33,7 @@ public class Jiguangpao extends ItemBow {
         this.maxStackSize = 1;
         this.setRegistryName("jiguangpao");
         this.setUnlocalizedName(Jntm.MODID + "jiguangpao");
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(1);
         this.setCreativeTab(jntm_Group);
         this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
         {
@@ -53,6 +63,72 @@ public class Jiguangpao extends ItemBow {
     @Override
     protected boolean isArrow(@NotNull ItemStack stack)
     {
-        return stack.getItem() instanceof ggxdd;
+        return stack.getItem() instanceof JGPDTEX;
+    }
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
+    {
+        if (entityLiving instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)entityLiving;
+            boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+            ItemStack itemstack = this.findAmmo(entityplayer);
+
+            int i = this.getMaxItemUseDuration(stack) - timeLeft;
+            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
+            if (i < 0) return;
+
+            if (!itemstack.isEmpty() || flag)
+            {
+                if (itemstack.isEmpty())
+                {
+                    itemstack = new ItemStack(Items.ARROW);
+                }
+
+                float f = getArrowVelocity(i);
+
+                if ((double)f >= 0.1D)
+                {
+                    boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemArrow && ((ItemArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
+
+                    if (!worldIn.isRemote)
+                    {
+                        ItemArrow itemarrow = (ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
+                        JGPDanmaku entityarrow = new JGPDanmaku(worldIn, entityplayer);
+                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
+
+
+                        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
+
+
+                        entityarrow.setDamage((float) (entityarrow.getDamage()*((this.getMaxDamage(stack)-this.getDamage(stack))/(float)this.getMaxDamage(stack))));
+
+
+                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0)
+                        {
+                            entityarrow.setFire(100);
+                        }
+
+                        stack.damageItem(1, entityplayer);
+
+                        worldIn.spawnEntity(entityarrow);
+                    }
+
+                    worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+
+                    if (!flag1 && !entityplayer.capabilities.isCreativeMode)
+                    {
+                        itemstack.shrink(1);
+
+                        if (itemstack.isEmpty())
+                        {
+                            entityplayer.inventory.deleteStack(itemstack);
+                        }
+                    }
+
+                    entityplayer.addStat(StatList.getObjectUseStats(this));
+                }
+            }
+        }
     }
 }
