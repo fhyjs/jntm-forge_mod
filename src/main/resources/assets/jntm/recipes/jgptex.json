@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Y ",
+    "YXY",
+    " Y "
+  ],
+  "key": {
+    "X": {
+      "item": "jntm:cxksegg",
+      "data": 0
+    },
+    "Y": {
+      "item": "minecraft:tnt",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "jntm:jgpdtex",
+    "count": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "sortnum": 3,
+  "name": "鸡光炮",
+  "icon": "jntm:jiguangpao",
+  "category": "crafting",
+  "pages": [
+    {
+      "type": "text",
+      "text": "用于发射爆炸鸡子弹."
+    },
+    {
+      "type": "crafting",
+      "title": "鸡光炮",
+      "recipe": "jntm:jgp",
+      "text": "."
+    }
+  ]
+}

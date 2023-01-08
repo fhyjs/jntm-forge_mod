@@ -1,5 +1,5 @@
 {
-  "sortnum": 1,
+  "sortnum": 2,
   "name": "鸡音唱片-仙剑鸡",
   "icon": "jntm:record_jntm_xjj",
   "category": "crafting",
@@ -11,8 +11,8 @@
     {
       "type": "crafting",
       "title": "鸡音唱片-仙剑鸡",
-      "recipe": "jntm:record_jntm_xjj",
-      "text": ""
+      "recipe": "jntm:rec_xjj",
+      "text": "."
     }
   ]
 }

@@ -5,6 +5,7 @@ import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.entity.cxk;
 import cn.fhyjs.jntm.entity.kundan_st;
 
+import cn.fhyjs.jntm.item.JGPDTEX;
 import cn.fhyjs.jntm.renderer.Rendercxk;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
@@ -27,8 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.Map;
 
-import static cn.fhyjs.jntm.registry.ItemRegistryHandler.JGP;
-import static cn.fhyjs.jntm.registry.ItemRegistryHandler.ggxdd;
+import static cn.fhyjs.jntm.registry.ItemRegistryHandler.*;
 
 public class RenderRegistryHandler {
     public static void register()
@@ -36,7 +36,7 @@ public class RenderRegistryHandler {
         //坤蛋（实体）
         RenderingRegistry.registerEntityRenderingHandler(kundan_st.class,new RenderSnowball(Minecraft.getMinecraft().getRenderManager(), ggxdd,Minecraft.getMinecraft().getRenderItem()));
         RenderingRegistry.registerEntityRenderingHandler(cxk.class,new Rendercxk(Minecraft.getMinecraft().getRenderManager()));
-        RenderingRegistry.registerEntityRenderingHandler(JGPDanmaku.class,new RenderSnowball(Minecraft.getMinecraft().getRenderManager(),JGP,Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(JGPDanmaku.class,new RenderSnowball(Minecraft.getMinecraft().getRenderManager(), jgpdtex,Minecraft.getMinecraft().getRenderItem()));
 
     }
 }

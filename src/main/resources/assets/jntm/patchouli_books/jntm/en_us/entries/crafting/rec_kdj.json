@@ -11,8 +11,8 @@
     {
       "type": "crafting",
       "title": "鸡音唱片-宽带鸡",
-      "recipe": "jntm:record_jntm_kdj",
-      "text": ""
+      "recipe": "jntm:rec_kdj",
+      "text": "."
     }
   ]
 }

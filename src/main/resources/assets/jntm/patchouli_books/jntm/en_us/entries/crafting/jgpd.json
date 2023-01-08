@@ -1,0 +1,18 @@
+{
+  "sortnum": 0,
+  "name": "鸡子弹",
+  "icon": "jntm:jgpdtex",
+  "category": "crafting",
+  "pages": [
+    {
+      "type": "text",
+      "text": "用于鸡光炮的爆炸鸡子弹."
+    },
+    {
+      "type": "crafting",
+      "title": "鸡子弹",
+      "recipe": "jntm:jgptex",
+      "text": "."
+    }
+  ]
+}

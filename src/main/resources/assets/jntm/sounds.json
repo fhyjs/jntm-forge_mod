@@ -40,5 +40,19 @@
     "sounds": [
       "jntm:music/hhay"
     ]
+  },
+  "jntm": {
+    "category": "player",
+    "subtitle": "sound.jntm.name",
+    "sounds": [
+      "jntm:music/jntmyy"
+    ]
+  },
+  "xaboom": {
+    "category": "player",
+    "subtitle": "sound.jntmxaboom.name",
+    "sounds": [
+      "jntm:music/xaboom"
+    ]
   }
 }

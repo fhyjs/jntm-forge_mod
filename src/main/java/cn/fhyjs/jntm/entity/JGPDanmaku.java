@@ -1,12 +1,15 @@
 package cn.fhyjs.jntm.entity;
 
+import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -38,6 +41,7 @@ public class JGPDanmaku extends EntityThrowable {
 
         if (!this.world.isRemote)
         {
+            this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEventRegistryHandler.xamoob, SoundCategory.PLAYERS, 4.5F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
             //JOptionPane.showMessageDialog(null,d);
             this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, (float) d/50, true);
         }

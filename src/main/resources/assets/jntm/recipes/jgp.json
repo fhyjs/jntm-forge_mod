@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  X",
+    " YX",
+    "ZYX"
+  ],
+  "key": {
+    "Y": {
+      "item": "jntm:cxksegg",
+      "data": 0
+    },
+    "X": {
+      "item": "minecraft:dispenser",
+      "data": 0
+    },
+    "Z": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "result": {
+    "item": "jntm:jiguangpao"
+  }
+}
