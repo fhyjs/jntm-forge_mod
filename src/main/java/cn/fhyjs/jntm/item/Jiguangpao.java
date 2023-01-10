@@ -3,6 +3,8 @@ package cn.fhyjs.jntm.item;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,9 +28,19 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
+import java.util.List;
+
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
 public class Jiguangpao extends ItemBow {
+    @Override
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+        // TODO Auto-generated method stub
+        tooltip.add(I18n.format("tooltip.jgp.n1"));
+        tooltip.add(I18n.format("tooltip.jgp.n2")+(this.getMaxDamage(stack)-this.getDamage(stack))+"/"+getMaxDamage(stack)+"("+((this.getMaxDamage(stack)-this.getDamage(stack))/(float)this.getMaxDamage(stack)*100f)+"%)");
+        tooltip.add(I18n.format("tooltip.jgp.n3")+(JGPDanmaku.d*((this.getMaxDamage(stack)-this.getDamage(stack))/(float)this.getMaxDamage(stack))));
+        super.addInformation(stack, player, tooltip, advanced);
+    }
     public Jiguangpao(){
         super();
         this.maxStackSize = 1;
@@ -115,7 +127,7 @@ public class Jiguangpao extends ItemBow {
                         worldIn.spawnEntity(entityarrow);
                     }
 
-                    worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEventRegistryHandler.jntmyy, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEventRegistryHandler.jntmyy, SoundCategory.PLAYERS, 8.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
                     if (!flag1 && !entityplayer.capabilities.isCreativeMode)
                     {

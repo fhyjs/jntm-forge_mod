@@ -16,16 +16,16 @@ import net.minecraft.world.World;
 import javax.swing.*;
 
 public class JGPDanmaku extends EntityThrowable {
-    public float d=100;
+    public static float d=100;
     public JGPDanmaku (World world){
         super(world);
         setDamage(200f);
     }
     public void setDamage(float a){
-        this.d=a;
+        d=a;
     }
     public float getDamage(){
-        return this.d;
+        return d;
     }
     public JGPDanmaku(World worldin, EntityLivingBase throwerIn){
         super(worldin,throwerIn);
