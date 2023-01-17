@@ -45,3 +45,5 @@ tooltip.jgp.n2=当前耐久:
 tooltip.jgp.n3=当前伤害威力:
 tooltip.jgp.n4=当前爆炸威力:
 tooltip.jgpdtex.n1=使用[鸡光炮]发射!
+item.jntmjigames.name=鸡的小游戏
+tooltip.jigames.n1=右键打开GUI

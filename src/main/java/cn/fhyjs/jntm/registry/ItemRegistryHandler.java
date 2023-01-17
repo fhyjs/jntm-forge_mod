@@ -31,7 +31,7 @@ public class ItemRegistryHandler {
     public static music_xjj music_xjj,music_kdj;
     public static Jntm_help_item jntmHelpItem = new Jntm_help_item();
     public static Jiguangpao JGP = new Jiguangpao();
-
+    public  static final Ji_Games JI_GAMES = new Ji_Games();
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
@@ -49,6 +49,7 @@ public class ItemRegistryHandler {
         registry.register(jntmHelpItem);
         registry.register(JGP);
         registry.register(jgpdtex);
+        registry.register(JI_GAMES);
 
     }
     @SideOnly(Side.CLIENT)
@@ -62,6 +63,7 @@ public class ItemRegistryHandler {
         registryModel(jntmHelpItem);
         registryModel(JGP);
         registryModel(jgpdtex);
+        registryModel(JI_GAMES);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

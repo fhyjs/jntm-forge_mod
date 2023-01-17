@@ -2,12 +2,11 @@ package cn.fhyjs.jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
-import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
-import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.FMLClientHandler;
+
+import cn.fhyjs.jntm.utility.Dlf;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -15,29 +14,65 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.Display;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import scala.reflect.internal.Trees;
+
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
+import java.net.MalformedURLException;
+
 
 import static net.minecraft.launchwrapper.Launch.classLoader;
 import static net.minecraftforge.fml.common.network.FMLNetworkEvent.*;
 
 @Mod(modid= Jntm.MODID,useMetadata=true,version=Jntm.VERSION,name = Jntm.NAME)
 public class Jntm {
+    public static Jntm INSTANCE;
+    public Jntm(){
+
+
+
+        if(!Loader.isModLoaded("mcef")) {
+            if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+                int op = JOptionPane.showConfirmDialog(null, "未安装依赖(mcef)!是否立即安装?\n" +
+                        "MCEF is NOT installed!Install it now?","错误/ERROR",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
+                if(op==JOptionPane.YES_OPTION){
+                    StringBuilder tmp;
+                    String MP;
+                    //路径处理
+                    String[] temp;
+                    temp = Loader.instance().getConfigDir().toURI().toString().split("/");
+                    tmp = new StringBuilder();
+                    for (int i = 1; i < temp.length - 1; i++) {
+                        tmp.append(temp[i]).append("/");
+                    }
+                    tmp.append("mods/");
+                    MP = tmp.toString();
+                    Dlf.run("https://fhyjs.github.io/jntm/mcef-1.12.2-1.33.jar", MP+"mcef.jar",logger);
+                    logger.fatal("需要重启!\r\nNeed to restart!");
+                    FMLCommonHandler.instance().exitJava(0,true);
+                }else if(op==JOptionPane.NO_OPTION){
+
+                }
+            } else {
+                logger.fatal("未安装依赖(mcef)!\r\nMCEF is NOT installed!");
+            }
+        }
+    }
+
+
+    public static final Logger logger = LogManager.getLogger(Jntm.MODID);
     public static final String MODID = "jntm";
     public static final String NAME = "jntm";
     public static final String VERSION = "11.45.14";
     public static boolean IS_LOCAL_SERVER;
+
     @SidedProxy(clientSide = "cn.fhyjs.jntm.client.ClientProxy",serverSide = "cn.fhyjs.jntm.common.CommonProxy")
     public static CommonProxy proxy;
     @Instance(Jntm.MODID)
@@ -49,12 +84,12 @@ public class Jntm {
 
         }
         else {
-            JOptionPane.showMessageDialog(null,"在服务器端运行鸡你太美，可能会导致一些问题，暂未修复！\r\n禁用了一些功能以稳定运行");
+            logger.error("服务器运行鸡你太美可能不稳定!\r\nRunning this mod(Jntm) may NOT Stable!");
         }
     }
 
     @EventHandler
-    public void ClientConnectedToServerEvent(ClientConnectedToServerEvent event){
+    public void onClientConnectedToServerEvent(ClientConnectedToServerEvent event){
         IS_LOCAL_SERVER = event.isLocal();
     }
     @EventHandler
@@ -63,11 +98,13 @@ public class Jntm {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new JntmGuiHandler());
 
     }
+    @EventHandler
+    public void  onInit(FMLInitializationEvent event){
 
+    }
     @EventHandler
     public void init(FMLInitializationEvent event) throws IOException {
         proxy.init(event);
-
         if(FMLCommonHandler.instance().getEffectiveSide()== Side.CLIENT) {
         }
         SmeltingRegistryHandler.register();

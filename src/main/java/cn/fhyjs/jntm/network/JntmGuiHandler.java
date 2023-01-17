@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.network;
 
+import cn.fhyjs.jntm.gui.Ji_games_GUI;
 import cn.fhyjs.jntm.gui.Jntm_help;
 import cn.fhyjs.jntm.gui.Jntm_help_container;
 import net.minecraft.client.gui.inventory.GuiChest;
@@ -28,6 +29,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID == GUIs.HELP.getId()) {
             return new Jntm_help_container(player, world);
         }
+        if (ID == GUIs.JI_games.getId()) {
+            //没有服务器的事，别瞎参活
+        }
         return null;
     }
 
@@ -43,8 +47,10 @@ public class JntmGuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z){
         if (ID == GUIs.HELP.getId()) {
-
             return new Jntm_help(player, world);
+        }
+        if (ID == GUIs.JI_games.getId()) {
+            return new Ji_games_GUI(player,world);
         }
         return null;
     }
@@ -53,8 +59,9 @@ public class JntmGuiHandler implements IGuiHandler {
         //无GUI
         NONE(-1),
         //鸡你太美帮助
-        HELP(10);
-
+        HELP(10),
+        //鸡游戏
+        JI_games(11);
         private int id;
         GUIs(int id) {
             this.id = id;
