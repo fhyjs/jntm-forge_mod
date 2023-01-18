@@ -5,6 +5,7 @@ import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 
 import cn.fhyjs.jntm.utility.Dlf;
+import cn.fhyjs.jntm.utility.unzip;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +24,7 @@ import scala.reflect.internal.Trees;
 
 
 import javax.swing.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -35,8 +37,33 @@ import static net.minecraftforge.fml.common.network.FMLNetworkEvent.*;
 public class Jntm {
     public static Jntm INSTANCE;
     public Jntm(){
-
-
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            //下载JECF资源
+            StringBuilder tmp;
+            String MP;
+            //路径处理
+            String[] temp;
+            temp = Loader.instance().getConfigDir().toURI().toString().split("/");
+            tmp = new StringBuilder();
+            for (int i = 1; i < temp.length - 1; i++) {
+                tmp.append(temp[i]).append("/");
+            }
+            tmp.append("jcef/");
+            MP = tmp.toString();
+            File folder = new File(MP);
+            if (!folder.exists() && !folder.isDirectory()) {
+                int op = JOptionPane.showConfirmDialog(null, "未安装资源文件!是否立即安装?\r\n" +
+                        "Resources is NOT installed!Install it now?","错误/ERROR",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
+                if(op==JOptionPane.YES_OPTION) {
+                    folder.mkdirs();
+                    System.out.println("crate jcef folder");
+                    Dlf.run("https://fhyjs.github.io/jntm/jcef.zip", MP + "jcef.zip", logger);
+                    Dlf.run("https://fhyjs.github.io/jntm/jcef2.zip", MP + "jcef2.zip", logger);
+                    unzip.run(MP + "jcef.zip",MP,"",true,logger);
+                    unzip.run(MP + "jcef2.zip",MP,"",true,logger);
+                }
+            }
+        }
 
         if(!Loader.isModLoaded("mcef")) {
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
@@ -56,6 +83,8 @@ public class Jntm {
                     MP = tmp.toString();
                     Dlf.run("https://fhyjs.github.io/jntm/mcef-1.12.2-1.33.jar", MP+"mcef.jar",logger);
                     logger.fatal("需要重启!\r\nNeed to restart!");
+                    JOptionPane.showConfirmDialog(null,"需要重启!\r\n" +
+                            "Need to restart!");
                     FMLCommonHandler.instance().exitJava(0,true);
                 }else if(op==JOptionPane.NO_OPTION){
 
@@ -63,6 +92,8 @@ public class Jntm {
             } else {
                 logger.fatal("未安装依赖(mcef)!\r\nMCEF is NOT installed!");
             }
+        }else{
+            logger.fatal("未安装依赖(mcef)!\r\nMCEF is NOT installed!");
         }
     }
 

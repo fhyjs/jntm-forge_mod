@@ -81,12 +81,14 @@ repositories {
         url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven { url 'https://maven.blamejared.com' }
+    maven { url "https://repo1.maven.org/maven2/"}
 }
 
 dependencies {
 //  JEI
     compile "mezz.jei:jei_1.12.2:4.7.11.102"
     compile "vazkii.patchouli:Patchouli:1.0-21.5"
+    implementation "net.lingala.zip4j:zip4j:2.11.2"
 }
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
