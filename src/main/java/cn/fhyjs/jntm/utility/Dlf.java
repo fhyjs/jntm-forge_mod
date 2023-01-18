@@ -113,6 +113,9 @@ public class Dlf {
                             bar.setValue((int) (this.progress / (float) this.totalSize * 100));
                             txt1.setText("下载中/Downloading:");
                             l1.debug(JDS);
+                            if(( this.progress / (float) this.totalSize * 100 )>=100){
+                                break;
+                            }
                         }
                     }
                     jf.dispose();

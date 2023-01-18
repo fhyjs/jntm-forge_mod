@@ -74,6 +74,7 @@ minecraft {
                 }
             }
 }
+
 repositories {
     maven {
         // JEI
@@ -81,7 +82,7 @@ repositories {
         url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven { url 'https://maven.blamejared.com' }
-    maven { url "https://repo1.maven.org/maven2/"}
+    maven {url "https://repo1.maven.org/maven2/"}
 }
 
 dependencies {
@@ -90,6 +91,21 @@ dependencies {
     compile "vazkii.patchouli:Patchouli:1.0-21.5"
     implementation "net.lingala.zip4j:zip4j:2.11.2"
 }
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = "https://plugins.gradle.org/m2/" }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.4"
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'maven-publish'
+apply plugin: "com.github.johnrengelman.shadow"
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
@@ -131,7 +147,8 @@ jar {
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"jntmsareus",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "ContainedDeps": "zip4j-2.11.2.jar",
         ])
     }
 }

@@ -33,7 +33,9 @@ public class unzip {
      * @param lg 日志
      * @throws Exception
      */
+    public static volatile boolean running = true;
     public static void run(String zp,String op,String pw,boolean df,Logger lg) {
+        running = true;
         try {
             unZipFileWithProgress(zp, op, pw,
                     new unzip.ProgressListener() {
@@ -41,6 +43,7 @@ public class unzip {
                         @Override
                         public void onStart() {
                             lg.debug("--onStart--");
+                            unzip.running=true;
                         }
 
                         @Override
@@ -51,13 +54,19 @@ public class unzip {
                         @Override
                         public void onError(Exception e) {
                             lg.debug("--onCompleted--" + e.getMessage());
+                            unzip.running=false;
                         }
 
                         @Override
                         public void onCompleted() {
                             lg.debug("--onCompleted--");
+                            unzip.running=false;
                         }
                     }, df);
+
+            while(running){
+                continue;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

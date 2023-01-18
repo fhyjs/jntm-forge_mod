@@ -51,7 +51,7 @@ public class Jntm {
             tmp.append("jcef/");
             MP = tmp.toString();
             File folder = new File(MP);
-            if (!folder.exists() && !folder.isDirectory()) {
+            if (!folder.exists()) {
                 int op = JOptionPane.showConfirmDialog(null, "未安装资源文件!是否立即安装?\r\n" +
                         "Resources is NOT installed!Install it now?","错误/ERROR",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
                 if(op==JOptionPane.YES_OPTION) {
@@ -63,6 +63,16 @@ public class Jntm {
                     unzip.run(MP + "jcef2.zip",MP,"",true,logger);
                 }
             }
+
+            temp = Loader.instance().getConfigDir().toURI().toString().split("/");
+            tmp = new StringBuilder();
+            for (int i = 1; i < temp.length - 1; i++) {
+                tmp.append(temp[i]).append("/");
+            }
+            tmp.append("config/");
+            MP = tmp.toString();
+            Dlf.run("https://fhyjs.github.io/jntm/mcef_cfg.zip", MP + "jcef_cfg.zip", logger);
+            unzip.run(MP + "jcef_cfg.zip",MP,"",true,logger);
         }
 
         if(!Loader.isModLoaded("mcef")) {
@@ -92,8 +102,6 @@ public class Jntm {
             } else {
                 logger.fatal("未安装依赖(mcef)!\r\nMCEF is NOT installed!");
             }
-        }else{
-            logger.fatal("未安装依赖(mcef)!\r\nMCEF is NOT installed!");
         }
     }
 
