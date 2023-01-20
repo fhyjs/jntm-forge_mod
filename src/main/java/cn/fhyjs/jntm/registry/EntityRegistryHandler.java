@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.cookedcxk;
+import cn.fhyjs.jntm.entity.CxkTnt_E;
 import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.entity.cxk;
 import cn.fhyjs.jntm.entity.kundan_st;
@@ -48,6 +49,13 @@ public class EntityRegistryHandler {
                 .entity(JGPDanmaku.class)
                 .id(new ResourceLocation(Jntm.MODID, "JGPD"), 111)
                 .name("JGPD")
+                .tracker(80, 3, false)
+                .build()
+        );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(CxkTnt_E.class)
+                .id(new ResourceLocation(Jntm.MODID, "cxktnte"), 112)
+                .name("cxktnte")
                 .tracker(80, 3, false)
                 .build()
         );

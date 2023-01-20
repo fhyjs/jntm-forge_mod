@@ -1,5 +1,4 @@
 package cn.fhyjs.jntm.client;
-import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import net.minecraft.client.Minecraft;
@@ -15,7 +14,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.montoyo.mcef.api.*;
-import net.montoyo.mcef.example.BrowserScreen;
 import net.montoyo.mcef.example.ScreenCfg;
 import net.montoyo.mcef.utilities.Log;
 import org.lwjgl.opengl.Display;
@@ -59,10 +57,12 @@ public class ClientProxy extends CommonProxy implements ISelectiveResourceReload
             mcef.registerScheme("jntm", WDScheme.class, true, false, false, true, true, false, false);
         //---browser---
     }
+    @SideOnly(Side.CLIENT)
     @Override
     public void init(FMLInitializationEvent event){
         super.init(event);
         RenderRegistryHandler.register();
+
     }
     @Override
     public void postInit(FMLPostInitializationEvent event){

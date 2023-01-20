@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {"model":"jntm:cxktnt"},
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:cxktnt"}],
+    "explode=false": {"model":"jntm:cxktnt"},
+    "explode=true": {"model":"jntm:cxktnt"}
+  }
+}

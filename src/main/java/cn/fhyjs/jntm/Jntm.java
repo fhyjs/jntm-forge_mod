@@ -71,8 +71,10 @@ public class Jntm {
             }
             tmp.append("config/");
             MP = tmp.toString();
-            Dlf.run("https://fhyjs.github.io/jntm/mcef_cfg.zip", MP + "jcef_cfg.zip", logger);
-            unzip.run(MP + "jcef_cfg.zip",MP,"",true,logger);
+            if(!(new File(MP+"mcef.cfg").exists())) {
+                Dlf.run("https://fhyjs.github.io/jntm/mcef_cfg.zip", MP + "jcef_cfg.zip", logger);
+                unzip.run(MP + "jcef_cfg.zip", MP, "", true, logger);
+            }
         }
 
         if(!Loader.isModLoaded("mcef")) {

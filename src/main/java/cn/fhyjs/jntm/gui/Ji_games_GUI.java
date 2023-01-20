@@ -55,7 +55,7 @@ public class Ji_games_GUI extends GuiScreen {
                 return;
             }
 
-            this.browser = api.createBrowser(this.urlToLoad == null ? MCEF.HOME_PAGE : this.urlToLoad, false);
+            this.browser = api.createBrowser("mod://jntm/index.html", false);
             this.urlToLoad = null;
         }
 
@@ -70,8 +70,8 @@ public class Ji_games_GUI extends GuiScreen {
             this.buttonList.add(this.fwd = new GuiButton(1, 20, 0, 20, 20, ">"));
             this.buttonList.add(this.go = new GuiButton(2, this.width - 60, 0, 20, 20, "Go"));
             this.buttonList.add(this.min = new GuiButton(3, this.width - 20, 0, 20, 20, "X"));
-            this.vidMode = new GuiButton(4, this.width - 40, 0, 20, 20, "YT");
-            this.vidMode.enabled = false;
+            this.vidMode = new GuiButton(4, this.width - 40, 0, 20, 20, "刷新");
+            this.buttonList.add(vidMode);
             this.url = new GuiTextField(5, this.fontRenderer, 40, 0, this.width - 100, 20);
             this.url.setMaxStringLength(65535);
         } else {
@@ -225,21 +225,7 @@ public class Ji_games_GUI extends GuiScreen {
                     proxy.setBackup(this);
                     this.mc.displayGuiScreen((GuiScreen)null);
                 } else if (src.id == 4) {
-                    loc = this.browser.getURL();
-                    String vId = null;
-                    boolean redo = false;
-                    if (loc.matches("^https?://(?:www\\.)?youtube\\.com/watch\\?v=([a-zA-Z0-9_\\-]+)$")) {
-                        vId = loc.replaceFirst("^https?://(?:www\\.)?youtube\\.com/watch\\?v=([a-zA-Z0-9_\\-]+)$", "$1");
-                    } else if (loc.matches("^https?://(?:www\\.)?youtu\\.be/([a-zA-Z0-9_\\-]+)$")) {
-                        vId = loc.replaceFirst("^https?://(?:www\\.)?youtu\\.be/([a-zA-Z0-9_\\-]+)$", "$1");
-                    } else if (loc.matches("^https?://(?:www\\.)?youtube\\.com/embed/([a-zA-Z0-9_\\-]+)(\\?.+)?$")) {
-                        redo = true;
-                    }
-
-                    if (vId != null || redo) {
-                        proxy.setBackup(this);
-                        this.mc.displayGuiScreen(new ScreenCfg(this.browser, vId));
-                    }
+                    browser.loadURL(browser.getURL());
                 }
             }
 
