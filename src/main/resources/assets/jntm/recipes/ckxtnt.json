@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "jntm:cxktnt",
+  "result": { "item": "jntm:cxktnt", "count": 1 },
+  "ingredients": [
+    { "item": "minecraft:tnt", "data": 0 },
+    { "item": "jntm:cxksegg", "data": 0 }
+  ]
+}

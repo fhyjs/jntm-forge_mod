@@ -1,0 +1,18 @@
+{
+  "sortnum": 6,
+  "name": "鸡你太美tnt",
+  "icon": "jntm:cxktnt",
+  "category": "crafting",
+  "pages": [
+    {
+      "type": "text",
+      "text": "一个比原版炸弹威力小1/4的炸弹,但可在3x3生成蔡徐坤和原版鸡."
+    },
+    {
+      "type": "crafting",
+      "title": "鸡你太美tnt",
+      "recipe": "jntm:ckxtnt",
+      "text": "你干嘛~哈哈~哎呦~~~"
+    }
+  ]
+}

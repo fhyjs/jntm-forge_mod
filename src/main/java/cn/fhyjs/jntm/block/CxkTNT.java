@@ -2,16 +2,23 @@ package cn.fhyjs.jntm.block;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.CxkTnt_E;
+import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
+import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
@@ -32,6 +39,12 @@ public class CxkTNT extends BlockTNT {
         this.setLightOpacity(7);
     }
     @Override
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+        // TODO Auto-generated method stub
+        tooltip.add(I18n.format("tooltip.cnktnt.n1"));
+        super.addInformation(stack, player, tooltip, advanced);
+    }
+    @Override
     public void explode(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase igniter)
     {
         if (!worldIn.isRemote)
@@ -40,7 +53,7 @@ public class CxkTNT extends BlockTNT {
             {
                 CxkTnt_E cxkTntE = new CxkTnt_E(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter,2f);
                 worldIn.spawnEntity(cxkTntE);
-                worldIn.playSound((EntityPlayer)null, cxkTntE.posX, cxkTntE.posY, cxkTntE.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                worldIn.playSound((EntityPlayer)null, cxkTntE.posX, cxkTntE.posY, cxkTntE.posZ, SoundEventRegistryHandler.fadongji, SoundCategory.BLOCKS, 2.0F, 1.0F);
             }
         }
     }

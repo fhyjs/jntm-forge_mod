@@ -1,6 +1,6 @@
 {
   "sortnum": 1,
-  "name": "合成",
-  "description": "查看这个mod的合成配方.",
+  "name": "物品及方块",
+  "description": "查看这个mod的内容.",
   "icon": "minecraft:crafting_table"
 }

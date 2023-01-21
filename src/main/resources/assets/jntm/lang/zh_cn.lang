@@ -48,3 +48,5 @@ tooltip.jgpdtex.n1=使用[鸡光炮]发射!
 item.jntmjigames.name=鸡的小游戏
 tooltip.jigames.n1=右键打开GUI
 tile.jntmcxktnt.name=鸡你太美TNT
+sound.cxktnt.name=鸡炸弹:鸡叫
+tooltip.cnktnt.n1=一个比原版炸弹威力小1/4的炸弹,但可在3x3生成蔡徐坤和原版鸡.

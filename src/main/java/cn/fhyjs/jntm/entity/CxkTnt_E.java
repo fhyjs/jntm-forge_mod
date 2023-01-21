@@ -1,15 +1,18 @@
 package cn.fhyjs.jntm.entity;
 
+import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -38,7 +41,7 @@ public class CxkTnt_E extends EntityTNTPrimed {
         this.motionX = (double)(-((float)Math.sin((double)f)) * 0.02F);
         this.motionY = 0.20000000298023224D;
         this.motionZ = (double)(-((float)Math.cos((double)f)) * 0.02F);
-        this.setFuse(80);
+        this.setFuse(130);
         this.prevPosX = x;
         this.prevPosY = y;
         this.ep=ep;
@@ -48,7 +51,7 @@ public class CxkTnt_E extends EntityTNTPrimed {
     @Override
     protected void entityInit()
     {
-        this.dataManager.register(FUSE, Integer.valueOf(80));
+        this.dataManager.register(FUSE, Integer.valueOf(130));
     }
     @Override
     protected boolean canTriggerWalking()
@@ -104,6 +107,7 @@ public class CxkTnt_E extends EntityTNTPrimed {
 
     private void explode()
     {
+        this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEventRegistryHandler.xamoob, SoundCategory.BLOCKS, 2.0F, 1.0F);
         this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, ep, true);
         int r=3;
         for (int i=0;i<r;i++){

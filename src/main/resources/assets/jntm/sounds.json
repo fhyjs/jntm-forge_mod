@@ -54,5 +54,12 @@
     "sounds": [
       "jntm:music/xaboom"
     ]
+  },
+  "fadongji": {
+    "category": "ambient",
+    "subtitle": "sound.cxktnt.name",
+    "sounds": [
+      "jntm:music/fadongji"
+    ]
   }
 }

@@ -14,7 +14,7 @@ import static net.minecraft.launchwrapper.LogWrapper.log;
 
 @Mod.EventBusSubscriber
 public class SoundEventRegistryHandler {
-    public static SoundEvent soundEvents,xainga,ji,music_xjj,music_kdj,cxk_hurt,cxk_die,jntmyy,xamoob;
+    public static SoundEvent soundEvents,xainga,ji,music_xjj,music_kdj,cxk_hurt,cxk_die,jntmyy,xamoob,fadongji;
     public static String prefix = "jntm";
     public static String[] arr_2 = {
             "xianga",
@@ -24,7 +24,8 @@ public class SoundEventRegistryHandler {
             "cxk_hurt",
             "cxk_die",
             "jntm",
-            "xaboom"
+            "xaboom",
+            "fadongji"
     };
     @SubscribeEvent
     public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) {
@@ -55,6 +56,9 @@ public class SoundEventRegistryHandler {
             }
             if (arr_2[i]=="xaboom") {
                 xamoob=soundEvents;
+            }
+            if (arr_2[i]=="fadongji"){
+                fadongji=soundEvents;
             }
         }
 
