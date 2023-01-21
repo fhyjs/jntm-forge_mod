@@ -38,10 +38,11 @@ public class CxkTNT extends BlockTNT {
         {
             if (((Boolean)state.getValue(EXPLODE)).booleanValue())
             {
-                CxkTnt_E cxkTntE = new CxkTnt_E(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter);
+                CxkTnt_E cxkTntE = new CxkTnt_E(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter,2f);
                 worldIn.spawnEntity(cxkTntE);
                 worldIn.playSound((EntityPlayer)null, cxkTntE.posX, cxkTntE.posY, cxkTntE.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
     }
+
 }

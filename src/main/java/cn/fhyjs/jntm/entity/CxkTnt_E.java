@@ -1,24 +1,38 @@
 package cn.fhyjs.jntm.entity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class CxkTnt_E extends EntityTNTPrimed {
+    private static final DataParameter<Integer> FUSE = EntityDataManager.<Integer>createKey(CxkTnt_E.class, DataSerializers.VARINT);
     @Nullable
     private EntityLivingBase tntPlacedBy;
     private int fuse;
-    private static final DataParameter<Integer> FUSE = EntityDataManager.<Integer>createKey(CxkTnt_E.class, DataSerializers.VARINT);
-    public CxkTnt_E(World worldIn) {
+    private float ep;
+
+    public CxkTnt_E(World worldIn)
+    {
         super(worldIn);
+        this.fuse = 80;
+        this.preventEntitySpawning = true;
+        this.isImmuneToFire = true;
+        this.setSize(0.98F, 0.98F);
     }
-    public CxkTnt_E(World worldIn, double x, double y, double z, EntityLivingBase igniter) {
-        super(worldIn, x, y, z, igniter);
+
+    public CxkTnt_E(World worldIn, double x, double y, double z, EntityLivingBase igniter,float ep)
+    {
+        this(worldIn);
         this.setPosition(x, y, z);
         float f = (float)(Math.random() * (Math.PI * 2D));
         this.motionX = (double)(-((float)Math.sin((double)f)) * 0.02F);
@@ -27,9 +41,121 @@ public class CxkTnt_E extends EntityTNTPrimed {
         this.setFuse(80);
         this.prevPosX = x;
         this.prevPosY = y;
+        this.ep=ep;
         this.prevPosZ = z;
+        this.tntPlacedBy = igniter;
     }
     @Override
+    protected void entityInit()
+    {
+        this.dataManager.register(FUSE, Integer.valueOf(80));
+    }
+    @Override
+    protected boolean canTriggerWalking()
+    {
+        return false;
+    }
+    @Override
+    public boolean canBeCollidedWith()
+    {
+        return !this.isDead;
+    }
+    @Override
+    public void onUpdate()
+    {
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
+
+        if (!this.hasNoGravity())
+        {
+            this.motionY -= 0.03999999910593033D;
+        }
+
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+        this.motionX *= 0.9800000190734863D;
+        this.motionY *= 0.9800000190734863D;
+        this.motionZ *= 0.9800000190734863D;
+
+        if (this.onGround)
+        {
+            this.motionX *= 0.699999988079071D;
+            this.motionZ *= 0.699999988079071D;
+            this.motionY *= -0.5D;
+        }
+
+        --this.fuse;
+
+        if (this.fuse <= 0)
+        {
+            this.setDead();
+
+            if (!this.world.isRemote)
+            {
+                this.explode();
+            }
+        }
+        else
+        {
+            this.handleWaterMovement();
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    private void explode()
+    {
+        this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, ep, true);
+        int r=3;
+        for (int i=0;i<r;i++){
+            for(int j=0;j<r;j++) {
+                Entity cxk = new cxk(world);
+                cxk.setLocationAndAngles(this.posX - i, this.posY, this.posZ-j, this.rotationYaw, 0.0F);
+                this.world.spawnEntity(cxk);
+            }
+        }
+        for (int i=0;i<r;i++){
+            for(int j=0;j<r;j++) {
+                Entity cxk = new cxk(world);
+                cxk.setLocationAndAngles(this.posX + i, this.posY, this.posZ-j, this.rotationYaw, 0.0F);
+                this.world.spawnEntity(cxk);
+            }
+        }
+        for (int i=0;i<r;i++){
+            for(int j=0;j<r;j++) {
+                Entity cxk = new EntityChicken(world);
+                cxk.setLocationAndAngles(this.posX - i, this.posY, this.posZ+j, this.rotationYaw, 0.0F);
+                this.world.spawnEntity(cxk);
+            }
+        }
+        for (int i=0;i<r;i++){
+            for(int j=0;j<r;j++) {
+                Entity cxk = new EntityChicken(world);
+                cxk.setLocationAndAngles(this.posX+i, this.posY, this.posZ+j, this.rotationYaw, 0.0F);
+                this.world.spawnEntity(cxk);
+            }
+        }
+    }
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound compound)
+    {
+        compound.setShort("Fuse", (short)this.getFuse());
+    }
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound compound)
+    {
+        this.setFuse(compound.getShort("Fuse"));
+    }
+    @Override
+    @Nullable
+    public EntityLivingBase getTntPlacedBy()
+    {
+        return this.tntPlacedBy;
+    }
+    @Override
+    public float getEyeHeight()
+    {
+        return 0.0F;
+    }
     public void setFuse(int fuseIn)
     {
         this.dataManager.set(FUSE, Integer.valueOf(fuseIn));
@@ -43,14 +169,14 @@ public class CxkTnt_E extends EntityTNTPrimed {
             this.fuse = this.getFuseDataManager();
         }
     }
-    @Override
+
     public int getFuseDataManager()
     {
         return ((Integer)this.dataManager.get(FUSE)).intValue();
     }
-    @Override
-    protected void entityInit()
+
+    public int getFuse()
     {
-        this.dataManager.register(FUSE, Integer.valueOf(80));
+        return this.fuse;
     }
 }

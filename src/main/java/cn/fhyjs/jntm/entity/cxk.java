@@ -2,10 +2,7 @@ package cn.fhyjs.jntm.entity;
 
 import cn.fhyjs.jntm.registry.JntmLootTableList;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -37,7 +34,7 @@ import java.util.Objects;
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.ggxdd;
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.rawkr;
 
-public class cxk extends EntityChicken {
+public class cxk extends EntityChicken{
     public cxk(World worldIn) {
         super(worldIn);
         this.setSize(0.4F, 0.7F);
