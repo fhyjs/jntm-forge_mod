@@ -52,7 +52,7 @@ public class ItemRegistryHandler {
         registry.register(jntmHelpItem);
         registry.register(JGP);
         registry.register(jgpdtex);
-        registry.register(JI_GAMES);
+        //registry.register(JI_GAMES);
         registry.register(ITEM_CxkTNT);
 
     }
@@ -67,7 +67,7 @@ public class ItemRegistryHandler {
         registryModel(jntmHelpItem);
         registryModel(JGP);
         registryModel(jgpdtex);
-        registryModel(JI_GAMES);
+        //registryModel(JI_GAMES);
         registryModel(ITEM_CxkTNT);
     }
     @SideOnly(Side.CLIENT)

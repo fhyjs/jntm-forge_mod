@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.gui;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.client.Mcefclp;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
 import cn.fhyjs.jntm.network.JntmMessage;
@@ -18,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+import net.minecraftforge.fml.common.Optional;
 import net.montoyo.mcef.MCEF;
 import net.montoyo.mcef.api.API;
 import net.montoyo.mcef.api.IBrowser;
@@ -26,12 +28,11 @@ import net.montoyo.mcef.example.ScreenCfg;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import java.io.IOException;
-
-import static cn.fhyjs.jntm.Jntm.proxy;
-import static net.minecraft.client.gui.toasts.SystemToast.Type.TUTORIAL_HINT;
-
+@Optional.InterfaceList(value={
+        @Optional.Interface(iface="net.montoyo.mcef.api.IDisplayHandler", modid="mcef", striprefs=true)
+})
 public class Ji_games_GUI extends GuiScreen {
+    Mcefclp Mcefcmprofy;
     IBrowser browser = null;
     private GuiButton back = null;
     private GuiButton fwd = null;
@@ -48,7 +49,7 @@ public class Ji_games_GUI extends GuiScreen {
 
 
     public void initGui() {
-        proxy.hudBrowser = null;
+        Mcefcmprofy.hudBrowser = null;
         if (this.browser == null) {
             API api = MCEFApi.getAPI();
             if (api == null) {
@@ -219,10 +220,10 @@ public class Ji_games_GUI extends GuiScreen {
             } else {
                 String loc;
                 if (src.id == 2) {
-                    loc = proxy.getAPI().punycode(this.url.getText());
+                    loc = Mcefcmprofy.getAPI().punycode(this.url.getText());
                     this.browser.loadURL(loc);
                 } else if (src.id == 3) {
-                    proxy.setBackup(this);
+                    Mcefcmprofy.setBackup(this);
                     this.mc.displayGuiScreen((GuiScreen)null);
                 } else if (src.id == 4) {
                     browser.loadURL(browser.getURL());

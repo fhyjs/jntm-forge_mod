@@ -21,10 +21,10 @@ import java.io.IOException;
 import java.util.function.Predicate;
 
 
-public class CommonProxy implements ISelectiveResourceReloadListener, IDisplayHandler, IJSQueryHandler {
+public class CommonProxy  {
 
     public static SimpleNetworkWrapper INSTANCE = null;
-    public Object hudBrowser;
+
 
     public void OpenWB() throws IOException {}
     public void preInit(FMLPreInitializationEvent event){
@@ -42,49 +42,5 @@ public class CommonProxy implements ISelectiveResourceReloadListener, IDisplayHa
     }
     public void OpenFE(String e) throws IOException {}
 
-    @Override
-    public void onResourceManagerReload(IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
 
-    }
-
-    @Override
-    public void onAddressChange(IBrowser iBrowser, String s) {
-
-    }
-
-    @Override
-    public void onTitleChange(IBrowser iBrowser, String s) {
-
-    }
-
-    @Override
-    public void onTooltip(IBrowser iBrowser, String s) {
-
-    }
-
-    @Override
-    public void onStatusMessage(IBrowser iBrowser, String s) {
-
-    }
-
-    @Override
-    public boolean handleQuery(IBrowser iBrowser, long l, String s, boolean b, IJSQueryCallback ijsQueryCallback) {
-        return false;
-    }
-
-    @Override
-    public void cancelQuery(IBrowser iBrowser, long l) {
-
-    }
-
-    public API getAPI() {
-        return null;
-    }
-
-    public boolean hasBackup() {
-        return false;
-    }
-
-    public void setBackup(Object bu) {
-    }
 }
