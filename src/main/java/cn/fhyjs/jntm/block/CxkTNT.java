@@ -2,7 +2,6 @@ package cn.fhyjs.jntm.block;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.CxkTnt_E;
-import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
@@ -10,9 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;

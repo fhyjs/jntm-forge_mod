@@ -3,14 +3,20 @@ package cn.fhyjs.jntm.registry;
 import cn.fhyjs.jntm.block.CxkTNT;
 import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.item.*;
+import cn.fhyjs.jntm.renderer.ModelBakaEventHandlerCI;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemClock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,6 +40,7 @@ public class ItemRegistryHandler {
     public static Jntm_help_item jntmHelpItem = new Jntm_help_item();
     public static Jiguangpao JGP = new Jiguangpao();
     public  static final Ji_Games JI_GAMES = new Ji_Games();
+    public static final Cxkimage CXKIMAGE = new Cxkimage();
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
@@ -54,6 +61,7 @@ public class ItemRegistryHandler {
         registry.register(jgpdtex);
         //registry.register(JI_GAMES);
         registry.register(ITEM_CxkTNT);
+        registry.register(CXKIMAGE);
 
     }
     @SideOnly(Side.CLIENT)
@@ -69,6 +77,8 @@ public class ItemRegistryHandler {
         registryModel(jgpdtex);
         //registryModel(JI_GAMES);
         registryModel(ITEM_CxkTNT);
+
+
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
