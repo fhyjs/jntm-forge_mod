@@ -3,7 +3,7 @@ package cn.fhyjs.jntm.registry;
 import cn.fhyjs.jntm.block.CxkTNT;
 import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.item.*;
-import cn.fhyjs.jntm.renderer.ModelBakaEventHandlerCI;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -41,6 +41,7 @@ public class ItemRegistryHandler {
     public static Jiguangpao JGP = new Jiguangpao();
     public  static final Ji_Games JI_GAMES = new Ji_Games();
     public static final Cxkimage CXKIMAGE = new Cxkimage();
+    public static final InsJvav INS_JVAV=new InsJvav();
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
@@ -61,8 +62,8 @@ public class ItemRegistryHandler {
         registry.register(jgpdtex);
         //registry.register(JI_GAMES);
         registry.register(ITEM_CxkTNT);
-        registry.register(CXKIMAGE);
-
+        //registry.register(CXKIMAGE);
+        registry.register(INS_JVAV);
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -77,7 +78,7 @@ public class ItemRegistryHandler {
         registryModel(jgpdtex);
         //registryModel(JI_GAMES);
         registryModel(ITEM_CxkTNT);
-
+        registryModel(INS_JVAV);
 
     }
     @SideOnly(Side.CLIENT)

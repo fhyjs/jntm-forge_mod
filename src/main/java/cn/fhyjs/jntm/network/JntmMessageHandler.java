@@ -21,7 +21,8 @@ public class JntmMessageHandler implements IMessageHandler<JntmMessage, IMessage
     public IMessage onMessage(JntmMessage message, MessageContext ctx) {
         System.out.println(message.a);
         if (message.a==0) {
-            Jntm_help_container.open=false;
+            ctx.getServerHandler().player.closeContainer();
+            ctx.getServerHandler().player.closeScreen();
         }
         if (message.a==1) {
             item1 = PatchouliItems.book.getDefaultInstance();
@@ -29,6 +30,11 @@ public class JntmMessageHandler implements IMessageHandler<JntmMessage, IMessage
             item1.setTagCompound(nbtTagCompoundl);
             ctx.getServerHandler().player.inventory.addItemStackToInventory(item1);
             Jntm_help_container.open=false;
+        }
+        if (message.a==2){
+            ctx.getServerHandler().player.closeContainer();
+            ctx.getServerHandler().player.closeScreen();
+            ctx.getServerHandler().player.openGui(Jntm.instance, JntmGuiHandler.GUIs.Insting.getId(), ctx.getServerHandler().player.world, (int) ctx.getServerHandler().player.posX, (int) ctx.getServerHandler().player.posY, (int) ctx.getServerHandler().player.posZ);
         }
         return null;
     }

@@ -21,6 +21,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 import sun.security.mscapi.CPublicKey;
 import vazkii.patchouli.common.base.Patchouli;
 import vazkii.patchouli.common.item.PatchouliItems;
