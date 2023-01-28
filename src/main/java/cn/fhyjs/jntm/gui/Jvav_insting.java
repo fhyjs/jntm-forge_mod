@@ -167,6 +167,7 @@ class proadd extends Thread{
                 }
             }
         }
+        CommonProxy.INSTANCE.sendToServer(new JntmMessage(3));
         this.stop();
     }
 }

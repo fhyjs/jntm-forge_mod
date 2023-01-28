@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class JntmGuiHandler implements IGuiHandler {
     /**
-     * @param ID     MAIN_GUI 的 ID
+     * @param ID        GUI 的 ID
      * @param player    玩家
      * @param world     世界
      * @param x  x
@@ -27,14 +27,14 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID == GUIs.HELP.getId()) {
             return new Jntm_help_container(player, world);
         }
-        if (ID==GUIs.Jvav.getId()||ID==GUIs.Insting.getId()){
+        if (ID==GUIs.Jvav.getId()||ID==GUIs.Insting.getId()||ID==GUIs.JFinish.getId()){
             return new Jvav_C(player, world);
         }
         return null;
     }
 
     /**
-     * @param ID     MAIN_GUI 的 ID
+     * @param ID        GUI 的 ID
      * @param player    玩家
      * @param world     世界
      * @param x  x
@@ -56,6 +56,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.Insting.getId()){
             return new Jvav_insting(player,world);
         }
+        if(ID==GUIs.JFinish.getId()){
+            return new Jvav_Finish(player,world);
+        }
         return null;
     }
 
@@ -68,7 +71,11 @@ public class JntmGuiHandler implements IGuiHandler {
         JI_games(11),
         //Jvav
         Jvav(12),
-        Insting(13);
+        //Jvav2
+        Insting(13),
+        //jvav3
+        JFinish(14);
+
         private int id;
         GUIs(int id) {
             this.id = id;

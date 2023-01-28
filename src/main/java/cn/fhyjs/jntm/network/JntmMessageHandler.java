@@ -15,7 +15,9 @@ public class JntmMessageHandler implements IMessageHandler<JntmMessage, IMessage
     /*
     0:关闭当前GUI
     1:获取帮助手册
-
+    2:jvav2
+    3:jvav3
+    4:GET:Jvav
     */
     @Override
     public IMessage onMessage(JntmMessage message, MessageContext ctx) {
@@ -35,6 +37,14 @@ public class JntmMessageHandler implements IMessageHandler<JntmMessage, IMessage
             ctx.getServerHandler().player.closeContainer();
             ctx.getServerHandler().player.closeScreen();
             ctx.getServerHandler().player.openGui(Jntm.instance, JntmGuiHandler.GUIs.Insting.getId(), ctx.getServerHandler().player.world, (int) ctx.getServerHandler().player.posX, (int) ctx.getServerHandler().player.posY, (int) ctx.getServerHandler().player.posZ);
+        }
+        if (message.a==3){
+            ctx.getServerHandler().player.closeContainer();
+            ctx.getServerHandler().player.closeScreen();
+            ctx.getServerHandler().player.openGui(Jntm.instance, JntmGuiHandler.GUIs.JFinish.getId(), ctx.getServerHandler().player.world, (int) ctx.getServerHandler().player.posX, (int) ctx.getServerHandler().player.posY, (int) ctx.getServerHandler().player.posZ);
+        }
+        if (message.a==4){
+
         }
         return null;
     }
