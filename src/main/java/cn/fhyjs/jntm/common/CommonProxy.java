@@ -4,6 +4,7 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.gui.Ji_games_GUI;
 import cn.fhyjs.jntm.network.JntmMessage;
 import cn.fhyjs.jntm.network.JntmMessageHandler;
+import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraftforge.client.resource.IResourceType;
@@ -32,7 +33,9 @@ public class CommonProxy  {
     }
     public void init(FMLInitializationEvent event){
     }
-    public void postInit(FMLPostInitializationEvent event){}
+    public void postInit(FMLPostInitializationEvent event){
+        DispenserBehaviorRegistryHandler.run();
+    }
     public void openhelpGui(GuiScreen e){}
     public void openurl(String s){}
     private void registerMessage(){

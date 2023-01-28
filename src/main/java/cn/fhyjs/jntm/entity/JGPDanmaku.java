@@ -31,6 +31,11 @@ public class JGPDanmaku extends EntityThrowable {
         super(worldin,throwerIn);
         setDamage(200f);
     }
+    public JGPDanmaku(World worldIn, double x, double y, double z)
+    {
+        super(worldIn,x,y,z);
+        this.setPosition(x, y, z);
+    }
     @Override
     protected void onImpact(RayTraceResult result)
     {
