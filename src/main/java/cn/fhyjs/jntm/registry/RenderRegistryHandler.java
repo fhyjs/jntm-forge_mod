@@ -1,12 +1,10 @@
 package cn.fhyjs.jntm.registry;
 
 
-import cn.fhyjs.jntm.entity.CxkTnt_E;
-import cn.fhyjs.jntm.entity.JGPDanmaku;
-import cn.fhyjs.jntm.entity.cxk;
-import cn.fhyjs.jntm.entity.kundan_st;
+import cn.fhyjs.jntm.entity.*;
 
 import cn.fhyjs.jntm.item.JGPDTEX;
+import cn.fhyjs.jntm.renderer.RenderBossCxk;
 import cn.fhyjs.jntm.renderer.RenderCkxTnt;
 import cn.fhyjs.jntm.renderer.Rendercxk;
 import com.google.common.collect.Maps;
@@ -48,6 +46,6 @@ public class RenderRegistryHandler {
         RenderingRegistry.registerEntityRenderingHandler(cxk.class,new Rendercxk(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(JGPDanmaku.class,new RenderSnowball(Minecraft.getMinecraft().getRenderManager(), jgpdtex,Minecraft.getMinecraft().getRenderItem()));
         RenderingRegistry.registerEntityRenderingHandler(CxkTnt_E.class,new RenderCkxTnt(Minecraft.getMinecraft().getRenderManager()));
-
+        RenderingRegistry.registerEntityRenderingHandler(Boss_Cxk.class,new RenderBossCxk(Minecraft.getMinecraft().getRenderManager()));
     }
 }

@@ -1,6 +1,8 @@
 package cn.fhyjs.jntm.registry;
 
+import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.CxkTNT;
+import cn.fhyjs.jntm.entity.Boss_Cxk;
 import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.item.*;
 
@@ -9,9 +11,9 @@ import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemClock;
+import net.minecraft.entity.EntityList;
+import net.minecraft.item.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -31,6 +33,7 @@ import static cn.fhyjs.jntm.registry.SoundEventRegistryHandler.prefix;
 
 @Mod.EventBusSubscriber
 public class ItemRegistryHandler {
+    public static Fsms fsms =new Fsms("bosscxk");
     public static ggxdd ggxdd = new ggxdd();
     public static JGPDTEX jgpdtex =new JGPDTEX();
     public static rawkr rawkr = new rawkr(3,3,true);
@@ -64,6 +67,7 @@ public class ItemRegistryHandler {
         registry.register(ITEM_CxkTNT);
         //registry.register(CXKIMAGE);
         registry.register(INS_JVAV);
+        registry.register(fsms);
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -79,7 +83,7 @@ public class ItemRegistryHandler {
         //registryModel(JI_GAMES);
         registryModel(ITEM_CxkTNT);
         registryModel(INS_JVAV);
-
+        registryModel(fsms);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

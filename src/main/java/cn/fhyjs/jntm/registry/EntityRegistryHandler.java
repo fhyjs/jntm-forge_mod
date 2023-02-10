@@ -2,13 +2,11 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.cookedcxk;
-import cn.fhyjs.jntm.entity.CxkTnt_E;
-import cn.fhyjs.jntm.entity.JGPDanmaku;
-import cn.fhyjs.jntm.entity.cxk;
-import cn.fhyjs.jntm.entity.kundan_st;
+import cn.fhyjs.jntm.entity.*;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -56,6 +54,13 @@ public class EntityRegistryHandler {
                 .entity(CxkTnt_E.class)
                 .id(new ResourceLocation(Jntm.MODID, "cxktnte"), 112)
                 .name("cxktnte")
+                .tracker(80, 3, false)
+                .build()
+        );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(Boss_Cxk.class)
+                .id(new ResourceLocation(Jntm.MODID, "bosscxk"), 113)
+                .name("bosscxk")
                 .tracker(80, 3, false)
                 .build()
         );
