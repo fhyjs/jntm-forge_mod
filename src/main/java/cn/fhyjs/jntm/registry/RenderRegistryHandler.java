@@ -4,6 +4,7 @@ package cn.fhyjs.jntm.registry;
 import cn.fhyjs.jntm.entity.*;
 
 import cn.fhyjs.jntm.item.JGPDTEX;
+import cn.fhyjs.jntm.renderer.EntityDanmakuRender;
 import cn.fhyjs.jntm.renderer.RenderBossCxk;
 import cn.fhyjs.jntm.renderer.RenderCkxTnt;
 import cn.fhyjs.jntm.renderer.Rendercxk;
@@ -47,5 +48,6 @@ public class RenderRegistryHandler {
         RenderingRegistry.registerEntityRenderingHandler(JGPDanmaku.class,new RenderSnowball(Minecraft.getMinecraft().getRenderManager(), jgpdtex,Minecraft.getMinecraft().getRenderItem()));
         RenderingRegistry.registerEntityRenderingHandler(CxkTnt_E.class,new RenderCkxTnt(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Boss_Cxk.class,new RenderBossCxk(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(Ta_Danmaku.class, new EntityDanmakuRender(Minecraft.getMinecraft().getRenderManager()));
     }
 }

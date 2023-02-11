@@ -1,7 +1,7 @@
 package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
-import net.katsstuff.danmakucore.item.ItemDanmaku;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;

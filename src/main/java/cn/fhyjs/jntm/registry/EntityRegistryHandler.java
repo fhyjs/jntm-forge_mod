@@ -64,6 +64,13 @@ public class EntityRegistryHandler {
                 .tracker(80, 3, false)
                 .build()
         );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(Ta_Danmaku.class)
+                .id(new ResourceLocation(Jntm.MODID, "danmaku"), 114)
+                .name("bosscxk")
+                .tracker(80, 3, false)
+                .build()
+        );
     }
     RenderingRegistry a;
 }
