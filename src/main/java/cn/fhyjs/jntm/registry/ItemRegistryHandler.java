@@ -45,6 +45,7 @@ public class ItemRegistryHandler {
     public  static final Ji_Games JI_GAMES = new Ji_Games();
     public static final Cxkimage CXKIMAGE = new Cxkimage();
     public static final InsJvav INS_JVAV=new InsJvav();
+    public static final Danmaku_Gun DANMAKU_GUN = new Danmaku_Gun();
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
@@ -68,6 +69,7 @@ public class ItemRegistryHandler {
         //registry.register(CXKIMAGE);
         registry.register(INS_JVAV);
         registry.register(fsms);
+        registry.register(DANMAKU_GUN);
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -84,6 +86,7 @@ public class ItemRegistryHandler {
         registryModel(ITEM_CxkTNT);
         registryModel(INS_JVAV);
         registryModel(fsms);
+        registryModel(DANMAKU_GUN);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
