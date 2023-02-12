@@ -3,11 +3,11 @@ package cn.fhyjs.jntm.entity;// Made with Blockbench 4.6.4
 // Paste this class into your mod and generate all required imports
 
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.model.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class ModelBossCxk extends ModelBiped {
 	private final ModelRenderer head;
@@ -60,11 +60,14 @@ public class ModelBossCxk extends ModelBiped {
 		right_arm.render(f5);
 		left_leg.render(f5);
 		right_leg.render(f5);
+		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.right_leg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+		this.left_leg.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
 	}
-
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
+	@Override
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, @NotNull Entity entityIn)
+	{
+		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 	}
 }

@@ -71,4 +71,4 @@ spawn.name=生成
 entity.bosscxk.name=蔡虚坤
 death.jntm.attack.danmaku.1=被
 death.jntm.attack.danmaku.2=蔡虚坤砸死
-tooltip.danmaku_gun.n1=右键发射子弹,shift右键大招
+tooltip.danmaku_gun.n1=右键发射子弹,潜行键+右键蓄力攻击

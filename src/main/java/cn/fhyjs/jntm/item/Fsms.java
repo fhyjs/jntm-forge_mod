@@ -66,7 +66,9 @@ public class Fsms extends Item {
 
         e.setLocationAndAngles((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 1, (double)blockpos.getZ() + 0.5D,MathHelper.wrapDegrees(worldIn.rand.nextFloat() * 360.0F), 0.0F);
         worldIn.spawnEntity(e);
-
+        if(!player.isCreative()){
+            player.getHeldItem(hand).shrink(1); // 数量 - 1
+        }
         return EnumActionResult.SUCCESS;
 
     }

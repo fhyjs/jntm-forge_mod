@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "jntm:items/fsms_bc",
+		"particle": "jntm:items/fsms_bc"
+	},
+	"elements": [
+		{
+			"from": [0, 2, 9],
+			"to": [16, 18, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 15.75, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#missing"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#missing"},
+				"up": {"uv": [0, 0, 8, 0], "texture": "#missing"},
+				"down": {"uv": [0, 0, 8, 0], "texture": "#missing"}
+			}
+		}
+	]
+}
