@@ -6,9 +6,6 @@ import cn.fhyjs.jntm.client.ClientProxy;
 import cn.fhyjs.jntm.entity.Boss_Cxk;
 import cn.fhyjs.jntm.entity.JGPDanmaku;
 import cn.fhyjs.jntm.item.*;
-
-import com.evilnotch.iitemrender.handlers.IItemRenderer;
-import com.evilnotch.iitemrender.handlers.IItemRendererHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
