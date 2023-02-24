@@ -20,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemClock;
 import net.minecraft.item.ItemEnderPearl;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -28,6 +29,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -55,7 +57,6 @@ public class Danmaku_Gun extends Item {
             return 0;
         }
     }
-
     @Override
     public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
     {
@@ -68,7 +69,7 @@ public class Danmaku_Gun extends Item {
             for (int i=0;i<r;i++){
                 for(int j=0;j<r;j++) {
                     for(int k=0;k<r;k++) {
-                        Ta_Danmaku danmaku = new Ta_Danmaku(entityLiving.world, entityLiving, 50, 0, DanmakuType.BUBBLE, DanmakuColor.GREEN.ordinal());
+                        Ta_Danmaku danmaku = new Ta_Danmaku(entityLiving.world, entityLiving, 50, 0, DanmakuType.BASKETBALL, DanmakuColor.GREEN.ordinal());
                         danmaku.setLocationAndAngles(danmaku.posX - 1 + i, danmaku.posY + j + 1, danmaku.posZ-1+k, danmaku.rotationYaw, danmaku.rotationPitch);
                         float offset = 0.3f / 2;
                         danmaku.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, offset, 1, 1);
