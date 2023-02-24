@@ -2,6 +2,7 @@ package cn.fhyjs.jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 
 import cn.fhyjs.jntm.config.ConfigHandler;
+import cn.fhyjs.jntm.item.Danmaku_Gun;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 
@@ -12,12 +13,16 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.resources.IResourcePack;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -136,7 +141,17 @@ public class Jntm {
         ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"defaultResourcePacks");
         */
     }
-
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event){
+        EntityPlayer player = event.getPlayer();
+        if(player!=null){
+            Item item = player.getHeldItemMainhand().getItem();
+            if (item instanceof Danmaku_Gun){
+                event.setCanceled(true);
+                event.getWorld().sendBlockBreakProgress(event.getPlayer().getEntityId(), event.getPos(), -1);
+            }
+        }
+    }
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event){
         proxy.postInit(event);
