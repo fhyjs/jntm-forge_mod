@@ -7,6 +7,7 @@ import cn.fhyjs.jntm.network.JntmMessageHandler;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.IResourceManager;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.resource.IResourceType;
 import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -15,8 +16,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
-import net.montoyo.mcef.api.*;
-import net.montoyo.mcef.example.BrowserScreen;
 
 import java.io.IOException;
 import java.util.function.Predicate;
@@ -25,7 +24,7 @@ import java.util.function.Predicate;
 public class CommonProxy  {
 
     public static SimpleNetworkWrapper INSTANCE = null;
-
+    public void registerItems(ModelRegistryEvent event) {}
 
     public void OpenWB() throws IOException {}
     public void preInit(FMLPreInitializationEvent event){

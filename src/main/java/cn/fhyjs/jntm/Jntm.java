@@ -15,6 +15,8 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -35,7 +37,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+@Mod.EventBusSubscriber
 @Mod(modid= Jntm.MODID,useMetadata=true,version=Jntm.VERSION,name = Jntm.NAME)
 public class Jntm {
     private static final IResourcePack FTR = new FTR();
@@ -80,7 +82,6 @@ public class Jntm {
                 unzip.run(MP + "jcef_cfg.zip", MP, "", true, logger);
             }
         }
-
     }
 
 
