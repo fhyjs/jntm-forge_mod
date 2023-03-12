@@ -4,6 +4,7 @@ import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
 import cn.fhyjs.jntm.item.Danmaku_Gun;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
+import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 
 import cn.fhyjs.jntm.utility.Dlf;
@@ -119,7 +120,7 @@ public class Jntm {
 
     @EventHandler
     public void PreInit(final FMLPreInitializationEvent event) {
-
+        RenderRegistryHandler.register(event);
     }
     @EventHandler
     public void  onInit(FMLInitializationEvent event){
@@ -141,6 +142,11 @@ public class Jntm {
         defaultResourcePacks.add(FTR);
         ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"defaultResourcePacks");
         */
+    }
+    @EventHandler
+    @SideOnly(Side.CLIENT)
+    public void InitClient(FMLInitializationEvent event){
+
     }
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event){

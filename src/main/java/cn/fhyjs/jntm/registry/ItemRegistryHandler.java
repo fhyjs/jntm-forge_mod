@@ -1,25 +1,15 @@
 package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.block.CxkTNT;
-import cn.fhyjs.jntm.client.ClientProxy;
-import cn.fhyjs.jntm.entity.Boss_Cxk;
-import cn.fhyjs.jntm.entity.JGPDanmaku;
+import cn.fhyjs.jntm.block.Cxkimage;
 import cn.fhyjs.jntm.item.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.SoundRegistry;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,8 +17,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -48,7 +36,7 @@ public class ItemRegistryHandler {
     public static Jntm_help_item jntmHelpItem = new Jntm_help_item();
     public static Jiguangpao JGP = new Jiguangpao();
     public  static final Ji_Games JI_GAMES = new Ji_Games();
-    public static final Cxkimage CXKIMAGE = new Cxkimage();
+    public static final ItemBlock CXKIMAGE = new ItemBlock(BlockRegistryHandler.CXKIMAGE);
     public static final InsJvav INS_JVAV=new InsJvav();
     public static final Danmaku_Gun DANMAKU_GUN = new Danmaku_Gun();
 
@@ -58,6 +46,7 @@ public class ItemRegistryHandler {
         IForgeRegistry<Item> registry = event.getRegistry();
         cookedcxk_item.setRegistryName(Objects.requireNonNull(cookedcxk_item.getBlock().getRegistryName()));
         ITEM_CxkTNT.setRegistryName(Objects.requireNonNull(ITEM_CxkTNT.getBlock().getRegistryName()));
+        CXKIMAGE.setRegistryName(Objects.requireNonNull(CXKIMAGE.getBlock().getRegistryName()));
         registry.register(cookedcxk_item);
         registry.register(ggxdd);
         SoundEventRegistryHandler.music_xjj = (SoundEvent)new SoundEvent(new ResourceLocation(prefix, arr_2[2])).setRegistryName(arr_2[2]);
@@ -76,6 +65,7 @@ public class ItemRegistryHandler {
         registry.register(INS_JVAV);
         registry.register(fsms);
         registry.register(DANMAKU_GUN);
+        proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -93,10 +83,12 @@ public class ItemRegistryHandler {
         registryModel(INS_JVAV);
         registryModel(fsms);
         registryModel(DANMAKU_GUN);
+        ModelBakery.registerItemVariants(CXKIMAGE, new ResourceLocation(Jntm.MODID, "danmakugan"));
+        
         //IItemRendererHandler.register(CXKIMAGE, new IItemRenderer);
         //ClientProxy.modelsToReg.add(new ClientProxy.ModelRegistryObj(CXKIMAGE, 0, new ModelResourceLocation("jntm:dynamic/cxkimage_1")));
         //ClientProxy.modelsToBake.add(new ClientProxy.ModelBakeObj(CXKIMAGE,new ModelResourceLocation("jntm:/dynamic/cxkimage_1"), CXKIMAGE.getMeshDefinition()));
-
+        //ModelLoader.setCustomModelResourceLocation(CXKIMAGE,0,);
         //proxy.registerItems(event);
     }
     @SideOnly(Side.CLIENT)

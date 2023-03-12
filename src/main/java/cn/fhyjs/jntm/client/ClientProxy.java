@@ -1,14 +1,16 @@
 package cn.fhyjs.jntm.client;
 import cn.fhyjs.jntm.common.CommonProxy;
+import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.registry.RenderRegistryHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,33 +19,29 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.resource.IResourceType;
-import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.Display;
 
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 
 public class ClientProxy extends CommonProxy {
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void onModelRegistry(ModelRegistryEvent event){
+        super.onModelRegistry(event);
+    }
     public static List<ModelRegistryObj> modelsToReg = new ArrayList<ModelRegistryObj>();
     public static List<ModelBakeObj> modelsToBake = new ArrayList<ModelBakeObj>();
     public List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
@@ -51,12 +49,13 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event){
         super.preInit(event);
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
+
     }
     @SideOnly(Side.CLIENT)
     @Override
     public void init(FMLInitializationEvent event){
         super.init(event);
-        RenderRegistryHandler.register();
+
 
     }
     public static class ModelRegistryObj {
@@ -148,5 +147,9 @@ public class ClientProxy extends CommonProxy {
     @SideOnly(Side.CLIENT)
     @Override
     public void OpenWB() throws IOException { }
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void regitem_end(){
+        super.regitem_end();
+    }
 }

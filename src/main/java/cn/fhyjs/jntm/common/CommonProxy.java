@@ -22,7 +22,8 @@ import java.util.function.Predicate;
 
 
 public class CommonProxy  {
-
+    public void regitem_end(){}
+    public void onModelRegistry(ModelRegistryEvent event){}
     public static SimpleNetworkWrapper INSTANCE = null;
     public void registerItems(ModelRegistryEvent event) {}
 
