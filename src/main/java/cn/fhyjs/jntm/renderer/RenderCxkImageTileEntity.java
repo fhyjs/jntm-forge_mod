@@ -62,7 +62,7 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
             }
             try {
                 if (url!=null&&uro!="not_set"){
-                    WITHER_SKELETON_TEXTURES = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("cxkimages", new DynamicTexture(DBI.DBI(uro)));
+                    WITHER_SKELETON_TEXTURES = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("cxkimages", new DynamicTexture(Objects.requireNonNull(DBI.DBI(uro))));
                     if(WITHER_SKELETON_TEXTURES==null){
                         WITHER_SKELETON_TEXTURES = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("cxkimages", new DynamicTexture(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png")))));
                     }

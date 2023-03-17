@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.block;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.renderer.IItemWithMeshDefinition;
 
 import net.minecraft.block.Block;
@@ -63,7 +64,9 @@ public class Cxkimage extends BlockTileEntity<TileEntityCxkImage> {
             TileEntityCxkImage tile = getTileEntity(world, pos);
             tile.Seturl();
             Jntm.logger.error("Count: " + tile.getCount());
+            player.openGui(Jntm.instance, JntmGuiHandler.GUIs.SetCxkimage.getId(), world, (int) pos.getX(),pos.getY(),pos.getZ());
         }
+
         return true;
     }
 

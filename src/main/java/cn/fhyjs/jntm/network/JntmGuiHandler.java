@@ -30,6 +30,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.Jvav.getId()||ID==GUIs.Insting.getId()||ID==GUIs.JFinish.getId()){
             return new Jvav_C(player, world);
         }
+        if (ID==GUIs.SetCxkimage.getId()){
+            return new SetCxkimage_C(player,world,new BlockPos(x,y,z));
+        }
         return null;
     }
 
@@ -59,6 +62,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if(ID==GUIs.JFinish.getId()){
             return new Jvav_Finish(player,world);
         }
+        if (ID==GUIs.SetCxkimage.getId()){
+            return new SetCxkimage(player,world,new BlockPos(x,y,z));
+        }
         return null;
     }
 
@@ -74,7 +80,8 @@ public class JntmGuiHandler implements IGuiHandler {
         //Jvav2
         Insting(13),
         //jvav3
-        JFinish(14);
+        JFinish(14),
+        SetCxkimage(15);
 
         private int id;
         GUIs(int id) {

@@ -4,6 +4,8 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.gui.Ji_games_GUI;
 import cn.fhyjs.jntm.network.JntmMessage;
 import cn.fhyjs.jntm.network.JntmMessageHandler;
+import cn.fhyjs.jntm.network.SCINMessage;
+import cn.fhyjs.jntm.network.SCINMessageHandler;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.IResourceManager;
@@ -42,6 +44,8 @@ public class CommonProxy  {
         INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Jntm.MODID);
         INSTANCE.registerMessage(JntmMessageHandler.class, JntmMessage.class, 0, Side.CLIENT);
         INSTANCE.registerMessage(JntmMessageHandler.class, JntmMessage.class, 0, Side.SERVER);
+        INSTANCE.registerMessage(SCINMessageHandler.class, SCINMessage.class, 1, Side.CLIENT);
+        INSTANCE.registerMessage(SCINMessageHandler.class, SCINMessage.class, 1, Side.SERVER);
     }
     public void OpenFE(String e) throws IOException {}
 
