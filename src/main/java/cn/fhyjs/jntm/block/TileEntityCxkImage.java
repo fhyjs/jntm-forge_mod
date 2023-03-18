@@ -38,8 +38,8 @@ public class TileEntityCxkImage extends TileEntity implements ITickable {
         return this.count;
     }
 
-    public void Seturl() {
-
+    public void Seturl(String e) {
+        this.count=e;
         markDirty();
     }
     private IBlockState getState() {

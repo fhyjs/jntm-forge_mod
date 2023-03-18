@@ -73,3 +73,5 @@ death.jntm.attack.danmaku.1=被
 death.jntm.attack.danmaku.2=蔡虚坤砸死
 tooltip.danmaku_gun.n1=右键发射子弹,潜行键+右键蓄力攻击
 item.jntmdanmakugan.name=能量炮
+gui.toast.RError=渲染器错误
+gui.jntm.sci.title=在线图片展示框::设置

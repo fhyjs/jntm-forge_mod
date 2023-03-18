@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.model.ModelBase;
 
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,10 +15,12 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 
 
 import javax.annotation.Nullable;
@@ -28,6 +31,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Objects;
+
+import static net.minecraft.client.gui.toasts.SystemToast.Type.TUTORIAL_HINT;
 
 public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEntityCxkImage> {
     private ResourceLocation WITHER_SKELETON_TEXTURES;
@@ -61,7 +66,7 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
                 Minecraft.getMinecraft().getTextureManager().deleteTexture(WITHER_SKELETON_TEXTURES);
             }
             try {
-                if (url!=null&&uro!="not_set"){
+                if (url!=null&& !Objects.equals(uro, "")){
                     WITHER_SKELETON_TEXTURES = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("cxkimages", new DynamicTexture(Objects.requireNonNull(DBI.DBI(uro))));
                     if(WITHER_SKELETON_TEXTURES==null){
                         WITHER_SKELETON_TEXTURES = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("cxkimages", new DynamicTexture(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png")))));
@@ -71,6 +76,8 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
                 }
             } catch (IOException e) {
                 Jntm.logger.error(e.fillInStackTrace());
+                Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.RError"))));
+                Minecraft.getMinecraft().player.sendMessage(new TextComponentString("§5"+I18n.format("gui.toast.RError")+"§f:"+e));
                 try {
                     WITHER_SKELETON_TEXTURES = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("cxkimages", new DynamicTexture(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png")))));
                 } catch (IOException ex) {
