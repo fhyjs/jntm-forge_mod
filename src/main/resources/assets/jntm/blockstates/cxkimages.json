@@ -1,7 +1,13 @@
 {
   "forge_marker": 1,
   "variants": {
-    "normal": [{"model":"jntm:cookedcxk_3_model"}],
-    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:cookedcxk_model"}]
+    "normal": [{"model":"jntm:cxkimage"}],
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:cxkimage"}],
+    "facing=east": [{"model":"jntm:cxkimage"}],
+    "facing=south": [{"model":"jntm:cxkimage"}],
+    "facing=west": [{"model":"jntm:cxkimage"}],
+    "facing=north": [{"model":"jntm:cxkimage"}],
+    "facing=up": [{"model":"jntm:cxkimage"}],
+    "facing=down": [{"model":"jntm:cxkimage"}]
   }
 }

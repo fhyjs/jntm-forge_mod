@@ -99,7 +99,8 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
         } else {
             switch (facing) {
                 case NORTH:
-                    GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.74F);
+                    GlStateManager.translate(x + 0.5F, y + 0.25F, z +0.25);
+                    rotationIn=0;
                     break;
                 case SOUTH:
                     GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.26F);
@@ -111,7 +112,7 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
                     break;
                 case EAST:
                 default:
-                    GlStateManager.translate(x + 0.26F, y + 0.25F, z + 0.5F);
+                    GlStateManager.translate(x + 0.70F, y + 0.25F, z + 0.5F);
                     rotationIn = 90.0F;
             }
         }

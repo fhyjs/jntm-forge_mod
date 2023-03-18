@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,12 +12,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public abstract class BlockTileEntity<TE extends TileEntity> extends Block {
+public abstract class BlockTileEntity<TE extends TileEntity> extends BlockDirectional {
     private TE te;
 
-    public BlockTileEntity(Material material, MapColor name) {
-        super(material, name);
-    }
     public BlockTileEntity(Material material,TE te) {
         super(material);
         this.te=te;
