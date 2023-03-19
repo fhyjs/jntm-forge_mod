@@ -91,14 +91,14 @@ public class Cxkimage extends BlockTileEntity<TileEntityCxkImage> {
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         switch (state.getValue(FACING)) {
             case NORTH:
-                return new AxisAlignedBB(0, 0, 0, 1, 1, 0.1);
+                return new AxisAlignedBB(0, 0, 0, 1, 1, .1);
             case SOUTH:
-                return new AxisAlignedBB(0, 0, 0, 1, 1, 0.1);
+                return new AxisAlignedBB(1, 1, 1, 0, 0, .9);
             case WEST:
-                return new AxisAlignedBB(0, 0, 0, 1, 1, 0.1);
+                return new AxisAlignedBB(.1, 1, 1, 0, 0, 0);
             case EAST:
             default:
-                return new AxisAlignedBB(0, 0, 0, 0.1, 1, 1);
+                return new AxisAlignedBB(1, 1, 1, .9, 0, 0);
         }
     }
     @Override

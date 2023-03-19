@@ -86,7 +86,7 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
             }
         }
 
-        this.renderSkull((float)x, (float)y, (float)z, enumfacing, (float)(1 * 360) / 16.0F, 1, null, destroyStage, 0);
+        this.renderSkull((float)x, (float)y, (float)z, enumfacing, (float)(360) / 16.0F, 1, null, destroyStage, 0);
     }
     public void renderSkull(float x, float y, float z, EnumFacing facing, float rotationIn, int skullType, @Nullable GameProfile profile, int destroyStage, float animateTicks) {
         ModelBase modelbase = this.skeletonHead;
@@ -103,16 +103,16 @@ public class RenderCxkImageTileEntity extends TileEntitySpecialRenderer<TileEnti
                     rotationIn=0;
                     break;
                 case SOUTH:
-                    GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.26F);
+                    GlStateManager.translate(x + 0.5F, y + 0.25F, z + .72F);
                     rotationIn = 180.0F;
                     break;
                 case WEST:
-                    GlStateManager.translate(x + 0.74F, y + 0.25F, z + 0.5F);
+                    GlStateManager.translate(x + .29F, y + 0.25F, z + 0.5F);
                     rotationIn = 270.0F;
                     break;
                 case EAST:
                 default:
-                    GlStateManager.translate(x + 0.70F, y + 0.25F, z + 0.5F);
+                    GlStateManager.translate(x + 0.72F, y + 0.25F, z + 0.5F);
                     rotationIn = 90.0F;
             }
         }
