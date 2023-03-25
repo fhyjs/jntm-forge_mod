@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -24,10 +25,13 @@ import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+
+import static cn.fhyjs.jntm.Jntm.proxy;
 
 public class SetCxkimage extends GuiContainer {
     private static final ResourceLocation BACKGROUND = new ResourceLocation(Jntm.MODID, "textures/gui/help_bgi.png");
@@ -120,6 +124,7 @@ public class SetCxkimage extends GuiContainer {
         if (!Objects.equals(te.count, "")){
             textField.setText(te.count);
         }
+        buttonList.add(new GuiButton(2,guiLeft+10, guiTop+20,20,20,I18n.format("gui.paste")));
     }
     @Override
     protected void actionPerformed(GuiButton parButton) throws IOException {
@@ -130,6 +135,13 @@ public class SetCxkimage extends GuiContainer {
             case 1:
                 CommonProxy.INSTANCE.sendToServer(new SCINMessage( "{\"x\":"+bp.getX()+", \"y\":"+bp.getY()+",\"z\":"+bp.getZ()+",\"url\":\""+textField.getText()+"\"}"));
                 CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
+                break;
+            case 2:
+                try {
+                    textField.setText(proxy.getCB());
+                } catch (UnsupportedFlavorException e) {
+                    Jntm.logger.error(new RuntimeException(e));
+                }
                 break;
         }
 
@@ -173,7 +185,7 @@ public class SetCxkimage extends GuiContainer {
                 er= "OK!";
                 btn.enabled=true;
 
-            } catch (IOException | NullPointerException e) {
+            } catch (IOException | NullPointerException | IllegalArgumentException e) {
                 WITHER_SKELETON_TEXTURES=null;
                 er= String.valueOf(e);
                 btn.enabled=false;
@@ -187,7 +199,7 @@ public class SetCxkimage extends GuiContainer {
         this.fontRenderer.drawString(str, x, y, color); //fr - fontRenderer
         GL11.glPopMatrix(); //End this matrix
     }
-    public static BufferedImage DBI(String u,int w,int h) throws IOException,NullPointerException {
+    public static BufferedImage DBI (String u,int w,int h) throws IOException,NullPointerException,IllegalArgumentException {
         if(u=="not_set"){
             return null;
         }
@@ -200,7 +212,6 @@ public class SetCxkimage extends GuiContainer {
         Graphics2D g2d = dimg.createGraphics();
         g2d.drawImage(tmp, 0, 0,w,h, null);
         g2d.dispose();
-
         return dimg;
     }
 }

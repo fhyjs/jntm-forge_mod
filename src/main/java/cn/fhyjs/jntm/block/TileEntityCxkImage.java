@@ -17,7 +17,7 @@ import javax.swing.*;
 
 public class TileEntityCxkImage extends TileEntity implements ITickable {
 
-    public String count="";
+    public String count="http://i2.hdslb.com/bfs/archive/94f1e73bf13eee2d0af15bd4110d67e3400a235d.jpg";
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
@@ -66,6 +66,7 @@ public class TileEntityCxkImage extends TileEntity implements ITickable {
     public void receiveUpdatePacket(NBTTagCompound nbt) {
 
     }
+
     @Override
     public void update() {
         sendUpdates();

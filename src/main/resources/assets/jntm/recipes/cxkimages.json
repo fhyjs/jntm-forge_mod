@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YYY",
+    "YXY",
+    "YYY"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:painting",
+      "data": 0
+    },
+    "Y": {
+      "item": "jntm:cxksegg",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "jntm:cxkimages"
+  }
+}

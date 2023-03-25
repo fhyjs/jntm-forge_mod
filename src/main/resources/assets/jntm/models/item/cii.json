@@ -1,0 +1,23 @@
+{
+  "credit": "Made with Blockbench",
+  "texture_size": [64, 64],
+  "textures": {
+    "1": "jntm:block/cxkimages",
+    "3": "blocks/planks_oak",
+    "particle": "jntm:block/cxkimages"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 8],
+      "to": [16, 16, 9],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+        "east": {"uv": [4.25, 0, 4.5, 4], "texture": "#3"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+        "west": {"uv": [4.25, 4.25, 4.5, 8.25], "texture": "#3"},
+        "up": {"uv": [8.75, 0.25, 4.75, 0], "texture": "#3"},
+        "down": {"uv": [8.75, 0.5, 4.75, 0.75], "texture": "#3"}
+      }
+    }
+  ]
+}

@@ -3,6 +3,8 @@ package cn.fhyjs.jntm.block;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 
+import cn.fhyjs.jntm.renderer.RenderCxkImageTileEntity;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -20,6 +22,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.relauncher.Side;
 
 
 import javax.annotation.Nullable;
@@ -82,7 +87,16 @@ public class Cxkimage extends BlockTileEntity<TileEntityCxkImage> {
 
         return i;
     }
-
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        super.breakBlock(worldIn,pos,state);
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            RenderCxkImageTileEntity.rlm.remove((TileEntityCxkImage) worldIn.getTileEntity(pos));
+            RenderCxkImageTileEntity.mapo.remove((TileEntityCxkImage) worldIn.getTileEntity(pos));
+            RenderCxkImageTileEntity.map.remove((TileEntityCxkImage) worldIn.getTileEntity(pos));
+        }
+    }
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));

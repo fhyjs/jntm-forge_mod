@@ -27,7 +27,7 @@ public class JntmMessageHandler implements IMessageHandler<JntmMessage, IMessage
             ctx.getServerHandler().player.closeScreen();
         }
         if (message.a==1) {
-            item1 = PatchouliItems.book.getDefaultInstance();
+            item1 = new ItemStack(PatchouliItems.book);
             nbtTagCompoundl.setString("patchouli:book", "jntm:jntm");
             item1.setTagCompound(nbtTagCompoundl);
             ctx.getServerHandler().player.inventory.addItemStackToInventory(item1);

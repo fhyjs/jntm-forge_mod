@@ -1,0 +1,18 @@
+{
+  "sortnum": 6,
+  "name": "在线图片展示框",
+  "icon": "jntm:ckximages",
+  "category": "crafting",
+  "pages": [
+    {
+      "type": "text",
+      "text": "一个图片展示框，可展示网络图片."
+    },
+    {
+      "type": "crafting",
+      "title": "在线图片展示框",
+      "recipe": "jntm:cxkimages",
+      "text": ""
+    }
+  ]
+}

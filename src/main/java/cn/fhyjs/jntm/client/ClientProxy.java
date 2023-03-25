@@ -1,13 +1,13 @@
 package cn.fhyjs.jntm.client;
 import cn.fhyjs.jntm.common.CommonProxy;
+
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.registry.RenderRegistryHandler;
-
+import cn.fhyjs.jntm.renderer.CIIRender;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -29,6 +29,10 @@ import org.lwjgl.opengl.Display;
 
 
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -44,6 +48,24 @@ public class ClientProxy extends CommonProxy {
     }
     public static List<ModelRegistryObj> modelsToReg = new ArrayList<ModelRegistryObj>();
     public static List<ModelBakeObj> modelsToBake = new ArrayList<ModelBakeObj>();
+
+    @Override
+    public String getCB() throws IOException, UnsupportedFlavorException {
+        super.getCB();
+        String ret = "";
+        Clipboard sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
+        // 获取剪切板中的内容
+        Transferable clipTf = sysClip.getContents(null);
+
+        if (clipTf != null) {
+            // 检查内容是否是文本类型
+            if (clipTf.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                ret = (String) clipTf.getTransferData(DataFlavor.stringFlavor);
+            }
+        }
+        return ret;
+    }
+
     public List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
     @Override
     public void preInit(FMLPreInitializationEvent event){
@@ -114,7 +136,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event){
         super.postInit(event);
-
+        RenderRegistryHandler.register(event);
     }
     @SideOnly(Side.CLIENT)
     @Override
@@ -151,5 +173,6 @@ public class ClientProxy extends CommonProxy {
     @SideOnly(Side.CLIENT)
     public void regitem_end(){
         super.regitem_end();
+
     }
 }

@@ -11,12 +11,9 @@ import cn.fhyjs.jntm.utility.Dlf;
 import cn.fhyjs.jntm.utility.FTR;
 import cn.fhyjs.jntm.utility.unzip;
 import com.google.common.collect.Lists;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.client.resources.IResourcePack;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.*;
@@ -41,7 +38,6 @@ import java.util.List;
 @Mod.EventBusSubscriber
 @Mod(modid= Jntm.MODID,useMetadata=true,version=Jntm.VERSION,name = Jntm.NAME)
 public class Jntm {
-    private static final IResourcePack FTR = new FTR();
     public static Jntm INSTANCE;
     public Jntm(){
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT&&Loader.isModLoaded("mcef") ) {
@@ -99,10 +95,7 @@ public class Jntm {
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event){
         proxy.preInit(event);
-        if(FMLCommonHandler.instance().getEffectiveSide()== Side.CLIENT) {
-
-        }
-        else {
+        if (FMLCommonHandler.instance().getEffectiveSide() != Side.CLIENT) {
             logger.error("服务器运行鸡你太美可能不稳定!\r\nRunning this mod(Jntm) may NOT Stable!");
         }
     }
@@ -120,7 +113,7 @@ public class Jntm {
 
     @EventHandler
     public void PreInit(final FMLPreInitializationEvent event) {
-        RenderRegistryHandler.register(event);
+
     }
     @EventHandler
     public void  onInit(FMLInitializationEvent event){
@@ -136,12 +129,7 @@ public class Jntm {
     @EventHandler
     @SideOnly(Side.CLIENT)
     public void preInitClient(FMLPreInitializationEvent event){
-        /*
-        List<IResourcePack> defaultResourcePacks = Lists.<IResourcePack>newArrayList();
-        defaultResourcePacks.add(Minecraft.getMinecraft().mcDefaultResourcePack);
-        defaultResourcePacks.add(FTR);
-        ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"defaultResourcePacks");
-        */
+
     }
     @EventHandler
     @SideOnly(Side.CLIENT)

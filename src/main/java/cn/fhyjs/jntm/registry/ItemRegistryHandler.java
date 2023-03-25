@@ -83,13 +83,8 @@ public class ItemRegistryHandler {
         registryModel(INS_JVAV);
         registryModel(fsms);
         registryModel(DANMAKU_GUN);
-        ModelBakery.registerItemVariants(CXKIMAGE, new ResourceLocation(Jntm.MODID, "danmakugan"));
-        
-        //IItemRendererHandler.register(CXKIMAGE, new IItemRenderer);
-        //ClientProxy.modelsToReg.add(new ClientProxy.ModelRegistryObj(CXKIMAGE, 0, new ModelResourceLocation("jntm:dynamic/cxkimage_1")));
-        //ClientProxy.modelsToBake.add(new ClientProxy.ModelBakeObj(CXKIMAGE,new ModelResourceLocation("jntm:/dynamic/cxkimage_1"), CXKIMAGE.getMeshDefinition()));
-        //ModelLoader.setCustomModelResourceLocation(CXKIMAGE,0,);
-        //proxy.registerItems(event);
+        ModelLoader.setCustomModelResourceLocation(CXKIMAGE,0,new ModelResourceLocation("jntm:cii","inventory"));
+
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
