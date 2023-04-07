@@ -101,7 +101,7 @@ public class Jntm {
     }
 
     @EventHandler
-    public void onClientConnectedToServerEvent(FMLNetworkEvent.ClientConnectedToServerEvent event){
+    public void ClientConnectedToServer(FMLNetworkEvent.ClientConnectedToServerEvent event){
         IS_LOCAL_SERVER = event.isLocal();
     }
     @EventHandler

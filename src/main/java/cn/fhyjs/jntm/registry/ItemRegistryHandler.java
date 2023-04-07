@@ -5,6 +5,7 @@ import cn.fhyjs.jntm.block.Cxkimage;
 import cn.fhyjs.jntm.item.*;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -39,6 +40,10 @@ public class ItemRegistryHandler {
     public static final ItemBlock CXKIMAGE = new ItemBlock(BlockRegistryHandler.CXKIMAGE);
     public static final InsJvav INS_JVAV=new InsJvav();
     public static final Danmaku_Gun DANMAKU_GUN = new Danmaku_Gun();
+    public  static final Ji_Armor JI_ARMOR_1 = new Ji_Armor(EntityEquipmentSlot.HEAD);
+    public  static final Ji_Armor JI_ARMOR_2 = new Ji_Armor(EntityEquipmentSlot.CHEST);
+    public  static final Ji_Armor JI_ARMOR_3 = new Ji_Armor(EntityEquipmentSlot.LEGS);
+    public  static final Ji_Armor JI_ARMOR_4 = new Ji_Armor(EntityEquipmentSlot.FEET);
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
@@ -65,6 +70,10 @@ public class ItemRegistryHandler {
         registry.register(INS_JVAV);
         registry.register(fsms);
         registry.register(DANMAKU_GUN);
+        registry.register(JI_ARMOR_1);
+        registry.register(JI_ARMOR_2);
+        registry.register(JI_ARMOR_3);
+        registry.register(JI_ARMOR_4);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
