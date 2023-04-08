@@ -1,6 +1,9 @@
 package cn.fhyjs.jntm.client;
+import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 
+import cn.fhyjs.jntm.config.ConfigCore;
+import cn.fhyjs.jntm.network.EventHandler;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import cn.fhyjs.jntm.renderer.CIIRender;
@@ -28,6 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.Display;
 
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -38,6 +42,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Timer;
 
 
 public class ClientProxy extends CommonProxy {
@@ -65,13 +71,42 @@ public class ClientProxy extends CommonProxy {
         }
         return ret;
     }
+    public Image[] TIs;
 
     public List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
+    public proadd nt=new proadd();
+    public static TrayIcon TIl;
+    public  SystemTray tray = SystemTray.getSystemTray();
     @Override
     public void preInit(FMLPreInitializationEvent event){
         super.preInit(event);
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
+        if(SystemTray.isSupported()&& ConfigCore.isenabledTrayIcon) {
 
+            TIs=new Image[17];
+            for (int i=0;i< TIs.length;i++){
+                try {
+                    Image image = null;
+                    image = ImageIO.read(Objects.requireNonNull(Jntm.class.getClassLoader().getResourceAsStream("assets/jntm/textures/gui/st/"+i+".png")));
+                    if (image != null) {
+                        TIs[i] =image;
+                    }
+                } catch (IOException | NullPointerException e) {
+                    Jntm.logger.error(e);
+                }
+            }
+
+            TIl=new TrayIcon(TIs[0],Display.getTitle());
+            TIl.setImageAutoSize(true);//设置图像自适应
+            try {
+                tray.add(TIl);
+            } catch (AWTException e) {
+                Jntm.logger.error(e);
+            }
+            nt.start();
+        }else {
+            Jntm.logger.error("SystemTray Is NOT Supported,Or it's disable in config");
+        }
     }
     @SideOnly(Side.CLIENT)
     @Override
@@ -137,6 +172,7 @@ public class ClientProxy extends CommonProxy {
     public void postInit(FMLPostInitializationEvent event){
         super.postInit(event);
         RenderRegistryHandler.register(event);
+        EventHandler.postInit = true;
     }
     @SideOnly(Side.CLIENT)
     @Override
@@ -174,5 +210,20 @@ public class ClientProxy extends CommonProxy {
     public void regitem_end(){
         super.regitem_end();
 
+    }
+    class proadd extends Thread{
+        @Override
+        public void run(){
+            while (true){
+                for (int i=0;i< TIs.length;i++){
+                    TIl.setImage(TIs[i]);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        Jntm.logger.error(e);
+                    }
+                }
+            }
+        }
     }
 }

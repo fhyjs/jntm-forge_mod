@@ -1,13 +1,14 @@
 package cn.fhyjs.jntm.common;
 import cn.fhyjs.jntm.Jntm;
 
-import cn.fhyjs.jntm.network.JntmMessage;
-import cn.fhyjs.jntm.network.JntmMessageHandler;
-import cn.fhyjs.jntm.network.SCINMessage;
-import cn.fhyjs.jntm.network.SCINMessageHandler;
+import cn.fhyjs.jntm.config.ConfigCore;
+import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -26,10 +27,14 @@ public class CommonProxy  {
     public void registerItems(ModelRegistryEvent event) {}
 
     public void OpenWB() throws IOException {}
+    @Mod.Metadata(Jntm.MODID)
+    private static ModMetadata meta;
     public void preInit(FMLPreInitializationEvent event){
         registerMessage();
+        ConfigCore.loadConfig(event);
     }
     public void init(FMLInitializationEvent event){
+        FMLCommonHandler.instance().bus().register(new EventHandler());
     }
     public void postInit(FMLPostInitializationEvent event){
         DispenserBehaviorRegistryHandler.run();
