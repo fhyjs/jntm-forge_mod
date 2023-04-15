@@ -1,3 +1,4 @@
+[![jntm](https://github.com/fhyjs/jntm-forge_mod/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/fhyjs/jntm-forge_mod/actions/workflows/gradle-publish.yml)
 -------------------------------------------
 Source installation information for modders
 -------------------------------------------
