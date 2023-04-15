@@ -24,7 +24,7 @@ public class RenderRegistryHandler {
         RenderingRegistry.registerEntityRenderingHandler(Boss_Cxk.class,new RenderBossCxk(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Ta_Danmaku.class, new EntityDanmakuRender(Minecraft.getMinecraft().getRenderManager()));
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCxkImage.class, new RenderCxkImageTileEntity());
-
+        RenderingRegistry.registerEntityRenderingHandler(XiGua.class,new RenderXigua(Minecraft.getMinecraft().getRenderManager()));
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
     }
 }

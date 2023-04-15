@@ -1,0 +1,2282 @@
+//--0.mcfunction--
+timeout 0
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+playsound minecraft:block.note_block.pling record 0.33 0.529732
+//--1.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+//--8.mcfunction--
+timeout 700
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--48.mcfunction--
+timeout 4000
+playsound minecraft:block.note_block.pling record 0.33 1.498307
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+playsound minecraft:block.note_block.pling record 0.33 0.500000
+//--49.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+//--50.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.33 1.189207
+//--56.mcfunction--
+timeout 600
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--96.mcfunction--
+timeout 4000
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+playsound minecraft:block.note_block.pling record 0.33 0.529732
+//--97.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+//--104.mcfunction--
+timeout 700
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--120.mcfunction--
+timeout 1600
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--128.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.33 1.189207
+//--144.mcfunction--
+timeout 1600
+playsound minecraft:block.note_block.pling record 0.33 1.000000
+playsound minecraft:block.note_block.pling record 0.33 1.189207
+playsound minecraft:block.note_block.pling record 0.33 0.500000
+//--145.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.33 1.498307
+//--148.mcfunction--
+timeout 300
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--152.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.498307
+//--156.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.189207
+//--160.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--164.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+//--168.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.189207
+//--176.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--184.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.41 1.189207
+//--192.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--193.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--194.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--208.mcfunction--
+timeout 1400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--216.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+//--217.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--218.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--228.mcfunction--
+timeout 1000
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--232.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--236.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--240.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+//--241.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--242.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--252.mcfunction--
+timeout 1000
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--256.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--260.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--264.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--265.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+//--266.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--268.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--272.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--288.mcfunction--
+timeout 1600
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--289.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--290.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--304.mcfunction--
+timeout 1400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--312.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+//--313.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--314.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--320.mcfunction--
+timeout 600
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--328.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--336.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--344.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+//--352.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--360.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.259921
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--361.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.629961
+//--368.mcfunction--
+timeout 700
+playsound minecraft:block.note_block.pling record 0.54 2.000000
+//--376.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.59 1.498307
+//--384.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--388.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--392.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--396.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--400.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--404.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--408.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--412.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--416.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--420.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+//--424.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--428.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--432.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+//--436.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--440.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--444.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--448.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--452.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--456.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--460.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--464.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--468.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--472.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.000000
+//--476.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--480.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--484.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--488.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--492.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--496.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--500.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--504.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--508.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--512.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--516.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+//--520.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--524.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--528.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--532.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--536.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--540.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--544.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--548.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--552.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.840896
+playsound minecraft:block.note_block.pling record 0.64 1.000000
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--556.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.840896
+//--560.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--564.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--568.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.840896
+//--608.mcfunction--
+timeout 4000
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--616.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--624.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--628.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--632.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--636.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--640.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--644.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--648.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+//--652.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--656.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--664.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--672.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--676.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--680.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+//--688.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--696.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--700.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--704.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--712.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--716.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--720.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--724.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--728.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+//--732.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--736.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--740.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--744.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--748.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.52 0.749154
+//--752.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.56 0.500000
+playsound minecraft:block.note_block.pling record 0.56 0.594604
+//--760.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 1.000000
+//--764.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+//--768.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--772.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--776.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.059463
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--780.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--784.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--788.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.059463
+//--792.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.259921
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--794.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--796.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 0.629961
+//--798.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--800.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--802.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.000000
+//--804.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 0.629961
+//--806.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--808.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--810.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.000000
+//--812.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.259921
+//--814.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+//--816.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--820.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--824.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--828.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--832.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--836.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--840.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--844.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--848.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--852.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--856.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--860.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--864.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--868.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--872.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--876.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--880.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--884.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--888.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--892.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--896.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--900.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--904.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--908.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--912.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--916.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--920.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--924.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--928.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--932.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--936.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--940.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--944.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--948.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--952.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--956.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--960.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--964.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--968.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--972.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--976.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--980.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--984.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.259921
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--988.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--992.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+playsound minecraft:block.note_block.pling record 0.80 0.629961
+//--996.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--1000.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.629961
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--1004.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--1008.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--1012.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--1016.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--1020.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--1024.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--1028.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--1032.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--1036.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--1040.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--1044.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--1048.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--1052.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--1056.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--1060.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.75 0.793701
+//--1064.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.70 0.500000
+//--1068.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.65 0.594604
+//--1072.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.60 0.500000
+//--1076.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.55 0.793701
+//--1080.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--1104.mcfunction--
+timeout 2400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--1108.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1112.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1116.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1120.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1124.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1128.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1132.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--1136.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1140.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--1144.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1148.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--1152.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--1156.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1160.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--1164.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1168.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--1172.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1224.mcfunction--
+timeout 5200
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+playsound minecraft:block.note_block.pling record 0.33 0.529732
+//--1228.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1232.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1236.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1240.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1244.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1248.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1252.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1256.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--1260.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1264.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1268.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1272.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+playsound minecraft:block.note_block.pling record 0.33 0.500000
+//--1276.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1280.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1284.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1288.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1292.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1296.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1300.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1304.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--1308.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1312.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1316.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1320.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+playsound minecraft:block.note_block.pling record 0.33 0.529732
+//--1324.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1328.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1332.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1336.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1340.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1344.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1348.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1352.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--1356.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1360.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1364.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1368.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 2.000000
+playsound minecraft:block.note_block.pling record 0.33 0.500000
+//--1372.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1376.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1380.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1384.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.587401
+//--1388.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1392.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--1396.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1400.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.189207
+//--1404.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1408.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.781797
+//--1412.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.33 1.334840
+//--1416.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1417.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--1420.mcfunction--
+timeout 300
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1424.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1428.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1432.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1436.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1440.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1444.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1448.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1452.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1456.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1460.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1464.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+playsound minecraft:block.note_block.pling record 0.49 0.594604
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--1465.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1468.mcfunction--
+timeout 300
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1472.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1476.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1480.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1484.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1488.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1492.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1496.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1500.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1504.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1508.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1512.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1513.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--1516.mcfunction--
+timeout 300
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1520.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1524.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1528.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1532.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1536.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1540.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1544.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1548.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1552.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1556.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1560.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+playsound minecraft:block.note_block.pling record 0.49 1.000000
+//--1561.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1564.mcfunction--
+timeout 300
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1568.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1572.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1576.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--1580.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1584.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1588.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1592.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1596.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1600.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--1604.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1608.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+//--1612.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1616.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1620.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1624.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1628.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1632.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--1636.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--1640.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1644.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--1648.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1652.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1656.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1660.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--1664.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1668.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1672.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1676.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1680.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1684.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1688.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1692.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1696.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1700.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1704.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+//--1708.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1712.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1716.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1720.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1724.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1728.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.500000
+//--1732.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.749154
+//--1736.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1740.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 0.890899
+//--1744.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1748.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--1752.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.529732
+//--1756.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1760.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1764.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 0.793701
+//--1768.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1772.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--1776.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+//--1780.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.51 1.334840
+playsound minecraft:block.note_block.pling record 0.51 1.059463
+//--1784.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.54 2.000000
+playsound minecraft:block.note_block.pling record 0.54 1.781797
+playsound minecraft:block.note_block.pling record 0.54 1.059463
+//--1788.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.56 1.334840
+playsound minecraft:block.note_block.pling record 0.56 1.059463
+//--1792.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.59 1.498307
+playsound minecraft:block.note_block.pling record 0.59 1.587401
+playsound minecraft:block.note_block.pling record 0.59 1.059463
+//--1796.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.61 1.334840
+playsound minecraft:block.note_block.pling record 0.61 1.059463
+//--1800.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--1804.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1808.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1812.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1816.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1820.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1824.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1828.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--1832.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--1836.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+//--1840.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--1844.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--1848.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+//--1852.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--1856.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1860.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1864.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--1868.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1872.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1876.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1880.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--1884.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--1888.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1892.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--1896.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--1900.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1904.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1908.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1912.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1916.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1920.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1924.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--1928.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--1932.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+//--1936.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--1940.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+//--1944.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--1948.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1952.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1956.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1960.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1964.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1968.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1972.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1976.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1980.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--1984.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+//--1988.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+playsound minecraft:block.note_block.pling record 0.64 1.000000
+//--1992.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+playsound minecraft:block.note_block.pling record 0.64 0.500000
+//--1994.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.65 0.594604
+//--1996.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.66 1.334840
+playsound minecraft:block.note_block.pling record 0.66 0.749154
+//--1998.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.68 0.500000
+//--2000.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.69 2.000000
+playsound minecraft:block.note_block.pling record 0.69 2.000000
+playsound minecraft:block.note_block.pling record 0.69 0.594604
+//--2002.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.70 0.749154
+//--2004.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.72 0.749154
+//--2006.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.73 0.500000
+//--2008.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.74 1.189207
+playsound minecraft:block.note_block.pling record 0.74 1.189207
+playsound minecraft:block.note_block.pling record 0.74 0.594604
+//--2010.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.76 0.749154
+//--2012.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.77 1.000000
+//--2014.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.78 1.189207
+//--2016.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2020.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--2024.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2028.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2032.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+playsound minecraft:block.note_block.pling record 0.80 1.000000
+//--2036.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 1.334840
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2040.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2044.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--2048.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--2052.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2056.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--2060.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2064.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2068.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2072.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--2076.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2080.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 1.498307
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--2084.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2088.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2092.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--2096.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2100.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2104.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+playsound minecraft:block.note_block.pling record 0.80 1.000000
+//--2108.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2112.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--2116.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--2120.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2124.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.890899
+//--2128.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--2132.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2136.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2140.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2144.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--2148.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2152.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 1.587401
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2156.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 1.781797
+playsound minecraft:block.note_block.pling record 0.80 0.749154
+//--2160.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 2.000000
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--2164.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--2168.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.059463
+playsound minecraft:block.note_block.pling record 0.80 1.059463
+playsound minecraft:block.note_block.pling record 0.80 0.529732
+//--2172.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.667420
+//--2176.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 1.189207
+playsound minecraft:block.note_block.pling record 0.80 0.793701
+//--2180.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.059463
+//--2184.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 1.259921
+playsound minecraft:block.note_block.pling record 0.80 1.259921
+playsound minecraft:block.note_block.pling record 0.80 0.500000
+//--2186.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.81 0.500000
+//--2188.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.82 0.629961
+//--2190.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.84 0.749154
+//--2192.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.85 1.334840
+playsound minecraft:block.note_block.pling record 0.85 1.334840
+playsound minecraft:block.note_block.pling record 0.85 0.890899
+//--2194.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.86 1.000000
+//--2196.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.88 0.629961
+//--2198.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.89 0.749154
+//--2200.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.90 1.498307
+playsound minecraft:block.note_block.pling record 0.90 1.498307
+playsound minecraft:block.note_block.pling record 0.90 0.890899
+//--2202.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.92 1.000000
+//--2204.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.93 1.259921
+//--2206.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.94 1.498307
+//--2208.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 1 0.667420
+//--2212.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2216.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2220.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2224.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2228.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2232.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 1 0.594604
+//--2236.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.594604
+//--2240.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2244.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.890899
+//--2248.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 0.594604
+//--2252.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.890899
+//--2256.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 1 0.500000
+//--2260.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2264.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 0.594604
+//--2268.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2272.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2276.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.594604
+//--2280.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 1 0.667420
+//--2284.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2288.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2292.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2296.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2300.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2304.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 1 0.890899
+//--2308.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.890899
+//--2312.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.529732
+//--2316.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2320.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2324.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2328.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 1 0.500000
+//--2332.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2336.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.594604
+//--2340.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2344.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 0.890899
+//--2348.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2352.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 1 0.529732
+//--2356.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.529732
+//--2360.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2364.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2368.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.000000
+//--2372.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2376.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.259921
+playsound minecraft:block.note_block.pling record 0.96 1.259921
+playsound minecraft:block.note_block.pling record 1 0.500000
+//--2380.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2384.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 0.629961
+//--2388.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2392.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 0.890899
+//--2396.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2400.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 1 0.529732
+//--2404.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.529732
+//--2408.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2412.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2416.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 1.781797
+playsound minecraft:block.note_block.pling record 0.96 1.000000
+//--2420.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 1.587401
+playsound minecraft:block.note_block.pling record 0.96 0.793701
+//--2424.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 0.96 1.498307
+playsound minecraft:block.note_block.pling record 1 0.500000
+//--2428.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.500000
+//--2432.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 1.189207
+playsound minecraft:block.note_block.pling record 0.96 0.594604
+//--2436.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2440.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 2.000000
+playsound minecraft:block.note_block.pling record 0.96 0.890899
+//--2444.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 0.749154
+//--2448.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 1.334840
+playsound minecraft:block.note_block.pling record 0.96 0.667420
+//--2452.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.91 0.793701
+//--2456.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.86 0.500000
+//--2460.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.80 0.594604
+//--2464.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.75 0.500000
+//--2468.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.70 0.793701
+//--2472.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--2496.mcfunction--
+timeout 2400
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+playsound minecraft:block.note_block.pling record 0.64 0.529732
+//--2497.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.64 1.000000
+//--2498.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+//--2520.mcfunction--
+timeout 2200
+playsound minecraft:block.note_block.pling record 0.64 0.749154
+playsound minecraft:block.note_block.pling record 0.64 0.890899
+playsound minecraft:block.note_block.pling record 0.64 0.594604
+//--2521.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+//--2522.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+//--2544.mcfunction--
+timeout 2200
+playsound minecraft:block.note_block.pling record 0.64 0.793701
+playsound minecraft:block.note_block.pling record 0.64 1.000000
+playsound minecraft:block.note_block.pling record 0.64 0.667420
+//--2545.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.64 1.334840
+//--2546.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+//--2552.mcfunction--
+timeout 600
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+//--2560.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 1.498307
+//--2568.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 1.189207
+//--2576.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 2.000000
+//--2584.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 1.781797
+//--2592.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.64 1.587401
+//--2640.mcfunction--
+timeout 4800
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--2652.mcfunction--
+timeout 1200
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--2656.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--2660.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--2664.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--2672.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--2680.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--2688.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.059463
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--2700.mcfunction--
+timeout 1200
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--2704.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--2708.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+//--2712.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--2716.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--2720.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+//--2724.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--2728.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--2736.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--2752.mcfunction--
+timeout 1600
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+//--2756.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.587401
+//--2760.mcfunction--
+timeout 400
+playsound minecraft:block.note_block.pling record 0.49 1.498307
+playsound minecraft:block.note_block.pling record 0.49 1.781797
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--2768.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.189207
+//--2776.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+//--2784.mcfunction--
+timeout 800
+playsound minecraft:block.note_block.pling record 0.49 1.334840
+playsound minecraft:block.note_block.pling record 0.49 1.681793
+playsound minecraft:block.note_block.pling record 0.49 2.000000
+playsound minecraft:block.note_block.pling record 0.49 0.667420
+//--2785.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.pling record 0.49 1.334840

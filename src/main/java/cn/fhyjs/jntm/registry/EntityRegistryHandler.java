@@ -38,7 +38,7 @@ public class EntityRegistryHandler {
         );
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(cxk.class)
-                .id(new ResourceLocation(Jntm.MODID, "cxk"), 123)
+                .id(new ResourceLocation(Jntm.MODID, "cxk"), 110)
                 .name("cxk")
                 .tracker(80, 3, false)
                 .build()
@@ -71,6 +71,12 @@ public class EntityRegistryHandler {
                 .tracker(80, 3, false)
                 .build()
         );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(XiGua.class)
+                .id(new ResourceLocation(Jntm.MODID, "xigua"), 115)
+                .name("xigua")
+                .tracker(80, 3, false)
+                .build()
+        );
     }
-    RenderingRegistry a;
 }

@@ -61,5 +61,33 @@
     "sounds": [
       "jntm:music/fadongji"
     ]
+  },
+  "xiatounan": {
+    "category": "ambient",
+    "subtitle": "sound.xiatounan.name",
+    "sounds": [
+      "jntm:music/xiatounan"
+    ]
+  },
+  "jiarenmen": {
+    "category": "ambient",
+    "subtitle": "sound.jiarenmen.name",
+    "sounds": [
+      "jntm:music/jiarenmen"
+    ]
+  },
+  "shuidonga": {
+    "category": "ambient",
+    "subtitle": "sound.shuidonga.name",
+    "sounds": [
+      "jntm:music/shuidonga"
+    ]
+  },
+  "wozhendehuixie": {
+    "category": "ambient",
+    "subtitle": "sound.wozhendehuixie.name",
+    "sounds": [
+      "jntm:music/wozhendehuixie"
+    ]
   }
 }

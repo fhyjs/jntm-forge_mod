@@ -27,6 +27,7 @@ import static cn.fhyjs.jntm.registry.SoundEventRegistryHandler.prefix;
 
 @Mod.EventBusSubscriber
 public class ItemRegistryHandler {
+    public static Fsms xiguaegg =new Fsms("xigua");
     public static Fsms fsms =new Fsms("bosscxk");
     public static ggxdd ggxdd = new ggxdd();
     public static JGPDTEX jgpdtex =new JGPDTEX();
@@ -74,6 +75,8 @@ public class ItemRegistryHandler {
         registry.register(JI_ARMOR_2);
         registry.register(JI_ARMOR_3);
         registry.register(JI_ARMOR_4);
+        registry.register(xiguaegg);
+        registry.register(JI_GAMES);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -92,8 +95,9 @@ public class ItemRegistryHandler {
         registryModel(INS_JVAV);
         registryModel(fsms);
         registryModel(DANMAKU_GUN);
+        registryModel(xiguaegg);
         ModelLoader.setCustomModelResourceLocation(CXKIMAGE,0,new ModelResourceLocation("jntm:cii","inventory"));
-
+        registryModel(JI_GAMES);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

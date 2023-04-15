@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.registry;
 
+import cn.fhyjs.jntm.Jntm;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -14,7 +15,7 @@ import static net.minecraft.launchwrapper.LogWrapper.log;
 
 @Mod.EventBusSubscriber
 public class SoundEventRegistryHandler {
-    public static SoundEvent soundEvents,xainga,ji,music_xjj,music_kdj,cxk_hurt,cxk_die,jntmyy,xamoob,fadongji;
+    public static SoundEvent soundEvents,xainga,ji,music_xjj,music_kdj,cxk_hurt,cxk_die,jntmyy,xamoob,fadongji,xiatounan,shuidonga,jiarenmen,wozhendehuixie;
     public static String prefix = "jntm";
     public static String[] arr_2 = {
             "xianga",
@@ -32,6 +33,10 @@ public class SoundEventRegistryHandler {
         for (int i=0;i< arr_2.length;i++){
             log.info("jntm:RegSound("+i+"):{"+prefix+":"+arr_2[i]+"}");
             soundEvents = new SoundEvent(new ResourceLocation(prefix, arr_2[i]));
+            xiatounan = new SoundEvent(new ResourceLocation(Jntm.MODID,"xiatounan"));
+            shuidonga = new SoundEvent(new ResourceLocation(Jntm.MODID,"shuidonga"));
+            jiarenmen = new SoundEvent(new ResourceLocation(Jntm.MODID,"jiarenmen"));
+            wozhendehuixie = new SoundEvent(new ResourceLocation(Jntm.MODID,"wozhendehuixie"));
             event.getRegistry().register(soundEvents.setRegistryName(new ResourceLocation(prefix, arr_2[i])));
             if (arr_2[i]=="xianga"){
                 xainga=soundEvents;

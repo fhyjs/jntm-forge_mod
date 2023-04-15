@@ -88,3 +88,4 @@ config.jntm.prop.enabledGenerator=任务栏图标会显示当该值为true时.
 config.jntm.main.title=鸡你太美mod设置
 config.jntm.main.est=系统托盘状态
 jntm.tips.mcsf=Minecraft启动完成!
+entity.xigua.name=人脸大西瓜
