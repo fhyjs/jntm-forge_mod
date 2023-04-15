@@ -33,6 +33,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.SetCxkimage.getId()){
             return new SetCxkimage_C(player,world,new BlockPos(x,y,z));
         }
+        if (ID==GUIs.RSMPlayer.getId()){
+            return new RSMPlayerC(player,world,new BlockPos(x,y,z));
+        }
         return null;
     }
 
@@ -65,6 +68,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.SetCxkimage.getId()){
             return new SetCxkimage(player,world,new BlockPos(x,y,z));
         }
+        if (ID==GUIs.RSMPlayer.getId()){
+            return new RSMPlayerG(player,world,new BlockPos(x,y,z));
+        }
         return null;
     }
 
@@ -81,7 +87,9 @@ public class JntmGuiHandler implements IGuiHandler {
         Insting(13),
         //jvav3
         JFinish(14),
-        SetCxkimage(15);
+        SetCxkimage(15),
+        RSMPlayer(16);
+
 
         private int id;
         GUIs(int id) {

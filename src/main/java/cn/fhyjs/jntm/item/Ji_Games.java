@@ -41,9 +41,11 @@ public class Ji_Games extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack item = player.getHeldItem(hand);
-            Thread t=new pstest(null,world,new BlockPos(player.posX,player.posY,player.posZ),new ResourceLocation("jntm:sounds/jimusic/test3.jim"));
-            t.start();
-
+            if (!world.isRemote) {
+                player.openGui(Jntm.instance, JntmGuiHandler.GUIs.RSMPlayer.getId(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                //Thread t = new pstest(null, world, new BlockPos(player.posX, player.posY, player.posZ), new ResourceLocation("jntm:sounds/jimusic/test3.jim"));
+                //t.start();
+            }
         // 互动成功，返回EnumActionResult.SUCCESS，item 是互动结束以后的 item
         return new ActionResult<>(EnumActionResult.SUCCESS, item);
     }

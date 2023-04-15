@@ -35,21 +35,39 @@ public class pstest extends Thread{
             Jntm.logger.error(new RuntimeException(e));
         }
     }
+    public pstest(EntityPlayer entityplayer, World world, BlockPos bp,File f) {
+        this.entityplayer=entityplayer;
+        this.world=world;
+        this.bp=bp;
+        try {
+            InputStream is;
+            String iss;
+            is=new FileInputStream(f);
+            iss=readLine(is);
+            iss=iss.replace("\r","");
+            this.split=iss.split("\n");
+        } catch (IOException e) {
+            Jntm.logger.error(new RuntimeException(e));
+        }
+    }
     @Override
     public void run(){
         for (int i=0;i<=split.length;i++){
-            String[] ts = split[i].split(" ");
-            if (Objects.equals(ts[0], "playsound")){
-                ts[1]=ts[1].replace("note_block","note");
-                world.playSound(entityplayer,bp,SoundEvent.REGISTRY.getObject(new ResourceLocation(ts[1])),SoundCategory.getByName(ts[2]),Float.parseFloat(ts[3]),Float.parseFloat(ts[4]));
-            }
-            if (Objects.equals(ts[0], "timeout")){
-                try {
-                    Thread.sleep(Integer.parseInt(ts[1]));
-                } catch (InterruptedException e) {
-                    Jntm.logger.error(new RuntimeException(e));
+            String[] ts = new String[0];
+            try {
+                 ts= split[i].split(" ");
+                if (Objects.equals(ts[0], "playsound")){
+                    ts[1]=ts[1].replace("note_block","note");
+                    world.playSound(entityplayer,bp,SoundEvent.REGISTRY.getObject(new ResourceLocation(ts[1])),SoundCategory.getByName(ts[2]),Float.parseFloat(ts[3]),Float.parseFloat(ts[4]));
                 }
-            }
+                if (Objects.equals(ts[0], "timeout")){
+                    try {
+                        Thread.sleep(Integer.parseInt(ts[1]));
+                    } catch (InterruptedException e) {
+                        Jntm.logger.error(new RuntimeException(e));
+                    }
+                }
+            }catch (ArrayIndexOutOfBoundsException ignored){}
         }
     }
     /**

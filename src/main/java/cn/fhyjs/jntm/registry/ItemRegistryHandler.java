@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.Cxkimage;
+import cn.fhyjs.jntm.block.JimPlayerBlock;
 import cn.fhyjs.jntm.item.*;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -34,6 +35,7 @@ public class ItemRegistryHandler {
     public static rawkr rawkr = new rawkr(3,3,true);
     public static final ItemBlock cookedcxk_item = new ItemBlock(BlockRegistryHandler.BLOCK_cookedcxk);
     public static final ItemBlock ITEM_CxkTNT = new ItemBlock(BlockRegistryHandler.BLOCK_CxkTnt);
+    public static final ItemBlock JimplayerBlock = new ItemBlock(BlockRegistryHandler.JIM_PLAYER_BLOCK);
     public static music_xjj music_xjj,music_kdj;
     public static Jntm_help_item jntmHelpItem = new Jntm_help_item();
     public static Jiguangpao JGP = new Jiguangpao();
@@ -48,7 +50,7 @@ public class ItemRegistryHandler {
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
-
+        JimplayerBlock.setRegistryName(Objects.requireNonNull(JimplayerBlock.getBlock().getRegistryName()));
         IForgeRegistry<Item> registry = event.getRegistry();
         cookedcxk_item.setRegistryName(Objects.requireNonNull(cookedcxk_item.getBlock().getRegistryName()));
         ITEM_CxkTNT.setRegistryName(Objects.requireNonNull(ITEM_CxkTNT.getBlock().getRegistryName()));
@@ -77,6 +79,7 @@ public class ItemRegistryHandler {
         registry.register(JI_ARMOR_4);
         registry.register(xiguaegg);
         registry.register(JI_GAMES);
+        registry.register(JimplayerBlock);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -98,6 +101,7 @@ public class ItemRegistryHandler {
         registryModel(xiguaegg);
         ModelLoader.setCustomModelResourceLocation(CXKIMAGE,0,new ModelResourceLocation("jntm:cii","inventory"));
         registryModel(JI_GAMES);
+        registryModel(JimplayerBlock);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

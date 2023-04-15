@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.block.CxkTNT;
 import cn.fhyjs.jntm.block.Cxkimage;
+import cn.fhyjs.jntm.block.JimPlayerBlock;
 import cn.fhyjs.jntm.block.cookedcxk;
 import cn.fhyjs.jntm.item.*;
 import net.minecraft.block.Block;
@@ -25,12 +26,15 @@ public class BlockRegistryHandler {
     public static final cookedcxk BLOCK_cookedcxk = new cookedcxk();
     public static final CxkTNT BLOCK_CxkTnt = new CxkTNT();
     public static final Cxkimage CXKIMAGE = new Cxkimage();
+    public static final JimPlayerBlock JIM_PLAYER_BLOCK = new JimPlayerBlock();
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(BLOCK_cookedcxk);
         registry.register(BLOCK_CxkTnt);
         registry.register(CXKIMAGE);
+        registry.register(JIM_PLAYER_BLOCK);
+        GameRegistry.registerTileEntity(JIM_PLAYER_BLOCK.getTileEntityClass(), JIM_PLAYER_BLOCK.getRegistryName().toString());
         GameRegistry.registerTileEntity(CXKIMAGE.getTileEntityClass(), CXKIMAGE.getRegistryName().toString());
     }
 }

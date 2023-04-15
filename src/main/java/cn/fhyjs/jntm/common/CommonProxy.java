@@ -1,10 +1,12 @@
 package cn.fhyjs.jntm.common;
 import cn.fhyjs.jntm.Jntm;
 
+import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +20,9 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 
 public class CommonProxy  {
@@ -41,6 +46,7 @@ public class CommonProxy  {
     }
     public void openhelpGui(GuiScreen e){}
     public void openurl(String s){}
+    public static Map<BlockPos,Thread> jimplayers= new HashMap<>();
     public String getCB() throws IOException, UnsupportedFlavorException {return null;}
     private void registerMessage(){
         INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Jntm.MODID);
@@ -48,6 +54,8 @@ public class CommonProxy  {
         INSTANCE.registerMessage(JntmMessageHandler.class, JntmMessage.class, 0, Side.SERVER);
         INSTANCE.registerMessage(SCINMessageHandler.class, SCINMessage.class, 1, Side.CLIENT);
         INSTANCE.registerMessage(SCINMessageHandler.class, SCINMessage.class, 1, Side.SERVER);
+        INSTANCE.registerMessage(Opt_Play_M_Handler.class, Opt_Ply_Message.class, 2, Side.CLIENT);
+        INSTANCE.registerMessage(Opt_Play_M_Handler.class, Opt_Ply_Message.class, 2, Side.SERVER);
     }
     public void OpenFE(String e) throws IOException {}
 

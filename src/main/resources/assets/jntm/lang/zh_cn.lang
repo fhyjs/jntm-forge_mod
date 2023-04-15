@@ -89,3 +89,7 @@ config.jntm.main.title=鸡你太美mod设置
 config.jntm.main.est=系统托盘状态
 jntm.tips.mcsf=Minecraft启动完成!
 entity.xigua.name=人脸大西瓜
+gui.jntm.rsmp.title=jim音频播放器
+gui.jntm.rsmp.chose=从上方选一个
+gui.play=播放
+gui.stop=停止
