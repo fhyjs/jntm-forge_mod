@@ -10,10 +10,12 @@ import cn.fhyjs.jntm.renderer.CIIRender;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -40,6 +43,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -78,7 +82,7 @@ public class ClientProxy extends CommonProxy {
     public static TrayIcon TIl;
     public  SystemTray tray = SystemTray.getSystemTray();
     @Override
-    public void preInit(FMLPreInitializationEvent event){
+    public void preInit(FMLPreInitializationEvent event)  {
         super.preInit(event);
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
         if(SystemTray.isSupported()&& ConfigCore.isenabledTrayIcon) {
@@ -106,6 +110,11 @@ public class ClientProxy extends CommonProxy {
             nt.start();
         }else {
             Jntm.logger.error("SystemTray Is NOT Supported,Or it's disable in config");
+        }
+        try {
+            GameConfig gc = new  GameConfig(Paths.get(getrunpath("")+"options.txt"));
+        } catch (Exception e) {
+            Jntm.logger.error(new RuntimeException(e));
         }
     }
     @SideOnly(Side.CLIENT)
@@ -179,6 +188,19 @@ public class ClientProxy extends CommonProxy {
     public void openhelpGui(GuiScreen e)
     {
         Minecraft.getMinecraft().displayGuiScreen(e);
+    }
+    public String getrunpath(String sp){
+        String MP;
+        StringBuilder tmp;
+        String[] temp;
+        temp = Loader.instance().getConfigDir().toURI().toString().split("/");
+        tmp = new StringBuilder();
+        for (int i = 1; i < temp.length - 1; i++) {
+            tmp.append(temp[i]).append("/");
+        }
+        tmp.append(sp).append("/");
+        MP = tmp.toString();
+        return MP;
     }
     @SideOnly(Side.CLIENT)
     @Override

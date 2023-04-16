@@ -68,7 +68,7 @@ public class RSMPlayerG extends GuiContainer {
     public void selectModIndex(int index)
     {
         this.selected = index;
-        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "playjim_setfilename "+ (getrunpath("jims")+sl.get(selected)).replaceAll(" ","\n")+" "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
+        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "playjim_setfilename "+ (sl.get(selected)).replaceAll(" ","\n")+" "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
     }
     public static String[] fln;
     public boolean modIndexSelected(int index)
@@ -92,9 +92,12 @@ public class RSMPlayerG extends GuiContainer {
         while (true){
             ti++;
             if (fln!=null){
-                  break;
+
+                break;
             }
             if (ti>=1000){
+                CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
+                Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.guifaild"))));
                 return;
             }
             try {
@@ -120,7 +123,11 @@ public class RSMPlayerG extends GuiContainer {
                 CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
                 break;
             case 1:
-                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "playjim "+ (getrunpath("jims")+sl.get(selected)).replaceAll(" ","\n")+" "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
+                if (sl.get(selected)==null){
+                    Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.ns"))));
+                    break;
+                }
+                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "playjim "+ ( sl.get(selected)).replaceAll(" ","\n")+" "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
                 break;
             case 2:
                 CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "stopjim "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
@@ -165,17 +172,5 @@ public class RSMPlayerG extends GuiContainer {
         this.fontRenderer.drawString(str, x, y, color); //fr - fontRenderer
         GL11.glPopMatrix(); //End this matrix
     }
-    public String getrunpath(String sp){
-        String MP;
-        StringBuilder tmp;
-            String[] temp;
-            temp = Loader.instance().getConfigDir().toURI().toString().split("/");
-            tmp = new StringBuilder();
-            for (int i = 1; i < temp.length - 1; i++) {
-                tmp.append(temp[i]).append("/");
-            }
-            tmp.append(sp).append("/");
-            MP = tmp.toString();
-        return MP;
-    }
+
 }

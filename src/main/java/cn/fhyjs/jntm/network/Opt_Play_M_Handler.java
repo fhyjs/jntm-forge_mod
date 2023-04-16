@@ -64,7 +64,7 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     BlockPos tbp = new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4]));
                     if (CommonProxy.jimplayers.get(tbp)!=null)
                         CommonProxy.jimplayers.get(tbp).stop();
-                    CommonProxy.jimplayers.put(tbp,new pstest(null,ctx.getServerHandler().player.world,new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])),new File(tmp1[1].replaceAll("\n"," "))));
+                    CommonProxy.jimplayers.put(tbp,new pstest(null,ctx.getServerHandler().player.world,new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])),new File((getrunpath("jims/")+tmp1[1]).replaceAll("\n"," "))));
                     CommonProxy.jimplayers.get(tbp).start();
                     break;
                 case "stopjim":
@@ -75,7 +75,7 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     break;
                 case "playjim_setfilename":
                     tmp1 =message.opt.split(" ");
-                    ((TEJimPlayer)ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).count=tmp1[1].replaceAll("\n"," ");
+                    ((TEJimPlayer)ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).count=(tmp1[1]).replaceAll("\n"," ");
                     ((TEJimPlayer)ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).markDirty();
                     CommonProxy.INSTANCE.sendToAll(new Opt_Ply_Message(ctx.getServerHandler().player, message.opt));
                     break;
@@ -98,5 +98,18 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
             }
         }
         return null;
+    }
+    public String getrunpath(String sp){
+        String MP;
+        StringBuilder tmp;
+        String[] temp;
+        temp = Loader.instance().getConfigDir().toURI().toString().split("/");
+        tmp = new StringBuilder();
+        for (int i = 1; i < temp.length - 1; i++) {
+            tmp.append(temp[i]).append("/");
+        }
+        tmp.append(sp).append("/");
+        MP = tmp.toString();
+        return MP;
     }
 }

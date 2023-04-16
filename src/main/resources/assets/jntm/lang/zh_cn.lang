@@ -93,3 +93,5 @@ gui.jntm.rsmp.title=jim音频播放器
 gui.jntm.rsmp.chose=从上方选一个
 gui.play=播放
 gui.stop=停止
+gui.toast.guifaild=gui打开错误，请再试一次
+gui.toast.ns=未选择任何项目

@@ -21,10 +21,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
 
+import java.io.File;
 import java.util.Random;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
@@ -74,7 +76,7 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     {
         super.breakBlock(worldIn,pos,state);
         worldIn.updateComparatorOutputLevel(pos, this);
-        if(!worldIn.isRemote){
+        if(!worldIn.isRemote&&CommonProxy.jimplayers.get(pos)!=null){
             CommonProxy.jimplayers.get(pos).stop();
             CommonProxy.jimplayers.remove(pos);
         }
@@ -99,10 +101,6 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if (!worldIn.isRemote)
-        {
-            powered=worldIn.isBlockPowered(pos);
-        }
     }
 
     @Override
@@ -110,14 +108,19 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     {
         if (!worldIn.isRemote)
         {
+            powered=worldIn.isBlockPowered(pos);
             if (powered && !((TEJimPlayer)worldIn.getTileEntity(pos)).f1){
                 if (CommonProxy.jimplayers.get(pos)!=null)
                     if (CommonProxy.jimplayers.get(pos).isAlive())
-                        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null, "stopjim "+pos.getX()+" "+pos.getY()+" "+pos.getZ()));
-                    else
-                        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null, "playjim "+ getTileEntity(worldIn,pos).count.replaceAll(" ","\n")+" "+pos.getX()+" "+pos.getY()+" "+pos.getZ()));
-                else
-                    CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null, "playjim "+ getTileEntity(worldIn,pos).count.replaceAll(" ","\n")+" "+pos.getX()+" "+pos.getY()+" "+pos.getZ()));
+                        CommonProxy.jimplayers.get(pos).stop();
+                    else {
+                        CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
+                        CommonProxy.jimplayers.get(pos).start();
+                    }
+                else {
+                    CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
+                    CommonProxy.jimplayers.get(pos).start();
+                }
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).f1=true;
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).markDirty();
             }
@@ -140,6 +143,19 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     @Override
     public TEJimPlayer createTileEntity(World world, IBlockState state) {
         return new TEJimPlayer();
+    }
+    public String getrunpath(String sp){
+        String MP;
+        StringBuilder tmp;
+        String[] temp;
+        temp = Loader.instance().getConfigDir().toURI().toString().split("/");
+        tmp = new StringBuilder();
+        for (int i = 1; i < temp.length - 1; i++) {
+            tmp.append(temp[i]).append("/");
+        }
+        tmp.append(sp).append("/");
+        MP = tmp.toString();
+        return MP;
     }
     @Override
     public Class<TEJimPlayer> getTileEntityClass() {
