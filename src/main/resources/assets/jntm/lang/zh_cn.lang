@@ -95,3 +95,6 @@ gui.play=播放
 gui.stop=停止
 gui.toast.guifaild=gui打开错误，请再试一次
 gui.toast.ns=未选择任何项目
+item.go_hei.name=御币
+item.explosion_card.name=爆炸符礼
+tooltip.gohei.n1=摘自github.com/IAXRetailer/GensokyoM

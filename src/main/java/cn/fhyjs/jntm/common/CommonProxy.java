@@ -3,9 +3,11 @@ import cn.fhyjs.jntm.Jntm;
 
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.config.ConfigCore;
+import cn.fhyjs.jntm.item.WeaponBase;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -60,4 +62,6 @@ public class CommonProxy  {
     public void OpenFE(String e) throws IOException {}
 
 
+    public void registerItemRenderer(Item weaponBase, int i, String inventory) {
+    }
 }

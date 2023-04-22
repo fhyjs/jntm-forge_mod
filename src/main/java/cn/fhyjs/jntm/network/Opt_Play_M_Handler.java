@@ -57,7 +57,7 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     MF.append(listOfFile.getName().replaceAll(" ","\n"));
                     MF.append(" ");
                 }
-                CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(message.a, "alljim "+ MF), (EntityPlayerMP) message.a);
+                CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(message.a, "alljim "+ MF), ctx.getServerHandler().player);
                 break;
                 case "playjim":
                     String[] tmp1 =message.opt.split(" ");

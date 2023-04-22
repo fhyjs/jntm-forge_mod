@@ -7,6 +7,7 @@ import cn.fhyjs.jntm.network.EventHandler;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import cn.fhyjs.jntm.renderer.CIIRender;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -24,14 +26,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.Display;
+import scala.collection.parallel.ParIterableLike;
 
 
 import javax.imageio.ImageIO;
@@ -58,7 +64,6 @@ public class ClientProxy extends CommonProxy {
     }
     public static List<ModelRegistryObj> modelsToReg = new ArrayList<ModelRegistryObj>();
     public static List<ModelBakeObj> modelsToBake = new ArrayList<ModelBakeObj>();
-
     @Override
     public String getCB() throws IOException, UnsupportedFlavorException {
         super.getCB();
@@ -76,7 +81,6 @@ public class ClientProxy extends CommonProxy {
         return ret;
     }
     public Image[] TIs;
-
     public List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
     public proadd nt=new proadd();
     public static TrayIcon TIl;
@@ -113,6 +117,13 @@ public class ClientProxy extends CommonProxy {
         }
         try {
             GameConfig gc = new  GameConfig(Paths.get(getrunpath("")+"options.txt"));
+            gc.addResourcePack("jntm.zip", "jntm.zip");
+            gc.writeToFile();
+            List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class,Minecraft.getMinecraft(),"defaultResourcePacks");
+            defaultResourcePacks.add(new Jntm_RP());
+            ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"defaultResourcePacks");
+            FMLClientHandler.instance().refreshResources();
+
         } catch (Exception e) {
             Jntm.logger.error(new RuntimeException(e));
         }
@@ -153,6 +164,11 @@ public class ClientProxy extends CommonProxy {
             map = mapper;
         }
 
+    }
+    @Override
+    public void registerItemRenderer(Item item, int meta, String id)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
     @Override
     public void registerItems(ModelRegistryEvent e) {

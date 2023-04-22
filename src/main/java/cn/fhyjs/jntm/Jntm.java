@@ -42,7 +42,9 @@ import java.util.List;
 @Mod(modid= Jntm.MODID,useMetadata=true,version=Jntm.VERSION,name = Jntm.NAME,guiFactory = "cn.fhyjs.jntm.gui.JntmGuiFactory")
 public class Jntm {
     public static Jntm INSTANCE;
+    public static boolean IS_DC_Load;
     public Jntm(){
+        IS_DC_Load = Loader.isModLoaded("danmakucore");
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT&&Loader.isModLoaded("mcef") ) {
             //下载JECF资源
             StringBuilder tmp;

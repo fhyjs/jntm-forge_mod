@@ -1,9 +1,15 @@
 package cn.fhyjs.jntm.registry;
 
+import cn.fhyjs.jntm.ItemGroup.jntmGroup;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.Cxkimage;
 import cn.fhyjs.jntm.block.JimPlayerBlock;
 import cn.fhyjs.jntm.item.*;
+import cn.fhyjs.jntm.item.cards.CustomCard;
+import cn.fhyjs.jntm.item.weapon.Gohei;
+import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
+import net.katsstuff.teamnightclipse.danmakucore.danmaku.subentity.SubEntityType;
+import net.katsstuff.teamnightclipse.danmakucore.lib.data.LibSubEntities;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -47,6 +53,9 @@ public class ItemRegistryHandler {
     public  static final Ji_Armor JI_ARMOR_2 = new Ji_Armor(EntityEquipmentSlot.CHEST);
     public  static final Ji_Armor JI_ARMOR_3 = new Ji_Armor(EntityEquipmentSlot.LEGS);
     public  static final Ji_Armor JI_ARMOR_4 = new Ji_Armor(EntityEquipmentSlot.FEET);
+    public  static Item Gouhei;
+    public  static Item EXPLOSION_CARD;
+    public  static Item Fire_CARD;
 
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
@@ -80,6 +89,34 @@ public class ItemRegistryHandler {
         registry.register(xiguaegg);
         registry.register(JI_GAMES);
         registry.register(JimplayerBlock);
+        if (Jntm.IS_DC_Load){
+            Gouhei=new Gohei("go_hei", jntmGroup.jntm_Group);
+            EXPLOSION_CARD = new CustomCard("explosion_card", jntmGroup.jntm_Group) {
+                @Override
+                public SubEntityType getSubentity() {
+                    return LibSubEntities.EXPLOSION;
+                }
+
+                @Override
+                public DanmakuTemplate.Builder reShape(DanmakuTemplate.Builder builder) {
+                    return builder.setShot(builder.shot().addSubEntityProperty("explosion_strength", 1d));
+                }
+            };
+            Fire_CARD = new CustomCard("fire_card", jntmGroup.jntm_Group) {
+                @Override
+                public SubEntityType getSubentity() {
+                    return LibSubEntities.FIRE;
+                }
+
+                @Override
+                public DanmakuTemplate.Builder reShape(DanmakuTemplate.Builder builder) {
+                    return builder.setShot(builder.shot().addSubEntityProperty("explosion_strength", 1d));
+                }
+            };
+            registry.register(Gouhei);
+            registry.register(EXPLOSION_CARD);
+            //registry.register(Fire_CARD);
+        }
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -102,6 +139,11 @@ public class ItemRegistryHandler {
         ModelLoader.setCustomModelResourceLocation(CXKIMAGE,0,new ModelResourceLocation("jntm:cii","inventory"));
         registryModel(JI_GAMES);
         registryModel(JimplayerBlock);
+        if (Jntm.IS_DC_Load){
+            registryModel(Gouhei);
+            registryModel(EXPLOSION_CARD);
+            //registryModel(Fire_CARD);
+        }
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
