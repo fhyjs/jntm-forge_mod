@@ -42,7 +42,7 @@ public class Ji_Games extends Item {
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack item = player.getHeldItem(hand);
             if (!world.isRemote) {
-                player.openGui(Jntm.instance, JntmGuiHandler.GUIs.RSMPlayer.getId(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                player.openGui(Jntm.instance, JntmGuiHandler.GUIs.Ji_Crafting.getId(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
                 //Thread t = new pstest(null, world, new BlockPos(player.posX, player.posY, player.posZ), new ResourceLocation("jntm:sounds/jimusic/test3.jim"));
                 //t.start();
             }

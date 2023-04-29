@@ -1,9 +1,6 @@
 package cn.fhyjs.jntm.registry;
 
-import cn.fhyjs.jntm.block.CxkTNT;
-import cn.fhyjs.jntm.block.Cxkimage;
-import cn.fhyjs.jntm.block.JimPlayerBlock;
-import cn.fhyjs.jntm.block.cookedcxk;
+import cn.fhyjs.jntm.block.*;
 import cn.fhyjs.jntm.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -27,6 +24,7 @@ public class BlockRegistryHandler {
     public static final CxkTNT BLOCK_CxkTnt = new CxkTNT();
     public static final Cxkimage CXKIMAGE = new Cxkimage();
     public static final JimPlayerBlock JIM_PLAYER_BLOCK = new JimPlayerBlock();
+    //public static final BlockGrinder BLOCK_GRINDER = new BlockGrinder();
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -34,7 +32,9 @@ public class BlockRegistryHandler {
         registry.register(BLOCK_CxkTnt);
         registry.register(CXKIMAGE);
         registry.register(JIM_PLAYER_BLOCK);
-        GameRegistry.registerTileEntity(JIM_PLAYER_BLOCK.getTileEntityClass(), JIM_PLAYER_BLOCK.getRegistryName().toString());
-        GameRegistry.registerTileEntity(CXKIMAGE.getTileEntityClass(), CXKIMAGE.getRegistryName().toString());
+        //registry.register(BLOCK_GRINDER);
+        GameRegistry.registerTileEntity(JIM_PLAYER_BLOCK.getTileEntityClass(), JIM_PLAYER_BLOCK.getRegistryName());
+        GameRegistry.registerTileEntity(CXKIMAGE.getTileEntityClass(), CXKIMAGE.getRegistryName());
+        //GameRegistry.registerTileEntity(BlockGrinder.getTileEntityClass(), BLOCK_GRINDER.getRegistryName());
     }
 }
