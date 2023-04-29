@@ -1,5 +1,7 @@
 package cn.fhyjs.jntm.entity;
 
+import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.common.Ji_Exposion;
 import cn.fhyjs.jntm.registry.JntmLootTableList;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.entity.*;
@@ -7,39 +9,152 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.common.IShearable;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.List;
-import java.util.Objects;
 
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.ggxdd;
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.rawkr;
 
 public class cxk extends EntityChicken{
+    public boolean ep=false;
+    private int fuse;
+
+    private EntityLivingBase[] elb;
+    private static final DataParameter<Boolean> Ep = EntityDataManager.<Boolean>createKey(cxk.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> FUSE = EntityDataManager.<Integer>createKey(cxk.class, DataSerializers.VARINT);
     public cxk(World worldIn) {
         super(worldIn);
         this.setSize(0.4F, 0.7F);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setPathPriority(PathNodeType.WATER, 0.0F);
+        this.setFuse(50);
+    }
+    public cxk(World worldIn,EntityLivingBase[] ebl) {
+        super(worldIn);
+        this.elb = ebl;
+        this.setFuse(50);
+        this.setSize(0.4F, 0.7F);
+        this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+        this.setPathPriority(PathNodeType.WATER, 0.0F);
+    }
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+        if (ep) {
+            this.prevPosX = this.posX;
+            this.prevPosY = this.posY;
+            this.prevPosZ = this.posZ;
+
+            if (!this.hasNoGravity()) {
+                this.motionY -= 0.03999999910593033D;
+            }
+
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+            this.motionX *= 0.9800000190734863D;
+            this.motionY *= 0.9800000190734863D;
+            this.motionZ *= 0.9800000190734863D;
+
+            if (this.onGround) {
+                this.motionX *= 0.699999988079071D;
+                this.motionZ *= 0.699999988079071D;
+                this.motionY *= -0.5D;
+            }
+
+            --this.fuse;
+
+            if (this.fuse <= 0) {
+                this.setDead();
+
+                if (!this.world.isRemote) {
+                    this.explode();
+                }
+            } else {
+                this.handleWaterMovement();
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(FUSE, 130);
+        this.dataManager.register(Ep, false);
+    }
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        super.readEntityFromNBT(compound);
+        this.setep(compound.getBoolean("ep"));
+        this.setFuse(compound.getShort("Fuse"));
+    }
+    public void setFuse(int fuseIn)
+    {
+        this.dataManager.set(FUSE, fuseIn);
+        this.fuse = fuseIn;
+    }
+    public void setep(boolean epIn)
+    {
+        this.dataManager.set(Ep, epIn);
+        this.ep = epIn;
+    }
+    public boolean getep()
+    {
+        return this.ep;
+    }
+    private void explode() {
+        this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEventRegistryHandler.xamoob, SoundCategory.BLOCKS, 2.0F, 1.0F);
+        Ji_Exposion.createExplosion(world, this, this.posX, this.posY + (double) (this.height / 16.0F), this.posZ, 4, true, elb);
+    }
+    @Override
+    public void notifyDataManagerChange(DataParameter<?> key)
+    {
+        super.notifyDataManagerChange(key);
+        if (FUSE.equals(key))
+        {
+            this.fuse = this.getFuseDataManager();
+        }
+        if (Ep.equals(key))
+        {
+            this.ep = this.getEpDataManager();
+        }
+    }
+
+    public int getFuseDataManager()
+    {
+        return ((Integer)this.dataManager.get(FUSE)).intValue();
+    }
+    public boolean getEpDataManager()
+    {
+        return ((Boolean)this.dataManager.get(Ep)).booleanValue();
+    }
+
+    public int getFuse()
+    {
+        return this.fuse;
+    }
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setBoolean("ep", this.getep());
+        compound.setShort("Fuse", (short)this.getFuse());
     }
     @Override
     protected SoundEvent getAmbientSound()

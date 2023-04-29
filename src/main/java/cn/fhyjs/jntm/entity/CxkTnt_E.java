@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.entity;
 
+import cn.fhyjs.jntm.common.Ji_Exposion;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,12 +14,15 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class CxkTnt_E extends EntityTNTPrimed {
     private static final DataParameter<Integer> FUSE = EntityDataManager.<Integer>createKey(CxkTnt_E.class, DataSerializers.VARINT);
+    private boolean ec;
+    private EntityLivingBase[] elb;
     @Nullable
     private EntityLivingBase tntPlacedBy;
     private int fuse;
@@ -47,6 +51,23 @@ public class CxkTnt_E extends EntityTNTPrimed {
         this.ep=ep;
         this.prevPosZ = z;
         this.tntPlacedBy = igniter;
+    }
+    public CxkTnt_E(World worldIn, double x, double y, double z, EntityLivingBase igniter,float ep,EntityLivingBase[] elb,boolean ec)
+    {
+        this(worldIn);
+        this.setPosition(x, y, z);
+        float f = (float)(Math.random() * (Math.PI * 2D));
+        this.motionX = (double)(-((float)Math.sin((double)f)) * 0.02F);
+        this.motionY = 0.20000000298023224D;
+        this.motionZ = (double)(-((float)Math.cos((double)f)) * 0.02F);
+        this.setFuse(130);
+        this.prevPosX = x;
+        this.prevPosY = y;
+        this.ep=ep;
+        this.prevPosZ = z;
+        this.tntPlacedBy = igniter;
+        this.elb=elb;
+        this.ec=ec;
     }
     @Override
     protected void entityInit()
@@ -108,34 +129,53 @@ public class CxkTnt_E extends EntityTNTPrimed {
     private void explode()
     {
         this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEventRegistryHandler.xamoob, SoundCategory.BLOCKS, 2.0F, 1.0F);
-        this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, ep, true);
+        Explosion je = Ji_Exposion.createExplosion(world,this,this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, ep, true,elb);
+        //this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, ep, true);
         int r=3;
         for (int i=0;i<r;i++){
             for(int j=0;j<r;j++) {
-                Entity cxk = new cxk(world);
+                cxk cxk = new cxk(world,elb);
+                cxk.ep=ec;
                 cxk.setLocationAndAngles(this.posX - i, this.posY, this.posZ-j, this.rotationYaw, 0.0F);
                 this.world.spawnEntity(cxk);
+                ((Ji_Exposion)je).IE.add(cxk);
             }
         }
         for (int i=0;i<r;i++){
             for(int j=0;j<r;j++) {
-                Entity cxk = new cxk(world);
+                cxk cxk = new cxk(world,elb);
+                cxk.ep=ec;
                 cxk.setLocationAndAngles(this.posX + i, this.posY, this.posZ-j, this.rotationYaw, 0.0F);
                 this.world.spawnEntity(cxk);
+                ((Ji_Exposion)je).IE.add(cxk);
             }
         }
         for (int i=0;i<r;i++){
             for(int j=0;j<r;j++) {
-                Entity cxk = new EntityChicken(world);
+                EntityLivingBase cxk;
+                if (ec){
+                    cxk = new cxk(world,elb);
+                    ((cn.fhyjs.jntm.entity.cxk) cxk).ep=ec;
+                }else {
+                    cxk = new EntityChicken(world);
+                }
                 cxk.setLocationAndAngles(this.posX - i, this.posY, this.posZ+j, this.rotationYaw, 0.0F);
                 this.world.spawnEntity(cxk);
+                ((Ji_Exposion)je).IE.add(cxk);
             }
         }
         for (int i=0;i<r;i++){
             for(int j=0;j<r;j++) {
-                Entity cxk = new EntityChicken(world);
+                EntityLivingBase cxk;
+                if (ec){
+                    cxk = new cxk(world,elb);
+                    ((cn.fhyjs.jntm.entity.cxk) cxk).ep=ec;
+                }else {
+                    cxk = new EntityChicken(world);
+                }
                 cxk.setLocationAndAngles(this.posX+i, this.posY, this.posZ+j, this.rotationYaw, 0.0F);
                 this.world.spawnEntity(cxk);
+                ((Ji_Exposion)je).IE.add(cxk);
             }
         }
     }

@@ -41,7 +41,7 @@ public class CommonProxy  {
         ConfigCore.loadConfig(event);
     }
     public void init(FMLInitializationEvent event){
-        FMLCommonHandler.instance().bus().register(new EventHandler());
+
     }
     public void postInit(FMLPostInitializationEvent event){
         DispenserBehaviorRegistryHandler.run();
