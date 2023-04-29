@@ -13,6 +13,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class Ji_Crafting_GC extends GuiContainer {
     private static final ResourceLocation BACKGROUND = new ResourceLocation("textures/gui/container/dispenser.png");
@@ -25,8 +27,8 @@ public class Ji_Crafting_GC extends GuiContainer {
     private boolean isInput;
     private boolean isBlacklist;
 
-    public Ji_Crafting_GC(IInventory playerInventory, ItemStack wirelessIO) {
-        super(new Ji_Crafting_C(playerInventory, wirelessIO));
+    public Ji_Crafting_GC(IInventory playerInventory, BlockPos blockPos, World world) {
+        super(new Ji_Crafting_C(playerInventory, blockPos,world));
         //isInput = ItemWirelessIO.isInputMode(wirelessIO);
         //isBlacklist = ItemWirelessIO.isBlacklist(wirelessIO);
     }
@@ -116,89 +118,4 @@ public class Ji_Crafting_GC extends GuiContainer {
         this.drawTexturedModalRect(guiLeft + 24, guiTop + 53, 16, 0, 16, 16);
     }
 
-    private static class GuiConfigSlot extends GuiScreen {
-        private final GuiButtonToggle[] slotButtons;
-        private boolean[] configData;
-
-        public GuiConfigSlot(ItemStack wirelessIO) {
-            slotButtons = new GuiButtonToggle[SLOT_NUM];
-            configData = new boolean[SLOT_NUM];
-            //byte[] tmp = ItemWirelessIO.getSlotConfig(wirelessIO);
-            //if (tmp != null) {
-                //configData = bytes2Booleans(tmp);
-            //}
-        }
-
-        @Override
-        public void initGui() {
-            int startX = (width - 104) / 2;
-            int startY = (height - 205) / 2;
-
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 5; j++) {
-                    int id = i * 5 + j;
-                    slotButtons[id] = new GuiButtonToggle(id, startX + 8 + 18 * j, startY + 6 + 18 * i, 16, 16, configData[id]);
-                    slotButtons[id].initTextureValues(140, 0, 16, 16, SLOT);
-                    addButton(slotButtons[id]);
-                }
-            }
-
-            for (int k = 0; k < 3; k++) {
-                for (int i = 0; i < 2; i++) {
-                    for (int j = 0; j < 5; j++) {
-                        int id = 15 + k * 10 + i * 5 + j;
-                        slotButtons[id] = new GuiButtonToggle(id, startX + 8 + 18 * j, startY + 64 + 40 * k + 18 * i, 16, 16, configData[id]);
-                        slotButtons[id].initTextureValues(140, 0, 16, 16, SLOT);
-                        addButton(slotButtons[id]);
-                    }
-                }
-            }
-
-            slotButtons[45] = new GuiButtonToggle(45, startX + 113, startY + 8, 16, 16, configData[45]);
-            slotButtons[45].initTextureValues(140, 0, 16, 16, SLOT);
-            addButton(slotButtons[45]);
-
-            slotButtons[46] = new GuiButtonToggle(46, startX + 113, startY + 26, 16, 16, configData[46]);
-            slotButtons[46].initTextureValues(140, 0, 16, 16, SLOT);
-            addButton(slotButtons[46]);
-
-            GuiButton returnButton = new GuiButton(-1, (width - 104) / 2, startY + 188, 104, 20,
-                    I18n.format("gui.touhou_little_maid.wireless_io.config_slot.return"));
-            addButton(returnButton);
-        }
-
-        @Override
-        public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-            int startX = (width - 104) / 2;
-            int startY = (height - 205) / 2;
-
-            drawDefaultBackground();
-            mc.getTextureManager().bindTexture(SLOT);
-            this.drawTexturedModalRect(startX, startY, 0, 0, 137, 205);
-            //mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(MaidItems.MAID_BACKPACK, 1, 1), startX - 18, startY + 64);
-            //mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(MaidItems.MAID_BACKPACK, 1, 2), startX - 18, startY + 104);
-            //mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(MaidItems.MAID_BACKPACK, 1, 3), startX - 18, startY + 144);
-
-            GlStateManager.enableBlend();
-            super.drawScreen(mouseX, mouseY, partialTicks);
-            GlStateManager.disableBlend();
-        }
-
-        @Override
-        protected void actionPerformed(GuiButton button) {
-            if (0 <= button.id && button.id < SLOT_NUM) {
-                slotButtons[button.id].setStateTriggered(!configData[button.id]);
-                configData[button.id] = !configData[button.id];
-                return;
-            }
-            if (button.id == -1) {
-                //CommonProxy.INSTANCE.sendToServer(new WirelessIOSlotConfigMessage(booleans2Bytes(configData), false));
-            }
-        }
-
-        @Override
-        public void onGuiClosed() {
-            //CommonProxy.INSTANCE.sendToServer(new WirelessIOSlotConfigMessage(booleans2Bytes(configData), true));
-        }
-    }
 }

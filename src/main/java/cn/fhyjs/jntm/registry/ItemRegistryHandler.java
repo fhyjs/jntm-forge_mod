@@ -47,6 +47,7 @@ public class ItemRegistryHandler {
     public static Jiguangpao JGP = new Jiguangpao();
     public  static final Ji_Games JI_GAMES = new Ji_Games();
     public static final ItemBlock CXKIMAGE = new ItemBlock(BlockRegistryHandler.CXKIMAGE);
+    public static final ItemBlock IJCT = new ItemBlock(BlockRegistryHandler.JI_CRAFTING_TABLE);
     public static final InsJvav INS_JVAV=new InsJvav();
     public static final Danmaku_Gun DANMAKU_GUN = new Danmaku_Gun();
     public  static final Ji_Armor JI_ARMOR_1 = new Ji_Armor(EntityEquipmentSlot.HEAD);
@@ -60,6 +61,7 @@ public class ItemRegistryHandler {
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
         JimplayerBlock.setRegistryName(Objects.requireNonNull(JimplayerBlock.getBlock().getRegistryName()));
+        IJCT.setRegistryName(Objects.requireNonNull(IJCT.getBlock().getRegistryName()));
         IForgeRegistry<Item> registry = event.getRegistry();
         cookedcxk_item.setRegistryName(Objects.requireNonNull(cookedcxk_item.getBlock().getRegistryName()));
         ITEM_CxkTNT.setRegistryName(Objects.requireNonNull(ITEM_CxkTNT.getBlock().getRegistryName()));
@@ -76,7 +78,7 @@ public class ItemRegistryHandler {
         registry.register(jntmHelpItem);
         registry.register(JGP);
         registry.register(jgpdtex);
-        //registry.register(JI_GAMES);
+        registry.register(IJCT);
         registry.register(ITEM_CxkTNT);
         registry.register(CXKIMAGE);
         registry.register(INS_JVAV);
@@ -130,7 +132,7 @@ public class ItemRegistryHandler {
         registryModel(jntmHelpItem);
         registryModel(JGP);
         registryModel(jgpdtex);
-        //registryModel(JI_GAMES);
+        registryModel(IJCT);
         registryModel(ITEM_CxkTNT);
         registryModel(INS_JVAV);
         registryModel(fsms);

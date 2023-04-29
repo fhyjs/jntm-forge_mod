@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.gui;
 
+import cn.fhyjs.jntm.block.TileEntityJiCrafting;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ClickType;
@@ -7,37 +8,39 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
+import java.util.Objects;
 
 public class Ji_Crafting_C extends Container {
-    private ItemStack wirelessIO;
     private ItemStackHandler filterListInv;
-
-    public Ji_Crafting_C(IInventory playerInventory, ItemStack wirelessIO) {
-        this.wirelessIO = wirelessIO;
-        //filterListInv = ItemWirelessIO.getFilterList(wirelessIO);
+    private TileEntityJiCrafting tejc;
+    public Ji_Crafting_C(IInventory playerInventory, BlockPos blockPos, World world) {
+        tejc = ((TileEntityJiCrafting)(Objects.requireNonNull(world.getTileEntity(blockPos))));
+        filterListInv = tejc.getFilterList();
         addPlayerSlots(playerInventory);
         addWirelessIOSlots();
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
-        return false;
+        return true;
     }
 
     @Nonnull
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
+        ItemStack stack = super.slotClick(slotId, dragType, clickTypeIn, player);
         // 禁阻一切对当前手持物品的交互，防止刷物品 bug
         if (slotId == 27 + player.inventory.currentItem) {
             return player.inventory.getStackInSlot(slotId);
         }
-        ItemStack stack = super.slotClick(slotId, dragType, clickTypeIn, player);
-        //ItemWirelessIO.setFilterList(wirelessIO, filterListInv);
+        tejc.setFilterList(filterListInv);
         return stack;
     }
 

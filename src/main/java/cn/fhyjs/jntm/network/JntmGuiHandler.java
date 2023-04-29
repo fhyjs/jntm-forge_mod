@@ -8,6 +8,7 @@ import net.minecraft.inventory.ContainerChest;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import scala.reflect.internal.Trees;
 
 import javax.annotation.Nullable;
 import javax.swing.*;
@@ -37,7 +38,7 @@ public class JntmGuiHandler implements IGuiHandler {
             return new RSMPlayerC(player,world,new BlockPos(x,y,z));
         }
         if (ID==GUIs.Ji_Crafting.getId()){
-            return new Ji_Crafting_C(player.inventory,player.getHeldItemMainhand());
+            return new Ji_Crafting_C(player.inventory, new BlockPos(x,y,z),world);
         }
         return null;
     }
@@ -75,7 +76,7 @@ public class JntmGuiHandler implements IGuiHandler {
             return new RSMPlayerG(player,world,new BlockPos(x,y,z));
         }
         if (ID==GUIs.Ji_Crafting.getId()){
-            return new Ji_Crafting_GC(player.inventory,player.getHeldItemMainhand());
+            return new Ji_Crafting_GC(player.inventory, new BlockPos(x,y,z),world);
         }
         return null;
     }

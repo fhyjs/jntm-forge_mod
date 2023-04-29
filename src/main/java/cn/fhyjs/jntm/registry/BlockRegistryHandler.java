@@ -24,7 +24,7 @@ public class BlockRegistryHandler {
     public static final CxkTNT BLOCK_CxkTnt = new CxkTNT();
     public static final Cxkimage CXKIMAGE = new Cxkimage();
     public static final JimPlayerBlock JIM_PLAYER_BLOCK = new JimPlayerBlock();
-    //public static final BlockGrinder BLOCK_GRINDER = new BlockGrinder();
+    public static final Ji_Crafting_Table JI_CRAFTING_TABLE = new Ji_Crafting_Table();
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -32,9 +32,9 @@ public class BlockRegistryHandler {
         registry.register(BLOCK_CxkTnt);
         registry.register(CXKIMAGE);
         registry.register(JIM_PLAYER_BLOCK);
-        //registry.register(BLOCK_GRINDER);
+        registry.register(JI_CRAFTING_TABLE);
         GameRegistry.registerTileEntity(JIM_PLAYER_BLOCK.getTileEntityClass(), JIM_PLAYER_BLOCK.getRegistryName());
         GameRegistry.registerTileEntity(CXKIMAGE.getTileEntityClass(), CXKIMAGE.getRegistryName());
-        //GameRegistry.registerTileEntity(BlockGrinder.getTileEntityClass(), BLOCK_GRINDER.getRegistryName());
+        GameRegistry.registerTileEntity(JI_CRAFTING_TABLE.getTileEntityClass(), JI_CRAFTING_TABLE.getRegistryName());
     }
 }
