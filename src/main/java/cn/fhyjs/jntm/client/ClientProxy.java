@@ -119,9 +119,9 @@ public class ClientProxy extends CommonProxy {
             GameConfig gc = new  GameConfig(Paths.get(getrunpath("")+"options.txt"));
             gc.addResourcePack("jntm.zip", "jntm.zip");
             gc.writeToFile();
-            List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class,Minecraft.getMinecraft(),"defaultResourcePacks");
+            List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class,Minecraft.getMinecraft(),"field_110449_ao");
             defaultResourcePacks.add(new Jntm_RP());
-            ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"defaultResourcePacks");
+            ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"field_110449_ao");
             FMLClientHandler.instance().refreshResources();
 
         } catch (Exception e) {

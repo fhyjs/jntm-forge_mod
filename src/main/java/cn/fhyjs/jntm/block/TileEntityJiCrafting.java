@@ -79,7 +79,7 @@ public class TileEntityJiCrafting extends TileEntity {
 
         @Override
         public int getSlotLimit(int slot) {
-            return 1;
+            return 64;
         }
     }
 }

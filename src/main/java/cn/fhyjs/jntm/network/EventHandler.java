@@ -5,6 +5,7 @@ import cn.fhyjs.jntm.client.ClientProxy;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.item.SpellCardBase;
+import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
 import net.katsstuff.teamnightclipse.danmakucore.item.ItemSpellcard;
@@ -12,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -50,5 +52,9 @@ public class EventHandler {
     @SubscribeEvent
     public static void onSpellCardRegister(RegistryEvent.Register<Spellcard> event){
         event.getRegistry().register(new SpellCardBase<>("t_card", CustomSCE.class, TouhouCharacter.REIMU_HAKUREI));
+    }
+    @SubscribeEvent
+    public static void onRecipeRegister(RegistryEvent.Register<IRecipe> event){
+        //RecipeRegistryHandler.reg();
     }
 }

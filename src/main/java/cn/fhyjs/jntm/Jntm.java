@@ -1,23 +1,17 @@
 package cn.fhyjs.jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 
-import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.config.ConfigHandler;
 import cn.fhyjs.jntm.item.Danmaku_Gun;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
-import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 
 import cn.fhyjs.jntm.utility.Dlf;
-import cn.fhyjs.jntm.utility.FTR;
 import cn.fhyjs.jntm.utility.unzip;
-import com.google.common.collect.Lists;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -31,13 +25,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 @Mod.EventBusSubscriber
 @Mod(modid= Jntm.MODID,useMetadata=true,version=Jntm.VERSION,name = Jntm.NAME,guiFactory = "cn.fhyjs.jntm.gui.JntmGuiFactory")
 public class Jntm {

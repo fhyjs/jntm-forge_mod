@@ -1,0 +1,19 @@
+{
+  "type": "jntm:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "YYY",
+    "XXX"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:tnt"
+    },
+    "X": {
+      "item": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "minecraft:log"
+  }
+}

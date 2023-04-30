@@ -38,7 +38,7 @@ public class JntmGuiHandler implements IGuiHandler {
             return new RSMPlayerC(player,world,new BlockPos(x,y,z));
         }
         if (ID==GUIs.Ji_Crafting.getId()){
-            return new Ji_Crafting_C(player.inventory, new BlockPos(x,y,z),world);
+            return new Ji_Crafting_C(player,player.inventory, new BlockPos(x,y,z),world);
         }
         return null;
     }
@@ -76,7 +76,7 @@ public class JntmGuiHandler implements IGuiHandler {
             return new RSMPlayerG(player,world,new BlockPos(x,y,z));
         }
         if (ID==GUIs.Ji_Crafting.getId()){
-            return new Ji_Crafting_GC(player.inventory, new BlockPos(x,y,z),world);
+            return new Ji_Crafting_GC(player,player.inventory, new BlockPos(x,y,z),world);
         }
         return null;
     }

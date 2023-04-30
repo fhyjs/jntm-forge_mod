@@ -1,15 +1,19 @@
 package cn.fhyjs.jntm.gui;
 
+import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityJiCrafting;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -19,14 +23,57 @@ import java.util.Objects;
 
 public class Ji_Crafting_C extends Container {
     private ItemStackHandler filterListInv;
+    public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
+    public EntityPlayer entityPlayer;
+    public InventoryCraftResult craftResult = new InventoryCraftResult();
     private TileEntityJiCrafting tejc;
-    public Ji_Crafting_C(IInventory playerInventory, BlockPos blockPos, World world) {
+    private Slot sc;
+    public Ji_Crafting_C(EntityPlayer entityPlayer,IInventory playerInventory, BlockPos blockPos, World world) {
         tejc = ((TileEntityJiCrafting)(Objects.requireNonNull(world.getTileEntity(blockPos))));
+        this.entityPlayer=entityPlayer;
+        sc = new SlotCrafting(entityPlayer,craftMatrix, craftResult,0, 124, 35);
         filterListInv = tejc.getFilterList();
+        addCTSlots();
+        this.addSlotToContainer(sc);
         addPlayerSlots(playerInventory);
-        addWirelessIOSlots();
+        for (int i=0;i<9;i++)
+            craftMatrix.setInventorySlotContents(i,filterListInv.getStackInSlot(i));
     }
+    @Override
+    protected void slotChangedCraftingGrid(World world, EntityPlayer entityPlayer, InventoryCrafting inventoryCrafting, InventoryCraftResult inventoryCraftResult)
+    {
+        if (!world.isRemote)
+        {
+            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityPlayer;
+            ItemStack itemstack = ItemStack.EMPTY;
+            IRecipe irecipe = CraftingManager.findMatchingRecipe(inventoryCrafting, world);
 
+            if (irecipe != null && (irecipe.isDynamic() || !world.getGameRules().getBoolean("doLimitedCrafting") || entityplayermp.getRecipeBook().isUnlocked(irecipe)))
+            {
+                inventoryCraftResult.setRecipeUsed(irecipe);
+                itemstack = irecipe.getCraftingResult(inventoryCrafting);
+            }
+
+            inventoryCraftResult.setInventorySlotContents(0, itemstack);
+            for (int i=0;i<this.inventorySlots.size();i++){
+                if (this.inventorySlots.get(i)==sc){
+                    entityplayermp.connection.sendPacket(new SPacketSetSlot(this.windowId, i, itemstack));
+                    return;
+                }
+            }
+            entityplayermp.connection.sendPacket(new SPacketSetSlot(this.windowId, 0, itemstack));
+        }
+    }
+    @Override
+    public void onCraftMatrixChanged(IInventory inventoryIn)
+    {
+        this.slotChangedCraftingGrid(entityPlayer.world, entityPlayer, this.craftMatrix, this.craftResult);
+    }
+    @Override
+    public void onContainerClosed(EntityPlayer playerIn)
+    {
+        super.onContainerClosed(playerIn);
+    }
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
@@ -35,19 +82,26 @@ public class Ji_Crafting_C extends Container {
     @Nonnull
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-        ItemStack stack = super.slotClick(slotId, dragType, clickTypeIn, player);
+        ItemStack stack = null;
+        try {
+             stack = super.slotClick(slotId, dragType, clickTypeIn, player);
+        }catch (NullPointerException e){
+            Jntm.logger.error(e);
+        }
         // 禁阻一切对当前手持物品的交互，防止刷物品 bug
         if (slotId == 27 + player.inventory.currentItem) {
             return player.inventory.getStackInSlot(slotId);
         }
         tejc.setFilterList(filterListInv);
+        for (int i=0;i<9;i++)
+            craftMatrix.setInventorySlotContents(i,filterListInv.getStackInSlot(i));
         return stack;
     }
 
-    private void addWirelessIOSlots() {
+    private void addCTSlots() {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                this.addSlotToContainer(new WirelessIOSlotItemHandler(filterListInv, j + i * 3, 62 + j * 18, 17 + i * 18));
+                this.addSlotToContainer(new CTItemHandler(filterListInv, j + i * 3, 30 + j * 18, 17 + i * 18));
             }
         }
     }
@@ -92,14 +146,13 @@ public class Ji_Crafting_C extends Container {
         return itemstack;
     }
 
-    private class WirelessIOSlotItemHandler extends SlotItemHandler {
-        private WirelessIOSlotItemHandler(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+    private static class CTItemHandler extends SlotItemHandler {
+        private CTItemHandler(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
         }
-
         @Override
         public int getSlotStackLimit() {
-            return 1;
+            return 64;
         }
     }
 }
