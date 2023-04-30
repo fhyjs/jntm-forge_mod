@@ -9,12 +9,9 @@ import net.minecraft.item.crafting.*;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.RegistryNamespaced;
 import net.minecraft.world.World;
-import net.minecraftforge.event.RegistryEvent;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
@@ -27,16 +24,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class Ji_Crafting_Recipe {
     private static final Logger LOGGER = Jntm.logger;
     private static int nextAvailableId;
-    private static RegistryEvent.Register<IRecipe> register;
+    private static final Map<ResourceLocation, IRecipe> register = new HashMap<>();
 
-    public static boolean init(RegistryEvent.Register<IRecipe> event)
+    public static boolean init()
     {
-        register =event;
         try
         {
             return parseJsonRecipes();
@@ -89,7 +87,7 @@ public class Ji_Crafting_Recipe {
                     {
                         Path path2 = path.relativize(path1);
                         String s = FilenameUtils.removeExtension(path2.toString()).replaceAll("\\\\", "/");
-                        ResourceLocation resourcelocation = new ResourceLocation(s);
+                        ResourceLocation resourcelocation = new ResourceLocation(Jntm.MODID,s);
                         BufferedReader bufferedreader = null;
 
                         try
@@ -143,7 +141,7 @@ public class Ji_Crafting_Recipe {
 
     private static IRecipe parseRecipeJson(JsonObject p_193376_0_)
     {
-        String s = JsonUtils.getString(p_193376_0_, "type");
+        String s = JsonUtils.getString(p_193376_0_, "Jtype");
 
         if ("crafting_shaped".equals(s))
         {
@@ -168,20 +166,20 @@ public class Ji_Crafting_Recipe {
     //Forge: Made private use GameData/Registry events!
     private static void register(ResourceLocation name, IRecipe recipe)
     {
-        if (register.getRegistry().containsKey(name))
+        if (register.containsKey(name))
         {
             throw new IllegalStateException("Duplicate recipe ignored with ID " + name);
         }
         else
         {
-
-            register.getRegistry().register(recipe);
+            recipe.setRegistryName(name);
+            register.put(recipe.getRegistryName(),recipe);
         }
     }
 
     public static ItemStack findMatchingResult(InventoryCrafting craftMatrix, World worldIn)
     {
-        for (IRecipe irecipe : register.getRegistry())
+        for (IRecipe irecipe : register.values())
         {
             if (irecipe.matches(craftMatrix, worldIn))
             {
@@ -192,44 +190,6 @@ public class Ji_Crafting_Recipe {
         return ItemStack.EMPTY;
     }
 
-    @Nullable
-    public static IRecipe findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn)
-    {
-        for (IRecipe irecipe : register.getRegistry())
-        {
-            if (irecipe.matches(craftMatrix, worldIn))
-            {
-                return irecipe;
-            }
-        }
 
-        return null;
-    }
-
-    public static NonNullList<ItemStack> getRemainingItems(InventoryCrafting craftMatrix, World worldIn)
-    {
-        for (IRecipe irecipe : register.getRegistry())
-        {
-            if (irecipe.matches(craftMatrix, worldIn))
-            {
-                return irecipe.getRemainingItems(craftMatrix);
-            }
-        }
-
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>withSize(craftMatrix.getSizeInventory(), ItemStack.EMPTY);
-
-        for (int i = 0; i < nonnulllist.size(); ++i)
-        {
-            nonnulllist.set(i, craftMatrix.getStackInSlot(i));
-        }
-
-        return nonnulllist;
-    }
-
-    @Nullable
-    public static IRecipe getRecipe(ResourceLocation name)
-    {
-        return register.getRegistry().getValue(name);
-    }
 
 }

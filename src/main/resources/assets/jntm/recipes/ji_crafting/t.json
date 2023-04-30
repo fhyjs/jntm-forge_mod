@@ -1,5 +1,5 @@
 {
-  "type": "crafting_shaped",
+  "Jtype": "crafting_shaped",
   "pattern": [
     " Y ",
     "YXY",
@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": {
-      "item": "jntm:cxksegg",
+      "item": "minecraft:tnt",
       "data": 0
     },
     "Y": {

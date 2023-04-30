@@ -80,7 +80,7 @@ public class RecipeRegistryHandler {
         return (IRecipeFactory) new ShapedRecipes(group, pattern[0].length(), pattern.length, input, result);
     }
     public static void reg(RegistryEvent.Register<IRecipe> event){
-        Ji_Crafting_Recipe.init(event);
+        Ji_Crafting_Recipe.init();
     }
     public static void registerC(String name, IConditionFactory fac) {
         register(new ResourceLocation(name), fac);
