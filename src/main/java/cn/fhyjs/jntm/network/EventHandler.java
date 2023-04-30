@@ -55,6 +55,6 @@ public class EventHandler {
     }
     @SubscribeEvent
     public static void onRecipeRegister(RegistryEvent.Register<IRecipe> event){
-        //RecipeRegistryHandler.reg();
+        RecipeRegistryHandler.reg(event);
     }
 }

@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.registry;
 
+import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
@@ -12,6 +13,7 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.*;
+import net.minecraftforge.event.RegistryEvent;
 
 import java.util.Map;
 import java.util.Set;
@@ -77,8 +79,8 @@ public class RecipeRegistryHandler {
         ItemStack result = CraftingHelper.getItemStack(JsonUtils.getJsonObject(json, "result"), context);
         return (IRecipeFactory) new ShapedRecipes(group, pattern[0].length(), pattern.length, input, result);
     }
-    public static void reg(){
-        registerR("jntm:crafting_shaped", (context, json) -> (IRecipe) t1(context,json));
+    public static void reg(RegistryEvent.Register<IRecipe> event){
+        Ji_Crafting_Recipe.init(event);
     }
     public static void registerC(String name, IConditionFactory fac) {
         register(new ResourceLocation(name), fac);

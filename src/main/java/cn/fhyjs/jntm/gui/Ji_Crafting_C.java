@@ -3,6 +3,7 @@ package cn.fhyjs.jntm.gui;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityJiCrafting;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
+import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.*;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.play.server.SPacketSetSlot;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -31,7 +33,7 @@ public class Ji_Crafting_C extends Container {
     public Ji_Crafting_C(EntityPlayer entityPlayer,IInventory playerInventory, BlockPos blockPos, World world) {
         tejc = ((TileEntityJiCrafting)(Objects.requireNonNull(world.getTileEntity(blockPos))));
         this.entityPlayer=entityPlayer;
-        sc = new SlotCrafting(entityPlayer,craftMatrix, craftResult,0, 124, 35);
+        sc = new sc(entityPlayer,craftMatrix, craftResult,0, 124, 35);
         filterListInv = tejc.getFilterList();
         addCTSlots();
         this.addSlotToContainer(sc);
@@ -53,7 +55,7 @@ public class Ji_Crafting_C extends Container {
                 inventoryCraftResult.setRecipeUsed(irecipe);
                 itemstack = irecipe.getCraftingResult(inventoryCrafting);
             }
-
+            itemstack=getJiCraftingL(inventoryCrafting,world,itemstack);
             inventoryCraftResult.setInventorySlotContents(0, itemstack);
             for (int i=0;i<this.inventorySlots.size();i++){
                 if (this.inventorySlots.get(i)==sc){
@@ -61,8 +63,13 @@ public class Ji_Crafting_C extends Container {
                     return;
                 }
             }
-            entityplayermp.connection.sendPacket(new SPacketSetSlot(this.windowId, 0, itemstack));
         }
+    }
+    public static ItemStack getJiCraftingL(InventoryCrafting ic,World world,ItemStack stack){
+        if (stack!=ItemStack.EMPTY&&stack!=null)
+            return stack;
+        stack=Ji_Crafting_Recipe.findMatchingResult(ic,world);
+        return stack;
     }
     @Override
     public void onCraftMatrixChanged(IInventory inventoryIn)
@@ -153,6 +160,11 @@ public class Ji_Crafting_C extends Container {
         @Override
         public int getSlotStackLimit() {
             return 64;
+        }
+    }
+    private static class sc extends SlotCrafting {
+        public sc(EntityPlayer player, InventoryCrafting craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
+            super(player, craftingInventory, inventoryIn, slotIndex, xPosition, yPosition);
         }
     }
 }
