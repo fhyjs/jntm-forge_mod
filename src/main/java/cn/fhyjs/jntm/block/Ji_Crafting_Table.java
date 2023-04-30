@@ -7,20 +7,31 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.ISaveHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 import javax.swing.text.JTextComponent;
+
+import java.util.Objects;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
@@ -62,6 +73,22 @@ public class Ji_Crafting_Table extends BlockTileEntity<TileEntityJiCrafting> {
 
         return true;
     }
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        ItemStackHandler a = null;
+        if (tileentity != null) {
+            a = ((TileEntityJiCrafting)tileentity).getFilterList();
+        }
+        if (a != null) {
+            for (int i = 0;i<a.getSlots();i++){
+                worldIn.spawnEntity(new EntityItem(worldIn,pos.getX(),pos.getY(),pos.getZ(),a.getStackInSlot(i)));
+            }
+        }
+        worldIn.updateComparatorOutputLevel(pos, this);
+
+        super.breakBlock(worldIn, pos, state);
+    }
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
@@ -74,16 +101,6 @@ public class Ji_Crafting_Table extends BlockTileEntity<TileEntityJiCrafting> {
         i = i | ((EnumFacing)state.getValue(FACING)).getIndex();
 
         return i;
-    }
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-    {
-        super.breakBlock(worldIn,pos,state);
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            RenderCxkImageTileEntity.rlm.remove((TileEntityCxkImage) worldIn.getTileEntity(pos));
-            RenderCxkImageTileEntity.mapo.remove((TileEntityCxkImage) worldIn.getTileEntity(pos));
-            RenderCxkImageTileEntity.map.remove((TileEntityCxkImage) worldIn.getTileEntity(pos));
-        }
     }
     public IBlockState getStateFromMeta(int meta)
     {
