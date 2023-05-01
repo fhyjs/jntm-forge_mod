@@ -1,0 +1,22 @@
+{
+  "Jtype": "crafting_shaped",
+  "pattern": [
+    "YYY",
+    "YXY",
+    "YYY"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:skull",
+      "data": 1
+    },
+    "Y": {
+      "item": "minecraft:melon_block",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "jntm:fsms_xigua",
+    "count": 1
+  }
+}

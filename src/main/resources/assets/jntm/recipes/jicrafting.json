@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YXY",
+    "XYX",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "jntm:cxksegg"
+    },
+    "Y": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "item": "jntm:jicrafting"
+  }
+}

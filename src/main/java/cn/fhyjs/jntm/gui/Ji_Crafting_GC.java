@@ -42,7 +42,11 @@ public class Ji_Crafting_GC extends GuiContainer {
     @Override
     protected void actionPerformed(GuiButton button) {
     }
-
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+    {
+        this.fontRenderer.drawString(I18n.format("container.crafting"), 28, 6, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+    }
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         this.drawDefaultBackground();

@@ -7,14 +7,12 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -62,7 +60,7 @@ public class Ji_Crafting_Recipe {
 
                 if ("file".equals(uri.getScheme()))
                 {
-                    path = Paths.get(Ji_Crafting_Recipe.class.getResource("/assets/jntm/recipes/ji_crafting").toURI());
+                    path = Paths.get(Ji_Crafting_Recipe.class.getResource("/assets/jntm/ji_crafting").toURI());
                 }
                 else
                 {
@@ -74,7 +72,7 @@ public class Ji_Crafting_Recipe {
                     }
 
                     filesystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
-                    path = filesystem.getPath("/assets/jntm/recipes/ji_crafting");
+                    path = filesystem.getPath("/assets/jntm/ji_crafting");
                 }
 
                 Iterator<Path> iterator = Files.walk(path).iterator();
