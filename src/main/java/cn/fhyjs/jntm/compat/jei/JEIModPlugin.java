@@ -3,6 +3,8 @@ import cn.fhyjs.jntm.compat.jei.JCT.JCTCategory;
 import cn.fhyjs.jntm.compat.jei.JCT.JCTMaker;
 import cn.fhyjs.jntm.compat.jei.JCT.J_ShapedRecipesWrapper;
 import cn.fhyjs.jntm.gui.Ji_Crafting_C;
+import cn.fhyjs.jntm.gui.Ji_Crafting_GC;
+import cn.fhyjs.jntm.registry.BlockRegistryHandler;
 import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientRegistry;
@@ -16,6 +18,7 @@ import mezz.jei.plugins.vanilla.crafting.CraftingRecipeChecker;
 import mezz.jei.plugins.vanilla.crafting.ShapedOreRecipeWrapper;
 import mezz.jei.plugins.vanilla.crafting.ShapedRecipesWrapper;
 import mezz.jei.plugins.vanilla.crafting.ShapelessRecipeWrapper;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -56,8 +59,13 @@ public class JEIModPlugin implements IModPlugin {
         RECIPE_TRANSFER_HANDLERS = registry.getJeiHelpers().recipeTransferHandlerHelper();
         INGREDIENT_REGISTRY = registry.getIngredientRegistry();
         IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
+
         registry.addRecipes(JCTMaker.getValidRecipes(jeiHelpers), JCTCategory.JI_CRAFTING);
+
+        registry.addRecipeClickArea(Ji_Crafting_GC.class, 88, 32, 28, 23, JCTCategory.JI_CRAFTING);
         recipeTransferRegistry.addRecipeTransferHandler(Ji_Crafting_C.class, JCTCategory.JI_CRAFTING, 0, 8, 10, 36);
+        registry.addRecipeCatalyst(new ItemStack(BlockRegistryHandler.JI_CRAFTING_TABLE), JCTCategory.JI_CRAFTING);
+
         registry.handleRecipes(ShapedOreRecipe.class, recipe -> new ShapedOreRecipeWrapper(jeiHelpers, recipe), JCTCategory.JI_CRAFTING);
         registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JCTCategory.JI_CRAFTING);
         registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JCTCategory.JI_CRAFTING);

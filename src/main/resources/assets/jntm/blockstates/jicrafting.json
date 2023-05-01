@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": [{"model":"jntm:jicrafting"}],
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:jicrafting"}],
+    "facing=east": [{"model":"jntm:jicrafting"}],
+    "facing=south": [{"model":"jntm:jicrafting"}],
+    "facing=west": [{"model":"jntm:jicrafting"}],
+    "facing=north": [{"model":"jntm:jicrafting"}],
+    "facing=up": [{"model":"jntm:jicrafting"}],
+    "facing=down": [{"model":"jntm:jicrafting"}]
+  }
+}

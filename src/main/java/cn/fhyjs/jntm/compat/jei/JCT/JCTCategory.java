@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.compat.jei.JCT;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.registry.BlockRegistryHandler;
+import mezz.jei.JustEnoughItems;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -38,10 +39,10 @@ public class JCTCategory implements IRecipeCategory<IRecipeWrapper> {
     private final ICraftingGridHelper craftingGridHelper;
 
     public JCTCategory(IGuiHelper guiHelper) {
-        ResourceLocation location = new ResourceLocation(Jntm.MODID, "textures/gui/altar_icon.png");
+        ResourceLocation location = new ResourceLocation("jei", "textures/gui/gui_vanilla.png");
         background = guiHelper.createDrawable(location, 0, 60, width, height);
         icon = guiHelper.createDrawableIngredient(new ItemStack(BlockRegistryHandler.JI_CRAFTING_TABLE));
-        localizedName = I18n.format("gui.jei.category.craftingTable");
+        localizedName = I18n.format("gui.jntm.category.jicraftingTable");
         craftingGridHelper = guiHelper.createCraftingGridHelper(craftInputSlot1, craftOutputSlot);
     }
 
