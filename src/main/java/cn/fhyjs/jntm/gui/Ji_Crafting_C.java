@@ -4,6 +4,7 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityJiCrafting;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
+import com.google.common.collect.Lists;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.*;
@@ -26,7 +27,7 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public class Ji_Crafting_C extends Container {
-    private static ItemStackHandler filterListInv;
+    private ItemStackHandler filterListInv;
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public EntityPlayer entityPlayer;
     public InventoryCraftResult craftResult = new InventoryCraftResult();
@@ -67,7 +68,7 @@ public class Ji_Crafting_C extends Container {
             }
         }
     }
-    public static ItemStack getJiCraftingL(InventoryCrafting ic,World world,ItemStack stack){
+    public ItemStack getJiCraftingL(InventoryCrafting ic,World world,ItemStack stack){
         if (stack!=ItemStack.EMPTY&&stack!=null)
             return stack;
         stack=Ji_Crafting_Recipe.findMatchingResult(ic,world);
@@ -77,6 +78,7 @@ public class Ji_Crafting_C extends Container {
     public void onCraftMatrixChanged(IInventory inventoryIn)
     {
         this.slotChangedCraftingGrid(entityPlayer.world, entityPlayer, this.craftMatrix, this.craftResult);
+
     }
     @Override
     public void onContainerClosed(EntityPlayer playerIn)
@@ -102,6 +104,8 @@ public class Ji_Crafting_C extends Container {
             return player.inventory.getStackInSlot(slotId);
         }
         tejc.setFilterList(filterListInv);
+        for (int i=0;i<9;i++)
+            craftMatrix.setInventorySlotContents(i,ItemStack.EMPTY);
         for (int i=0;i<9;i++)
             craftMatrix.setInventorySlotContents(i,filterListInv.getStackInSlot(i));
         return stack;
@@ -162,20 +166,28 @@ public class Ji_Crafting_C extends Container {
         @Override
         public void onSlotChanged()
         {
+            super.onSlotChanged();
             filterListInv= (ItemStackHandler) this.getItemHandler();
             tejc.setFilterList((ItemStackHandler) filterListInv);
             for (int i=0;i<9;i++)
                 craftMatrix.setInventorySlotContents(i,filterListInv.getStackInSlot(i));
-            super.onSlotChanged();
+
         }
         @Override
         public int getSlotStackLimit() {
             return 64;
         }
     }
-    private static class sc extends SlotCrafting {
+    private class sc extends SlotCrafting {
         public sc(EntityPlayer player, InventoryCrafting craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
             super(player, craftingInventory, inventoryIn, slotIndex, xPosition, yPosition);
+        }
+        @Override
+        protected void onCrafting(ItemStack stack)
+        {
+            super.onCrafting(stack);
+            for (int i=0;i<9;i++)
+                filterListInv.setStackInSlot(i,craftMatrix.getStackInSlot(i));
         }
     }
 }

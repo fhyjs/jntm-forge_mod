@@ -1,0 +1,30 @@
+{
+  "Jtype": "crafting_shaped",
+  "pattern": [
+    "YXY",
+    "YZM",
+    "YYY"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:skull",
+      "data": 1
+    },
+    "Y": {
+      "item": "minecraft:stone",
+      "data": 0
+    },
+    "Z": {
+      "item": "jntm:cxksegg",
+      "data": 0
+    },
+    "M": {
+      "item": "jntm:jiguangpao",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "jntm:fsms_bosscxk",
+    "count": 1
+  }
+}
