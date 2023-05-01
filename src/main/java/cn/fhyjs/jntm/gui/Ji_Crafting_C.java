@@ -11,12 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.play.server.SPacketSetSlot;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -24,7 +26,7 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public class Ji_Crafting_C extends Container {
-    private ItemStackHandler filterListInv;
+    private static ItemStackHandler filterListInv;
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public EntityPlayer entityPlayer;
     public InventoryCraftResult craftResult = new InventoryCraftResult();
@@ -153,9 +155,18 @@ public class Ji_Crafting_C extends Container {
         return itemstack;
     }
 
-    private static class CTItemHandler extends SlotItemHandler {
+    private class CTItemHandler extends SlotItemHandler {
         private CTItemHandler(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
+        }
+        @Override
+        public void onSlotChanged()
+        {
+            filterListInv= (ItemStackHandler) this.getItemHandler();
+            tejc.setFilterList((ItemStackHandler) filterListInv);
+            for (int i=0;i<9;i++)
+                craftMatrix.setInventorySlotContents(i,filterListInv.getStackInSlot(i));
+            super.onSlotChanged();
         }
         @Override
         public int getSlotStackLimit() {

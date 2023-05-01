@@ -31,7 +31,7 @@ import java.util.Map;
 public class Ji_Crafting_Recipe {
     private static final Logger LOGGER = Jntm.logger;
     private static int nextAvailableId;
-    private static final Map<ResourceLocation, IRecipe> register = new HashMap<>();
+    public static final Map<ResourceLocation, IRecipe> register = new HashMap<>();
 
     public static boolean init()
     {
