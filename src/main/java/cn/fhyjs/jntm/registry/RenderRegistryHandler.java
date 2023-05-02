@@ -1,13 +1,16 @@
 package cn.fhyjs.jntm.registry;
 
 
+import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.entity.*;
 
 import cn.fhyjs.jntm.renderer.*;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.fml.client.registry.ClientRegistry;

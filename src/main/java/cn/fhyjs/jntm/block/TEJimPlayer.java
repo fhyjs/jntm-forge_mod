@@ -1,11 +1,21 @@
 package cn.fhyjs.jntm.block;
 
+import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.common.CommonProxy;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.animation.Event;
+import net.minecraftforge.common.animation.TimeValues;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +25,21 @@ import javax.annotation.Nullable;
 public class TEJimPlayer extends TileEntity implements ITickable {
     public String count="12312312aaasssqqqqwwww";
     public boolean f1=false;
+    public static TimeValues.VariableValue ticksValue = new TimeValues.VariableValue(100f);
+    @Nullable
+    public IAnimationStateMachine asm;
+    @CapabilityInject(IAnimationStateMachine.class)
+    private static Capability<IAnimationStateMachine> ANIMATION_CAPABILITY;
+    @Override
+    public boolean hasFastRenderer()
+    {
+        return true;
+    }
+    public TEJimPlayer(){
+        if (CommonProxy.McInited) {
+            asm = Jntm.proxy.loadAsm(new ResourceLocation(Jntm.MODID, "asms/block/jimplayer.json"), ImmutableMap.of("blowing_cycle", TEJimPlayer.ticksValue));
+        }
+    }
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound = super.writeToNBT(compound);
@@ -30,7 +55,20 @@ public class TEJimPlayer extends TileEntity implements ITickable {
         this.count = compound.getString("s");
         // JOptionPane.showMessageDialog(null, count);
     }
+    @Override
+    public boolean hasCapability(final Capability<?> capability, @Nullable final EnumFacing facing) {
+        return capability == ANIMATION_CAPABILITY || super.hasCapability(capability, facing);
+    }
 
+    @Nullable
+    @Override
+    public <T> T getCapability(final Capability<T> capability, @Nullable final EnumFacing facing) {
+        if(capability == ANIMATION_CAPABILITY) {
+            return ANIMATION_CAPABILITY.cast(asm);
+        }
+
+        return super.getCapability(capability, facing);
+    }
     public String getCount() {
         return this.count;
     }
@@ -64,7 +102,7 @@ public class TEJimPlayer extends TileEntity implements ITickable {
 
     }
     public void handleEvents(float time, Iterable<Event> pastEvents){
-
+        Jntm.logger.error(111);
     }
 
     @Override

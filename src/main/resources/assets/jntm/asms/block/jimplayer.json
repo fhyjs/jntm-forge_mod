@@ -1,0 +1,35 @@
+{
+  "parameters": {
+    "slowed_anim_time": [
+      "/",
+      4
+    ]
+  },
+  "clips": {
+    "default": [
+      "apply",
+      "jntm:block/jimplayer@default",
+      "#slowed_anim_time"
+    ],
+    "harvest": [
+      "apply",
+      "jntm:block/jimplayer@harvest",
+      "#slowed_anim_time"
+    ]
+  },
+  "states": [
+    "default",
+    "harvest"
+  ],
+  "transitions": {
+    "default": [
+      "default",
+      "harvest"
+    ],
+    "harvest": [
+      "default",
+      "harvest"
+    ]
+  },
+  "start_state": "default"
+}

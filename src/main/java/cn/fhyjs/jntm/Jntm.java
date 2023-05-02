@@ -153,5 +153,6 @@ public class Jntm {
     @EventHandler
     public static void onInitialization(FMLInitializationEvent event) {
         ConfigHandler.setFile("jntm.cfg");
+        proxy.onInitialization(event);
     }
 }

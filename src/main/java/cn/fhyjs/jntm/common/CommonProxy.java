@@ -6,10 +6,15 @@ import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.item.WeaponBase;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
+import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.animation.ITimeValue;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -20,6 +25,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,7 +33,9 @@ import java.util.Hashtable;
 import java.util.Map;
 
 
-public class CommonProxy  {
+public abstract class CommonProxy  {
+    public static boolean McInited = false;
+
     public void regitem_end(){}
     public void onModelRegistry(ModelRegistryEvent event){}
     public static SimpleNetworkWrapper INSTANCE = null;
@@ -41,12 +49,20 @@ public class CommonProxy  {
         ConfigCore.loadConfig(event);
     }
     public void init(FMLInitializationEvent event){
-
+        McInited=true;
+        TileEntityRegistryHandler.reg();
     }
     public void postInit(FMLPostInitializationEvent event){
         DispenserBehaviorRegistryHandler.run();
+
     }
     public void openhelpGui(GuiScreen e){}
+
+    @Nullable
+    public  IAnimationStateMachine loadAsm(ResourceLocation loc, ImmutableMap<String, ITimeValue> parameters){
+        return null;
+    };
+
     public void openurl(String s){}
     public static Map<BlockPos,Thread> jimplayers= new HashMap<>();
     public String getCB() throws IOException, UnsupportedFlavorException {return null;}
@@ -63,5 +79,9 @@ public class CommonProxy  {
 
 
     public void registerItemRenderer(Item weaponBase, int i, String inventory) {
+    }
+
+    public void onInitialization(FMLInitializationEvent event) {
+
     }
 }

@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": [{"model":"jntm:jimplayer"}],
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:jimplayer"}],
+    "facing=east": [{"model":"jntm:jimplayer"}],
+    "facing=south": [{"model":"jntm:jimplayer"}],
+    "facing=west": [{"model":"jntm:jimplayer"}],
+    "facing=north": [{"model":"jntm:jimplayer"}],
+    "facing=up": [{"model":"jntm:jimplayer"}],
+    "facing=down": [{"model":"jntm:jimplayer"}]
+  },
+  "static": {
+    "true": {
+      "model": "jntm:jimplayer"
+    },
+    "false": {
+      "model": "jntm:jimplayer"
+    }
+  }
+}

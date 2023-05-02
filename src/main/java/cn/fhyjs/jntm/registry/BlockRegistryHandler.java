@@ -33,8 +33,6 @@ public class BlockRegistryHandler {
         registry.register(CXKIMAGE);
         registry.register(JIM_PLAYER_BLOCK);
         registry.register(JI_CRAFTING_TABLE);
-        GameRegistry.registerTileEntity(JIM_PLAYER_BLOCK.getTileEntityClass(), JIM_PLAYER_BLOCK.getRegistryName());
-        GameRegistry.registerTileEntity(CXKIMAGE.getTileEntityClass(), CXKIMAGE.getRegistryName());
-        GameRegistry.registerTileEntity(JI_CRAFTING_TABLE.getTileEntityClass(), JI_CRAFTING_TABLE.getRegistryName());
+
     }
 }

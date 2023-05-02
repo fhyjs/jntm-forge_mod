@@ -27,42 +27,36 @@ import net.minecraftforge.fml.relauncher.Side;
 import javax.annotation.Nullable;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.Random;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
 public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
-    public static final PropertyBool TRIGGERED = PropertyBool.create("triggered");
     public JimPlayerBlock() {
         super(Material.WOOD,new TEJimPlayer());
         this.setRegistryName("jimplayer");
         this.setUnlocalizedName(Jntm.MODID + "jimplayer");
         this.setCreativeTab(jntm_Group);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TRIGGERED, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setHarvestLevel("pickaxe",0);
         this.setHardness(2F);
     }
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(TRIGGERED, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
     }
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING, TRIGGERED);
+        return new BlockStateContainer(this, FACING);
     }
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
         i = i | ((EnumFacing)state.getValue(FACING)).getIndex();
-
-        if (((Boolean)state.getValue(TRIGGERED)).booleanValue())
-        {
-            i |= 8;
-        }
-
         return i;
     }
     private boolean powered;
@@ -90,17 +84,18 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
         return 0;
     }
     @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        super.onBlockAdded(worldIn, pos, state);
-        if (!worldIn.isRemote)
+        super.onBlockAdded(world, pos, state);
+        if (!world.isRemote)
         {
-            powered=worldIn.isBlockPowered(pos);
+            powered=world.isBlockPowered(pos);
         }
     }
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
+
     }
 
     @Override
@@ -125,7 +120,6 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).markDirty();
             }
             if (!powered) {
-                worldIn.setBlockState(pos, state.withProperty(TRIGGERED, Boolean.valueOf(false)), 2);
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).f1=false;
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).markDirty();
             }
@@ -134,6 +128,14 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     }
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        try {
+            ((TEJimPlayer)world.getTileEntity(pos)).asm.transition("default");
+            ((TEJimPlayer)world.getTileEntity(pos)).asm.transition("harvest");
+            ((TEJimPlayer)world.getTileEntity(pos)).asm.shouldHandleSpecialEvents(true);
+        }catch (IllegalStateException e){
+            e.printStackTrace();
+        }
+
         if (!world.isRemote) {
             player.openGui(Jntm.instance, JntmGuiHandler.GUIs.RSMPlayer.getId(), world, (int) pos.getX(),pos.getY(),pos.getZ());
         }
