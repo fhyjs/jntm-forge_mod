@@ -1,12 +1,15 @@
 package cn.fhyjs.jntm.registry;
 
 
+import cn.fhyjs.jntm.block.TEJimPlayer;
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.entity.*;
 
 import cn.fhyjs.jntm.renderer.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraftforge.client.model.animation.AnimationTESR;
+import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -26,5 +29,13 @@ public class RenderRegistryHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCxkImage.class, new RenderCxkImageTileEntity());
         RenderingRegistry.registerEntityRenderingHandler(XiGua.class,new RenderXigua(Minecraft.getMinecraft().getRenderManager()));
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new AnimationTESR<TEJimPlayer>()
+        {
+            @Override
+            public void handleEvents(TEJimPlayer chest, float time, Iterable<Event> pastEvents)
+            {
+                chest.handleEvents(time, pastEvents);
+            }
+        });
     }
 }

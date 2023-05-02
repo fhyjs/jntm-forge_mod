@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -60,6 +61,9 @@ public class TEJimPlayer extends TileEntity implements ITickable {
     }
     @SideOnly(Side.CLIENT)
     public void receiveUpdatePacket(NBTTagCompound nbt) {
+
+    }
+    public void handleEvents(float time, Iterable<Event> pastEvents){
 
     }
 

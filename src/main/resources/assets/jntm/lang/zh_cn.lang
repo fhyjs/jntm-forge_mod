@@ -102,3 +102,4 @@ item.spellcard.spellcard.jntm.t_card.name=鸡符--压缩炸弹
 spellcard.jntm.t_card=压缩鸡炸弹
 gui.jntm.category.jicraftingTable=鸡工作台合成
 tile.jntmjicrafting.name=鸡工作台
+tile.jntmjimplayer.name=jim执行块

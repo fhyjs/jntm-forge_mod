@@ -7,6 +7,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.util.JsonUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.apache.commons.io.FilenameUtils;
@@ -42,7 +43,25 @@ public class Ji_Crafting_Recipe {
             return false;
         }
     }
+    public static NonNullList<ItemStack> getRemainingItems(InventoryCrafting craftMatrix, World worldIn)
+    {
+        for (IRecipe irecipe : register.values())
+        {
+            if (irecipe.matches(craftMatrix, worldIn))
+            {
+                return irecipe.getRemainingItems(craftMatrix);
+            }
+        }
 
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>withSize(craftMatrix.getSizeInventory(), ItemStack.EMPTY);
+
+        for (int i = 0; i < nonnulllist.size(); ++i)
+        {
+            nonnulllist.set(i, craftMatrix.getStackInSlot(i));
+        }
+
+        return nonnulllist;
+    }
     private static boolean parseJsonRecipes()
     {
         FileSystem filesystem = null;

@@ -2,11 +2,13 @@ package cn.fhyjs.jntm.block;
 
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,37 +18,30 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class TileEntityJiCrafting extends TileEntity {
-    private static final int FILTER_LIST_SIZE = 9;
-    private static final String FILTER_LIST_TAG = "ItemFilterList";
-    private NBTTagCompound tag=new NBTTagCompound();
+    private NonNullList<ItemStack> chestContents = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
+    public int getSizeInventory()
+    {
+        return 9;
+    }
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound = super.writeToNBT(compound);
-        compound.setTag(FILTER_LIST_TAG,getTag());
+        ItemStackHelper.saveAllItems(compound, this.chestContents);
         return compound;
     }
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        setTag(compound.getCompoundTag(FILTER_LIST_TAG));
+        this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, this.chestContents);
     }
-    public ItemStackHandler getFilterList() {
-        WirelessIOHandler handler = new WirelessIOHandler(FILTER_LIST_SIZE);
-        if (getTag() != null) {
-            handler.deserializeNBT(getTag());
-        }
+    public NonNullList<ItemStack> getFilterList() {
         this.markDirty();
-        return handler;
+        return chestContents;
     }
-    public void setFilterList(ItemStackHandler itemStackHandler) {
-        setTag(itemStackHandler.serializeNBT());
+    public void  setFilterList(NonNullList<ItemStack> itemStackHandler) {
+        chestContents=itemStackHandler;
         this.markDirty();
-    }
-    public void setTag(NBTTagCompound n){
-        this.tag=n;
-    }
-    public NBTTagCompound getTag(){
-        return this.tag;
     }
     private IBlockState getState() {
         return world.getBlockState(pos);
@@ -79,7 +74,7 @@ public class TileEntityJiCrafting extends TileEntity {
 
         @Override
         public int getSlotLimit(int slot) {
-            return 64;
+            return 1;
         }
     }
 }

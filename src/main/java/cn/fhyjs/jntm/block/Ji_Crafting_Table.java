@@ -14,10 +14,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -76,13 +73,13 @@ public class Ji_Crafting_Table extends BlockTileEntity<TileEntityJiCrafting> {
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        ItemStackHandler a = null;
+        NonNullList<ItemStack> a = null;
         if (tileentity != null) {
             a = ((TileEntityJiCrafting)tileentity).getFilterList();
         }
         if (a != null) {
-            for (int i = 0;i<a.getSlots();i++){
-                worldIn.spawnEntity(new EntityItem(worldIn,pos.getX(),pos.getY(),pos.getZ(),a.getStackInSlot(i)));
+            for (ItemStack stack : a) {
+                worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack));
             }
         }
         worldIn.updateComparatorOutputLevel(pos, this);
