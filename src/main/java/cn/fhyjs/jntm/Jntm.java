@@ -11,6 +11,7 @@ import cn.fhyjs.jntm.utility.unzip;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -37,7 +38,8 @@ public class Jntm {
     public static Jntm INSTANCE;
     public static boolean IS_DC_Load;
     public Jntm(){
-        FMLCommonHandler.instance().bus().register(new cn.fhyjs.jntm.network.EventHandler());
+
+        MinecraftForge.EVENT_BUS.register(new cn.fhyjs.jntm.network.EventHandler());
         IS_DC_Load = Loader.isModLoaded("danmakucore");
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT&&Loader.isModLoaded("mcef") ) {
             //下载JECF资源

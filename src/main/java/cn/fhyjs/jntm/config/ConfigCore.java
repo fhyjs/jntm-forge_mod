@@ -1,17 +1,25 @@
 package cn.fhyjs.jntm.config;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.client.ClientProxy;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IResourcePack;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Level;
 
+import java.util.List;
+
 public class ConfigCore {
-    public static final String GENERAL = "General";
-    private static final String DIFFICULTY = GENERAL + ".Difficulty";
+    public static final String general = "general";
     public static Configuration cfg;
     public static boolean isenabledTrayIcon = true;
-    public static byte amountSmelting = 1;
-
+    public static boolean isenabledRP = true;
+    private static boolean orp;
 
     public static void loadConfig(FMLPreInitializationEvent event) {
         // net.minecraftforge.common.config.Configurationのインスタンスを生成する。
@@ -27,9 +35,10 @@ public class ConfigCore {
     private static void initConfig() {
         // カテゴリのコメントなどを設定する。
         // General
-        cfg.addCustomCategoryComment(GENERAL, "鸡你太美mod配置文档.");
-        cfg.setCategoryLanguageKey(GENERAL, "config.jntm.category.general");
-        cfg.setCategoryRequiresMcRestart(GENERAL, true);
+        cfg.addCustomCategoryComment(general, "鸡你太美mod配置文档.");
+        cfg.setCategoryLanguageKey(general, "config.jntm.category.client");
+        cfg.setCategoryRequiresMcRestart(general, true);
+        orp = isenabledRP;
         // Difficulty
         //cfg.addCustomCategoryComment(DIFFICULTY, "The settings of difficulty.");
         //cfg.setCategoryLanguageKey(DIFFICULTY, "config.aluminium.category.difficulty");
@@ -42,10 +51,26 @@ public class ConfigCore {
         Jntm.logger.log(Level.INFO,"Syncing config");
         // 各項目の設定値を反映させる。
         // General
-        isenabledTrayIcon = cfg.getBoolean("enabledTrayIcon", GENERAL, isenabledTrayIcon, "任务栏图标会显示当该值为true时.", "config.jntm.prop.enabledGenerator");
+        isenabledTrayIcon = cfg.getBoolean("enabledTrayIcon", general, isenabledTrayIcon, "任务栏图标会显示当该值为true时.", "config.jntm.prop.enabledGenerator");
+        isenabledRP = cfg.getBoolean("isenabledRP", general, isenabledRP, "资源包开关.", "config.jntm.prop.isenabledRP");
         // Difficulty
         //amountSmelting = (byte) cfg.getInt("amountSmelting", DIFFICULTY, amountSmelting, 1, Byte.MAX_VALUE, "Smelting amount of Aluminium Ingot from Aluminium Ore.", "config.jntm.prop.amountSmelting");
         // 設定内容をコンフィグファイルに保存する。
         cfg.save();
+        if (FMLCommonHandler.instance().getSide()== Side.CLIENT &&orp!=isenabledRP){
+            orp=isenabledRP;
+            if (orp){
+                List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
+                defaultResourcePacks.add(ClientProxy.JRP);
+                ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
+                FMLClientHandler.instance().refreshResources();
+            }else {
+                List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
+                defaultResourcePacks.remove(ClientProxy.JRP);
+                ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
+                FMLClientHandler.instance().refreshResources();
+            }
+            FMLClientHandler.instance().refreshResources();
+        }
     }
 }

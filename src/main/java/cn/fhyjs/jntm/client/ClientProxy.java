@@ -113,18 +113,20 @@ public class ClientProxy extends CommonProxy {
             Jntm.logger.error("SystemTray Is NOT Supported,Or it's disable in config");
         }
         try {
-            GameConfig gc = new  GameConfig(Paths.get(getrunpath("")+"options.txt"));
-            gc.addResourcePack("jntm.zip", "jntm.zip");
-            gc.writeToFile();
-            List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class,Minecraft.getMinecraft(),"field_110449_ao");
-            defaultResourcePacks.add(new Jntm_RP());
-            ObfuscationReflectionHelper.setPrivateValue(Minecraft.class,Minecraft.getMinecraft(),defaultResourcePacks,"field_110449_ao");
-            FMLClientHandler.instance().refreshResources();
-
+            if (ConfigCore.isenabledRP) {
+                GameConfig gc = new GameConfig(Paths.get(getrunpath("") + "options.txt"));
+                gc.addResourcePack("jntm.zip", "jntm.zip");
+                gc.writeToFile();
+                List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
+                defaultResourcePacks.add(JRP);
+                ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
+                FMLClientHandler.instance().refreshResources();
+            }
         } catch (Exception e) {
             Jntm.logger.error(new RuntimeException(e));
         }
     }
+    public static Jntm_RP JRP = new Jntm_RP();
     @SideOnly(Side.CLIENT)
     @Override
     public void init(FMLInitializationEvent event){

@@ -42,7 +42,7 @@ public class EventHandler {
     @SideOnly(Side.CLIENT)
     public void onGuiOpen(GuiOpenEvent event)
     {
-        if(postInit && event.getGui() instanceof GuiMainMenu && !played)
+        if(postInit && event.getGui() instanceof GuiMainMenu && !played&&ConfigCore.isenabledTrayIcon)
         {
             played = true;
             ClientProxy.TIl.displayMessage(I18n.format("mod.jntm.name"), I18n.format("jntm.tips.mcsf"), TrayIcon.MessageType.INFO);//弹出一个info级别消息框
