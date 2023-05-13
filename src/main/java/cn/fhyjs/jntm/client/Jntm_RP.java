@@ -14,11 +14,12 @@ import java.io.InputStream;
 import java.util.*;
 
 public class Jntm_RP implements IResourcePack {
-    public static final Set<String> DEFAULT_RESOURCE_DOMAINS = ImmutableSet.<String>of("minecraft", "realms");
+
     public static final Map<String,String> map=new HashMap<>();
     public static void la(String a,String b){map.put(a,b);}
     public Jntm_RP (){
         la("minecraft:lang/zh_cn.lang","assets/jntm/lang/zh_ji.lang");
+        la("minecraft:gui/title/mojang.png","assets/jntm/gui/mojang.png");
     }
     @Override
     public InputStream getInputStream(ResourceLocation location) throws IOException {
@@ -32,6 +33,11 @@ public class Jntm_RP implements IResourcePack {
 
     @Override
     public Set<String> getResourceDomains() {
+        Set<String> DEFAULT_RESOURCE_DOMAINS = new HashSet<>();
+        for (String s:map.keySet()){
+            ResourceLocation rl=new ResourceLocation(s);
+            DEFAULT_RESOURCE_DOMAINS.add(rl.getResourceDomain());
+        }
         return DEFAULT_RESOURCE_DOMAINS;
     }
 

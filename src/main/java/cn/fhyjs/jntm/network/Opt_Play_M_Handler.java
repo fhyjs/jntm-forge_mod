@@ -79,6 +79,11 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     ((TEJimPlayer)ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).markDirty();
                     CommonProxy.INSTANCE.sendToAll(new Opt_Ply_Message(ctx.getServerHandler().player, message.opt));
                     break;
+                case "upload":
+                    tmp1 =message.opt.split(" ");
+                    String tmp2 = tmp1[1].replaceAll("#*#*"," ");
+
+                    break;
             }
         }
         if(ctx.side == Side.CLIENT) {
@@ -88,6 +93,11 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                 case "alljim":
                     for (int i=1;i< tmp.length;i++)
                         tmp1[i-1]=tmp[i].replaceAll("\n"," ");
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     RSMPlayerG.fln=tmp1;
                     break;
                 case "playjim_setfilename":

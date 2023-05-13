@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.gui;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
+import cn.fhyjs.jntm.client.ClientProxy;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.common.pstest;
 import cn.fhyjs.jntm.network.JntmMessage;
@@ -37,6 +38,8 @@ import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,6 +90,7 @@ public class RSMPlayerG extends GuiContainer {
         buttonList.add(new GuiButton(0, guiLeft+xSize-25, guiTop+5,20, 20, "X"));
         buttonList.add(new GuiButton(1, guiLeft+10, guiTop+30,20, 20, I18n.format("gui.play")));
         buttonList.add(new GuiButton(2, guiLeft+30, guiTop+30,20, 20, I18n.format("gui.stop")));
+        buttonList.add(new GuiButton(3, guiLeft+getXSize()-90, guiTop+40,40, 20, I18n.format("gui.upload")));
         CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player,"getalljim"));
         int ti=0;
         while (true){
@@ -132,7 +136,30 @@ public class RSMPlayerG extends GuiContainer {
             case 2:
                 CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "stopjim "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
                 break;
+            case 3:
+                String fp = ClientProxy.fileManager.GetFilePath();
+                if (fp==null){
+                    Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.nofilechoosed"))));
+                    break;
+                }
+                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "upload "+readfile(fp).replaceAll(" ","#*#*")));
+                break;
         }
+    }
+    public static String readfile(String fn) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(fn));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = null;
+        String ls = System.getProperty("line.separator");
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(ls);
+        }
+// 删除最后一个新行分隔符
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        reader.close();
+
+       return stringBuilder.toString();
     }
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {

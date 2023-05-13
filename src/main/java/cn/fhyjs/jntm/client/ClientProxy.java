@@ -5,6 +5,7 @@ import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.network.EventHandler;
 import cn.fhyjs.jntm.registry.RenderRegistryHandler;
+import cn.fhyjs.jntm.utility.FileManager;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -13,6 +14,8 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -82,9 +85,11 @@ public class ClientProxy extends CommonProxy {
     public proadd nt=new proadd();
     public static TrayIcon TIl;
     public  SystemTray tray = SystemTray.getSystemTray();
+    public static FileManager fileManager;
     @Override
     public void preInit(FMLPreInitializationEvent event)  {
         super.preInit(event);
+        fileManager=new FileManager();
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
         if(SystemTray.isSupported()&& ConfigCore.isenabledTrayIcon) {
 
@@ -121,6 +126,7 @@ public class ClientProxy extends CommonProxy {
                 defaultResourcePacks.add(JRP);
                 ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
                 FMLClientHandler.instance().refreshResources();
+                ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png"))))), "field_152354_ay");
             }
         } catch (Exception e) {
             Jntm.logger.error(new RuntimeException(e));

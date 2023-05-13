@@ -104,3 +104,5 @@ gui.jntm.category.jicraftingTable=鸡工作台合成
 tile.jntmjicrafting.name=鸡工作台
 tile.jntmjimplayer.name=jim执行块
 config.jntm.prop.isenabledRP=资源包开关
+gui.upload=上传
+gui.toast.nofilechoosed=未选择文件
