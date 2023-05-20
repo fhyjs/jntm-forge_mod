@@ -11,6 +11,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -32,13 +33,16 @@ public class RenderRegistryHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCxkImage.class, new RenderCxkImageTileEntity());
         RenderingRegistry.registerEntityRenderingHandler(XiGua.class,new RenderXigua(Minecraft.getMinecraft().getRenderManager()));
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new AnimationTESR<TEJimPlayer>()
+        ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ATSERJP());
+    }
+    private static class ATSERJP extends AnimationTESR<TEJimPlayer>{
+        private ATSERJP(){
+            super();
+        }
+        @Override
+        public void handleEvents(TEJimPlayer chest, float time, Iterable<Event> pastEvents)
         {
-            @Override
-            public void handleEvents(TEJimPlayer chest, float time, Iterable<Event> pastEvents)
-            {
-                chest.handleEvents(time, pastEvents);
-            }
-        });
+            chest.handleEvents(time, pastEvents);
+        }
     }
 }

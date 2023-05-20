@@ -3,13 +3,17 @@ package cn.fhyjs.jntm.block;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.block.BlockPrismarine;
+import net.minecraft.block.BlockSeaLantern;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.common.animation.TimeValues;
 import net.minecraftforge.common.capabilities.Capability;
@@ -39,7 +43,9 @@ public class TEJimPlayer extends TileEntity implements ITickable {
         if (CommonProxy.McInited) {
             asm = Jntm.proxy.loadAsm(new ResourceLocation(Jntm.MODID, "asms/block/jimplayer.json"), ImmutableMap.of("blowing_cycle", TEJimPlayer.ticksValue));
         }
+
     }
+
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound = super.writeToNBT(compound);
@@ -102,11 +108,13 @@ public class TEJimPlayer extends TileEntity implements ITickable {
 
     }
     public void handleEvents(float time, Iterable<Event> pastEvents){
-        Jntm.logger.error(111);
+        for (Event event : pastEvents) {
+            Jntm.logger.error(111);
+        }
     }
 
     @Override
     public void update() {
-        sendUpdates();
+
     }
 }

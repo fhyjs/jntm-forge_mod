@@ -4,12 +4,17 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.common.pstest;
+import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.gui.RSMPlayerC;
 import cn.fhyjs.jntm.gui.RSMPlayerG;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.toasts.SystemToast;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.translation.LanguageMap;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -21,6 +26,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import static net.minecraft.client.gui.toasts.SystemToast.Type.TUTORIAL_HINT;
 
 public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMessage> {
     public Map<EntityPlayer,String[]> uploader=new HashMap<>();
@@ -84,6 +91,10 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     break;
                 case "upload":
                     tmp1 =message.opt.split(" ");
+                    if (!ConfigCore.isenabledUP){
+                        CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "toast gui.toast.unallow"),ctx.getServerHandler().player);
+                        break;
+                    }
                     String tmp2 = tmp1[2];
                     String[] t3 = uploader.get(ctx.getServerHandler().player);
                     t3[Integer.parseInt(tmp1[1])]=tmp2;
@@ -91,11 +102,19 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply upload "+tmp1[1]),ctx.getServerHandler().player);
                     break;
                 case "pre_upload":
+                    if (!ConfigCore.isenabledUP){
+                        CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "toast gui.toast.unallow"),ctx.getServerHandler().player);
+                        break;
+                    }
                     tmp1 =message.opt.split(" ");
                     uploader.put(ctx.getServerHandler().player,new String[Integer.parseInt(tmp1[1])]);
                     CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply "+message.opt),ctx.getServerHandler().player);
                     break;
                 case "end_upload":
+                    if (!ConfigCore.isenabledUP){
+                        CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "toast gui.toast.unallow"),ctx.getServerHandler().player);
+                        break;
+                    }
                     tmp1 =message.opt.split(" ");
                     t3 = uploader.get(ctx.getServerHandler().player);
                     tmp2="";
@@ -107,6 +126,10 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply ok"),ctx.getServerHandler().player);
                     break;
                 case "write_to_file":
+                    if (!ConfigCore.isenabledUP){
+                        CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "toast gui.toast.unallow"),ctx.getServerHandler().player);
+                        break;
+                    }
                     tmp1 =message.opt.split(" ");
                     String path=tmp1[1];
                     boolean overwrite = true;
@@ -147,6 +170,10 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     tmp1 =message.opt.split(" ");
                     if ((Minecraft.getMinecraft().currentScreen)instanceof RSMPlayerG)
                         ((RSMPlayerG)Minecraft.getMinecraft().currentScreen).reply=message.opt.substring(6);
+                    break;
+                case "toast":
+                    tmp1 =message.opt.split(" ");
+                    Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format(tmp1[1])), new TextComponentString(I18n.format("gui.toast.guifaild"))));
                     break;
             }
         }

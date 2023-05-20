@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import software.bernie.geckolib3.GeckoLib;
 
 import javax.annotation.Nullable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -51,6 +52,8 @@ public class CommonProxy  {
         ConfigCore.loadConfig(event);
     }
     public void init(FMLInitializationEvent event){
+        // 初始化GeckoLib
+        //GeckoLib.initialize();
         McInited=true;
         TileEntityRegistryHandler.reg();
     }

@@ -15,11 +15,14 @@ import org.apache.logging.log4j.Level;
 import java.util.List;
 
 public class ConfigCore {
-    public static final String general = "general";
+    public static final String root = "root";
+    public static final String general = root+".general";
+    public static final String client = root+".client";
     public static Configuration cfg;
     public static boolean isenabledTrayIcon = true;
     public static boolean isenabledRP = true;
     private static boolean orp;
+    public static boolean isenabledUP=false;
 
     public static void loadConfig(FMLPreInitializationEvent event) {
         // net.minecraftforge.common.config.Configurationのインスタンスを生成する。
@@ -35,9 +38,12 @@ public class ConfigCore {
     private static void initConfig() {
         // カテゴリのコメントなどを設定する。
         // General
-        cfg.addCustomCategoryComment(general, "鸡你太美mod配置文档.");
-        cfg.setCategoryLanguageKey(general, "config.jntm.category.client");
-        cfg.setCategoryRequiresMcRestart(general, true);
+        cfg.addCustomCategoryComment(root, "鸡你太美mod配置.");
+        cfg.setCategoryLanguageKey(root, "config.jntm.category.root");
+        cfg.addCustomCategoryComment(client, "鸡你太美mod客户端配置.");
+        cfg.setCategoryLanguageKey(client, "config.jntm.category.client");
+        cfg.addCustomCategoryComment(general, "鸡你太美mod通用设置.");
+        cfg.setCategoryLanguageKey(general, "config.jntm.category.general");
         orp = isenabledRP;
         // Difficulty
         //cfg.addCustomCategoryComment(DIFFICULTY, "The settings of difficulty.");
@@ -50,9 +56,9 @@ public class ConfigCore {
     public static void syncConfig() {
         Jntm.logger.log(Level.INFO,"Syncing config");
         // 各項目の設定値を反映させる。
-        // General
-        isenabledTrayIcon = cfg.getBoolean("enabledTrayIcon", general, isenabledTrayIcon, "任务栏图标会显示当该值为true时.", "config.jntm.prop.enabledGenerator");
-        isenabledRP = cfg.getBoolean("isenabledRP", general, isenabledRP, "资源包开关.", "config.jntm.prop.isenabledRP");
+        isenabledTrayIcon = cfg.getBoolean("enabledTrayIcon", client, isenabledTrayIcon, "任务栏图标会显示当该值为true时.", "config.jntm.prop.enabledGenerator");
+        isenabledRP = cfg.getBoolean("isenabledRP", client, isenabledRP, "资源包开关.", "config.jntm.prop.isenabledRP");
+        isenabledUP = cfg.getBoolean("isenabledUP", general, isenabledUP, "允许客户端上传文件开关.", "config.jntm.prop.isenabledUP");
         // Difficulty
         //amountSmelting = (byte) cfg.getInt("amountSmelting", DIFFICULTY, amountSmelting, 1, Byte.MAX_VALUE, "Smelting amount of Aluminium Ingot from Aluminium Ore.", "config.jntm.prop.amountSmelting");
         // 設定内容をコンフィグファイルに保存する。

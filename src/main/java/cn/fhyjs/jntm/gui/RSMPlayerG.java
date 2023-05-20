@@ -3,6 +3,7 @@ package cn.fhyjs.jntm.gui;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
 import cn.fhyjs.jntm.common.CommonProxy;
+import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.network.JntmMessage;
 import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -137,7 +138,11 @@ public class RSMPlayerG extends GuiContainer {
                 break;
             }
         }
-
+        for (GuiButton gb:buttonList){
+            if(gb.id==3){
+                gb.enabled= ConfigCore.isenabledUP;
+            }
+        }
     }
     @Override
     protected void actionPerformed(GuiButton parButton) throws IOException {
@@ -161,6 +166,7 @@ public class RSMPlayerG extends GuiContainer {
                     Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.nofilechoosed"))));
                     break;
                 }
+                String filename = JOptionPane.showInputDialog(null,I18n.format("gui.input.filename"));
                 String file=readfile(fp).replaceAll(" ", "#*#*");
                 byte[][] t=splitBytes(file.getBytes(),1000);
                 int time = Arrays.asList(t).size();
@@ -173,7 +179,6 @@ public class RSMPlayerG extends GuiContainer {
                 }
                 CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "end_upload"));
                 wait_reply("ok");
-                String filename = JOptionPane.showInputDialog(null,I18n.format("gui.input.filename"));
                 CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "write_to_file jim "+filename));
                 wait_reply("ok");
                 CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));

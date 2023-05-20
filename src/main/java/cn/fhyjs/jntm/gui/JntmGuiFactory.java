@@ -36,7 +36,7 @@ public class JntmGuiFactory implements IModGuiFactory {
 
         public ConfigGuiScreen(GuiScreen parent)
         {
-            super(parent, (new ConfigElement(ConfigCore.cfg.getCategory(ConfigCore.general))).getChildElements(), Jntm.MODID, false, false, Jntm.MODID);
+            super(parent, (new ConfigElement(ConfigCore.cfg.getCategory(ConfigCore.root))).getChildElements(), Jntm.MODID, false, false, Jntm.MODID);
         }
     }
 
