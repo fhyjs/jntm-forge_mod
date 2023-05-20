@@ -7,6 +7,7 @@ import cn.fhyjs.jntm.item.WeaponBase;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
+import cn.fhyjs.jntm.utility.FileManager;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
@@ -33,18 +34,19 @@ import java.util.Hashtable;
 import java.util.Map;
 
 
-public abstract class CommonProxy  {
+public class CommonProxy  {
     public static boolean McInited = false;
 
     public void regitem_end(){}
     public void onModelRegistry(ModelRegistryEvent event){}
     public static SimpleNetworkWrapper INSTANCE = null;
     public void registerItems(ModelRegistryEvent event) {}
-
+    public static FileManager fileManager;
     public void OpenWB() throws IOException {}
     @Mod.Metadata(Jntm.MODID)
     private static ModMetadata meta;
     public void preInit(FMLPreInitializationEvent event){
+        fileManager=new FileManager();
         registerMessage();
         ConfigCore.loadConfig(event);
     }

@@ -1,15 +1,14 @@
 package cn.fhyjs.jntm.network;
 
+import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
-import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.common.pstest;
+import cn.fhyjs.jntm.gui.RSMPlayerC;
 import cn.fhyjs.jntm.gui.RSMPlayerG;
-import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -18,10 +17,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMessage> {
-
-
+    public Map<EntityPlayer,String[]> uploader=new HashMap<>();
+    public Map<EntityPlayerMP, String> uploader_tmp=new HashMap<EntityPlayerMP, String>();
     @Override
     public IMessage onMessage(Opt_Ply_Message message, MessageContext ctx) {
         System.out.println(message.opt);
@@ -75,14 +78,48 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     break;
                 case "playjim_setfilename":
                     tmp1 =message.opt.split(" ");
-                    ((TEJimPlayer)ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).count=(tmp1[1]).replaceAll("\n"," ");
-                    ((TEJimPlayer)ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).markDirty();
+                    ((TEJimPlayer) Objects.requireNonNull(ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]), Integer.parseInt(tmp1[3]), Integer.parseInt(tmp1[4]))))).count=(tmp1[1]).replaceAll("\n"," ");
+                    ((TEJimPlayer) Objects.requireNonNull(ctx.getServerHandler().player.world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]), Integer.parseInt(tmp1[3]), Integer.parseInt(tmp1[4]))))).markDirty();
                     CommonProxy.INSTANCE.sendToAll(new Opt_Ply_Message(ctx.getServerHandler().player, message.opt));
                     break;
                 case "upload":
                     tmp1 =message.opt.split(" ");
-                    String tmp2 = tmp1[1].replaceAll("#*#*"," ");
-
+                    String tmp2 = tmp1[2];
+                    String[] t3 = uploader.get(ctx.getServerHandler().player);
+                    t3[Integer.parseInt(tmp1[1])]=tmp2;
+                    uploader.put(ctx.getServerHandler().player,t3);
+                    CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply upload "+tmp1[1]),ctx.getServerHandler().player);
+                    break;
+                case "pre_upload":
+                    tmp1 =message.opt.split(" ");
+                    uploader.put(ctx.getServerHandler().player,new String[Integer.parseInt(tmp1[1])]);
+                    CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply "+message.opt),ctx.getServerHandler().player);
+                    break;
+                case "end_upload":
+                    tmp1 =message.opt.split(" ");
+                    t3 = uploader.get(ctx.getServerHandler().player);
+                    tmp2="";
+                    for (String s:t3){
+                        tmp2+=s;
+                    }
+                    uploader_tmp.put(ctx.getServerHandler().player,tmp2.replaceAll("#*#*"," "));
+                    uploader.remove(ctx.getServerHandler().player);
+                    CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply ok"),ctx.getServerHandler().player);
+                    break;
+                case "write_to_file":
+                    tmp1 =message.opt.split(" ");
+                    String path=tmp1[1];
+                    boolean overwrite = true;
+                    if (Objects.equals(tmp1[1], "jim")) {
+                        path = getrunpath("jims/");
+                        overwrite=false;
+                    }
+                    try {
+                        CommonProxy.fileManager.write_file(path+tmp1[2],uploader_tmp.get(ctx.getServerHandler().player),overwrite);
+                    } catch (IOException e) {
+                        Jntm.logger.error(new RuntimeException(e));
+                    }
+                    CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply ok"),ctx.getServerHandler().player);
                     break;
             }
         }
@@ -98,17 +135,24 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    RSMPlayerG.fln=tmp1;
+                    if ((Minecraft.getMinecraft().currentScreen)instanceof RSMPlayerG)
+                        ((RSMPlayerG)Minecraft.getMinecraft().currentScreen).fln=tmp1;
                     break;
                 case "playjim_setfilename":
                     tmp1 =message.opt.split(" ");
-                    ((TEJimPlayer)Minecraft.getMinecraft().world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).count=tmp1[1].replaceAll("\n"," ");
+                    ((TEJimPlayer) Objects.requireNonNull(Minecraft.getMinecraft().world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]), Integer.parseInt(tmp1[3]), Integer.parseInt(tmp1[4]))))).count=tmp1[1].replaceAll("\n"," ");
                     ((TEJimPlayer)Minecraft.getMinecraft().world.getTileEntity(new BlockPos(Integer.parseInt(tmp1[2]),Integer.parseInt(tmp1[3]),Integer.parseInt(tmp1[4])))).markDirty();
+                    break;
+                case "reply":
+                    tmp1 =message.opt.split(" ");
+                    if ((Minecraft.getMinecraft().currentScreen)instanceof RSMPlayerG)
+                        ((RSMPlayerG)Minecraft.getMinecraft().currentScreen).reply=message.opt.substring(6);
                     break;
             }
         }
         return null;
     }
+    public static String reply ;
     public String getrunpath(String sp){
         String MP;
         StringBuilder tmp;

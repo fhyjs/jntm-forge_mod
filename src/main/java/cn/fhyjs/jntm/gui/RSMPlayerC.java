@@ -15,6 +15,7 @@ public class RSMPlayerC extends Container {
         this.player = player;
         //JOptionPane.showMessageDialog(null,"4");
     }
+
     public void save(){
 
     }

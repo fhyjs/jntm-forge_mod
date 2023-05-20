@@ -1,7 +1,9 @@
 package cn.fhyjs.jntm.network;
 
+import cn.fhyjs.jntm.utility.JI_ByteBufUtils;
 import com.google.gson.Gson;
 import io.netty.buffer.ByteBuf;
+import io.netty.handler.codec.EncoderException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -26,7 +28,7 @@ public class Opt_Ply_Message implements IMessage {
     }
 
     @Override
-    public void toBytes(ByteBuf buf) {
+    public void toBytes(ByteBuf buf){
         Gson gson = new Gson();
         User user = new User();
         if (a!=null)
@@ -34,6 +36,7 @@ public class Opt_Ply_Message implements IMessage {
         user.opt=opt;
         out=gson.toJson(user);
         ByteBufUtils.writeUTF8String(buf,out);
+
     }
 
     @Override

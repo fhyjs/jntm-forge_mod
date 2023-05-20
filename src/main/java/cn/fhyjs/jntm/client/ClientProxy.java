@@ -85,11 +85,11 @@ public class ClientProxy extends CommonProxy {
     public proadd nt=new proadd();
     public static TrayIcon TIl;
     public  SystemTray tray = SystemTray.getSystemTray();
-    public static FileManager fileManager;
+
     @Override
     public void preInit(FMLPreInitializationEvent event)  {
         super.preInit(event);
-        fileManager=new FileManager();
+
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
         if(SystemTray.isSupported()&& ConfigCore.isenabledTrayIcon) {
 

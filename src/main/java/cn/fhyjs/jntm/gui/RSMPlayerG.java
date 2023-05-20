@@ -2,51 +2,39 @@ package cn.fhyjs.jntm.gui;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
-import cn.fhyjs.jntm.client.ClientProxy;
 import cn.fhyjs.jntm.common.CommonProxy;
-import cn.fhyjs.jntm.common.pstest;
 import cn.fhyjs.jntm.network.JntmMessage;
 import cn.fhyjs.jntm.network.Opt_Ply_Message;
-import cn.fhyjs.jntm.network.SCINMessage;
+import io.netty.channel.embedded.EmbeddedChannel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.toasts.SystemToast;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ForgeVersion;
-import net.minecraftforge.fml.client.GuiModList;
 import net.minecraftforge.fml.client.GuiScrollingList;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
-import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.network.FMLEmbeddedChannel;
+import net.minecraftforge.fml.common.network.FMLOutboundHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import javax.annotation.Nullable;
-import java.awt.*;
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.EnumMap;
+import java.util.Queue;
 
-import static cn.fhyjs.jntm.Jntm.proxy;
 import static net.minecraft.client.gui.toasts.SystemToast.Type.TUTORIAL_HINT;
 
 public class RSMPlayerG extends GuiContainer {
@@ -54,8 +42,19 @@ public class RSMPlayerG extends GuiContainer {
     private BlockPos bp;
     private EntityPlayer player;
     ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+    public static boolean isNotEmpty(Queue<Object> queue) {
+        return queue != null && !queue.isEmpty();
+    }
     public RSMPlayerG(EntityPlayer player, World world, BlockPos bp) {
         super(new RSMPlayerC(player,world,bp));
+        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player,"getalljim"));
+        while (true){
+            EnumMap<Side, FMLEmbeddedChannel> t = ObfuscationReflectionHelper.getPrivateValue(SimpleNetworkWrapper.class,CommonProxy.INSTANCE,"channels");
+            Queue<Object> inboundMessages = ObfuscationReflectionHelper.getPrivateValue(EmbeddedChannel.class,t.get(Side.CLIENT),"inboundMessages");
+            Queue<Object> outboundMessages = ObfuscationReflectionHelper.getPrivateValue(EmbeddedChannel.class,t.get(Side.CLIENT),"outboundMessages");
+            if (!(isNotEmpty(inboundMessages) || isNotEmpty(outboundMessages)))
+                break;
+        }
         this.xSize = 256;
         this.ySize = 214;
         this.guiTop = (int) (sr.getScaledHeight()*0.08);
@@ -73,13 +72,33 @@ public class RSMPlayerG extends GuiContainer {
         this.selected = index;
         CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "playjim_setfilename "+ (sl.get(selected)).replaceAll(" ","\n")+" "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
     }
-    public static String[] fln;
     public boolean modIndexSelected(int index)
     {
         return index == selected;
     }
     private GuiScrollingList gsl ;
     private final ArrayList<String> sl=new ArrayList<>();
+    public String reply;
+    public String[] fln;
+    public void wait_reply(String r){
+        int ti=0;
+        while (true){
+            ti++;
+            if (reply!=null&&reply.equals(r)){
+                break;
+            }
+            if (ti>=1000){
+                CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
+                Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.guifaild"))));
+                return;
+            }
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     @Override
     public void initGui()
     {
@@ -91,7 +110,7 @@ public class RSMPlayerG extends GuiContainer {
         buttonList.add(new GuiButton(1, guiLeft+10, guiTop+30,20, 20, I18n.format("gui.play")));
         buttonList.add(new GuiButton(2, guiLeft+30, guiTop+30,20, 20, I18n.format("gui.stop")));
         buttonList.add(new GuiButton(3, guiLeft+getXSize()-90, guiTop+40,40, 20, I18n.format("gui.upload")));
-        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player,"getalljim"));
+
         int ti=0;
         while (true){
             ti++;
@@ -137,14 +156,36 @@ public class RSMPlayerG extends GuiContainer {
                 CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "stopjim "+bp.getX()+" "+bp.getY()+" "+bp.getZ()));
                 break;
             case 3:
-                String fp = ClientProxy.fileManager.GetFilePath();
+                String fp = CommonProxy.fileManager.GetFilePath();
                 if (fp==null){
                     Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format("mod.jntm.name")), new TextComponentString(I18n.format("gui.toast.nofilechoosed"))));
                     break;
                 }
-                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "upload "+readfile(fp).replaceAll(" ","#*#*")));
+                String file=readfile(fp).replaceAll(" ", "#*#*");
+                byte[][] t=splitBytes(file.getBytes(),1000);
+                int time = Arrays.asList(t).size();
+                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "pre_upload " + time));
+                wait_reply("pre_upload " + time);
+                for (int i=0;i<time;i++){
+                    String st=new String(t[i]);
+                    CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "upload " + i + " " + st));
+                    wait_reply("upload " + i);
+                }
+                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "end_upload"));
+                wait_reply("ok");
+                String filename = JOptionPane.showInputDialog(null,I18n.format("gui.input.filename"));
+                CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(player, "write_to_file jim "+filename));
+                wait_reply("ok");
+                CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
                 break;
         }
+    }
+    @Override
+    public void onGuiClosed()
+    {
+        super.onGuiClosed();
+        fln=null;
+        reply=null;
     }
     public static String readfile(String fn) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fn));
@@ -160,6 +201,31 @@ public class RSMPlayerG extends GuiContainer {
         reader.close();
 
        return stringBuilder.toString();
+    }
+
+    /**
+     * 拆分byte数组
+     *
+     * @param bytes
+     *            要拆分的数组
+     * @param size
+     *            要按几个组成一份
+     * @return
+     */
+    public byte[][] splitBytes(byte[] bytes, int size) {
+        double splitLength = Double.parseDouble(size + "");
+        int arrayLength = (int) Math.ceil(bytes.length / splitLength);
+        byte[][] result = new byte[arrayLength][];
+        int from, to;
+        for (int i = 0; i < arrayLength; i++) {
+
+            from = (int) (i * splitLength);
+            to = (int) (from + splitLength);
+            if (to > bytes.length)
+                to = bytes.length;
+            result[i] = Arrays.copyOfRange(bytes, from, to);
+        }
+        return result;
     }
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -199,5 +265,7 @@ public class RSMPlayerG extends GuiContainer {
         this.fontRenderer.drawString(str, x, y, color); //fr - fontRenderer
         GL11.glPopMatrix(); //End this matrix
     }
-
+    public static int getBLength(String s) {
+        return s.getBytes().length;
+    }
 }

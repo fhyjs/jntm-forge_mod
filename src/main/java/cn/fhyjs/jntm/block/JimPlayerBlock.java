@@ -129,9 +129,11 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         try {
-            ((TEJimPlayer)world.getTileEntity(pos)).asm.transition("default");
-            ((TEJimPlayer)world.getTileEntity(pos)).asm.transition("harvest");
-            ((TEJimPlayer)world.getTileEntity(pos)).asm.shouldHandleSpecialEvents(true);
+            if (world.isRemote) {
+                ((TEJimPlayer) world.getTileEntity(pos)).asm.transition("default");
+                ((TEJimPlayer) world.getTileEntity(pos)).asm.transition("harvest");
+                ((TEJimPlayer) world.getTileEntity(pos)).asm.shouldHandleSpecialEvents(true);
+            }
         }catch (IllegalStateException e){
             e.printStackTrace();
         }

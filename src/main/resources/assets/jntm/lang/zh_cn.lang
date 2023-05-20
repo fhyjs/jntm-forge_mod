@@ -106,3 +106,4 @@ tile.jntmjimplayer.name=jim执行块
 config.jntm.prop.isenabledRP=资源包开关
 gui.upload=上传
 gui.toast.nofilechoosed=未选择文件
+gui.input.filename=输入文件名
