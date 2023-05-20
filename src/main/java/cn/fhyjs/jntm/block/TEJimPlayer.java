@@ -2,11 +2,13 @@ package cn.fhyjs.jntm.block;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
+import cn.fhyjs.jntm.interfaces.IAnimatedTile;
 import cn.fhyjs.jntm.utility.AnimationHelper;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.BlockSeaLantern;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.BannerPattern;
@@ -14,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.model.animation.Animation;
@@ -31,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class TEJimPlayer extends TileEntity implements ITickable {
+public class TEJimPlayer extends TileEntity implements ITickable, IAnimatedTile {
     public String count="12312312aaasssqqqqwwww";
     public boolean f1=false;
     protected static final float ANIM_TIME = 0.5F;
@@ -69,18 +72,20 @@ public class TEJimPlayer extends TileEntity implements ITickable {
         // JOptionPane.showMessageDialog(null, count);
     }
     @Override
-    public boolean hasCapability(final Capability<?> capability, @Nullable final EnumFacing facing) {
-        return capability == ANIMATION_CAPABILITY || super.hasCapability(capability, facing);
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return true;
+        else
+            return super.hasCapability(capability, facing);
     }
 
     @Nullable
     @Override
-    public <T> T getCapability(final Capability<T> capability, @Nullable final EnumFacing facing) {
-        if(capability == ANIMATION_CAPABILITY) {
-            return ANIMATION_CAPABILITY.cast(asm);
-        }
-
-        return super.getCapability(capability, facing);
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
+        else
+            return super.getCapability(capability, facing);
     }
     public String getCount() {
         return this.count;
@@ -92,6 +97,19 @@ public class TEJimPlayer extends TileEntity implements ITickable {
     }
     private IBlockState getState() {
         return world.getBlockState(pos);
+    }
+    public void onOpenInventory() {
+        if (!world.isRemote) {
+            world.playSound(null, pos, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, 1.0F);
+            world.addBlockEvent(pos, getBlockType(), 1, 1);
+        }
+    }
+
+    public void onCloseInventory() {
+        if (!world.isRemote) {
+            world.playSound(null, pos, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, 1.0F);
+            world.addBlockEvent(pos, getBlockType(), 1, 0);
+        }
     }
     @Override
     public @NotNull NBTTagCompound getUpdateTag()
@@ -126,10 +144,10 @@ public class TEJimPlayer extends TileEntity implements ITickable {
     public void receiveUpdatePacket(NBTTagCompound nbt) {
 
     }
+    @Override
     public void handleEvents(float time, Iterable<Event> pastEvents){
             Jntm.logger.debug(this+"handleEvents");
     }
-
     @Override
     public void update() {
 

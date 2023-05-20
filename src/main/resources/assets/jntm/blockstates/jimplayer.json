@@ -12,10 +12,10 @@
   },
   "static": {
     "true": {
-      "model": "jntm:jimplayer"
+      "model": "jntm:jimplayer_s"
     },
     "false": {
-      "model": "jntm:jimplayer"
+      "model": "jntm:jimplayer_a"
     }
   }
 }

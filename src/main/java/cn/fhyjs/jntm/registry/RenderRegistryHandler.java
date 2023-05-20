@@ -16,12 +16,13 @@ import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.*;
 
 public class RenderRegistryHandler {
-    public static void register(FMLPostInitializationEvent event)
+    public static void register(FMLInitializationEvent event)
     {
         //RenderItem IR= new RenderItem(Minecraft.getMinecraft().renderEngine, ObfuscationReflectionHelper.getPrivateValue(Minecraft.class,Minecraft.getMinecraft(),"modelManager"), ObfuscationReflectionHelper.getPrivateValue(Minecraft.class,Minecraft.getMinecraft(),"itemColors"));
         RenderingRegistry.registerEntityRenderingHandler(kundan_st.class,new RenderSnowball(Minecraft.getMinecraft().getRenderManager(), ggxdd,Minecraft.getMinecraft().getRenderItem()));
@@ -33,16 +34,6 @@ public class RenderRegistryHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCxkImage.class, new RenderCxkImageTileEntity());
         RenderingRegistry.registerEntityRenderingHandler(XiGua.class,new RenderXigua(Minecraft.getMinecraft().getRenderManager()));
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ATSERJP());
-    }
-    private static class ATSERJP extends AnimationTESR<TEJimPlayer>{
-        private ATSERJP(){
-            super();
-        }
-        @Override
-        public void handleEvents(TEJimPlayer chest, float time, Iterable<Event> pastEvents)
-        {
-            chest.handleEvents(time, pastEvents);
-        }
+        ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ListeningAnimatedTESR<>());
     }
 }

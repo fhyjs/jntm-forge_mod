@@ -36,7 +36,7 @@ import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
 public class Cxkimage extends BlockTileEntity<TileEntityCxkImage> {
     public Cxkimage() {
-        super(Material.WOOD,new TileEntityCxkImage());
+        super(Material.WOOD);
         this.setRegistryName("cxkimages");
         this.setUnlocalizedName(Jntm.MODID + "cxkimages");
         this.setCreativeTab(jntm_Group);

@@ -137,7 +137,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event){
         super.init(event);
-
+        RenderRegistryHandler.register(event);
 
     }
     public static class ModelRegistryObj {
@@ -201,7 +201,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event){
         super.postInit(event);
-        RenderRegistryHandler.register(event);
+
         EventHandler.postInit = true;
     }
     @SideOnly(Side.CLIENT)

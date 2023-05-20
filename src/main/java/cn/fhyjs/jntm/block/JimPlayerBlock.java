@@ -35,7 +35,7 @@ import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
 public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     public JimPlayerBlock() {
-        super(Material.WOOD,new TEJimPlayer());
+        super(Material.WOOD);
         this.setRegistryName("jimplayer");
         this.setUnlocalizedName(Jntm.MODID + "jimplayer");
         this.setCreativeTab(jntm_Group);
@@ -103,17 +103,17 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
                 if (CommonProxy.jimplayers.get(pos)!=null)
                     if (CommonProxy.jimplayers.get(pos).isAlive()) {
                         CommonProxy.jimplayers.get(pos).stop();
-                        //worldIn.addBlockEvent(pos, state.getBlock(), 1, 0);
+                        ((TEJimPlayer)worldIn.getTileEntity(pos)).onCloseInventory();
                     }
                     else {
                         CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
                         CommonProxy.jimplayers.get(pos).start();
-                        //worldIn.addBlockEvent(pos, state.getBlock(), 1, 1);
+                        ((TEJimPlayer)worldIn.getTileEntity(pos)).onOpenInventory();
                     }
                 else {
                     CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
                     CommonProxy.jimplayers.get(pos).start();
-                    //worldIn.addBlockEvent(pos, state.getBlock(), 1, 1);
+                    ((TEJimPlayer)worldIn.getTileEntity(pos)).onOpenInventory();
                 }
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).f1=true;
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).markDirty();

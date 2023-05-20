@@ -13,11 +13,10 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public abstract class BlockTileEntity<TE extends TileEntity> extends BlockDirectional {
-    private TE te;
+    private TE te=null;
 
-    public BlockTileEntity(Material material,TE te) {
+    public BlockTileEntity(Material material) {
         super(material);
-        this.te=te;
     }
 
     public abstract Class<TE> getTileEntityClass();

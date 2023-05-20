@@ -34,7 +34,7 @@ import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 
 public class Ji_Crafting_Table extends BlockTileEntity<TileEntityJiCrafting> {
     public Ji_Crafting_Table() {
-        super(Material.WOOD,new TileEntityJiCrafting());
+        super(Material.WOOD);
         this.setRegistryName("jicrafting");
         this.setUnlocalizedName(Jntm.MODID + "jicrafting");
         this.setCreativeTab(jntm_Group);
