@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -93,28 +94,26 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
         }
     }
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
-
-    }
-
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
         if (!worldIn.isRemote)
         {
             powered=worldIn.isBlockPowered(pos);
             if (powered && !((TEJimPlayer)worldIn.getTileEntity(pos)).f1){
                 if (CommonProxy.jimplayers.get(pos)!=null)
-                    if (CommonProxy.jimplayers.get(pos).isAlive())
+                    if (CommonProxy.jimplayers.get(pos).isAlive()) {
                         CommonProxy.jimplayers.get(pos).stop();
+                        //worldIn.addBlockEvent(pos, state.getBlock(), 1, 0);
+                    }
                     else {
                         CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
                         CommonProxy.jimplayers.get(pos).start();
+                        //worldIn.addBlockEvent(pos, state.getBlock(), 1, 1);
                     }
                 else {
                     CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
                     CommonProxy.jimplayers.get(pos).start();
+                    //worldIn.addBlockEvent(pos, state.getBlock(), 1, 1);
                 }
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).f1=true;
                 ((TEJimPlayer)worldIn.getTileEntity(pos)).markDirty();
@@ -126,17 +125,27 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
 
         }
     }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+
+    }
+    @Override
+    public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
+        if (!world.isRemote)
+            return true;
+        else {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile != null)
+                return tile.receiveClientEvent(id, param);
+            else
+                return false;
+        }
+    }
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        try {
-            if (world.isRemote) {
-                ((TEJimPlayer) world.getTileEntity(pos)).asm.transition("default");
-                ((TEJimPlayer) world.getTileEntity(pos)).asm.transition("harvest");
-                ((TEJimPlayer) world.getTileEntity(pos)).asm.shouldHandleSpecialEvents(true);
-            }
-        }catch (IllegalStateException e){
-            e.printStackTrace();
-        }
+
 
         if (!world.isRemote) {
             player.openGui(Jntm.instance, JntmGuiHandler.GUIs.RSMPlayer.getId(), world, (int) pos.getX(),pos.getY(),pos.getZ());

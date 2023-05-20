@@ -1,35 +1,36 @@
 {
   "parameters": {
-    "slowed_anim_time": [
-      "/",
-      4
-    ]
+    "trigger_end": ["-", ["compose", ["+", "#anim_time"], "#open_time"]],
+    "anim_progress": ["-/Mm", "#open_time", "#anim_time", 0.0, 0.99999]
   },
   "clips": {
-    "default": [
-      "apply",
-      "jntm:block/jimplayer@default",
-      "#slowed_anim_time"
+    "model": "jntm:block/jimplayer@model",
+    "closed": ["apply", "#model", 0.0],
+    "open": ["apply", "#model", 0.99],
+    "opening": [
+      "trigger_positive",
+      ["apply", "jntm:block/jimplayer@opening", "#anim_progress"],
+      "#trigger_end",
+      "!transition:open"
     ],
-    "harvest": [
-      "apply",
-      "jntm:block/jimplayer@harvest",
-      "#slowed_anim_time"
+    "closing": [
+      "trigger_positive",
+      ["apply", "jntm:block/jimplayer@closing", "#anim_progress"],
+      "#trigger_end",
+      "!transition:closed"
     ]
   },
   "states": [
-    "default",
-    "harvest"
+    "open",
+    "opening",
+    "closing",
+    "closed"
   ],
   "transitions": {
-    "default": [
-      "default",
-      "harvest"
-    ],
-    "harvest": [
-      "default",
-      "harvest"
-    ]
+    "opening": ["open", "closing", "closed"],
+    "open": ["closing", "closed", "opening"],
+    "closing": ["closed", "opening", "closing"],
+    "closed": ["opening", "open", "closing"]
   },
-  "start_state": "default"
+  "start_state": "closed"
 }

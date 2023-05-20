@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.block;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
+import cn.fhyjs.jntm.utility.AnimationHelper;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.BlockSeaLantern;
@@ -13,11 +14,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.model.animation.Animation;
 import net.minecraftforge.common.animation.Event;
+import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.animation.TimeValues;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.model.animation.CapabilityAnimation;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,19 +34,21 @@ import javax.annotation.Nullable;
 public class TEJimPlayer extends TileEntity implements ITickable {
     public String count="12312312aaasssqqqqwwww";
     public boolean f1=false;
-    public static TimeValues.VariableValue ticksValue = new TimeValues.VariableValue(100f);
+    protected static final float ANIM_TIME = 0.5F;
+    protected TimeValues.VariableValue openTime;
     @Nullable
     public IAnimationStateMachine asm;
     @CapabilityInject(IAnimationStateMachine.class)
-    private static Capability<IAnimationStateMachine> ANIMATION_CAPABILITY;
+    public static Capability<IAnimationStateMachine> ANIMATION_CAPABILITY = null;
     @Override
     public boolean hasFastRenderer()
     {
         return true;
     }
     public TEJimPlayer(){
+        openTime = new TimeValues.VariableValue(-1);
         if (CommonProxy.McInited) {
-            asm = Jntm.proxy.loadAsm(new ResourceLocation(Jntm.MODID, "asms/block/jimplayer.json"), ImmutableMap.of("blowing_cycle", TEJimPlayer.ticksValue));
+            asm = Jntm.proxy.loadAsm(new ResourceLocation(Jntm.MODID, "asms/block/jimplayer.json"),ImmutableMap.<String, ITimeValue>of("anim_time", new TimeValues.VariableValue(ANIM_TIME), "open_time", openTime));
         }
 
     }
@@ -96,7 +103,19 @@ public class TEJimPlayer extends TileEntity implements ITickable {
     public SPacketUpdateTileEntity getUpdatePacket() {
         return new SPacketUpdateTileEntity(this.getPos(), 4, this.getUpdateTag());
     }
+    @Override
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == 1) {
+            float time = Animation.getWorldTime(world, Animation.getPartialTickTime());
+            float partialProgress = openTime.apply(time) < 0.0F ? 0.0F :
+                    MathHelper.clamp(ANIM_TIME - (time - openTime.apply(time)), 0.0F, ANIM_TIME);
+            openTime.setValue(time - partialProgress);
+            AnimationHelper.transitionSafely(asm, type == 1 ? "opening" : "closing");
+            return true;
+        }
 
+        return super.receiveClientEvent(id,type);
+    }
     private void sendUpdates() {
         getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
         getWorld().notifyBlockUpdate(getPos(), getState(), getState(), 3);
@@ -108,9 +127,7 @@ public class TEJimPlayer extends TileEntity implements ITickable {
 
     }
     public void handleEvents(float time, Iterable<Event> pastEvents){
-        for (Event event : pastEvents) {
-            Jntm.logger.error(111);
-        }
+            Jntm.logger.debug(this+"handleEvents");
     }
 
     @Override
