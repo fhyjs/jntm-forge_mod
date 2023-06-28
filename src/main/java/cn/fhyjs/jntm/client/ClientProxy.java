@@ -22,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -250,6 +251,12 @@ public class ClientProxy extends CommonProxy {
         dirToOpen = new File(e);
         desktop.open(dirToOpen);
     }
+
+    @Override
+    public void showToase(String type, String i18n, String i18nt) {
+        Minecraft.getMinecraft().getToastGui().add(new net.minecraft.client.gui.toasts.SystemToast(net.minecraft.client.gui.toasts.SystemToast.Type.valueOf(type),new TextComponentString(net.minecraft.client.resources.I18n.format(i18n)), new TextComponentString(net.minecraft.client.resources.I18n.format(i18nt))));
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void OpenWB() throws IOException { }

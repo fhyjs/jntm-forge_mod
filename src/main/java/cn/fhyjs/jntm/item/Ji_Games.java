@@ -5,6 +5,9 @@ import cn.fhyjs.jntm.common.pstest;
 import cn.fhyjs.jntm.entity.kundan_st;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
+import cn.fhyjs.jntm.tickratechanger.TickrateChanger;
+import cn.fhyjs.jntm.tickratechanger.TickrateCommand;
+import cn.fhyjs.jntm.tickratechanger.api.TickrateAPI;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.command.ICommand;
@@ -18,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.Properties;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -41,11 +45,7 @@ public class Ji_Games extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack item = player.getHeldItem(hand);
-            if (!world.isRemote) {
-                player.openGui(Jntm.instance, JntmGuiHandler.GUIs.Th_JNTM.getId(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
-                //Thread t = new pstest(null, world, new BlockPos(player.posX, player.posY, player.posZ), new ResourceLocation("jntm:sounds/jimusic/test3.jim"));
-                //t.start();
-            }
+        TickrateAPI.changeTickrate(Float.parseFloat(JOptionPane.showInputDialog("tick")),world);
         // 互动成功，返回EnumActionResult.SUCCESS，item 是互动结束以后的 item
         return new ActionResult<>(EnumActionResult.SUCCESS, item);
     }

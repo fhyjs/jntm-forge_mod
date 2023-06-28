@@ -8,8 +8,6 @@ import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.gui.RSMPlayerC;
 import cn.fhyjs.jntm.gui.RSMPlayerG;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.toasts.SystemToast;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +18,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,11 +26,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static net.minecraft.client.gui.toasts.SystemToast.Type.TUTORIAL_HINT;
+import static cn.fhyjs.jntm.Jntm.proxy;
 
 public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMessage> {
     public Map<EntityPlayer,String[]> uploader=new HashMap<>();
     public Map<EntityPlayerMP, String> uploader_tmp=new HashMap<EntityPlayerMP, String>();
+    public Opt_Play_M_Handler(){
+        super();
+    }
     @Override
     public IMessage onMessage(Opt_Ply_Message message, MessageContext ctx) {
         System.out.println(message.opt);
@@ -173,7 +175,8 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     break;
                 case "toast":
                     tmp1 =message.opt.split(" ");
-                    Minecraft.getMinecraft().getToastGui().add(new SystemToast(TUTORIAL_HINT,new TextComponentString(I18n.format(tmp1[1])), new TextComponentString(I18n.format("gui.toast.guifaild"))));
+                    proxy.showToase("TUTORIAL_HINT",tmp1[1],"gui.toast.guifaild");
+
                     break;
             }
         }

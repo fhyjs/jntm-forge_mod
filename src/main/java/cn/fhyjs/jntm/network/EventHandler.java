@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.item.SpellCardBase;
 import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
+import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
 import net.katsstuff.teamnightclipse.danmakucore.item.ItemSpellcard;
@@ -14,14 +15,19 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,5 +62,33 @@ public class EventHandler {
     @SubscribeEvent
     public static void onRecipeRegister(RegistryEvent.Register<IRecipe> event){
         RecipeRegistryHandler.reg(event);
+    }
+    @Mod.EventHandler
+    public void start(FMLServerStartingEvent event) {
+        TickrateContainer.TC.start(event);
+    }
+    @Mod.EventHandler
+    public void imc(FMLInterModComms.IMCEvent event) {
+        TickrateContainer.TC.imc(event);
+    }
+    @SubscribeEvent
+    public void chat(ClientChatReceivedEvent event) {
+        TickrateContainer.TC.chat(event);
+    }
+    @SubscribeEvent
+    public void disconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
+        TickrateContainer.TC.disconnect(event);
+    }
+    @SubscribeEvent
+    public void connect(FMLNetworkEvent.ClientConnectedToServerEvent event) {
+        TickrateContainer.TC.connect(event);
+    }
+    @SubscribeEvent
+    public void connect(PlayerEvent.PlayerLoggedInEvent event) {
+        TickrateContainer.TC.connect(event);
+    }
+    @SubscribeEvent
+    public void key(InputEvent.KeyInputEvent event) {
+        TickrateContainer.TC.key(event);
     }
 }

@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.common;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.tickratechanger.api.TickrateAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.audio.SoundManager;
@@ -53,7 +54,7 @@ public class pstest extends Thread{
     @Override
     public void run(){
         for (int i=0;i<=split.length;i++){
-            String[] ts = new String[0];
+            String[] ts;
             try {
                  ts= split[i].split(" ");
                 if (Objects.equals(ts[0], "playsound")){
@@ -62,7 +63,7 @@ public class pstest extends Thread{
                 }
                 if (Objects.equals(ts[0], "timeout")){
                     try {
-                        Thread.sleep(Integer.parseInt(ts[1]));
+                        Thread.sleep((long) (Integer.parseInt(ts[1])* (20/TickrateAPI.getServerTickrate())));
                     } catch (InterruptedException e) {
                         Jntm.logger.error(new RuntimeException(e));
                     }

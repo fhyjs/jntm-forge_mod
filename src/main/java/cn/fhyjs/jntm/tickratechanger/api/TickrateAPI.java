@@ -38,6 +38,12 @@ public class TickrateAPI {
         changeServerTickrate(ticksPerSecond, log);
         changeClientTickrate(ticksPerSecond, log);
     }
+    public static void changeTickrate(float ticksPerSecond,World world) {
+        if (!world.isRemote)
+            changeServerTickrate(ticksPerSecond, true);
+        else
+            changeClientTickrate(ticksPerSecond, true);
+    }
 
 
     /**

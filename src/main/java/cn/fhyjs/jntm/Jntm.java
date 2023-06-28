@@ -42,8 +42,8 @@ public class Jntm {
     public Jntm(){
         new TickrateContainer();
         new TickrateChanger();
+        new TickrateChanger();
         MinecraftForge.EVENT_BUS.register(new cn.fhyjs.jntm.network.EventHandler());
-        MinecraftForge.EVENT_BUS.register(TickrateContainer.TC);
         IS_DC_Load = Loader.isModLoaded("danmakucore");
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT&&Loader.isModLoaded("mcef") ) {
             //下载JECF资源

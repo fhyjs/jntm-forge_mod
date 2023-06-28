@@ -10,10 +10,13 @@ import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.FileManager;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
@@ -84,7 +87,8 @@ public class CommonProxy  {
         INSTANCE.registerMessage(Opt_Play_M_Handler.class, Opt_Ply_Message.class, 2, Side.SERVER);
     }
     public void OpenFE(String e) throws IOException {}
-
+    public void showToase(String type,String i18n,String i18nt){
+    }
 
     public void registerItemRenderer(Item weaponBase, int i, String inventory) {
     }
