@@ -50,9 +50,7 @@ public class TEJimPlayer extends TileEntity implements ITickable, IAnimatedTile 
     }
     public TEJimPlayer(){
         openTime = new TimeValues.VariableValue(-1);
-        if (CommonProxy.McInited) {
-            asm = Jntm.proxy.loadAsm(new ResourceLocation(Jntm.MODID, "asms/block/jimplayer.json"),ImmutableMap.<String, ITimeValue>of("anim_time", new TimeValues.VariableValue(ANIM_TIME), "open_time", openTime));
-        }
+        asm = Jntm.proxy.loadAsm(new ResourceLocation(Jntm.MODID, "asms/block/jimplayer.json"),ImmutableMap.<String, ITimeValue>of("anim_time", new TimeValues.VariableValue(ANIM_TIME), "open_time", openTime));
 
     }
 
@@ -128,7 +126,7 @@ public class TEJimPlayer extends TileEntity implements ITickable, IAnimatedTile 
             float partialProgress = openTime.apply(time) < 0.0F ? 0.0F :
                     MathHelper.clamp(ANIM_TIME - (time - openTime.apply(time)), 0.0F, ANIM_TIME);
             openTime.setValue(time - partialProgress);
-            AnimationHelper.transitionSafely(asm, type == 1 ? "opening" : "closing");
+            //AnimationHelper.transitionSafely(asm, type == 1 ? "opening" : "closing");
             return true;
         }
 
@@ -146,7 +144,7 @@ public class TEJimPlayer extends TileEntity implements ITickable, IAnimatedTile 
     }
     @Override
     public void handleEvents(float time, Iterable<Event> pastEvents){
-            Jntm.logger.debug(this+"handleEvents");
+
     }
     @Override
     public void update() {

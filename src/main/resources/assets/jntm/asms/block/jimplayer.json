@@ -4,18 +4,18 @@
     "anim_progress": ["-/Mm", "#open_time", "#anim_time", 0.0, 0.99999]
   },
   "clips": {
-    "model": "jntm:block/jimplayer@model",
+    "model": "jntm:block/jimplayer_a@model",
     "closed": ["apply", "#model", 0.0],
     "open": ["apply", "#model", 0.99],
     "opening": [
       "trigger_positive",
-      ["apply", "jntm:block/jimplayer@opening", "#anim_progress"],
+      ["apply", "jntm:block/jimplayer_a@opening", "#anim_progress"],
       "#trigger_end",
       "!transition:open"
     ],
     "closing": [
       "trigger_positive",
-      ["apply", "jntm:block/jimplayer@closing", "#anim_progress"],
+      ["apply", "jntm:block/jimplayer_a@closing", "#anim_progress"],
       "#trigger_end",
       "!transition:closed"
     ]

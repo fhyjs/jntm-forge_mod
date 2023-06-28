@@ -21,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,7 +52,8 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer.Builder(this).add(FACING).add(
+                Properties.AnimationProperty).add(Properties.StaticProperty).build();
     }
     @Override
     public int getMetaFromState(IBlockState state)

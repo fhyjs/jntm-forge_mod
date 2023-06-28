@@ -3,19 +3,17 @@
   "variants": {
     "normal": [{"model":"jntm:jimplayer"}],
     "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:jimplayer"}],
-    "facing=east": [{"model":"jntm:jimplayer"}],
-    "facing=south": [{"model":"jntm:jimplayer"}],
-    "facing=west": [{"model":"jntm:jimplayer"}],
-    "facing=north": [{"model":"jntm:jimplayer"}],
-    "facing=up": [{"model":"jntm:jimplayer"}],
-    "facing=down": [{"model":"jntm:jimplayer"}]
-  },
-  "static": {
-    "true": {
-      "model": "jntm:jimplayer_s"
-    },
-    "false": {
-      "model": "jntm:jimplayer_a"
-    }
+    "facing=east,static=true": [{"model": "jntm:jimplayer_s"}],
+    "facing=south,static=true": [{"model": "jntm:jimplayer_s"}],
+    "facing=west,static=true": [{"model": "jntm:jimplayer_s"}],
+    "facing=north,static=true": [{"model": "jntm:jimplayer_s"}],
+    "facing=up,static=true": [{"model": "jntm:jimplayer_s"}],
+    "facing=down,static=true": [{"model": "jntm:jimplayer_s"}],
+    "facing=east,static=false": [{"model": "jntm:jimplayer_a"}],
+    "facing=south,static=false": [{"model": "jntm:jimplayer_a"}],
+    "facing=west,static=false": [{"model": "jntm:jimplayer_a"}],
+    "facing=north,static=false": [{"model": "jntm:jimplayer_a"}],
+    "facing=up,static=false": [{"model": "jntm:jimplayer_a"}],
+    "facing=down,static=false": [{"model": "jntm:jimplayer_a"}]
   }
 }

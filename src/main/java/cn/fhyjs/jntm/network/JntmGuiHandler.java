@@ -40,6 +40,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.Ji_Crafting.getId()){
             return new Ji_Crafting_C(player,player.inventory, new BlockPos(x,y,z),world);
         }
+        if (ID==GUIs.Th_JNTM.getId()){
+            return new Jvav_C(player,world);
+        }
         return null;
     }
 
@@ -78,6 +81,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.Ji_Crafting.getId()){
             return new Ji_Crafting_GC(player,player.inventory, new BlockPos(x,y,z),world);
         }
+        if (ID == GUIs.Th_JNTM.getId()) {
+            return new Th_jntm_G(player,world);
+        }
         return null;
     }
 
@@ -96,7 +102,8 @@ public class JntmGuiHandler implements IGuiHandler {
         JFinish(14),
         SetCxkimage(15),
         RSMPlayer(16),
-        Ji_Crafting(17);
+        Ji_Crafting(17),
+        Th_JNTM(18);
 
 
         private int id;

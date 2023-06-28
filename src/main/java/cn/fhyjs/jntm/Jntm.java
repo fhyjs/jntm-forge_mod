@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.item.Danmaku_Gun;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 
+import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.Dlf;
 import cn.fhyjs.jntm.utility.unzip;
 
@@ -38,8 +39,9 @@ public class Jntm {
     public static Jntm INSTANCE;
     public static boolean IS_DC_Load;
     public Jntm(){
-
+        new TickrateContainer();
         MinecraftForge.EVENT_BUS.register(new cn.fhyjs.jntm.network.EventHandler());
+        MinecraftForge.EVENT_BUS.register(TickrateContainer.TC);
         IS_DC_Load = Loader.isModLoaded("danmakucore");
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT&&Loader.isModLoaded("mcef") ) {
             //下载JECF资源
@@ -80,6 +82,7 @@ public class Jntm {
                 unzip.run(MP + "jcef_cfg.zip", MP, "", true, logger);
             }
         }
+
     }
 
 

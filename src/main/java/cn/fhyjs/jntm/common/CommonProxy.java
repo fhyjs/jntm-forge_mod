@@ -7,6 +7,7 @@ import cn.fhyjs.jntm.item.WeaponBase;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
+import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.FileManager;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.gui.GuiScreen;
@@ -50,12 +51,14 @@ public class CommonProxy  {
         fileManager=new FileManager();
         registerMessage();
         ConfigCore.loadConfig(event);
+        TickrateContainer.TC.preInit(event);
     }
     public void init(FMLInitializationEvent event){
         // 初始化GeckoLib
         //GeckoLib.initialize();
         McInited=true;
         TileEntityRegistryHandler.reg();
+        TickrateContainer.TC.init(event);
     }
     public void postInit(FMLPostInitializationEvent event){
         DispenserBehaviorRegistryHandler.run();
