@@ -23,9 +23,7 @@ public class Th_jntmW extends Thread{
         Display.destroy();
     }
     private void setup() throws LWJGLException {
-        Displaymode = new DisplayMode(600, 600);
-        Display.setDisplayMode(Displaymode);
-        Display.create();
+
     }
     private void loop() throws InterruptedException {
         Thread.sleep(10000);

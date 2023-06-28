@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.item.Danmaku_Gun;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 
+import cn.fhyjs.jntm.tickratechanger.TickrateChanger;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.Dlf;
 import cn.fhyjs.jntm.utility.unzip;
@@ -40,6 +41,7 @@ public class Jntm {
     public static boolean IS_DC_Load;
     public Jntm(){
         new TickrateContainer();
+        new TickrateChanger();
         MinecraftForge.EVENT_BUS.register(new cn.fhyjs.jntm.network.EventHandler());
         MinecraftForge.EVENT_BUS.register(TickrateContainer.TC);
         IS_DC_Load = Loader.isModLoaded("danmakucore");
