@@ -107,21 +107,23 @@ public class cxk extends EntityChicken{
                     if (tick>20) {
                         tick=0;
                         this.rotationYaw=360* new SecureRandom().nextFloat();
-                        DanmakuTemplate.Builder temp = DanmakuTemplate.builder()
-                                .setSource(this)
-                                .setUser(this)
-                                .setWorld(world)
-                                .setMovementData(1D)
-                                .setShot(LibShotData.SHOT_FIRE
-                                        .setCoreColor(LibColor.COLOR_VANILLA_WHITE)
-                                        .setEdgeColor(LibColor.COLOR_SATURATED_YELLOW)
-                                        .setDamage(2f)
-                                        .scaleSize(10f)
-                                        .setForm(LibForms.FIRE)
-                                );
-                        Vector3 start_vec = new Vector3(this);
-                        temp.setPos(start_vec);
-                        DanmakuCore.proxy().spawnDanmaku(JavaConversions.asScalaBuffer(Lists.newArrayList(temp.build().asEntity())));
+                        if(Jntm.IS_DC_Load) {
+                            DanmakuTemplate.Builder temp = DanmakuTemplate.builder()
+                                    .setSource(this)
+                                    .setUser(this)
+                                    .setWorld(world)
+                                    .setMovementData(1D)
+                                    .setShot(LibShotData.SHOT_FIRE
+                                            .setCoreColor(LibColor.COLOR_VANILLA_WHITE)
+                                            .setEdgeColor(LibColor.COLOR_SATURATED_YELLOW)
+                                            .setDamage(2f)
+                                            .scaleSize(10f)
+                                            .setForm(LibForms.FIRE)
+                                    );
+                            Vector3 start_vec = new Vector3(this);
+                            temp.setPos(start_vec);
+                            DanmakuCore.proxy().spawnDanmaku(JavaConversions.asScalaBuffer(Lists.newArrayList(temp.build().asEntity())));
+                        }
                     }
                 }
             }
