@@ -111,3 +111,5 @@ config.jntm.prop.isenabledUP=允许客户端上传文件开关
 gui.toast.unallow=不允许的操作
 config.jntm.category.root=根配置
 config.jntm.category.client=客户端
+tooltip.tickstop.n1=所有人给我站一边
+item.jntmtickstop.name=tick停止

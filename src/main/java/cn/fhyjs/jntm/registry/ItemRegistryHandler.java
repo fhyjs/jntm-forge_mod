@@ -37,6 +37,7 @@ public class ItemRegistryHandler {
     public static Fsms xiguaegg =new Fsms("xigua");
     public static Fsms fsms =new Fsms("bosscxk");
     public static ggxdd ggxdd = new ggxdd();
+    public static Tickstop tickstop = new Tickstop();
     public static JGPDTEX jgpdtex =new JGPDTEX();
     public static rawkr rawkr = new rawkr(3,3,true);
     public static final ItemBlock cookedcxk_item = new ItemBlock(BlockRegistryHandler.BLOCK_cookedcxk);
@@ -119,6 +120,7 @@ public class ItemRegistryHandler {
             registry.register(EXPLOSION_CARD);
             //registry.register(Fire_CARD);
         }
+        registry.register(tickstop);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -146,6 +148,7 @@ public class ItemRegistryHandler {
             registryModel(EXPLOSION_CARD);
             //registryModel(Fire_CARD);
         }
+        registryModel(tickstop);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

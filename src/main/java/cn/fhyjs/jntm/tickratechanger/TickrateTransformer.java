@@ -52,7 +52,7 @@ public class TickrateTransformer implements IClassTransformer {
                     if(node instanceof LdcInsnNode) {
                         LdcInsnNode ldcNode = (LdcInsnNode)node;
                         if((ldcNode.cst instanceof Long) && ((Long)ldcNode.cst == 50L)) {
-                            list.add(new FieldInsnNode(Opcodes.GETSTATIC, "me/guichaguri/tickratechanger/TickrateChanger", "MILISECONDS_PER_TICK", "J"));
+                            list.add(new FieldInsnNode(Opcodes.GETSTATIC, "cn/fhyjs/jntm/tickratechanger/TickrateChanger", "MILISECONDS_PER_TICK", "J"));
                             continue;
                         }
                     }
@@ -84,7 +84,7 @@ public class TickrateTransformer implements IClassTransformer {
             if(method.name.equals("setPitch") && method.desc.equals("(Ljava/lang/String;F)V")) {
                 InsnList inst = new InsnList();
                 inst.add(new VarInsnNode(Opcodes.FLOAD, 2));
-                inst.add(new FieldInsnNode(Opcodes.GETSTATIC, "me/guichaguri/tickratechanger/TickrateChanger", "GAME_SPEED", "F"));
+                inst.add(new FieldInsnNode(Opcodes.GETSTATIC, "cn/fhyjs/jntm/tickratechanger/TickrateChanger", "GAME_SPEED", "F"));
                 inst.add(new InsnNode(Opcodes.FMUL));
                 inst.add(new VarInsnNode(Opcodes.FSTORE, 2));
                 inst.add(method.instructions);

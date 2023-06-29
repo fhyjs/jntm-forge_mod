@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.CoreModManager;
 import net.minecraftforge.fml.relauncher.Side;
 import software.bernie.geckolib3.GeckoLib;
 
@@ -55,6 +56,7 @@ public class CommonProxy  {
         registerMessage();
         ConfigCore.loadConfig(event);
         TickrateContainer.TC.preInit(event);
+       // CoreModManager.getTransformers()
     }
     public void init(FMLInitializationEvent event){
         // 初始化GeckoLib
