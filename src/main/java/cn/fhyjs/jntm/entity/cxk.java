@@ -4,6 +4,13 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.Ji_Exposion;
 import cn.fhyjs.jntm.registry.JntmLootTableList;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
+import com.google.common.collect.Lists;
+import net.katsstuff.teamnightclipse.danmakucore.DanmakuCore;
+import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
+import net.katsstuff.teamnightclipse.danmakucore.lib.LibColor;
+import net.katsstuff.teamnightclipse.danmakucore.lib.data.LibForms;
+import net.katsstuff.teamnightclipse.danmakucore.lib.data.LibShotData;
+import net.katsstuff.teamnightclipse.mirror.data.Vector3;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -20,19 +27,26 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import scala.collection.JavaConversions;
 
+
+import java.security.SecureRandom;
+import java.util.Collections;
+import java.util.Objects;
 
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.ggxdd;
 import static cn.fhyjs.jntm.registry.ItemRegistryHandler.rawkr;
 
 public class cxk extends EntityChicken{
     public boolean ep=false;
-    private int fuse;
+    public int fuse;
 
     private EntityLivingBase[] elb;
     private static final DataParameter<Boolean> Ep = EntityDataManager.<Boolean>createKey(cxk.class, DataSerializers.BOOLEAN);
@@ -85,11 +99,35 @@ public class cxk extends EntityChicken{
                     this.explode();
                 }
             } else {
+                tick++;
+                this.addPotionEffect(new PotionEffect(Objects.requireNonNull(Potion.getPotionById(1)),999,10));
                 this.handleWaterMovement();
                 this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+                if (!world.isRemote) {
+                    if (tick>20) {
+                        tick=0;
+                        this.rotationYaw=360* new SecureRandom().nextFloat();
+                        DanmakuTemplate.Builder temp = DanmakuTemplate.builder()
+                                .setSource(this)
+                                .setUser(this)
+                                .setWorld(world)
+                                .setMovementData(1D)
+                                .setShot(LibShotData.SHOT_FIRE
+                                        .setCoreColor(LibColor.COLOR_VANILLA_WHITE)
+                                        .setEdgeColor(LibColor.COLOR_SATURATED_YELLOW)
+                                        .setDamage(2f)
+                                        .scaleSize(10f)
+                                        .setForm(LibForms.FIRE)
+                                );
+                        Vector3 start_vec = new Vector3(this);
+                        temp.setPos(start_vec);
+                        DanmakuCore.proxy().spawnDanmaku(JavaConversions.asScalaBuffer(Lists.newArrayList(temp.build().asEntity())));
+                    }
+                }
             }
         }
     }
+    private int tick=0;
     @Override
     protected void entityInit()
     {
