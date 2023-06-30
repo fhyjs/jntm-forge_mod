@@ -99,7 +99,7 @@ public class cxk extends EntityChicken{
                     this.explode();
                 }
             } else {
-                tick++;
+                tick++; 
                 this.addPotionEffect(new PotionEffect(Objects.requireNonNull(Potion.getPotionById(1)),999,10));
                 this.handleWaterMovement();
                 this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
