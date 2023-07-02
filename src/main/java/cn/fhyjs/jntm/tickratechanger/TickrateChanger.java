@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author Guilherme Chaguri
  */
+@IFMLLoadingPlugin.MCVersion("1.12.2")
 @TransformerExclusions({"cn.fhyjs.jntm.tickratechanger"})
 public class TickrateChanger implements IFMLLoadingPlugin, IFMLCallHook {
 
