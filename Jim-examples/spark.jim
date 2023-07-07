@@ -1,0 +1,1304 @@
+//--0.mcfunction--
+timeout 0
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.88 0.749154
+playsound minecraft:block.note_block.harp record 0.88 0.749154
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.500000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--1.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--2.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--3.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--4.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--5.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--6.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--7.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--8.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--9.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--10.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--11.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--12.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--13.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--14.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--15.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--16.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--18.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--20.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--21.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--22.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--23.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--24.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--25.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--26.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.749154
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--27.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--28.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--29.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--30.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 0.749154
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--31.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--32.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.88 0.500000
+playsound minecraft:block.note_block.harp record 0.80 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--33.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--34.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--35.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--36.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--37.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--38.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--39.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--40.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--41.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--42.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--43.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--44.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--45.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--46.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--47.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--48.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--49.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--50.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--51.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--52.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--53.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--54.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--55.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--56.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--57.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--58.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--59.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--60.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--61.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--62.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--63.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--64.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 0.561231
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--65.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--66.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--67.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+//--68.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--69.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--70.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--71.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--72.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--73.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+//--74.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--75.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--76.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--77.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--78.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--79.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+//--80.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.561231
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--81.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--82.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--83.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--84.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--85.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--86.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--87.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--88.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--89.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+//--90.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--91.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--92.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--93.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--94.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--95.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+//--96.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.749154
+playsound minecraft:block.note_block.harp record 0.88 0.749154
+playsound minecraft:block.note_block.harp record 0.88 0.500000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 1.334840
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--97.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--98.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--99.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--100.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--101.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--102.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--103.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--104.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--105.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--106.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--107.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--108.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--109.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--110.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--111.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--112.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--114.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--116.mcfunction--
+timeout 200
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--117.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--118.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--119.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--120.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--121.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--122.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.749154
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--123.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--124.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--125.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--126.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.749154
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--127.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--128.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.76 0.793701
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.88 0.500000
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--129.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--130.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--131.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--132.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--133.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--134.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--135.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--136.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--137.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--138.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--139.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+//--140.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--141.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--142.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--143.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+//--144.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--145.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--146.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--147.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--148.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--149.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--150.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--151.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--152.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--153.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--154.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--155.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--156.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--157.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--158.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--159.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--160.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.561231
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.84 0.890899
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--161.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--162.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--163.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+//--164.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--165.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--166.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--167.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--168.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--169.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+//--170.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--171.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--172.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--173.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--174.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--175.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+//--176.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.561231
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 1 1.334840
+//--177.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--178.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--179.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--180.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--181.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--182.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--183.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--184.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--185.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+//--186.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 1 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--187.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--188.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--189.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--190.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 0.890899
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--191.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+//--192.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 1 1.189207
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.500000
+playsound minecraft:block.note_block.harp record 0.54 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 1.334840
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--193.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--194.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--195.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.793701
+//--196.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--197.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+//--198.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.587401
+playsound minecraft:block.note_block.harp record 0.54 0.594604
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--199.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+//--200.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 1 1.334840
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+playsound minecraft:block.note_block.harp record 0.88 0.561231
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+playsound minecraft:block.note_block.harp record 0.88 0.667420
+playsound minecraft:block.note_block.harp record 0.54 0.890899
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 1.334840
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--201.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+//--202.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 1 1.498307
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--203.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 0.890899
+//--204.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 1 1.781797
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+playsound minecraft:block.note_block.harp record 0.54 0.561231
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--205.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.334840
+playsound minecraft:block.note_block.snare record 1 0.629961
+//--206.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 1 2.000000
+playsound minecraft:block.note_block.harp record 0.88 1.781797
+playsound minecraft:block.note_block.harp record 0.88 0.594604
+playsound minecraft:block.note_block.harp record 0.88 0.749154
+playsound minecraft:block.note_block.harp record 0.88 0.500000
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.88 0.749154
+playsound minecraft:block.note_block.harp record 0.54 0.667420
+playsound minecraft:block.note_block.snare record 1 0.629961
+playsound minecraft:block.note_block.snare record 1 1.334840
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--207.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--208.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 1 0.629961
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--209.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--210.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 1 0.629961
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--211.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+//--212.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--213.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.122462
+//--214.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 1 0.629961
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--215.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+//--216.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--217.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+//--218.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 1 0.629961
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--219.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+//--220.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 2.000000
+playsound minecraft:block.note_block.harp record 0.54 0.500000
+playsound minecraft:block.note_block.snare record 1 0.793701
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--221.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.498307
+playsound minecraft:block.note_block.snare record 1 0.793701
+//--222.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.189207
+playsound minecraft:block.note_block.harp record 0.54 0.749154
+playsound minecraft:block.note_block.snare record 1 0.629961
+playsound minecraft:block.note_block.snare record 0.64 1.781797
+//--223.mcfunction--
+timeout 100
+playsound minecraft:block.note_block.harp record 0.88 1.000000
