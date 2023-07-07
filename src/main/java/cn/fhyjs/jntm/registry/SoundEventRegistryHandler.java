@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -47,6 +48,7 @@ public class SoundEventRegistryHandler {
         for (Map.Entry<String, JsonElement> stringJsonElementEntry : f) {
             SoundEvent se = new SoundEvent(new ResourceLocation(Jntm.MODID, stringJsonElementEntry.getKey()));
             se.setRegistryName(se.getSoundName());
+            if(Arrays.asList(arr_2).contains(stringJsonElementEntry.getKey())) continue;
             event.getRegistry().register(se);
         }
         for (int i=0;i< arr_2.length;i++){
