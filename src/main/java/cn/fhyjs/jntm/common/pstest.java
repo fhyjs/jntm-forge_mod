@@ -5,13 +5,16 @@ import cn.fhyjs.jntm.tickratechanger.api.TickrateAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.audio.SoundManager;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.io.*;
 import java.util.*;
@@ -63,10 +66,12 @@ public class pstest extends Thread{
             stringMap.clear();
             try {
                  ts= split[i].split(" ");
+                WorldServer worldserver = (WorldServer)world;
                 if (Objects.equals(ts[0], "playsound")){
                     ts[1]=ts[1].replace("note_block","note");
                     try {
                         world.playSound(entityplayer, bp, Objects.requireNonNull(SoundEvent.REGISTRY.getObject(new ResourceLocation(ts[1]))), SoundCategory.getByName(ts[2]), Float.parseFloat(ts[3]), Float.parseFloat(ts[4]));
+                        worldserver.spawnParticle(EnumParticleTypes.NOTE, true, bp.getX()+1/4d, bp.getY()+1, bp.getZ()+1/4d,1, 1/4d,0.1, 1/4d,1, 0);
                     }catch (Throwable e){
                         StringWriter stringWriter = new StringWriter();
                         PrintWriter printWriter = new PrintWriter(stringWriter);
@@ -76,6 +81,7 @@ public class pstest extends Thread{
                 }
                 if (Objects.equals(ts[0], "timeout")){
                     try {
+                        worldserver.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, true, bp.getX()+1/4d, bp.getY()+1, bp.getZ()+1/4d,50, 1/4d,0.1, 1/4d,0.1, 0);
                         Thread.sleep((long) (Integer.parseInt(ts[1])* (20/TickrateAPI.getServerTickrate())));
                     } catch (InterruptedException e) {
                         Jntm.logger.error(new RuntimeException(e));
