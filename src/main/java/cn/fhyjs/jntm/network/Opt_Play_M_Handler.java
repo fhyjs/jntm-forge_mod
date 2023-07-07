@@ -36,6 +36,7 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
     }
     @Override
     public IMessage onMessage(Opt_Ply_Message message, MessageContext ctx) {
+        message.opt=message.opt.replace("\r","");
         System.out.println(message.opt);
         if(ctx.side == Side.SERVER) {
             switch (message.opt.split(" ")[0]) {

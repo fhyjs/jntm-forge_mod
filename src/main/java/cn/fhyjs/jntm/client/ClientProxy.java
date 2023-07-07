@@ -30,6 +30,8 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.FMLFolderResourcePack;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -125,6 +127,7 @@ public class ClientProxy extends CommonProxy {
                 gc.writeToFile();
                 List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
                 defaultResourcePacks.add(JRP);
+                //defaultResourcePacks.add(new FMLFolderResourcePack());
                 ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
                 FMLClientHandler.instance().refreshResources();
                 ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png"))))), "field_152354_ay");

@@ -108,12 +108,12 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
                         ((TEJimPlayer)worldIn.getTileEntity(pos)).onCloseInventory();
                     }
                     else {
-                        CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
+                        CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll("\n", " "))));
                         CommonProxy.jimplayers.get(pos).start();
                         ((TEJimPlayer)worldIn.getTileEntity(pos)).onOpenInventory();
                     }
                 else {
-                    CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll(" ", "\n"))));
+                    CommonProxy.jimplayers.put(pos, new pstest(null, worldIn, pos, new File((getrunpath("jims/") + getTileEntity(worldIn, pos).count).replaceAll("\n", " "))));
                     CommonProxy.jimplayers.get(pos).start();
                     ((TEJimPlayer)worldIn.getTileEntity(pos)).onOpenInventory();
                 }

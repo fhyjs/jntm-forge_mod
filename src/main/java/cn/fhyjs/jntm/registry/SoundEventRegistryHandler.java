@@ -1,15 +1,26 @@
 package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.common.pstest;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import net.minecraft.client.audio.Sound;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 
 import static net.minecraft.launchwrapper.LogWrapper.log;
 
@@ -29,7 +40,15 @@ public class SoundEventRegistryHandler {
             "fadongji"
     };
     @SubscribeEvent
-    public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) {
+    public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) throws IOException, InvocationTargetException, IllegalAccessException {
+        JsonParser d = new JsonParser();
+        JsonElement e = d.parse(pstest.readLine(Jntm.class.getClassLoader().getResourceAsStream("assets/jntm/sounds.json")));
+        Set<Map.Entry<String, JsonElement>> f = e.getAsJsonObject().entrySet();
+        for (Map.Entry<String, JsonElement> stringJsonElementEntry : f) {
+            SoundEvent se = new SoundEvent(new ResourceLocation(Jntm.MODID, stringJsonElementEntry.getKey()));
+            se.setRegistryName(se.getSoundName());
+            event.getRegistry().register(se);
+        }
         for (int i=0;i< arr_2.length;i++){
             log.info("jntm:RegSound("+i+"):{"+prefix+":"+arr_2[i]+"}");
             soundEvents = new SoundEvent(new ResourceLocation(prefix, arr_2[i]));

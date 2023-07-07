@@ -89,5 +89,200 @@
     "sounds": [
       "jntm:music/wozhendehuixie"
     ]
+  },
+
+
+
+  "block.note.banjo_-1": {
+    "sounds": [
+      "jntm:block/note/banjo_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.banjo_1": {
+    "sounds": [
+      "jntm:block/note/banjo_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.basedrum_-1": {
+    "sounds": [
+      "jntm:block/note/bd_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.basedrum_1": {
+    "sounds": [
+      "jntm:block/note/bd_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.bell_-1": {
+    "sounds": [
+      "jntm:block/note/bell_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.bell_1": {
+    "sounds": [
+      "jntm:block/note/bell_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.bit_-1": {
+    "sounds": [
+      "jntm:block/note/bit_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.bit_1": {
+    "sounds": [
+      "jntm:block/note/bit_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.hat_-1": {
+    "sounds": [
+      "jntm:block/note/hat_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.hat_1": {
+    "sounds": [
+      "jntm:block/note/hat_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.cow_bell_-1": {
+    "sounds": [
+      "jntm:block/note/cow_bell_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.cow_bell_1": {
+    "sounds": [
+      "jntm:block/note/cow_bell_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.bass_-1": {
+    "sounds": [
+      "jntm:block/note/bassattack_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.bass_1": {
+    "sounds": [
+      "jntm:block/note/bassattack_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.didgeridoo_-1": {
+    "sounds": [
+      "jntm:block/note/didgeridoo_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.didgeridoo_1": {
+    "sounds": [
+      "jntm:block/note/didgeridoo_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.flute_-1": {
+    "sounds": [
+      "jntm:block/note/flute_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.flute_1": {
+    "sounds": [
+      "jntm:block/note/flute_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.guitar_-1": {
+    "sounds": [
+      "jntm:block/note/guitar_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.guitar_1": {
+    "sounds": [
+      "jntm:block/note/guitar_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.harp_-1": {
+    "sounds": [
+      "jntm:block/note/harp_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.harp_1": {
+    "sounds": [
+      "jntm:block/note/harp_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.chime_-1": {
+    "sounds": [
+      "jntm:block/note/icechime_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.chime_1": {
+    "sounds": [
+      "jntm:block/note/icechime_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.iron_xylophone_-1": {
+    "sounds": [
+        "jntm:block/note/iron_xylophone_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.iron_xylophone_1": {
+    "sounds": [
+      "jntm:block/note/iron_xylophone_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.pling_-1": {
+    "sounds": [
+      "jntm:block/note/pling_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.pling_1": {
+    "sounds": [
+      "jntm:block/note/pling_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.snare_-1": {
+    "sounds": [
+      "jntm:block/note/snare_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.snare_1": {
+    "sounds": [
+      "jntm:block/note/snare_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.xylophone_-1": {
+    "sounds": [
+      "jntm:block/note/xylobone_-1"
+    ],
+    "subtitle": "subtitles.block.note.note"
+  },
+  "block.note.xylophone_1": {
+    "sounds": [
+      "jntm:block/note/xylobone_1"
+    ],
+    "subtitle": "subtitles.block.note.note"
   }
 }
