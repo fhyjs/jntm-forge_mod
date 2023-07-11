@@ -10,9 +10,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.WorldServer;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -21,7 +23,7 @@ import java.util.List;
 
 public class TELandmine extends TileEntity implements ITickable {
     public double Thickness=0.1;
-    public boolean IsTriggered=false,TPlayer,CTriggered;
+    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming;// Mode 1:按下时激发,0:松开时激发
     public List<Class<? extends Entity>> Triggers = new ArrayList<>();
     public int Fuse,CFuse;
     @Override
@@ -41,22 +43,43 @@ public class TELandmine extends TileEntity implements ITickable {
             }
         }
         checkbooms();
-        if (IsTriggered){
-
+        if (Booming){
+            boom();
         }
+    }
+    private void boom() {
+        WorldServer worldServer = (WorldServer) world;
+        if (CFuse>=0){
+            CFuse--;
+            worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,pos.getX(),pos.getY(),pos.getZ(),1,1,1,0);
+        }else {
+            System.out.println("boom!");
+            Booming=false;
+        }
+        markDirty();
     }
     public void checkbooms(){
         if (CTriggered!=IsTriggered){
             if (CTriggered){ // 1 -> 0
-                System.out.println("UP");
+                if (!Mode){
+                    CFuse=Fuse;
+                    Booming=true;
+                }
+                //System.out.println("UP");
             }
             if (!CTriggered){// 0 -> 1
-                System.out.println("Down");
+                if (Mode){
+                    CFuse=Fuse;
+                    Booming=true;
+                }
+                //System.out.println("Down");
 
             }
             CTriggered=IsTriggered;
+            markDirty();
         }
     }
+
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound = super.writeToNBT(compound);
@@ -73,6 +96,9 @@ public class TELandmine extends TileEntity implements ITickable {
         compound.setString("Triggers",new Gson().toJson(es));
         compound.setInteger("Fuse",Fuse);
         compound.setInteger("CFuse",CFuse);
+        compound.setBoolean("Mode",Mode);
+        compound.setBoolean("Booming",Booming);
+
         return compound;
     }
     @Override
@@ -91,6 +117,8 @@ public class TELandmine extends TileEntity implements ITickable {
         }
         CFuse= compound.getInteger("CFuse");
         Fuse= compound.getInteger("Fuse");
+        Mode= compound.getBoolean("Mode");
+        Booming= compound.getBoolean("Booming");
     }
 
     public void setThickness(double thickness) {
