@@ -1,19 +1,13 @@
 package cn.fhyjs.jntm.entity;
 
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
-import net.minecraft.block.BlockJukebox;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
-import javax.swing.*;
 
 public class JGPDanmaku extends EntityThrowable {
     public static float d=100;

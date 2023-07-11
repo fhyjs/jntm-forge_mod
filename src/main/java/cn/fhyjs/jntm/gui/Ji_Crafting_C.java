@@ -2,9 +2,7 @@ package cn.fhyjs.jntm.gui;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityJiCrafting;
-import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
-import com.google.common.collect.Lists;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.*;
@@ -12,22 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.play.server.SPacketSetSlot;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class Ji_Crafting_C extends Container {
     public EntityPlayer entityPlayer;
@@ -65,6 +52,7 @@ public class Ji_Crafting_C extends Container {
             return player.inventory.getStackInSlot(slotId);
         }
         setFilterList();
+        //player.sendMessage(new TextComponentString(String.valueOf(slotId)));
         return stack;
     }
     private void addPlayerSlots(IInventory playerInventory) {

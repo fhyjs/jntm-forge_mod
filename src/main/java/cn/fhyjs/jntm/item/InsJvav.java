@@ -2,14 +2,12 @@ package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
-import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;

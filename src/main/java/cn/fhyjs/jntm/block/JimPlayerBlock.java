@@ -4,32 +4,21 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.common.pstest;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
-import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.Container;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.Properties;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
-
 import java.io.File;
-import java.util.Objects;
 import java.util.Random;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
@@ -83,7 +72,7 @@ public class JimPlayerBlock extends BlockTileEntity<TEJimPlayer>{
     {
             if (CommonProxy.jimplayers.get(pos)!=null)
                 if (CommonProxy.jimplayers.get(pos).isAlive())
-                return 15;
+                    return 15;
         return 0;
     }
     @Override

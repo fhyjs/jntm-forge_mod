@@ -1,7 +1,6 @@
 package cn.fhyjs.jntm.client;
 
 import cn.fhyjs.jntm.Jntm;
-import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
@@ -11,7 +10,10 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Jntm_RP implements IResourcePack {
 

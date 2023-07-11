@@ -1,9 +1,7 @@
 package cn.fhyjs.jntm.network;
 
-import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.common.CommonProxy;
-import cn.fhyjs.jntm.gui.Jntm_help_container;
 import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -13,7 +11,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
-import vazkii.patchouli.common.item.PatchouliItems;
 
 public class SCINMessageHandler implements IMessageHandler<SCINMessage, IMessage> {
     private static ItemStack item1;

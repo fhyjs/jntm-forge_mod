@@ -2,6 +2,9 @@
 
 package cn.fhyjs.jntm.entity;
 
+import cn.fhyjs.jntm.entity.danmaku.DanmakuColor;
+import cn.fhyjs.jntm.entity.danmaku.DanmakuType;
+import cn.fhyjs.jntm.entity.danmaku.EntityDamageSourceDanmaku;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +19,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import cn.fhyjs.jntm.entity.danmaku.*;
 
 import javax.annotation.Nonnull;
 

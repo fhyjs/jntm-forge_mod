@@ -1,6 +1,5 @@
 package cn.fhyjs.jntm.item;
 
-import cn.fhyjs.jntm.Jntm;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemSword;
 

@@ -1,11 +1,8 @@
 package cn.fhyjs.jntm.utility;
 
-import cn.fhyjs.jntm.Jntm;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-
-
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

@@ -5,13 +5,10 @@ import cn.fhyjs.jntm.config.ConfigCore;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.IModGuiFactory;
-import net.minecraftforge.fml.client.config.*;
+import net.minecraftforge.fml.client.config.GuiConfig;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public class JntmGuiFactory implements IModGuiFactory {

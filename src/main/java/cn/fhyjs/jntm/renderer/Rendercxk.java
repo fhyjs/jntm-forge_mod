@@ -1,15 +1,8 @@
 package cn.fhyjs.jntm.renderer;
 
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.entity.CxkTnt_E;
 import cn.fhyjs.jntm.entity.Modelcxk;
 import cn.fhyjs.jntm.entity.cxk;
-import cn.fhyjs.jntm.registry.BlockRegistryHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelChicken;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderChicken;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntityChicken;

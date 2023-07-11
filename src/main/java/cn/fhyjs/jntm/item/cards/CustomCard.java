@@ -1,8 +1,6 @@
 package cn.fhyjs.jntm.item.cards;
 
 import cn.fhyjs.jntm.item.CanShotBase;
-import cn.fhyjs.jntm.item.CardBase;
-import cn.fhyjs.jntm.item.WeaponBase;
 import net.katsstuff.teamnightclipse.danmakucore.DanmakuCore;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.subentity.SubEntityType;

@@ -1,8 +1,6 @@
 package cn.fhyjs.jntm.utility;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

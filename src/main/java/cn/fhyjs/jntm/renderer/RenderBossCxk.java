@@ -1,12 +1,10 @@
 package cn.fhyjs.jntm.renderer;
 
 import cn.fhyjs.jntm.entity.Boss_Cxk;
-import net.minecraft.client.model.ModelBiped;
+import cn.fhyjs.jntm.entity.ModelBossCxk;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.ResourceLocation;
-import cn.fhyjs.jntm.entity.ModelBossCxk;
 
 
 public class RenderBossCxk extends RenderBiped<Boss_Cxk> {

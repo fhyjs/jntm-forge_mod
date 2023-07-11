@@ -1,6 +1,5 @@
 package cn.fhyjs.jntm.entity.danmaku.script;
 
-import cn.fhyjs.jntm.entity.danmaku.script.EntityLivingBaseWrapper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.Vec3d;
 

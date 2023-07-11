@@ -1,8 +1,8 @@
 package cn.fhyjs.jntm.entity.danmaku.script;
 
-import cn.fhyjs.jntm.entity.danmaku.*;
 import cn.fhyjs.jntm.entity.Ta_Danmaku;
-
+import cn.fhyjs.jntm.entity.danmaku.DanmakuColor;
+import cn.fhyjs.jntm.entity.danmaku.DanmakuType;
 import net.minecraft.util.math.MathHelper;
 
 public class EntityDanmakuWrapper {

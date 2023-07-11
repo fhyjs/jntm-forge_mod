@@ -1,6 +1,5 @@
 package cn.fhyjs.jntm.gui;
 
-import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.network.JntmMessage;
 import net.minecraft.client.Minecraft;
@@ -13,13 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static cn.fhyjs.jntm.Jntm.MODID;
 

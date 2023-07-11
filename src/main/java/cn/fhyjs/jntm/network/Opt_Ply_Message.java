@@ -1,18 +1,13 @@
 package cn.fhyjs.jntm.network;
 
-import cn.fhyjs.jntm.utility.JI_ByteBufUtils;
 import com.google.gson.Gson;
 import io.netty.buffer.ByteBuf;
-import io.netty.handler.codec.EncoderException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
-
-
-import java.util.UUID;
 
 public class Opt_Ply_Message implements IMessage {
     public   String opt;

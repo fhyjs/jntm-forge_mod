@@ -1,15 +1,11 @@
 package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.entity.JGPDanmaku;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFireball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.Properties;
-import net.minecraftforge.event.entity.ProjectileImpactEvent;
 
 import java.util.List;
 

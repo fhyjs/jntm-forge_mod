@@ -1,7 +1,6 @@
 package cn.fhyjs.jntm.renderer;
 
 import cn.fhyjs.jntm.Jntm;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelShield;
 import net.minecraft.client.renderer.GlStateManager;

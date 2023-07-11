@@ -2,7 +2,6 @@ package cn.fhyjs.jntm.entity;
 
 import cn.fhyjs.jntm.common.Ji_Exposion;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityTNTPrimed;

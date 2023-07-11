@@ -1,12 +1,8 @@
 package cn.fhyjs.jntm.gui;
 
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraftforge.fml.client.GuiModList;
 import net.minecraftforge.fml.client.GuiScrollingList;
-import net.minecraftforge.fml.client.GuiSlotModList;
-import net.minecraftforge.fml.common.ModContainer;
 
 import java.util.ArrayList;
 

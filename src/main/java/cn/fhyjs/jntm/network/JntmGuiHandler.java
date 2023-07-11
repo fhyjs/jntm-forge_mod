@@ -1,17 +1,12 @@
 package cn.fhyjs.jntm.network;
 
 import cn.fhyjs.jntm.gui.*;
-import net.minecraft.client.gui.inventory.GuiChest;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ContainerChest;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import scala.reflect.internal.Trees;
 
 import javax.annotation.Nullable;
-import javax.swing.*;
 
 public class JntmGuiHandler implements IGuiHandler {
     /**

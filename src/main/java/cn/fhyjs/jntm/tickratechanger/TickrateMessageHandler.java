@@ -1,8 +1,7 @@
 package cn.fhyjs.jntm.tickratechanger;
 
-import io.netty.buffer.ByteBuf;
-import cn.fhyjs.jntm.tickratechanger.TickrateMessageHandler.TickrateMessage;
 import cn.fhyjs.jntm.tickratechanger.api.TickrateAPI;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

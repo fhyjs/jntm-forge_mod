@@ -1,8 +1,6 @@
 package cn.fhyjs.jntm.block;
 
 
-import cn.fhyjs.jntm.Jntm;
-import javafx.embed.swing.JFXPanel;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -13,7 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import javax.swing.*;
 
 public class TileEntityCxkImage extends TileEntity implements ITickable {
 

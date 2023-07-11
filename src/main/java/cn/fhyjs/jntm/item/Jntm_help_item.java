@@ -1,13 +1,9 @@
 package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.client.ClientProxy;
-import cn.fhyjs.jntm.entity.kundan_st;
-import cn.fhyjs.jntm.gui.Jntm_help;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -15,8 +11,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-
-import java.io.IOException;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 

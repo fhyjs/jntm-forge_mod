@@ -1,28 +1,13 @@
 package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.block.cookedcxk;
 import cn.fhyjs.jntm.entity.*;
-import com.google.common.collect.Maps;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
-
-import java.util.Map;
-
-import static net.minecraftforge.registries.GameData.registerEntity;
 
 @Mod.EventBusSubscriber
 public class EntityRegistryHandler {

@@ -1,19 +1,16 @@
 package cn.fhyjs.jntm.common;
 
-import cn.fhyjs.jntm.client.WDScheme;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.resource.IResourceType;
 import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.montoyo.mcef.api.*;
+import net.montoyo.mcef.api.IBrowser;
+import net.montoyo.mcef.api.IDisplayHandler;
+import net.montoyo.mcef.api.IJSQueryCallback;
+import net.montoyo.mcef.api.IJSQueryHandler;
 import net.montoyo.mcef.example.ScreenCfg;
-import net.montoyo.mcef.utilities.Log;
-import org.lwjgl.opengl.Display;
 
 import java.util.function.Predicate;
 @Optional.InterfaceList(value={

@@ -1,25 +1,24 @@
 package cn.fhyjs.jntm.compat.jei.JCT;
+
 import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
-import com.google.common.collect.Lists;
 import mezz.jei.Internal;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
-import mezz.jei.plugins.vanilla.crafting.CraftingRecipeChecker;
 import mezz.jei.plugins.vanilla.crafting.ShapedOreRecipeWrapper;
-import mezz.jei.plugins.vanilla.crafting.ShapedRecipesWrapper;
 import mezz.jei.plugins.vanilla.crafting.ShapelessRecipeWrapper;
 import mezz.jei.startup.StackHelper;
 import mezz.jei.util.ErrorUtil;
 import mezz.jei.util.Log;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public final class JCTMaker {
     public JCTMaker() {

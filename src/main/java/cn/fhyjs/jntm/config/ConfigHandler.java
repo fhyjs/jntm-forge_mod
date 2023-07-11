@@ -1,9 +1,9 @@
 package cn.fhyjs.jntm.config;
 
-import java.io.File;
-
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class ConfigHandler {
     public static Configuration config;

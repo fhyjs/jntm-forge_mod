@@ -1,13 +1,6 @@
 package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.common.pstest;
-import cn.fhyjs.jntm.entity.kundan_st;
-import cn.fhyjs.jntm.network.JntmGuiHandler;
-import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
-import cn.fhyjs.jntm.tickratechanger.TickrateChanger;
-import cn.fhyjs.jntm.tickratechanger.TickrateCommand;
-import cn.fhyjs.jntm.tickratechanger.api.TickrateAPI;
 import com.google.common.collect.Lists;
 import net.katsstuff.teamnightclipse.danmakucore.DanmakuCore;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
@@ -17,24 +10,18 @@ import net.katsstuff.teamnightclipse.danmakucore.lib.data.LibShotData;
 import net.katsstuff.teamnightclipse.mirror.data.Vector3;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.command.ICommand;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.Properties;
 import scala.collection.JavaConversions;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.util.List;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
-import static cn.fhyjs.jntm.Jntm.proxy;
 
 public class Ji_Games extends Item {
     public Ji_Games() {

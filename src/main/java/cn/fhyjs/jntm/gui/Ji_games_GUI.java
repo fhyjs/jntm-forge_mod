@@ -1,30 +1,17 @@
 package cn.fhyjs.jntm.gui;
 
-import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.client.Mcefclp;
-import cn.fhyjs.jntm.common.CommonProxy;
-import cn.fhyjs.jntm.config.ConfigHandler;
-import cn.fhyjs.jntm.network.JntmMessage;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.common.Optional;
 import net.montoyo.mcef.MCEF;
 import net.montoyo.mcef.api.API;
 import net.montoyo.mcef.api.IBrowser;
 import net.montoyo.mcef.api.MCEFApi;
-import net.montoyo.mcef.example.ScreenCfg;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 

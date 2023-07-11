@@ -1,8 +1,6 @@
 package cn.fhyjs.jntm.network;
 
 import io.netty.buffer.ByteBuf;
-import jdk.nashorn.internal.runtime.NumberToString;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class JntmMessage implements IMessage {

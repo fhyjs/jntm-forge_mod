@@ -4,7 +4,6 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.CxkTnt_E;
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.block.BlockTNT;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;

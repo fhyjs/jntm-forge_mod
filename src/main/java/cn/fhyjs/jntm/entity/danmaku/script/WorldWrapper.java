@@ -1,6 +1,5 @@
 package cn.fhyjs.jntm.entity.danmaku.script;
 
-import cn.fhyjs.jntm.entity.danmaku.script.EntityDanmakuWrapper;
 import net.minecraft.world.World;
 
 /**

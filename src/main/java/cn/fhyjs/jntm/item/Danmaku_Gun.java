@@ -2,36 +2,20 @@ package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.Ta_Danmaku;
-import cn.fhyjs.jntm.entity.cxk;
 import cn.fhyjs.jntm.entity.danmaku.DanmakuColor;
-import cn.fhyjs.jntm.entity.danmaku.DanmakuShoot;
 import cn.fhyjs.jntm.entity.danmaku.DanmakuType;
-import net.java.games.input.Keyboard;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemClock;
-import net.minecraft.item.ItemEnderPearl;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.World;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.List;
 

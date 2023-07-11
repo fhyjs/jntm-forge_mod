@@ -1,9 +1,7 @@
 package cn.fhyjs.jntm;
 
 import javax.swing.*;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class dcc {
     public static void main(String[] args) throws IOException {

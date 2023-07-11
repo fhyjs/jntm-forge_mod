@@ -2,11 +2,9 @@ package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.Properties;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
 

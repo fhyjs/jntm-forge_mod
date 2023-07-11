@@ -1,6 +1,5 @@
 package cn.fhyjs.jntm.renderer;
 
-import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.CxkTnt_E;
 import cn.fhyjs.jntm.registry.BlockRegistryHandler;
 import net.minecraft.client.Minecraft;
@@ -8,10 +7,7 @@ import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderTNTPrimed;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 

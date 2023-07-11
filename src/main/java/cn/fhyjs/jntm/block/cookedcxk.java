@@ -3,9 +3,7 @@ package cn.fhyjs.jntm.block;
 //包声明
 
 import cn.fhyjs.jntm.Jntm;
-
 import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
-import ibxm.Player;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -27,10 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.server.command.TextComponentHelper;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;

@@ -3,9 +3,10 @@ package cn.fhyjs.jntm.entity;// Made with Blockbench 4.6.4
 // Paste this class into your mod and generate all required imports
 
 
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelBox;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
 

@@ -2,19 +2,16 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.ItemGroup.jntmGroup;
 import cn.fhyjs.jntm.Jntm;
-import cn.fhyjs.jntm.block.Cxkimage;
-import cn.fhyjs.jntm.block.JimPlayerBlock;
 import cn.fhyjs.jntm.item.*;
 import cn.fhyjs.jntm.item.cards.CustomCard;
 import cn.fhyjs.jntm.item.weapon.Gohei;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.subentity.SubEntityType;
 import net.katsstuff.teamnightclipse.danmakucore.lib.data.LibSubEntities;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
-import net.minecraft.server.dedicated.ServerHangWatchdog;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -44,6 +41,8 @@ public class ItemRegistryHandler {
     public static final ItemBlock cookedcxk_item = new ItemBlock(BlockRegistryHandler.BLOCK_cookedcxk);
     public static final ItemBlock ITEM_CxkTNT = new ItemBlock(BlockRegistryHandler.BLOCK_CxkTnt);
     public static final ItemBlock JimplayerBlock = new ItemBlock(BlockRegistryHandler.JIM_PLAYER_BLOCK);
+    public static final ItemBlock ItemLandmine = new ItemBlock(BlockRegistryHandler.blockLandmine);
+    public static final ItemBlock ItemLandmineConf = new ItemBlock(BlockRegistryHandler.blockLandmineConfigurator);
     public static music_xjj music_xjj,music_kdj;
     public static Jntm_help_item jntmHelpItem = new Jntm_help_item();
     public static Jiguangpao JGP = new Jiguangpao();
@@ -63,6 +62,8 @@ public class ItemRegistryHandler {
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
         JimplayerBlock.setRegistryName(Objects.requireNonNull(JimplayerBlock.getBlock().getRegistryName()));
+        ItemLandmine.setRegistryName(Objects.requireNonNull(ItemLandmine.getBlock().getRegistryName()));
+        ItemLandmineConf.setRegistryName(Objects.requireNonNull(ItemLandmineConf.getBlock().getRegistryName()));
         IJCT.setRegistryName(Objects.requireNonNull(IJCT.getBlock().getRegistryName()));
         IForgeRegistry<Item> registry = event.getRegistry();
         cookedcxk_item.setRegistryName(Objects.requireNonNull(cookedcxk_item.getBlock().getRegistryName()));
@@ -122,6 +123,8 @@ public class ItemRegistryHandler {
             //registry.register(Fire_CARD);
         }
         registry.register(tickstop);
+        registry.register(ItemLandmine);
+        registry.register(ItemLandmineConf);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)

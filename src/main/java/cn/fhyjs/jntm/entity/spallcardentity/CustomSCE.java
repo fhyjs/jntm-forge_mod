@@ -10,8 +10,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import scala.Option;
 
-import java.util.ArrayList;
-
 public class CustomSCE extends SpellcardEntity {
     public CustomSCE(Spellcard spellcard, EntitySpellcard cardEntity, Option<EntityLivingBase> target) {
         super(spellcard, cardEntity, target);

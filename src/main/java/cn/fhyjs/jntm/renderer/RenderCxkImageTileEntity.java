@@ -2,38 +2,29 @@ package cn.fhyjs.jntm.renderer;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
-
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.network.SCINMessage;
 import com.mojang.authlib.GameProfile;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.model.ModelBase;
-
 import net.minecraft.client.renderer.GlStateManager;
-
 import net.minecraft.client.renderer.texture.DynamicTexture;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
-
 import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.*;
+import java.util.Hashtable;
+import java.util.Objects;
 
 import static net.minecraft.client.gui.toasts.SystemToast.Type.TUTORIAL_HINT;
 

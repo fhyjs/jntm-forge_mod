@@ -1,25 +1,18 @@
 package cn.fhyjs.jntm.registry;
 
 
-import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TEJimPlayer;
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.entity.*;
-
 import cn.fhyjs.jntm.renderer.*;
-import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.animation.AnimationTESR;
-import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
-import static cn.fhyjs.jntm.registry.ItemRegistryHandler.*;
+import static cn.fhyjs.jntm.registry.ItemRegistryHandler.ggxdd;
+import static cn.fhyjs.jntm.registry.ItemRegistryHandler.jgpdtex;
 
 public class RenderRegistryHandler {
     public static void register(FMLInitializationEvent event)
