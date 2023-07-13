@@ -109,7 +109,7 @@ dependencies {
     compile "vazkii.patchouli:Patchouli:${patchouli_version}"
     implementation "net.lingala.zip4j:zip4j:2.11.2"
     compile fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.12.2:3.0.31')
+    //implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.12.2:3.0.31')
 }
 buildscript {
     repositories {

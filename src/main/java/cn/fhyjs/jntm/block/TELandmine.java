@@ -3,6 +3,7 @@ package cn.fhyjs.jntm.block;
 
 import com.google.gson.Gson;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -14,7 +15,9 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.client.model.ModelLoader;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -23,9 +26,11 @@ import java.util.List;
 
 public class TELandmine extends TileEntity implements ITickable {
     public double Thickness=0.1;
-    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming;// Mode 1:按下时激发,0:松开时激发
+    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming,HasCPos;// Mode 1:按下时激发,0:松开时激发;HasCPos 1:有伪装,0:无伪装
     public List<Class<? extends Entity>> Triggers = new ArrayList<>();
     public int Fuse,CFuse;
+    public String model;
+    public BlockPos CamouflagePos;
     @Override
     public void update() {
         if (world.isRemote) return;
@@ -51,7 +56,7 @@ public class TELandmine extends TileEntity implements ITickable {
         WorldServer worldServer = (WorldServer) world;
         if (CFuse>=0){
             CFuse--;
-            worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,pos.getX(),pos.getY(),pos.getZ(),1,1,1,0);
+            worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,true, pos.getX(), pos.getY(), pos.getZ(), 100, 0, 0, 0d,0.01,0);
         }else {
             System.out.println("boom!");
             Booming=false;
@@ -59,6 +64,7 @@ public class TELandmine extends TileEntity implements ITickable {
         markDirty();
     }
     public void checkbooms(){
+        if (Booming) return;
         if (CTriggered!=IsTriggered){
             if (CTriggered){ // 1 -> 0
                 if (!Mode){
@@ -98,6 +104,9 @@ public class TELandmine extends TileEntity implements ITickable {
         compound.setInteger("CFuse",CFuse);
         compound.setBoolean("Mode",Mode);
         compound.setBoolean("Booming",Booming);
+        compound.setBoolean("HasCP",HasCPos);
+        if (CamouflagePos!=null)
+            compound.setIntArray("CamouflagePos",new int[]{CamouflagePos.getX(), CamouflagePos.getY(),CamouflagePos.getZ()});
 
         return compound;
     }
@@ -119,6 +128,12 @@ public class TELandmine extends TileEntity implements ITickable {
         Fuse= compound.getInteger("Fuse");
         Mode= compound.getBoolean("Mode");
         Booming= compound.getBoolean("Booming");
+        HasCPos= compound.getBoolean("HasCP");
+        int[] ia = compound.getIntArray("CamouflagePos");
+        if (ia.length>0)
+            CamouflagePos=new BlockPos(ia[0],ia[1],ia[2]);
+        else
+            CamouflagePos=null;
     }
 
     public void setThickness(double thickness) {

@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.registry;
 
 
 import cn.fhyjs.jntm.block.TEJimPlayer;
+import cn.fhyjs.jntm.block.TELandmine;
 import cn.fhyjs.jntm.block.TileEntityCxkImage;
 import cn.fhyjs.jntm.entity.*;
 import cn.fhyjs.jntm.renderer.*;
@@ -28,5 +29,6 @@ public class RenderRegistryHandler {
         RenderingRegistry.registerEntityRenderingHandler(XiGua.class,new RenderXigua(Minecraft.getMinecraft().getRenderManager()));
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ListeningAnimatedTESR<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TELandmine.class, new BLRender());
     }
 }
