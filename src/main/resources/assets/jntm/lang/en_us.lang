@@ -1,0 +1,3 @@
+tip.jntm.cannotput.up=Unable to place this block(%d,%d,%d) on block[%s] !
+tip.configured=configured
+tile.jntm.Landmine.name=Landmine

@@ -153,6 +153,7 @@ public class ItemRegistryHandler {
             //registryModel(Fire_CARD);
         }
         registryModel(tickstop);
+        registryModel(ItemLandmine);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

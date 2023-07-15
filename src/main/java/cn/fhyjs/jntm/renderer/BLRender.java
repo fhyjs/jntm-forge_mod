@@ -4,45 +4,31 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.BlockLandmine;
 import cn.fhyjs.jntm.block.TELandmine;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.RegistrySimple;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.animation.FastTESR;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
-import scala.tools.reflect.FastTrack;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 public class BLRender extends TileEntitySpecialRenderer<TELandmine> {
+    public static final Map<String,IBakedModel> DefaultModelBakedMap = new HashMap<>();
     @Override
     public void render(TELandmine te, double x, double y, double z, float partialTicks, int destroyStage, float partial)
     {
@@ -112,18 +98,22 @@ public class BLRender extends TileEntitySpecialRenderer<TELandmine> {
         else {
             //modelBaked = ((RegistrySimple<ModelResourceLocation, IBakedModel>) ObfuscationReflectionHelper.getPrivateValue(ModelBakery.class, MLI, "bakedRegistry")).getObject(BMS.getBlockStateMapper().getVariants(Blocks.WOODEN_PRESSURE_PLATE).get(BMS.getBlockStateMapper().getVariants(Blocks.WOODEN_PRESSURE_PLATE).values().toArray()[(int) (Math.random() * BMS.getBlockStateMapper().getVariants(Blocks.WOODEN_PRESSURE_PLATE).size())]));
             String rn = "landmine_h"+(te.getThickness()*16);
-            Map<String, String> BUILT_IN_MODELS = ObfuscationReflectionHelper.getPrivateValue(ModelBakery.class,null,"field_177600_d");
-            if (!BUILT_IN_MODELS.containsKey(rn)) {
-                try {
-                    BUILT_IN_MODELS.put(rn,cn.fhyjs.jntm.common.pstest.readLine(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("jntm:models/block/landmine.json"))).replaceAll("\"\\{height}\"",String.valueOf((te.getThickness()*16))));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            if (!DefaultModelBakedMap.containsKey(rn)){
+                Map<String, String> BUILT_IN_MODELS = ObfuscationReflectionHelper.getPrivateValue(ModelBakery.class,null,"field_177600_d");
+                if (!BUILT_IN_MODELS.containsKey(rn)) {
+                    try {
+                        BUILT_IN_MODELS.put(rn,cn.fhyjs.jntm.common.pstest.readLine(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("jntm:models/block/landmine.json"))).replaceAll("\"\\{height}\"",String.valueOf((te.getThickness()*16))));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+                IModel model;// = loadModel(VLClass,new ResourceLocation("jntm:models/block/landmine_test"));
+                model = loadModel(VLClass,new ResourceLocation("minecraft:builtin/"+rn));
+                //model.asVanillaModel().get().name="jntm:models/block/landmine";
+                DefaultModelBakedMap.put(rn,modelBaked=model.bake(model.getDefaultState(),DefaultVertexFormats.BLOCK, location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString())));
+            }else {
+                modelBaked= DefaultModelBakedMap.get(rn);
             }
-            IModel model = loadModel(VLClass,new ResourceLocation("jntm:models/block/landmine_test"));
-            model = loadModel(VLClass,new ResourceLocation("minecraft:builtin/"+rn));
-            //model.asVanillaModel().get().name="jntm:models/block/landmine";
-            modelBaked=model.bake(model.getDefaultState(),DefaultVertexFormats.BLOCK, location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString()));
         }
         GlStateManager.enableRescaleNormal();
         //GlStateManager.scale(-1.0F, -1.0F, 1.0F);

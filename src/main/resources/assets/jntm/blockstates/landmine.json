@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "variants": {
     "l=false": [{"model":"jntm:cxkimage"}],
-    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:cxkimage"}],
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:landmine_test"}],
     "l=true": [{"model":"jntm:landmine_test"}]
   }
 }

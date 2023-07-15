@@ -34,6 +34,8 @@ public class TELandmine extends TileEntity implements ITickable {
     @Override
     public void update() {
         if (world.isRemote) return;
+        if (getBlockType() instanceof BlockLandmine)
+            ((BlockLandmine) getBlockType()).check(world,pos);
         List<Entity> EntitiesOn = new ArrayList<>(world.getEntitiesWithinAABBExcludingEntity(null,new AxisAlignedBB(getPos().getX(),getPos().getY(),getPos().getZ(),getPos().getX()+1,getPos().getY()+getThickness()+0.05, getPos().getZ()+1)));
         //System.out.println(EntitiesOn);
         IsTriggered=false;

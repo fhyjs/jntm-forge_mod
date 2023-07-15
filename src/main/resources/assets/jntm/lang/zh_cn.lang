@@ -115,3 +115,5 @@ tooltip.tickstop.n1=所有人给我站一边
 item.jntmtickstop.name=tick停止
 tile.jntm.Landmine.name=地雷
 tile.jntm.LandmineConfigurator.name=地雷配置器
+tip.jntm.cannotput.up=无法放置此方块(%d,%d,%d)在方块[%s]上!
+tip.configured=已配置

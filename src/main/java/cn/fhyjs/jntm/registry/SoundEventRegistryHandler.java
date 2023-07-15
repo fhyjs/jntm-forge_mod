@@ -40,7 +40,7 @@ public class SoundEventRegistryHandler {
         Set<Map.Entry<String, JsonElement>> f = e.getAsJsonObject().entrySet();
         for (Map.Entry<String, JsonElement> stringJsonElementEntry : f) {
             SoundEvent se = new SoundEvent(new ResourceLocation(Jntm.MODID, stringJsonElementEntry.getKey()));
-            se.setRegistryName(se.getSoundName());
+            se.setRegistryName(new ResourceLocation(Jntm.MODID, stringJsonElementEntry.getKey()));
             if(Arrays.asList(arr_2).contains(stringJsonElementEntry.getKey())) continue;
             event.getRegistry().register(se);
         }

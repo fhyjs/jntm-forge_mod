@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.item.cards;
 
 import cn.fhyjs.jntm.item.CanShotBase;
+import com.google.common.collect.ImmutableList;
 import net.katsstuff.teamnightclipse.danmakucore.DanmakuCore;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.subentity.SubEntityType;
@@ -37,6 +38,6 @@ public abstract class CustomCard extends CanShotBase {
                         .setDamage(2f)
                         .setSubEntity(getSubentity())
                 );
-        DanmakuCore.spawnDanmaku(Collections.singletonList(reShape(temp).build().asEntity()));
+        DanmakuCore.spawnDanmaku(ImmutableList.of(reShape(temp).build().asEntity()));
     }
 }

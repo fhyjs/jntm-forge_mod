@@ -38,6 +38,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID==GUIs.Th_JNTM.getId()){
             return new Jvav_C(player,world);
         }
+        if (ID == GUIs.LandmineConf.getId()) {
+            return new LandMineConC(player,world);
+        }
         return null;
     }
 
@@ -79,6 +82,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID == GUIs.Th_JNTM.getId()) {
             return new Th_jntm_G(player,world);
         }
+        if (ID == GUIs.LandmineConf.getId()) {
+            return new LandMineConG(player,world);
+        }
         return null;
     }
 
@@ -98,10 +104,11 @@ public class JntmGuiHandler implements IGuiHandler {
         SetCxkimage(15),
         RSMPlayer(16),
         Ji_Crafting(17),
-        Th_JNTM(18);
+        Th_JNTM(18),
+        LandmineConf(19);
 
 
-        private int id;
+        private final int id;
         GUIs(int id) {
             this.id = id;
         }
