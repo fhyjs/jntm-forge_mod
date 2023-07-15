@@ -58,7 +58,7 @@ public class LandMineConC extends Container {
         }
 
         for (int l = 0; l < 9; ++l) {
-            this.addSlotToContainer(new Slot(playerInventory, l, 36 + l * 18, 196));
+            this.addSlotToContainer(new Slot(playerInventory, l, 36 + l * 18, 195));
         }
     }
     @Override
