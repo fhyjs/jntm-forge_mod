@@ -39,7 +39,7 @@ public class JntmGuiHandler implements IGuiHandler {
             return new Jvav_C(player,world);
         }
         if (ID == GUIs.LandmineConf.getId()) {
-            return new LandMineConC(player,world);
+            return new LandMineConC(player,player.inventory, new BlockPos(x,y,z),world);
         }
         return null;
     }
@@ -83,7 +83,7 @@ public class JntmGuiHandler implements IGuiHandler {
             return new Th_jntm_G(player,world);
         }
         if (ID == GUIs.LandmineConf.getId()) {
-            return new LandMineConG(player,world);
+            return new LandMineConG(player,player.inventory, new BlockPos(x,y,z),world);
         }
         return null;
     }

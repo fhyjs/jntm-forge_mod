@@ -9,7 +9,9 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -20,13 +22,12 @@ public class LandMineConG extends GuiContainer {
     private static final ResourceLocation BACKGROUND = new ResourceLocation(Jntm.MODID, "textures/gui/landminecondgui.png");
     private EntityPlayer player;
     ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
-    public LandMineConG(EntityPlayer player, World world) {
-        super(new LandMineConC(player,world));
+    public LandMineConG(EntityPlayer entityPlayer, IInventory playerInventory, BlockPos blockPos, World world) {
+        super(new LandMineConC(entityPlayer, playerInventory, blockPos, world));
         this.xSize = 256;
         this.ySize = 256;
         this.guiTop = (int) (sr.getScaledHeight()*0.08);
         this.guiLeft = (int) (sr.getScaledWidth()*0.21);
-        this.player = player;
     }
     @Override
     public void initGui()
@@ -35,7 +36,7 @@ public class LandMineConG extends GuiContainer {
         System.out.println("Open GUI");
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
-
+        super.initGui();
     }
     @Override
     protected void actionPerformed(GuiButton parButton) throws IOException {
@@ -65,9 +66,10 @@ public class LandMineConG extends GuiContainer {
         mc.getTextureManager().bindTexture(BACKGROUND);
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, 256, 256);
     }
+
     @Override
     protected void  drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        exdrawString(10,5,1,0,I18n.format("gui.jntm.jvav.title"));
+        exdrawString(12,2,1,0,I18n.format("gui.jntm.landminecfg.title"));
 
     }
     public void exdrawString(int x, int y, float size,int color, String str){

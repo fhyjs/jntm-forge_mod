@@ -40,6 +40,7 @@ public class Jntm {
     public static Jntm INSTANCE;
     public static boolean IS_DC_Load;
     public Jntm(){
+        INSTANCE=this;
         new TickrateContainer();
         new TickrateChanger();
         new TickrateChanger();
