@@ -11,6 +11,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -40,7 +41,20 @@ public class LandMineConC extends Container {
 
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-        return super.slotClick(slotId, dragType, clickTypeIn, player);
+        if (clickTypeIn.equals(ClickType.QUICK_MOVE)) return ItemStack.EMPTY;
+        ItemStack itemStack = super.slotClick(slotId, dragType, clickTypeIn, player);
+        CheckLM();
+        return itemStack;
+    }
+    public NBTTagCompound LmNbt;
+    private void CheckLM(){
+        stores.setActivityTab("default");
+        ItemStack landmine;
+        if ((landmine=stores.getItemStack(0)).getItem()==ItemRegistryHandler.ItemLandmine){
+            LmNbt = landmine.getTagCompound();
+        }else {
+            LmNbt = null;
+        }
     }
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {

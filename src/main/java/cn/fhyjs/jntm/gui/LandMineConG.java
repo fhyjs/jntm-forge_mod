@@ -3,16 +3,27 @@ package cn.fhyjs.jntm.gui;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.network.JntmMessage;
+import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemAir;
+import net.minecraft.nbt.*;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.client.GuiScrollingList;
+import net.minecraftforge.fml.client.config.GuiSlider;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -22,21 +33,26 @@ public class LandMineConG extends GuiContainer {
     private static final ResourceLocation BACKGROUND = new ResourceLocation(Jntm.MODID, "textures/gui/landminecondgui.png");
     private EntityPlayer player;
     ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+    private GuiSlider ThicknessSlider;
     public LandMineConG(EntityPlayer entityPlayer, IInventory playerInventory, BlockPos blockPos, World world) {
         super(new LandMineConC(entityPlayer, playerInventory, blockPos, world));
         this.xSize = 256;
         this.ySize = 256;
         this.guiTop = (int) (sr.getScaledHeight()*0.08);
         this.guiLeft = (int) (sr.getScaledWidth()*0.21);
+        this.container = (LandMineConC) inventorySlots;
     }
+    LandMineConC container;
     @Override
     public void initGui()
     {
+        super.initGui();
         // DEBUG
         System.out.println("Open GUI");
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
-        super.initGui();
+        buttonList.add(new GuiButton(0,guiLeft+207,guiTop+3,20,20,"X"));
+        buttonList.add(this.ThicknessSlider = new GuiSlider(1,guiLeft+10,guiTop+12,70,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
     }
     @Override
     protected void actionPerformed(GuiButton parButton) throws IOException {
@@ -45,33 +61,75 @@ public class LandMineConG extends GuiContainer {
                 CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
                 break;
             case 1:
-                CommonProxy.INSTANCE.sendToServer(new JntmMessage(2));
+                coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
                 break;
             case 2:
                 break;
         }
-
     }
+
+    @Override
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
+        if (container.LmNbt!=null)
+            CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt.toString()));
+    }
+
+    boolean isPut,oisPut;
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         super.renderHoveredToolTip(mouseX, mouseY);
-        //JOptionPane.showMessageDialog(null,"3");
     }
-
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         this.drawDefaultBackground();
         // 绘制主背景
         mc.getTextureManager().bindTexture(BACKGROUND);
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, 256, 256);
-    }
 
+
+        this.ThicknessSlider.drawButton(this.mc,mouseX,mouseY,partialTicks);
+    }
     @Override
     protected void  drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         exdrawString(12,2,1,0,I18n.format("gui.jntm.landminecfg.title"));
-
+        if (container.LmNbt != null&&container.LmNbt.hasKey("display")) {
+            NBTBase list;
+            if((list = container.LmNbt.getCompoundTag("display").getTag("Lore"))!=null&&list instanceof NBTTagList) {
+                StringBuilder sb = new StringBuilder();
+                for (int i=0;i<((NBTTagList) list).tagCount();i++){
+                    sb.append(((NBTTagList) list).getStringTagAt(i));
+                }
+                exdrawString(130,120,1,0xac04ac,sb.toString());
+            }
+        }
+        if (container.LandmineShot.getStack().getItem() instanceof ItemAir){
+            exdrawString(130,120,1,0xff0000,I18n.format("gui.jntm.landminecfg.nolm"));
+            drawRect(9,11,200,110,0xC8000000);
+            isPut=false;
+        }else isPut=true;
+        for (GuiButton guiButton : buttonList) {
+            if (guiButton.id==0) continue;
+            guiButton.enabled=isPut;
+        }
+        if(oisPut!=isPut){
+            oisPut=isPut;
+            if (isPut) onPut();
+        }
     }
+    NBTTagCompound coreNbt;
+    private void onPut() {
+        if (container.LmNbt==null){
+            container.LmNbt=new NBTTagCompound();
+            container.LmNbt.setTag("BlockEntityTag",new NBTTagCompound());
+        }
+        coreNbt = container.LmNbt.getCompoundTag("BlockEntityTag");
+        if (coreNbt.hasKey("Thickness")){
+            ThicknessSlider.setValue(coreNbt.getDouble("BlockEntityTag"));
+        }
+    }
+
     public void exdrawString(int x, int y, float size,int color, String str){
         GL11.glPushMatrix(); //Start new matrix
         GL11.glScalef(size,size,size); //scale it to 0.5 size on each side. Must be float e.g.: 2.0F

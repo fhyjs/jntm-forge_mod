@@ -94,6 +94,7 @@ public class InternalStores implements IInventory {
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
+        getItemStack(index);
         getItemStacks().set(index,stack);
     }
 

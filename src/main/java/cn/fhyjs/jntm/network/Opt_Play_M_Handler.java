@@ -5,10 +5,13 @@ import cn.fhyjs.jntm.block.TEJimPlayer;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.common.pstest;
 import cn.fhyjs.jntm.config.ConfigCore;
+import cn.fhyjs.jntm.gui.LandMineConC;
 import cn.fhyjs.jntm.gui.RSMPlayerG;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.nbt.NBTException;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -143,6 +146,16 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     }
                     CommonProxy.INSTANCE.sendTo(new Opt_Ply_Message(ctx.getServerHandler().player, "reply ok"),ctx.getServerHandler().player);
                     break;
+                case "setlandminedata":{
+                    if (!(ctx.getServerHandler().player.openContainer instanceof LandMineConC)) break;
+                    tmp1 =message.opt.split(" ");
+                    try {
+                        ((LandMineConC) ctx.getServerHandler().player.openContainer).LandmineShot.getStack().writeToNBT(JsonToNBT.getTagFromJson(tmp1[1]));
+                    } catch (Throwable e) {
+                        Jntm.logger.warn(new RuntimeException(e));
+                    }
+                    break;
+                }
             }
         }
         if(ctx.side == Side.CLIENT) {

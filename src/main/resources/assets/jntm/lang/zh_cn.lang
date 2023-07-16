@@ -118,3 +118,6 @@ tile.jntm.LandmineConfigurator.name=地雷配置器
 tip.jntm.cannotput.up=无法放置此方块(%d,%d,%d)在方块[%s]上!
 tip.configured=已配置
 gui.jntm.landminecfg.title=地雷配置
+gui.jntm.landminecfg.nolm=未放入地雷
+gui.jntm.landminecfg.btn.thickness=厚度
+gui.jntm.landminecfg.btn.thickness.end=个方块
