@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.network.JntmMessage;
 import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiButtonToggle;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -52,7 +53,9 @@ public class LandMineConG extends GuiContainer {
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
         buttonList.add(new GuiButton(0,guiLeft+207,guiTop+3,20,20,"X"));
-        buttonList.add(this.ThicknessSlider = new GuiSlider(1,guiLeft+10,guiTop+12,70,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
+        buttonList.add(this.ThicknessSlider = new GuiSlider(-1,guiLeft+10,guiTop+12,70,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
+        buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,50,20,"N/A"));
+
     }
     @Override
     protected void actionPerformed(GuiButton parButton) throws IOException {
@@ -61,7 +64,12 @@ public class LandMineConG extends GuiContainer {
                 CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
                 break;
             case 1:
-                coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
+                coreNbt.setBoolean("Tplayer",!coreNbt.getBoolean("Tplayer"));
+                for (GuiButton guiButton : buttonList) {
+                    if (guiButton.id==1){
+                        guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.forplayer")+":"+coreNbt.getBoolean("Tplayer");
+                    }
+                }
                 break;
             case 2:
                 break;
@@ -71,8 +79,10 @@ public class LandMineConG extends GuiContainer {
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
         super.mouseReleased(mouseX, mouseY, state);
-        if (container.LmNbt!=null)
-            CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt.toString()));
+        if (coreNbt==null) return;
+        coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
+        if (container.LmNbt==null) return;
+        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt));
     }
 
     boolean isPut,oisPut;
@@ -126,7 +136,16 @@ public class LandMineConG extends GuiContainer {
         }
         coreNbt = container.LmNbt.getCompoundTag("BlockEntityTag");
         if (coreNbt.hasKey("Thickness")){
-            ThicknessSlider.setValue(coreNbt.getDouble("BlockEntityTag"));
+            ThicknessSlider.setValue(coreNbt.getDouble("Thickness"));
+            ThicknessSlider.updateSlider();
+        }
+        if (!coreNbt.hasKey("Tplayer")) {
+            coreNbt.setBoolean("Tplayer",false);
+        }
+        for (GuiButton guiButton : buttonList) {
+            if (guiButton.id==1){
+                guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.forplayer")+":"+coreNbt.getBoolean("Tplayer");
+            }
         }
     }
 

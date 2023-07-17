@@ -150,7 +150,8 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     if (!(ctx.getServerHandler().player.openContainer instanceof LandMineConC)) break;
                     tmp1 =message.opt.split(" ");
                     try {
-                        ((LandMineConC) ctx.getServerHandler().player.openContainer).LandmineShot.getStack().writeToNBT(JsonToNBT.getTagFromJson(tmp1[1]));
+                        ((LandMineConC) ctx.getServerHandler().player.openContainer).stores.setActivityTab("default");
+                        ((LandMineConC) ctx.getServerHandler().player.openContainer).LandmineShot.getStack().setTagCompound(JsonToNBT.getTagFromJson(tmp1[1]));
                     } catch (Throwable e) {
                         Jntm.logger.warn(new RuntimeException(e));
                     }

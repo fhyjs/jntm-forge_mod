@@ -121,3 +121,4 @@ gui.jntm.landminecfg.title=地雷配置
 gui.jntm.landminecfg.nolm=未放入地雷
 gui.jntm.landminecfg.btn.thickness=厚度
 gui.jntm.landminecfg.btn.thickness.end=个方块
+gui.jntm.landminecfg.btn.forplayer=玩家触发
