@@ -54,7 +54,7 @@ public class LandMineConG extends GuiContainer {
         Keyboard.enableRepeatEvents(true);
         buttonList.add(new GuiButton(0,guiLeft+207,guiTop+3,20,20,"X"));
         buttonList.add(this.ThicknessSlider = new GuiSlider(-1,guiLeft+10,guiTop+12,70,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
-        buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,50,20,"N/A"));
+        buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,60  ,20,"N/A"));
 
     }
     @Override
