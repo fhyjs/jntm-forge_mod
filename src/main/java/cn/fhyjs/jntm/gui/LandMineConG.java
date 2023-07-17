@@ -55,9 +55,10 @@ public class LandMineConG extends GuiContainer {
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
         buttonList.add(new GuiButton(0,guiLeft+207,guiTop+3,20,20,"X"));
-        buttonList.add(this.ThicknessSlider = new GuiSlider(-1,guiLeft+10,guiTop+12,70,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
-        buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,60  ,20,"N/A"));
-        buttonList.add(this.FuseSlider = new GuiSlider(-1,guiLeft+10,guiTop+47,80,10,I18n.format("gui.jntm.landminecfg.btn.fuse")+":","tick",0,100,1,true,true));
+        buttonList.add(this.ThicknessSlider = new GuiSlider(-1,guiLeft+10,guiTop+12,80,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
+        buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,80  ,20,"N/A"));
+        buttonList.add(this.FuseSlider = new GuiSlider(-1,guiLeft+10,guiTop+47,80,10,I18n.format("gui.jntm.landminecfg.btn.fuse")+":","tick",0,200,1,true,true));
+        buttonList.add(new GuiButton(2,guiLeft+10,guiTop+60,80  ,20,"N/A"));
 
     }
     @Override
@@ -75,6 +76,12 @@ public class LandMineConG extends GuiContainer {
                 }
                 break;
             case 2:
+                coreNbt.setBoolean("Mode",!coreNbt.getBoolean("Mode"));
+                for (GuiButton guiButton : buttonList) {
+                    if (guiButton.id==2){
+                        guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.mode."+coreNbt.getBoolean("Mode"));
+                    }
+                }
                 break;
         }
     }
@@ -93,7 +100,7 @@ public class LandMineConG extends GuiContainer {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
-        super.renderHoveredToolTip(mouseX, mouseY);
+        renderHoveredToolTip(mouseX, mouseY);
     }
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -153,12 +160,27 @@ public class LandMineConG extends GuiContainer {
             FuseSlider.setValue(coreNbt.getDouble("Fuse"));
             FuseSlider.updateSlider();
         }
+        if (!coreNbt.hasKey("Mode")) {
+            coreNbt.setBoolean("Mode",false);
+        }
+        for (GuiButton guiButton : buttonList) {
+            if (guiButton.id==2){
+                guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.mode."+coreNbt.getBoolean("Mode"));
+            }
+        }
     }
 
     @Override
     public void onResize(Minecraft mcIn, int w, int h) {
         super.onResize(mcIn, w, h);
         onPut();
+    }
+
+    @Override
+    protected void renderHoveredToolTip(int x, int y) {
+        super.renderHoveredToolTip(x, y);
+        if (x>=FuseSlider.x&&x<=FuseSlider.x+FuseSlider.width&&y>=FuseSlider.y&&y<=FuseSlider.y+FuseSlider.height&&FuseSlider.enabled)
+            this.drawHoveringText(String.format("(~%.2fs)",FuseSlider.getValue()*0.05), x, (int) (y-FuseSlider.height*.5));
     }
 
     public void exdrawString(int x, int y, float size, int color, String str){

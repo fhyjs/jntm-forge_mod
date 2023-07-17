@@ -123,3 +123,5 @@ gui.jntm.landminecfg.btn.thickness=厚度
 gui.jntm.landminecfg.btn.thickness.end=个方块
 gui.jntm.landminecfg.btn.forplayer=玩家触发
 gui.jntm.landminecfg.btn.fuse=爆炸延时
+gui.jntm.landminecfg.btn.mode.true=压发
+gui.jntm.landminecfg.btn.mode.false=松发

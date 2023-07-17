@@ -80,7 +80,7 @@ public class pstest extends Thread{
                 if (Objects.equals(ts[0], "timeout")){
                     try {
                         worldserver.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, true, bp.getX()+1/4d, bp.getY()+1, bp.getZ()+1/4d,50, 1/4d,0.1, 1/4d,0.1, 0);
-                        Thread.sleep((long) (Integer.parseInt(ts[1])* (20/TickrateAPI.getServerTickrate())));
+                        Thread.sleep((long) (Integer.parseInt(ts[1]) * (20/TickrateAPI.getServerTickrate()))+1);
                     } catch (InterruptedException e) {
                         Jntm.logger.error(new RuntimeException(e));
                     }

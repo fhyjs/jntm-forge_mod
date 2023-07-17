@@ -58,7 +58,7 @@ public class TELandmine extends TileEntity implements ITickable {
         WorldServer worldServer = (WorldServer) world;
         if (CFuse>=0){
             CFuse--;
-            worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,true, pos.getX(), pos.getY(), pos.getZ(), 100, 0, 0, 0d,0.01,0);
+            worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,true, pos.getX()+0.5, pos.getY()+getThickness(), pos.getZ()+0.5, 1, 0, 0, 0d,0.02,0);
         }else {
             System.out.println("boom!");
             Booming=false;
