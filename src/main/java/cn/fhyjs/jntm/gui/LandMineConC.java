@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.gui;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.block.TileEntityJiCrafting;
+import cn.fhyjs.jntm.item.LandminePlugins.LandminePB;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
 import net.minecraft.entity.item.EntityItem;
@@ -18,12 +19,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 public class LandMineConC extends Container {
     private final World world;
     public EntityPlayer entityPlayer;
     public Slot LandmineShot;
     public InternalStores stores = new InternalStores("default");
+    public List<ItemStack> plugins;
     public final BlockPos pos;
     public LandMineConC(EntityPlayer entityPlayer, IInventory playerInventory, BlockPos blockPos, World world) {
         super();
@@ -37,6 +40,16 @@ public class LandMineConC extends Container {
                 return stack.getItem()==ItemRegistryHandler.ItemLandmine;
             }
         });
+        for (int i=0;i<2;i++)
+            for (int j = 0; j < 4; j++) {
+                Slot shot = new Slot(stores, 0, 96+j*18, 13+i*18) {
+                    @Override
+                    public boolean isItemValid(ItemStack stack) {
+                        return stack.getItem() instanceof LandminePB;
+                    }
+                };
+                this.addSlotToContainer(shot);
+            }
     }
 
     @Override
