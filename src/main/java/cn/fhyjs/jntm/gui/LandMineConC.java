@@ -42,7 +42,7 @@ public class LandMineConC extends Container {
         });
         for (int i=0;i<2;i++)
             for (int j = 0; j < 4; j++) {
-                Slot shot = new Slot(stores, 0, 96+j*18, 13+i*18) {
+                Slot shot = new Slot(stores,this.inventorySlots.size()-36, 97+j*18, 15+i*18) {
                     @Override
                     public boolean isItemValid(ItemStack stack) {
                         return stack.getItem() instanceof LandminePB;
