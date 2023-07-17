@@ -4,6 +4,7 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.network.JntmMessage;
 import cn.fhyjs.jntm.network.Opt_Ply_Message;
+import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonToggle;
@@ -35,6 +36,7 @@ public class LandMineConG extends GuiContainer {
     private EntityPlayer player;
     ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
     private GuiSlider ThicknessSlider;
+    private GuiSlider FuseSlider;
     public LandMineConG(EntityPlayer entityPlayer, IInventory playerInventory, BlockPos blockPos, World world) {
         super(new LandMineConC(entityPlayer, playerInventory, blockPos, world));
         this.xSize = 256;
@@ -55,6 +57,7 @@ public class LandMineConG extends GuiContainer {
         buttonList.add(new GuiButton(0,guiLeft+207,guiTop+3,20,20,"X"));
         buttonList.add(this.ThicknessSlider = new GuiSlider(-1,guiLeft+10,guiTop+12,70,10,I18n.format("gui.jntm.landminecfg.btn.thickness")+":",I18n.format("gui.jntm.landminecfg.btn.thickness.end"),0.1,1,0.1,true,true));
         buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,60  ,20,"N/A"));
+        buttonList.add(this.FuseSlider = new GuiSlider(-1,guiLeft+10,guiTop+47,80,10,I18n.format("gui.jntm.landminecfg.btn.fuse")+":","tick",0,100,1,true,true));
 
     }
     @Override
@@ -81,6 +84,7 @@ public class LandMineConG extends GuiContainer {
         super.mouseReleased(mouseX, mouseY, state);
         if (coreNbt==null) return;
         coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
+        coreNbt.setDouble("Fuse",FuseSlider.getValue());
         if (container.LmNbt==null) return;
         CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt));
     }
@@ -97,9 +101,6 @@ public class LandMineConG extends GuiContainer {
         // 绘制主背景
         mc.getTextureManager().bindTexture(BACKGROUND);
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, 256, 256);
-
-
-        this.ThicknessSlider.drawButton(this.mc,mouseX,mouseY,partialTicks);
     }
     @Override
     protected void  drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
@@ -130,6 +131,7 @@ public class LandMineConG extends GuiContainer {
     }
     NBTTagCompound coreNbt;
     private void onPut() {
+        if (container.LandmineShot.getStack().getItem()!= ItemRegistryHandler.ItemLandmine) return;
         if (container.LmNbt==null){
             container.LmNbt=new NBTTagCompound();
             container.LmNbt.setTag("BlockEntityTag",new NBTTagCompound());
@@ -147,9 +149,19 @@ public class LandMineConG extends GuiContainer {
                 guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.forplayer")+":"+coreNbt.getBoolean("Tplayer");
             }
         }
+        if (coreNbt.hasKey("Fuse")){
+            FuseSlider.setValue(coreNbt.getDouble("Fuse"));
+            FuseSlider.updateSlider();
+        }
     }
 
-    public void exdrawString(int x, int y, float size,int color, String str){
+    @Override
+    public void onResize(Minecraft mcIn, int w, int h) {
+        super.onResize(mcIn, w, h);
+        onPut();
+    }
+
+    public void exdrawString(int x, int y, float size, int color, String str){
         GL11.glPushMatrix(); //Start new matrix
         GL11.glScalef(size,size,size); //scale it to 0.5 size on each side. Must be float e.g.: 2.0F
         this.fontRenderer.drawString(str, x, y, color); //fr - fontRenderer
