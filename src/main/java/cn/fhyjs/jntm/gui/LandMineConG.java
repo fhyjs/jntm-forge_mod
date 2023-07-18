@@ -71,7 +71,10 @@ public class LandMineConG extends GuiContainer {
     protected void actionPerformed(GuiButton parButton) throws IOException {
         switch (parButton.id){
             case 0:
-                CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
+                if (isPut)
+                    mouseReleased(0,0,114514);
+                else
+                    CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
                 break;
             case 1:
                 coreNbt.setBoolean("Tplayer",!coreNbt.getBoolean("Tplayer"));
@@ -92,9 +95,11 @@ public class LandMineConG extends GuiContainer {
         }
     }
 
+
     @Override
-    protected void mouseReleased(int mouseX, int mouseY, int state) {
-        super.mouseReleased(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {//114514: Save & Exit
+        if (state!=114514)
+            super.mouseReleased(mouseX, mouseY, state);
         if (coreNbt==null||!isPut) return;
         coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
         coreNbt.setDouble("Fuse",FuseSlider.getValue());
@@ -113,7 +118,21 @@ public class LandMineConG extends GuiContainer {
             return;
         }
         container.LmNbt.setTag("BlockEntityTag",coreNbt);
-        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt));
+
+        CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,(state!=114514?"setlandminedata ":"setlandminedataexit ")+ container.LmNbt));
+    }
+
+    @Override
+    public void handleKeyboardInput() throws IOException {
+        int i = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() + 256 : Keyboard.getEventKey();
+        if (mc.gameSettings.keyBindInventory.isActiveAndMatches(i)||i==1){
+            if (isPut)
+                mouseReleased(0,0,114514);
+            else
+                CommonProxy.INSTANCE.sendToServer(new JntmMessage(0));
+            return;
+        }
+        super.handleKeyboardInput();
     }
 
     boolean isPut,oisPut;

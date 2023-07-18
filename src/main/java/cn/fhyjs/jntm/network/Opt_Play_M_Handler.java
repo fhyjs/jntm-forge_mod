@@ -170,6 +170,19 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                     }
                     break;
                 }
+                case "setlandminedataexit":{
+                    if (!(ctx.getServerHandler().player.openContainer instanceof LandMineConC)) break;
+                    tmp1 =message.opt.split(" ");
+                    try {
+                        ((LandMineConC) ctx.getServerHandler().player.openContainer).stores.setActivityTab("default");
+                        ((LandMineConC) ctx.getServerHandler().player.openContainer).LandmineShot.getStack().setTagCompound(JsonToNBT.getTagFromJson(tmp1[1]));
+                        ctx.getServerHandler().player.closeContainer();
+                        ctx.getServerHandler().player.closeScreen();
+                    } catch (Throwable e) {
+                        Jntm.logger.warn(new RuntimeException(e));
+                    }
+                    break;
+                }
             }
         }
         if(ctx.side == Side.CLIENT) {
