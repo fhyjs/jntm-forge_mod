@@ -128,6 +128,7 @@ public class TELandmine extends TileEntity implements ITickable {
             compound.setIntArray("CamouflagePos",new int[]{CamouflagePos.getX(), CamouflagePos.getY(),CamouflagePos.getZ()});
         compound.setBoolean("Broadcast",Broadcast);
         compound.setBoolean("Explosion",Explosion);
+        compound.setFloat("Explosion_Strength",Explosion_Strength);
 
         return compound;
     }
@@ -157,6 +158,7 @@ public class TELandmine extends TileEntity implements ITickable {
             CamouflagePos=null;
         Broadcast=compound.getBoolean("Broadcast");
         Explosion=compound.getBoolean("Explosion");
+        Explosion_Strength=compound.getFloat("Explosion_Strength");
     }
 
     public void setThickness(double thickness) {

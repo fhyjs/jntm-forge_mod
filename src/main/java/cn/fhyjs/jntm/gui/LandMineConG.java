@@ -37,7 +37,7 @@ public class LandMineConG extends GuiContainer {
     private EntityPlayer player;
     ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
     private GuiSlider ThicknessSlider;
-    private GuiSlider FuseSlider;
+    private GuiSlider FuseSlider,ExplosionStrengthSlider;
     public LandMineConG(EntityPlayer entityPlayer, IInventory playerInventory, BlockPos blockPos, World world) {
         super(new LandMineConC(entityPlayer, playerInventory, blockPos, world));
         this.xSize = 256;
@@ -60,6 +60,8 @@ public class LandMineConG extends GuiContainer {
         buttonList.add(new GuiButton(1,guiLeft+10,guiTop+25,80  ,20,"N/A"));
         buttonList.add(this.FuseSlider = new GuiSlider(-1,guiLeft+10,guiTop+47,80,10,I18n.format("gui.jntm.landminecfg.btn.fuse")+":","tick",0,200,1,true,true));
         buttonList.add(new GuiButton(2,guiLeft+10,guiTop+60,80  ,20,"N/A"));
+        buttonList.add(this.ExplosionStrengthSlider = new GuiSlider(-1,guiLeft+10,guiTop+82,80,10,I18n.format("gui.jntm.landminecfg.btn.Explosionstrength")+":","",0,16,0,true,true));
+
 
     }
     @Override
@@ -90,10 +92,12 @@ public class LandMineConG extends GuiContainer {
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
         super.mouseReleased(mouseX, mouseY, state);
-        if (coreNbt==null) return;
+        if (coreNbt==null||!isPut) return;
         coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
         coreNbt.setDouble("Fuse",FuseSlider.getValue());
+        coreNbt.setFloat("Explosion_Strength", (float) ExplosionStrengthSlider.getValue());
         coreNbt.setBoolean("Explosion",false);
+        coreNbt.setBoolean("Broadcast",false);
         for (int i = 0; i < container.plugins.size(); i++) {
             ItemStack itemStack = container.plugins.get(i);
             if (itemStack.getItem()==ItemRegistryHandler.watcherUpgrade)
@@ -140,13 +144,22 @@ public class LandMineConG extends GuiContainer {
         }else isPut=true;
         for (GuiButton guiButton : buttonList) {
             if (guiButton.id==0) continue;
+            if (guiButton == ExplosionStrengthSlider) continue;
             guiButton.enabled=isPut;
         }
         if(oisPut!=isPut){
             oisPut=isPut;
             if (isPut) onPut();
+            if (!isPut) onPick();
         }
+        ExplosionStrengthSlider.enabled = (coreNbt!=null&&isPut&&coreNbt.hasKey("Explosion")&&coreNbt.getBoolean("Explosion"));
     }
+
+    private void onPick() {
+        container.plugins.clear();
+        initGui();
+    }
+
     NBTTagCompound coreNbt;
     private void onPut() {
         if (container.LandmineShot.getStack().getItem()!= ItemRegistryHandler.ItemLandmine) return;
@@ -182,7 +195,10 @@ public class LandMineConG extends GuiContainer {
                 guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.mode."+coreNbt.getBoolean("Mode"));
             }
         }
-
+        if (coreNbt.hasKey("Explosion_Strength")){
+            ExplosionStrengthSlider.setValue(coreNbt.getDouble("Explosion_Strength"));
+            ExplosionStrengthSlider.updateSlider();
+        }
     }
 
     @Override
@@ -196,6 +212,11 @@ public class LandMineConG extends GuiContainer {
         super.renderHoveredToolTip(x, y);
         if (x>=FuseSlider.x&&x<=FuseSlider.x+FuseSlider.width&&y>=FuseSlider.y&&y<=FuseSlider.y+FuseSlider.height&&FuseSlider.enabled)
             this.drawHoveringText(String.format("(~%.2fs)",FuseSlider.getValue()*0.05), x, (int) (y-FuseSlider.height*.5));
+        if (x>=ExplosionStrengthSlider.x&&x<=ExplosionStrengthSlider.x+ExplosionStrengthSlider.width&&y>=ExplosionStrengthSlider.y&&y<=ExplosionStrengthSlider.y+ExplosionStrengthSlider.height)
+            if (ExplosionStrengthSlider.enabled)
+                this.drawHoveringText(String.format("(~%.2f TNT)",ExplosionStrengthSlider.getValue()/4), x, (int) (y-ExplosionStrengthSlider.height*.5));
+            else if (isPut)
+                this.drawHoveringText(I18n.format("gui.jntm.landminecfg.ess.tooltip"), x, (int) (y-ExplosionStrengthSlider.height*.5));
     }
 
     public void exdrawString(int x, int y, float size, int color, String str){

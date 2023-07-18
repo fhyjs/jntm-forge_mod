@@ -96,6 +96,10 @@ public class LandMineConC extends Container {
         if (LandmineShot.getStack().getItem() == ItemRegistryHandler.ItemLandmine){
             if (LmNbt==null){
                 LmNbt=LandmineShot.getStack().getTagCompound();
+                if (LmNbt==null){
+                    LmNbt=new NBTTagCompound();
+                    LmNbt.setTag("BlockEntityTag",new NBTTagCompound());
+                }
             }
             NBTTagCompound coreNbt = LmNbt.getCompoundTag("BlockEntityTag");
             if (coreNbt.hasKey("Broadcast")&&coreNbt.getBoolean("Broadcast"))
