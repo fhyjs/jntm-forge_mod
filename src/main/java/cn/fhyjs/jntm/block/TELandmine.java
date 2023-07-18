@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.block;
 
 
+import cn.fhyjs.jntm.common.Ji_Exposion;
 import com.google.gson.Gson;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -30,7 +31,8 @@ import java.util.List;
 
 public class TELandmine extends TileEntity implements ITickable {
     public double Thickness=0.1;
-    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming,HasCPos,Broadcast;// Mode 1:按下时激发,0:松开时激发;HasCPos 1:有伪装,0:无伪装
+    public float Explosion_Strength;
+    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming,HasCPos,Broadcast,Explosion;// Mode 1:按下时激发,0:松开时激发;HasCPos 1:有伪装,0:无伪装
     public List<Class<? extends Entity>> Triggers = new ArrayList<>();
     public int Fuse,CFuse;
     public String model;
@@ -72,7 +74,9 @@ public class TELandmine extends TileEntity implements ITickable {
                         pos.getZ()
                 ));
             }
-
+            if (Explosion) {
+                Ji_Exposion.createExplosion(worldServer,null,pos.getX(),pos.getY(),pos.getZ(),Explosion_Strength,true);
+            }
             Booming=false;
         }
         markDirty();
@@ -123,6 +127,7 @@ public class TELandmine extends TileEntity implements ITickable {
         if (CamouflagePos!=null)
             compound.setIntArray("CamouflagePos",new int[]{CamouflagePos.getX(), CamouflagePos.getY(),CamouflagePos.getZ()});
         compound.setBoolean("Broadcast",Broadcast);
+        compound.setBoolean("Explosion",Explosion);
 
         return compound;
     }
@@ -151,6 +156,7 @@ public class TELandmine extends TileEntity implements ITickable {
         else
             CamouflagePos=null;
         Broadcast=compound.getBoolean("Broadcast");
+        Explosion=compound.getBoolean("Explosion");
     }
 
     public void setThickness(double thickness) {

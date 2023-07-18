@@ -93,12 +93,13 @@ public class LandMineConG extends GuiContainer {
         if (coreNbt==null) return;
         coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
         coreNbt.setDouble("Fuse",FuseSlider.getValue());
-        coreNbt.setBoolean("Broadcast",false);
+        coreNbt.setBoolean("Explosion",false);
         for (int i = 0; i < container.plugins.size(); i++) {
             ItemStack itemStack = container.plugins.get(i);
-            if (itemStack.getItem()==ItemRegistryHandler.watcherUpgrade){
+            if (itemStack.getItem()==ItemRegistryHandler.watcherUpgrade)
                 coreNbt.setBoolean("Broadcast",true);
-            }
+            if (itemStack.getItem()==ItemRegistryHandler.explosionUpgrade)
+                coreNbt.setBoolean("Explosion",true);
         }
         if (container.LmNbt==null) return;
         container.LmNbt.setTag("BlockEntityTag",coreNbt);
