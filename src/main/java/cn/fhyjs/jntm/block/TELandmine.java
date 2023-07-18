@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -14,10 +15,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -26,7 +30,7 @@ import java.util.List;
 
 public class TELandmine extends TileEntity implements ITickable {
     public double Thickness=0.1;
-    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming,HasCPos;// Mode 1:按下时激发,0:松开时激发;HasCPos 1:有伪装,0:无伪装
+    public boolean IsTriggered=false,TPlayer,CTriggered,Mode,Booming,HasCPos,Broadcast;// Mode 1:按下时激发,0:松开时激发;HasCPos 1:有伪装,0:无伪装
     public List<Class<? extends Entity>> Triggers = new ArrayList<>();
     public int Fuse,CFuse;
     public String model;
@@ -40,7 +44,7 @@ public class TELandmine extends TileEntity implements ITickable {
         //System.out.println(EntitiesOn);
         IsTriggered=false;
         for (Entity entity : EntitiesOn) {
-            if (TPlayer&&(entity.getClass()== EntityPlayerSP.class|| entity.getClass() == EntityPlayerMP.class)) {
+            if (TPlayer&&(entity.getClass() == EntityPlayerMP.class||entity.getClass()== EntityPlayerSP.class)) {
                 IsTriggered = true;
                 break;
             }
@@ -60,7 +64,15 @@ public class TELandmine extends TileEntity implements ITickable {
             CFuse--;
             worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,true, pos.getX()+0.5, pos.getY()+getThickness(), pos.getZ()+0.5, 1, 0, 0, 0d,0.02,0);
         }else {
-            System.out.println("boom!");
+            if (Broadcast) {
+                FMLCommonHandler.instance().getMinecraftServerInstance().commandManager.executeCommand(FMLCommonHandler.instance().getMinecraftServerInstance(),"say "+ I18n.translateToLocalFormatted("tip.jntm.landmine.broadcast",
+                        world.getBlockState(new BlockPos(pos.getX(),pos.getY(),pos.getZ())).getBlock().getLocalizedName(),
+                        pos.getX(),
+                        pos.getY(),
+                        pos.getZ()
+                ));
+            }
+
             Booming=false;
         }
         markDirty();
@@ -68,6 +80,7 @@ public class TELandmine extends TileEntity implements ITickable {
     public void checkbooms(){
         if (Booming) return;
         if (CTriggered!=IsTriggered){
+            world.playSound(null,getPos(), IsTriggered?SoundEvents.BLOCK_WOOD_PRESSPLATE_CLICK_ON:SoundEvents.BLOCK_WOOD_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS,.3f,.8f);
             if (CTriggered){ // 1 -> 0
                 if (!Mode){
                     CFuse=Fuse;
@@ -109,6 +122,7 @@ public class TELandmine extends TileEntity implements ITickable {
         compound.setBoolean("HasCP",HasCPos);
         if (CamouflagePos!=null)
             compound.setIntArray("CamouflagePos",new int[]{CamouflagePos.getX(), CamouflagePos.getY(),CamouflagePos.getZ()});
+        compound.setBoolean("Broadcast",Broadcast);
 
         return compound;
     }
@@ -136,6 +150,7 @@ public class TELandmine extends TileEntity implements ITickable {
             CamouflagePos=new BlockPos(ia[0],ia[1],ia[2]);
         else
             CamouflagePos=null;
+        Broadcast=compound.getBoolean("Broadcast");
     }
 
     public void setThickness(double thickness) {

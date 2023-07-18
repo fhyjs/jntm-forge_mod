@@ -5,10 +5,13 @@ import cn.fhyjs.jntm.block.TileEntityJiCrafting;
 import cn.fhyjs.jntm.item.LandminePlugins.LandminePB;
 import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import cn.fhyjs.jntm.utility.Ji_Crafting_Recipe;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemAir;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -17,16 +20,19 @@ import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LandMineConC extends Container {
     private final World world;
-    public EntityPlayer entityPlayer;
+    public final EntityPlayer entityPlayer;
     public Slot LandmineShot;
-    public InternalStores stores = new InternalStores("default");
-    public List<ItemStack> plugins;
+    public final InternalStores stores = new InternalStores("default");
+    public final List<ItemStack> plugins = new ArrayList<>();
     public final BlockPos pos;
     public LandMineConC(EntityPlayer entityPlayer, IInventory playerInventory, BlockPos blockPos, World world) {
         super();
@@ -36,6 +42,16 @@ public class LandMineConC extends Container {
         addPlayerSlots(playerInventory);
         this.addSlotToContainer(LandmineShot=new Slot(stores,0,103,111){
             @Override
+            public void onSlotChanged() {
+                super.onSlotChanged();
+                if (stores.getStackInSlot(0).getItem() != ItemRegistryHandler.ItemLandmine) {
+                    return;
+                }
+                clearplugin();
+                onPut();
+            }
+
+            @Override
             public boolean isItemValid(ItemStack stack) {
                 return stack.getItem()==ItemRegistryHandler.ItemLandmine;
             }
@@ -43,6 +59,11 @@ public class LandMineConC extends Container {
         for (int i=0;i<2;i++)
             for (int j = 0; j < 4; j++) {
                 Slot shot = new Slot(stores,this.inventorySlots.size()-36, 97+j*18, 15+i*18) {
+                    @SideOnly(Side.CLIENT)
+                    @Override
+                    public boolean isEnabled(){
+                        return Minecraft.getMinecraft().currentScreen instanceof LandMineConG && ((LandMineConG) Minecraft.getMinecraft().currentScreen).isPut;
+                    }
                     @Override
                     public boolean isItemValid(ItemStack stack) {
                         return stack.getItem() instanceof LandminePB;
@@ -56,10 +77,50 @@ public class LandMineConC extends Container {
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
         if (clickTypeIn.equals(ClickType.QUICK_MOVE)) return ItemStack.EMPTY;
         ItemStack itemStack = super.slotClick(slotId, dragType, clickTypeIn, player);
+
+        checkPlugins();
+        for (int i = 0; i < plugins.size(); i++) {
+            ItemStack stack = plugins.get(i);
+            if (stack.getItem()==itemStack.getItem()){
+                itemStack = this.slotClick(slotId, dragType, clickTypeIn, player);
+            }
+        }
         CheckLM();
+
         return itemStack;
     }
     public NBTTagCompound LmNbt;
+    public void onPut(){
+        //Jntm.unsafe.loadFence();
+        stores.setActivityTab("default");
+        if (LandmineShot.getStack().getItem() == ItemRegistryHandler.ItemLandmine){
+            if (LmNbt==null){
+                LmNbt=LandmineShot.getStack().getTagCompound();
+            }
+            NBTTagCompound coreNbt = LmNbt.getCompoundTag("BlockEntityTag");
+            if (coreNbt.hasKey("Broadcast")&&coreNbt.getBoolean("Broadcast")) {
+                addplugin(new ItemStack(ItemRegistryHandler.watcherUpgrade));
+            }
+        }
+        checkPlugins();
+    }
+    public void checkPlugins(){
+        plugins.clear();
+        for (int i = 37; i < 45; i++) {
+            ItemStack is = this.inventorySlots.get(i).getStack();
+            if (is.getItem() instanceof ItemAir) continue;
+            plugins.add(is);
+        }
+    }
+    public void addplugin(ItemStack is){
+        for (int i = 37; i < 45; i++) {
+            ItemStack iss = this.inventorySlots.get(i).getStack();
+            if (iss.getItem() instanceof ItemAir){
+                stores.getItemStacks().set(i-36,is);
+                return;
+            }
+        }
+    }
     private void CheckLM(){
         stores.setActivityTab("default");
         ItemStack landmine;
@@ -68,6 +129,12 @@ public class LandMineConC extends Container {
         }else {
             LmNbt = null;
         }
+    }
+    public boolean hasPlugin(Item item){
+        for (int i = 0; i < plugins.size(); i++) {
+            if (plugins.get(i).getItem()==item) return true;
+        }
+        return false;
     }
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
@@ -91,5 +158,11 @@ public class LandMineConC extends Container {
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
+    }
+
+    public void clearplugin() {
+        for (int i = 37; i < 45; i++) {
+            this.stores.getItemStacks().add(i-36,ItemStack.EMPTY);
+        }
     }
 }

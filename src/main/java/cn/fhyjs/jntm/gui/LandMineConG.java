@@ -18,6 +18,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemAir;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -92,7 +93,15 @@ public class LandMineConG extends GuiContainer {
         if (coreNbt==null) return;
         coreNbt.setDouble("Thickness",ThicknessSlider.getValue());
         coreNbt.setDouble("Fuse",FuseSlider.getValue());
+        coreNbt.setBoolean("Broadcast",false);
+        for (int i = 0; i < container.plugins.size(); i++) {
+            ItemStack itemStack = container.plugins.get(i);
+            if (itemStack.getItem()==ItemRegistryHandler.watcherUpgrade){
+                coreNbt.setBoolean("Broadcast",true);
+            }
+        }
         if (container.LmNbt==null) return;
+        container.LmNbt.setTag("BlockEntityTag",coreNbt);
         CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt));
     }
 
@@ -112,6 +121,7 @@ public class LandMineConG extends GuiContainer {
     @Override
     protected void  drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         exdrawString(12,2,1,0,I18n.format("gui.jntm.landminecfg.title"));
+        exdrawString(180,30,1,0,I18n.format("gui.jntm.landminecfg.plugin.tip"));
         if (container.LmNbt != null&&container.LmNbt.hasKey("display")) {
             NBTBase list;
             if((list = container.LmNbt.getCompoundTag("display").getTag("Lore"))!=null&&list instanceof NBTTagList) {
@@ -139,6 +149,9 @@ public class LandMineConG extends GuiContainer {
     NBTTagCompound coreNbt;
     private void onPut() {
         if (container.LandmineShot.getStack().getItem()!= ItemRegistryHandler.ItemLandmine) return;
+        container.clearplugin();
+        container.onPut();
+        //CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"clearlandminepulgin"));
         if (container.LmNbt==null){
             container.LmNbt=new NBTTagCompound();
             container.LmNbt.setTag("BlockEntityTag",new NBTTagCompound());
@@ -168,6 +181,7 @@ public class LandMineConG extends GuiContainer {
                 guiButton.displayString=I18n.format("gui.jntm.landminecfg.btn.mode."+coreNbt.getBoolean("Mode"));
             }
         }
+
     }
 
     @Override

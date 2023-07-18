@@ -125,3 +125,6 @@ gui.jntm.landminecfg.btn.forplayer=玩家触发
 gui.jntm.landminecfg.btn.fuse=爆炸延时
 gui.jntm.landminecfg.btn.mode.true=压发
 gui.jntm.landminecfg.btn.mode.false=松发
+gui.jntm.landminecfg.plugin.tip=升级插件
+item.jntm.landmine_watcher_upgrade.name=地雷升级:探测器
+tip.jntm.landmine.broadcast=方块[%s](%d,%d,%d)被触发了

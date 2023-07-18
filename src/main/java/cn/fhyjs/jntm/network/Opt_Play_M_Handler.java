@@ -21,6 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -154,6 +156,17 @@ public class Opt_Play_M_Handler implements IMessageHandler<Opt_Ply_Message, IMes
                         ((LandMineConC) ctx.getServerHandler().player.openContainer).LandmineShot.getStack().setTagCompound(JsonToNBT.getTagFromJson(tmp1[1]));
                     } catch (Throwable e) {
                         Jntm.logger.warn(new RuntimeException(e));
+                    }
+                    break;
+                }
+                case "clearlandminepulgin":{
+                    if (!(ctx.getServerHandler().player.openContainer instanceof LandMineConC)) break;
+                    try {
+                        ((LandMineConC) ctx.getServerHandler().player.openContainer).clearplugin();
+                    } catch (Throwable e) {
+                        StringWriter sw=new StringWriter();
+                        e.printStackTrace(new PrintWriter(sw));
+                        Jntm.logger.warn(sw);
                     }
                     break;
                 }

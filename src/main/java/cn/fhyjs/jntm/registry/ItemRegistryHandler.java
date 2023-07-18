@@ -3,6 +3,7 @@ package cn.fhyjs.jntm.registry;
 import cn.fhyjs.jntm.ItemGroup.jntmGroup;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.item.*;
+import cn.fhyjs.jntm.item.LandminePlugins.WatcherUpgrade;
 import cn.fhyjs.jntm.item.cards.CustomCard;
 import cn.fhyjs.jntm.item.weapon.Gohei;
 import net.katsstuff.teamnightclipse.danmakucore.danmaku.DanmakuTemplate;
@@ -55,6 +56,7 @@ public class ItemRegistryHandler {
     public  static final Ji_Armor JI_ARMOR_2 = new Ji_Armor(EntityEquipmentSlot.CHEST);
     public  static final Ji_Armor JI_ARMOR_3 = new Ji_Armor(EntityEquipmentSlot.LEGS);
     public  static final Ji_Armor JI_ARMOR_4 = new Ji_Armor(EntityEquipmentSlot.FEET);
+    public  static final WatcherUpgrade watcherUpgrade = new WatcherUpgrade();
     public  static Item Gouhei;
     public  static Item EXPLOSION_CARD;
     public  static Item Fire_CARD;
@@ -125,6 +127,7 @@ public class ItemRegistryHandler {
         registry.register(tickstop);
         registry.register(ItemLandmine);
         registry.register(ItemLandmineConf);
+        registry.register(watcherUpgrade);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -154,6 +157,7 @@ public class ItemRegistryHandler {
         }
         registryModel(tickstop);
         registryModel(ItemLandmine);
+        registryModel(watcherUpgrade);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
