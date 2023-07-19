@@ -10,6 +10,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonToggle;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -31,6 +32,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
+
+import static cn.fhyjs.jntm.Jntm.proxy;
 
 public class LandMineConG extends GuiContainer {
     private static final ResourceLocation BACKGROUND = new ResourceLocation(Jntm.MODID, "textures/gui/landminecondgui.png");
@@ -105,7 +108,10 @@ public class LandMineConG extends GuiContainer {
             if (itemStack.getItem()==ItemRegistryHandler.explosionUpgrade)
                 coreNbt.setBoolean("Explosion",true);
         }
-        if (container.LmNbt==null) return;
+        if (container.LmNbt==null) {
+            proxy.showToase(SystemToast.Type.TUTORIAL_HINT.name(),"mod.jntm.name","gui.jntm.landminecfg.error");
+            return;
+        }
         container.LmNbt.setTag("BlockEntityTag",coreNbt);
         CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,"setlandminedata "+ container.LmNbt));
     }

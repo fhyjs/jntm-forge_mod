@@ -131,3 +131,4 @@ item.jntm.landmine_explosion_upgrade.name=地雷升级:爆炸
 tip.jntm.landmine.broadcast=方块[%s](%d,%d,%d)被触发了
 gui.jntm.landminecfg.btn.Explosionstrength=爆炸强度
 gui.jntm.landminecfg.ess.tooltip=需要[地雷升级:爆炸]
+gui.jntm.landminecfg.error=错误!请再试一次

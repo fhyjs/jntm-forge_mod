@@ -70,7 +70,7 @@ public class TELandmine extends TileEntity implements ITickable {
                 FMLCommonHandler.instance().getMinecraftServerInstance().commandManager.executeCommand(FMLCommonHandler.instance().getMinecraftServerInstance(),"say "+ I18n.translateToLocalFormatted("tip.jntm.landmine.broadcast",
                         world.getBlockState(new BlockPos(pos.getX(),pos.getY(),pos.getZ())).getBlock().getLocalizedName(),
                         pos.getX(),
-                        pos.getY(),
+                        pos.getY(), 
                         pos.getZ()
                 ));
             }
