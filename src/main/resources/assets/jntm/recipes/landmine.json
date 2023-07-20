@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ZXZ",
+    "ZYZ",
+    "ZZZ"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:wooden_pressure_plate",
+      "data": 0
+    },
+    "Y": {
+      "item": "jntm:cxksegg",
+      "data": 0
+    },
+    "Z": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "jntm:landmine"
+  }
+}
