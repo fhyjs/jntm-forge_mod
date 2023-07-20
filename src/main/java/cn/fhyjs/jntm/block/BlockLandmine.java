@@ -2,12 +2,14 @@ package cn.fhyjs.jntm.block;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
+import cn.fhyjs.jntm.registry.ItemRegistryHandler;
 import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -31,6 +33,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import javax.annotation.Nullable;
 
+import java.util.List;
 import java.util.Random;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
@@ -52,6 +55,21 @@ public class BlockLandmine extends BlockTileEntity<TELandmine> {
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(NOTUSE, false));
     }
+
+    @Override
+    public void addInformation(ItemStack stack, @org.jetbrains.annotations.Nullable World world, List<String> tooltip, ITooltipFlag advanced) {
+        if (stack.getTagCompound()!=null&&stack.getTagCompound().hasKey("BlockEntityTag")){
+            NBTTagCompound tag = stack.getTagCompound().getCompoundTag("BlockEntityTag");
+            if (tag.hasKey("Explosion")&&tag.getBoolean("Explosion")) tooltip.add(I18n.translateToLocal("tooltip.landmine.boom")+":"+tag.getFloat("Explosion_Strength"));
+            if (tag.hasKey("Broadcast")&&tag.getBoolean("Broadcast")) tooltip.add(I18n.translateToLocal("tooltip.landmine.Broadcast"));
+            if (tag.hasKey("Thickness")) tooltip.add(I18n.translateToLocal("gui.jntm.landminecfg.btn.thickness")+":"+tag.getDouble("Thickness"));
+            if (tag.hasKey("HasCP")&&tag.getBoolean("HasCP")) tooltip.add(I18n.translateToLocal("item.jntm.landmine_camouflage_upgrade.name"));
+            if (tag.hasKey("Tplayer")&&tag.getBoolean("Tplayer")) tooltip.add(I18n.translateToLocal("gui.jntm.landminecfg.btn.forplayer"));
+            if (tag.hasKey("Fuse")) tooltip.add(I18n.translateToLocal("gui.jntm.landminecfg.btn.fuse")+":"+tag.getInteger("Fuse"));
+        }
+        super.addInformation(stack, world, tooltip, advanced);
+    }
+
     @Override
     protected BlockStateContainer createBlockState()
     {

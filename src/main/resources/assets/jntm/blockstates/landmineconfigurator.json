@@ -1,0 +1,7 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": [{"model":"jntm:landmineconfigurator"}],
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:landmineconfigurator"}]
+  }
+}

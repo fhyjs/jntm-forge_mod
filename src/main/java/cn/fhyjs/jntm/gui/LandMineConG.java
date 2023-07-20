@@ -106,12 +106,17 @@ public class LandMineConG extends GuiContainer {
         coreNbt.setFloat("Explosion_Strength", (float) ExplosionStrengthSlider.getValue());
         coreNbt.setBoolean("Explosion",false);
         coreNbt.setBoolean("Broadcast",false);
+        coreNbt.setBoolean("HasCP", false);
         for (int i = 0; i < container.plugins.size(); i++) {
             ItemStack itemStack = container.plugins.get(i);
             if (itemStack.getItem()==ItemRegistryHandler.watcherUpgrade)
                 coreNbt.setBoolean("Broadcast",true);
             if (itemStack.getItem()==ItemRegistryHandler.explosionUpgrade)
                 coreNbt.setBoolean("Explosion",true);
+            if (itemStack.getItem()==ItemRegistryHandler.camouflageUpgrade) {
+                coreNbt.setBoolean("HasCP", true);
+                coreNbt.setIntArray("CamouflagePos",itemStack.getTagCompound().getIntArray("pos"));
+            }
         }
         if (container.LmNbt==null) {
             proxy.showToase(SystemToast.Type.TUTORIAL_HINT.name(),"mod.jntm.name","gui.jntm.landminecfg.error");

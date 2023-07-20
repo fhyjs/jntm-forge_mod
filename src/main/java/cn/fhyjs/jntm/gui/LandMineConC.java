@@ -66,6 +66,8 @@ public class LandMineConC extends Container {
                     }
                     @Override
                     public boolean isItemValid(ItemStack stack) {
+                        if (stack.getItem()==ItemRegistryHandler.camouflageUpgrade)
+                            return stack.getTagCompound()!=null&&stack.getTagCompound().hasKey("pos");
                         return stack.getItem() instanceof LandminePB;
                     }
                 };
@@ -106,6 +108,14 @@ public class LandMineConC extends Container {
                 addplugin(new ItemStack(ItemRegistryHandler.watcherUpgrade));
             if (coreNbt.hasKey("Explosion")&&coreNbt.getBoolean("Explosion"))
                 addplugin(new ItemStack(ItemRegistryHandler.explosionUpgrade));
+            if (coreNbt.hasKey("HasCP")&&coreNbt.getBoolean("HasCP")) {
+                ItemStack is = new ItemStack(ItemRegistryHandler.camouflageUpgrade);
+                is.setTagCompound(new NBTTagCompound());
+                if (is.getTagCompound() != null) {
+                    is.getTagCompound().setIntArray("pos",coreNbt.getIntArray("CamouflagePos"));
+                }
+                addplugin(is);
+            }
         }
         checkPlugins();
     }
