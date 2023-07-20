@@ -1,6 +1,5 @@
 import net.minecraftforge.gradle.common.task.SignJar
-import groovy.json.JsonSlurper
-import groovy.json.JsonOutput
+import org.gradle.internal.jvm.Jvm
 buildscript {
     repositories {
         maven { url = 'https://libraries.minecraft.net/' }
@@ -11,13 +10,28 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
     }
 }
-
-
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = "https://plugins.gradle.org/m2/" }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.4"
+    }
+}
+plugins {
+    id 'java'
+    id 'application'
+    id 'c'
+}
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-
+apply plugin: 'c'
 version = '11.45.14'
 group = 'cn.fhyjs.jntm' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'jntm'
@@ -111,21 +125,12 @@ dependencies {
     compile fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
     //implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.12.2:3.0.31')
 }
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven { url = "https://plugins.gradle.org/m2/" }
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.4"
-    }
-}
+
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 apply plugin: "com.github.johnrengelman.shadow"
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
@@ -195,5 +200,32 @@ publishing {
     }
 }
 sourceSets {
-    main { output.resourcesDir = output.classesDir }
+    main {
+        output.resourcesDir = output.classesDir
+    }
 }
+/*
+// 配置 JNI 任务
+task buildNative(type: Exec, description: 'Build JNI native library') {
+        // 修改以下命令为适合你的本地编译器的命令
+        // 适用于 Windows 的示例命令
+        // 适用于类 Unix 或 Linux 的示例命令
+        System.sta 'gcc', '-shared', '-fPIC', '-I' + System.getProperty("java.home") + '/../include', '-I' + System.getProperty("java.home") + '/../include/linux', 'src/main/jni/native.cpp', '-o', 'src/main/resources/libnativeL.so'
+        // 捕获并打印 GCC 的输出到 Gradle 控制台
+        standardOutput = new ByteArrayOutputStream()
+        ext.outputListener = { p -> standardOutput.write(p.getBytes()) }
+        println(standardOutput.toString())
+
+        commandLine 'gcc', '-shared', '-I' + System.getProperty("java.home") + '/../include', '-I' + System.getProperty("java.home") + '/../include/win32', 'src/main/jni/native.cpp', '-o', 'src/main/resources/libnativeW.dll'
+        standardOutput = new ByteArrayOutputStream()
+        ext.outputListener = { p -> standardOutput.write(p.getBytes()) }
+
+        println(standardOutput.toString())
+}
+
+// 配置 buildJava 任务依赖于 buildNative 任务
+compileJava.dependsOn buildNative
+
+// 配置 buildNative 任务在编译前运行
+classes.dependsOn buildNative
+*/
