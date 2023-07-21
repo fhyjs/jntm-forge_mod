@@ -23,7 +23,7 @@ public class ConfigCore {
     public static boolean isenabledRP = true;
     private static boolean orp;
     public static boolean isenabledUP=false;
-    public static boolean isenabledTelnet=false;
+    public static boolean isenabledTelnet=true;
 
     public static void loadConfig(FMLPreInitializationEvent event) {
         // net.minecraftforge.common.config.Configurationのインスタンスを生成する。
