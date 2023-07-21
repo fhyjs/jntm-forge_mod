@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class TelnetServer implements Runnable{
     public TelnetServer(){
@@ -55,18 +56,20 @@ public class TelnetServer implements Runnable{
             setUncaughtExceptionHandler(this::error);
             try {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
-                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(),StandardCharsets.UTF_8));
 
                 out.println("hello");
 
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-
-                    out.println(exec(inputLine));
-
+                    //inputLine = new String(inputLine.getBytes(StandardCharsets.US_ASCII),StandardCharsets.UTF_8);
                     if ("exit".equalsIgnoreCase(inputLine)) {
                         break;
                     }
+
+                    out.println(exec(inputLine));
+
+
                 }
             } catch (IOException e) {
                 System.err.println("processing <" + clientSocket.getInetAddress().getHostAddress() + "> with an error:" + e.getMessage());
