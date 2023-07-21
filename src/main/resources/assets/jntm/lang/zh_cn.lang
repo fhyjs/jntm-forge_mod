@@ -138,3 +138,4 @@ item.landmine_camouflage_upgrade.tip.choosed=选择了
 tooltip.landmine.boom=爆炸
 tooltip.landmine.Broadcast=探测
 config.jntm.prop.isenabledTelnet=远程访问
+telnet.reg=注册

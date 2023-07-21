@@ -2,10 +2,12 @@ package cn.fhyjs.jntm.network;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.client.ClientProxy;
+import cn.fhyjs.jntm.command.TelnetExecCmd;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.item.SpellCardBase;
 import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
+import cn.fhyjs.jntm.tickratechanger.TickrateCommand;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
@@ -107,6 +109,7 @@ public class EventHandler {
         TickrateContainer.TC.key(event);
     }
     public List<BlockPos> poses = new ArrayList<>();
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void highlightGhostBlock(DrawBlockHighlightEvent event) {

@@ -1,10 +1,13 @@
 package cn.fhyjs.jntm.utility;
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.common.CommonProxy;
+import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.jetbrains.annotations.Nullable;
@@ -13,8 +16,12 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TelnetServer implements Runnable{
+    public static Map<String,ClientHandler> funcs = new HashMap<>();
     public TelnetServer(){
         super();
     }
@@ -38,18 +45,39 @@ public class TelnetServer implements Runnable{
         }
     }
 
-    private static class ClientHandler extends Thread implements ICommandSender{
+    public static class ClientHandler extends Thread implements ICommandSender{
         private Socket clientSocket;
 
         public ClientHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
         }
-        int code;
+        public void send(String str){
+            if (out!=null)
+                out.println(str);
+        }
         public String exec(String cmd){
+            if (cmd.startsWith(".")){
+                interal(cmd.substring(1));
+                return "";
+            }
+            if (cmd.startsWith("#")){
+                regFunc(cmd.substring(1));
+                return "";
+            }
             getServer().commandManager.executeCommand(this,cmd);
             //out.println(code);
             return "";
         }
+
+        private void regFunc(String name) {
+            getServer().commandManager.executeCommand(this,String.format("say %s %s", I18n.translateToLocal("telnet.reg"),name));
+            TelnetServer.funcs.put(name,this);
+        }
+
+        private void interal(String cmd) {
+            CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,cmd));
+        }
+
         PrintWriter out = null;
         BufferedReader in = null;
         @Override
@@ -68,7 +96,7 @@ public class TelnetServer implements Runnable{
                         break;
                     }
 
-                    out.println(exec(inputLine));
+                    exec(inputLine);
 
 
                 }
@@ -79,6 +107,10 @@ public class TelnetServer implements Runnable{
             close();
         }
         private void close(){
+            for (String s : new ArrayList<>(TelnetServer.funcs.keySet())) {
+                if (TelnetServer.funcs.get(s)==this)
+                    TelnetServer.funcs.remove(s);
+            }
             try {
                 if (out != null) {
                     out.close();

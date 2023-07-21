@@ -1,11 +1,13 @@
 package cn.fhyjs.jntm;
 
+import cn.fhyjs.jntm.command.TelnetExecCmd;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
 import cn.fhyjs.jntm.item.Danmaku_Gun;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
 import cn.fhyjs.jntm.registry.SmeltingRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateChanger;
+import cn.fhyjs.jntm.tickratechanger.TickrateCommand;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.Dlf;
 import cn.fhyjs.jntm.utility.unzip;
@@ -19,6 +21,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -102,7 +105,11 @@ public class Jntm {
             logger.error("服务器运行鸡你太美可能不稳定!\r\nRunning this mod(Jntm) may NOT Stable!");
         }
     }
-
+    @Mod.EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new TelnetExecCmd());
+        event.registerServerCommand(new TickrateCommand());
+    }
     @SubscribeEvent
     public void ClientConnectedToServer(FMLNetworkEvent.ClientConnectedToServerEvent event){
         IS_LOCAL_SERVER = event.isLocal();
