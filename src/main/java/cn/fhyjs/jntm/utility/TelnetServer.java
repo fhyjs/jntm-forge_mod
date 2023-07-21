@@ -58,7 +58,7 @@ public class TelnetServer implements Runnable{
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(),StandardCharsets.UTF_8));
 
-                out.println("hello");
+                out.println("hello from The Project Jntm mod!");
 
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
