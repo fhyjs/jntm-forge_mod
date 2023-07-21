@@ -137,3 +137,4 @@ item.landmine_camouflage_upgrade.tip.choose=对准方块使用该物品以选择
 item.landmine_camouflage_upgrade.tip.choosed=选择了
 tooltip.landmine.boom=爆炸
 tooltip.landmine.Broadcast=探测
+config.jntm.prop.isenabledTelnet=远程访问

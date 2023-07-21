@@ -23,6 +23,7 @@ public class ConfigCore {
     public static boolean isenabledRP = true;
     private static boolean orp;
     public static boolean isenabledUP=false;
+    public static boolean isenabledTelnet=false;
 
     public static void loadConfig(FMLPreInitializationEvent event) {
         // net.minecraftforge.common.config.Configurationのインスタンスを生成する。
@@ -59,6 +60,7 @@ public class ConfigCore {
         isenabledTrayIcon = cfg.getBoolean("enabledTrayIcon", client, isenabledTrayIcon, "任务栏图标会显示当该值为true时.", "config.jntm.prop.enabledGenerator");
         isenabledRP = cfg.getBoolean("isenabledRP", client, isenabledRP, "资源包开关.", "config.jntm.prop.isenabledRP");
         isenabledUP = cfg.getBoolean("isenabledUP", general, isenabledUP, "允许客户端上传文件开关.", "config.jntm.prop.isenabledUP");
+        isenabledTelnet = cfg.getBoolean("isenabledTelnet", general, isenabledTelnet, "启动远程访问mod.(重启生效)", "config.jntm.prop.isenabledTelnet");
         // Difficulty
         //amountSmelting = (byte) cfg.getInt("amountSmelting", DIFFICULTY, amountSmelting, 1, Byte.MAX_VALUE, "Smelting amount of Aluminium Ingot from Aluminium Ore.", "config.jntm.prop.amountSmelting");
         // 設定内容をコンフィグファイルに保存する。

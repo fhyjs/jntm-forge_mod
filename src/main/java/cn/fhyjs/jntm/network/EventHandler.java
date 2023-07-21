@@ -9,10 +9,27 @@ import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -26,8 +43,12 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL14;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class EventHandler {
@@ -84,5 +105,32 @@ public class EventHandler {
     @SubscribeEvent
     public void key(InputEvent.KeyInputEvent event) {
         TickrateContainer.TC.key(event);
+    }
+    public List<BlockPos> poses = new ArrayList<>();
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void highlightGhostBlock(DrawBlockHighlightEvent event) {
+        Entity entity = event.getPlayer();
+        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) event.getPartialTicks();
+        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) event.getPartialTicks();
+        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) event.getPartialTicks();
+
+        IBlockState stateToRender = Block.getBlockFromName("minecraft:glass").getDefaultState();
+
+        BlockRendererDispatcher renderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
+
+        for (BlockPos toPlace : new ArrayList<>(poses)) { //positions is just a Collection filled with BlockPos
+            GlStateManager.pushMatrix();
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
+            GlStateManager.translate(-d0, -d1, -d2);
+            GlStateManager.translate(toPlace.getX(), toPlace.getY(), toPlace.getZ());
+            GlStateManager.rotate(-90, 0f, 1f, 0f);
+            GL14.glBlendColor(1f, 1f, 1f, 0.6f);
+            renderer.renderBlockBrightness(stateToRender, 1f);
+            GL14.glBlendColor(1f, 1f, 1f, 1f);
+            GlStateManager.disableBlend();
+            GlStateManager.popMatrix();
+        }
     }
 }

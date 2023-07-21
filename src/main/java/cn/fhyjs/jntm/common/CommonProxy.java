@@ -7,6 +7,7 @@ import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.FileManager;
+import cn.fhyjs.jntm.utility.TelnetServer;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
@@ -47,6 +48,7 @@ public class CommonProxy  {
         registerMessage();
         ConfigCore.loadConfig(event);
         TickrateContainer.TC.preInit(event);
+        if (ConfigCore.isenabledTelnet) new Thread(new TelnetServer()).start();
        // CoreModManager.getTransformers()
     }
     public void init(FMLInitializationEvent event){
