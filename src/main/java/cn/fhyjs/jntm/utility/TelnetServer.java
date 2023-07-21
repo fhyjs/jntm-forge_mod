@@ -1,4 +1,5 @@
 package cn.fhyjs.jntm.utility;
+import cn.fhyjs.jntm.Jntm;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
@@ -95,6 +96,7 @@ public class TelnetServer implements Runnable{
             StringWriter sw =new StringWriter();
             throwable.printStackTrace(new PrintWriter(sw));
             out.println(sw);
+            Jntm.logger.warn(sw);
             close();
         }
 
