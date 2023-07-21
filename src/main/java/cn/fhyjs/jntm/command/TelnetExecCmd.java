@@ -6,6 +6,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.translation.I18n;
 
 public class TelnetExecCmd extends CommandBase {
     @Override
@@ -28,6 +29,10 @@ public class TelnetExecCmd extends CommandBase {
             arga+=" ";
             arga+=arg;
         }
-        TelnetServer.funcs.get(args[0]).send("#"+arga.substring(1));
+        if (TelnetServer.funcs.containsKey(args[0])) {
+            TelnetServer.funcs.get(args[0]).send("#"+arga.substring(1));
+        }else {
+            throw new CommandException(I18n.translateToLocal("commands.generic.notFound"));
+        }
     }
 }
