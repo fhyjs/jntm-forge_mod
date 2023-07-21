@@ -32,7 +32,7 @@ public class TelnetExecCmd extends CommandBase {
         if (TelnetServer.funcs.containsKey(args[0])) {
             TelnetServer.funcs.get(args[0]).send("#"+arga.substring(1));
         }else {
-            throw new CommandException(I18n.translateToLocal("commands.generic.notFound"));
+            throw new CommandException(I18n.translateToLocal("commands.generic.unreg")+args[0]);
         }
     }
 }

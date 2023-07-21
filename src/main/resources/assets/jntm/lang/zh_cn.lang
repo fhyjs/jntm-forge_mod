@@ -139,3 +139,4 @@ tooltip.landmine.boom=爆炸
 tooltip.landmine.Broadcast=探测
 config.jntm.prop.isenabledTelnet=远程访问
 telnet.reg=注册
+commands.generic.unreg=未注册的命令:

@@ -3,3 +3,4 @@ tip.configured=configured
 tile.jntm.Landmine.name=Landmine
 tip.jntm.landmine.broadcast=Block[%s](%d,%d,%d) was triggered.
 telnet.reg=Register
+commands.generic.unreg=unregister command:
