@@ -5,6 +5,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 
@@ -26,6 +27,9 @@ public class TelnetExecCmd extends CommandBase {
         }
         String arga = "";
         for (String arg : args) {
+            if (arg.equals("$X")) arg= String.valueOf(sender.getPosition().getX());
+            if (arg.equals("$Y")) arg= String.valueOf(sender.getPosition().getY());
+            if (arg.equals("$Z")) arg= String.valueOf(sender.getPosition().getZ());
             arga+=" ";
             arga+=arg;
         }
@@ -34,5 +38,10 @@ public class TelnetExecCmd extends CommandBase {
         }else {
             throw new CommandException(I18n.translateToLocal("commands.generic.unreg")+args[0]);
         }
+    }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 3;
     }
 }

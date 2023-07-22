@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.utility;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
+import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -28,7 +29,7 @@ public class TelnetServer implements Runnable{
 
     @Override
     public void run() {
-        int portNumber = 23; // Telnet默认端口号为23
+        int portNumber = ConfigCore.telnetPort; // Telnet默认端口号为23
 
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
             System.out.println("Telnet was started on port" + portNumber);
@@ -75,6 +76,8 @@ public class TelnetServer implements Runnable{
         }
 
         private void interal(String cmd) {
+            if (cmd.equals("refresh"))
+                Jntm.proxy.refreshAllBlocks();
             CommonProxy.INSTANCE.sendToServer(new Opt_Ply_Message(null,cmd));
         }
 

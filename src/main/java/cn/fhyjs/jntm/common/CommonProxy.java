@@ -68,7 +68,9 @@ public class CommonProxy  {
     public  IAnimationStateMachine loadAsm(ResourceLocation loc, ImmutableMap<String, ITimeValue> parameters){
         return null;
     };
-
+    // 刷新所有方块的方法
+    public void refreshAllBlocks() {
+    }
     public void openurl(String s){}
     public static Map<BlockPos,Thread> jimplayers= new HashMap<>();
     public String getCB() throws IOException, UnsupportedFlavorException {return null;}

@@ -24,6 +24,7 @@ public class ConfigCore {
     private static boolean orp;
     public static boolean isenabledUP=false;
     public static boolean isenabledTelnet=true;
+    public static int telnetPort=23;
 
     public static void loadConfig(FMLPreInitializationEvent event) {
         // net.minecraftforge.common.config.Configurationのインスタンスを生成する。
@@ -61,6 +62,7 @@ public class ConfigCore {
         isenabledRP = cfg.getBoolean("isenabledRP", client, isenabledRP, "资源包开关.", "config.jntm.prop.isenabledRP");
         isenabledUP = cfg.getBoolean("isenabledUP", general, isenabledUP, "允许客户端上传文件开关.", "config.jntm.prop.isenabledUP");
         isenabledTelnet = cfg.getBoolean("isenabledTelnet", general, isenabledTelnet, "启动远程访问mod.(重启生效)", "config.jntm.prop.isenabledTelnet");
+        telnetPort = cfg.getInt("telnetPort", general, telnetPort,0,25565, "远程访问端口", "远程访问端口");
         // Difficulty
         //amountSmelting = (byte) cfg.getInt("amountSmelting", DIFFICULTY, amountSmelting, 1, Byte.MAX_VALUE, "Smelting amount of Aluminium Ingot from Aluminium Ore.", "config.jntm.prop.amountSmelting");
         // 設定内容をコンフィグファイルに保存する。

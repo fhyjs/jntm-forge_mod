@@ -48,9 +48,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
 
 
 public class ClientProxy extends CommonProxy {
@@ -212,6 +214,14 @@ public class ClientProxy extends CommonProxy {
     @Override
     public IAnimationStateMachine loadAsm(final ResourceLocation loc, final ImmutableMap<String, ITimeValue> parameters) {
         return ModelLoaderRegistry.loadASM(loc, parameters);
+    }
+    @Override
+    // 刷新所有方块的方法
+    public void refreshAllBlocks() {
+        if (Minecraft.getMinecraft().world != null) {
+            // 刷新渲染器，触发重新渲染所有方块
+            Minecraft.getMinecraft().renderGlobal.updateChunks(0);
+        }
     }
     public String getrunpath(String sp){
         String MP;
