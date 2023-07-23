@@ -6,10 +6,12 @@ import cn.fhyjs.jntm.network.Opt_Ply_Message;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.IThreadListener;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,7 +28,6 @@ public class TelnetServer implements Runnable{
     public TelnetServer(){
         super();
     }
-
     @Override
     public void run() {
         int portNumber = ConfigCore.telnetPort; // Telnet默认端口号为23
@@ -65,11 +66,18 @@ public class TelnetServer implements Runnable{
                 regFunc(cmd.substring(1));
                 return "";
             }
-            getServer().commandManager.executeCommand(this,cmd);
+            //getServer().commandManager.executeCommand(this,cmd);
+            executeCommandInMainThread(this,cmd);
             //out.println(code);
             return "";
         }
-
+        // 这个方法用于在多线程中执行指令
+        IThreadListener mainThread = FMLCommonHandler.instance().getMinecraftServerInstance();
+        public void executeCommandInMainThread(final ICommandSender sender, final String rawCommand) {
+            // 示例：在另一个线程中执行指令
+            Runnable task = () -> getServer().commandManager.executeCommand(sender,rawCommand);
+            mainThread.addScheduledTask(task);
+        }
         private void regFunc(String name) {
             getServer().commandManager.executeCommand(this,String.format("say %s %s", I18n.translateToLocal("telnet.reg"),name));
             TelnetServer.funcs.put(name,this);

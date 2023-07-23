@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm;
 
+import cn.fhyjs.jntm.command.IdSetblockCmd;
 import cn.fhyjs.jntm.command.TelnetExecCmd;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
@@ -108,6 +109,7 @@ public class Jntm {
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new TelnetExecCmd());
+        event.registerServerCommand(new IdSetblockCmd());
         event.registerServerCommand(new TickrateCommand());
     }
     @SubscribeEvent
