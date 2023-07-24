@@ -3,11 +3,8 @@ package cn.fhyjs.jntm.command;
 import cn.fhyjs.jntm.utility.TelnetServer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
-import net.minecraft.command.CommandFill;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.server.CommandSetBlock;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 

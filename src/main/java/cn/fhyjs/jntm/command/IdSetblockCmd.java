@@ -1,9 +1,12 @@
 package cn.fhyjs.jntm.command;
 
-import cn.fhyjs.jntm.utility.TelnetServer;
+import cn.fhyjs.jntm.utility.WorldUitls;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.command.*;
+import net.minecraft.command.CommandException;
+import net.minecraft.command.CommandResultStats;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.command.server.CommandSetBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -13,8 +16,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 public class IdSetblockCmd extends CommandSetBlock {
@@ -78,7 +79,7 @@ public class IdSetblockCmd extends CommandSetBlock {
 
                             if (block == Blocks.AIR)
                             {
-                                notifyCommandListener(sender, this, "commands.setblock.success", new Object[0]);
+                               // notifyCommandListener(sender, this, "commands.setblock.success", new Object[0]);
                                 return;
                             }
                         }
@@ -95,7 +96,7 @@ public class IdSetblockCmd extends CommandSetBlock {
                         ((IInventory)tileentity1).clear();
                     }
 
-                    if (!world.setBlockState(blockpos, iblockstate, 2))
+                    if (!WorldUitls.setBlockState(world,blockpos, iblockstate, 2,false))
                     {
                         throw new CommandException("commands.setblock.noChange", new Object[0]);
                     }
@@ -114,9 +115,9 @@ public class IdSetblockCmd extends CommandSetBlock {
                             }
                         }
 
-                        world.notifyNeighborsRespectDebug(blockpos, iblockstate.getBlock(), false);
+                        //world.notifyNeighborsRespectDebug(blockpos, iblockstate.getBlock(), false);
                         sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, 1);
-                        notifyCommandListener(sender, this, "commands.setblock.success", new Object[0]);
+                       // notifyCommandListener(sender, this, "commands.setblock.success", new Object[0]);
                     }
                 }
             }

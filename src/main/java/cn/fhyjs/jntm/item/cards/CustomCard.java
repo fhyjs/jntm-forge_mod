@@ -12,8 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-import java.util.Collections;
-
 public abstract class CustomCard extends CanShotBase {
     public CustomCard(String name, CreativeTabs tab) {
         super(name, tab);

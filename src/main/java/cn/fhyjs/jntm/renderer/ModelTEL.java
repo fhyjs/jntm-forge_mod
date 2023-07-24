@@ -1,21 +1,8 @@
 package cn.fhyjs.jntm.renderer;
 
-import cn.fhyjs.jntm.block.TELandmine;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.world.IBlockAccess;
-import org.lwjgl.opengl.GL11;
-
-import java.util.List;
 
 public class ModelTEL extends ModelBase {
     public ModelRenderer renderer;
