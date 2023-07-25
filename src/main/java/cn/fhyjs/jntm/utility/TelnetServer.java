@@ -160,6 +160,10 @@ public class TelnetServer implements Runnable{
 
         @Override
         public void sendMessage(ITextComponent component) {
+            if (!(component instanceof TextComponentTranslation)){
+                out.println(component.getUnformattedText());
+                return;
+            }
             ICommandSender.super.sendMessage(component);
             StringBuilder s = new StringBuilder();
             for (Object formatArg : ((TextComponentTranslation) component).getFormatArgs()) {

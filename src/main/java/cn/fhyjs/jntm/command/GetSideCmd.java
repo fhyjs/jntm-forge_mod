@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.command;
 
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandShowSeed;
 import net.minecraft.command.ICommandSender;
@@ -7,7 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class GetSideCmd extends CommandShowSeed {
+public class GetSideCmd extends CommandBase {
     @Override
     public String getName() {
         return "side";
@@ -20,5 +21,10 @@ public class GetSideCmd extends CommandShowSeed {
     public String getUsage(ICommandSender sender)
     {
         return "usage: /side";
+    }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 2;
     }
 }
