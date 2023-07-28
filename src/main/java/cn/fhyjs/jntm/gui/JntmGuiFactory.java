@@ -4,11 +4,13 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.config.ConfigCore;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.config.GuiConfig;
 
+import java.io.IOException;
 import java.util.Set;
 
 public class JntmGuiFactory implements IModGuiFactory {
@@ -21,7 +23,7 @@ public class JntmGuiFactory implements IModGuiFactory {
     }
     @Override
     public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return new  ConfigGuiScreen(parentScreen);
+        return new  ConfigGuiScreen(parentScreen,(new ConfigElement(ConfigCore.cfg.getCategory(ConfigCore.root))));
     }
     private static final Set<RuntimeOptionCategoryElement> fmlCategories = ImmutableSet.of(new RuntimeOptionCategoryElement("HELP", "FML"));
     @Override
@@ -30,11 +32,9 @@ public class JntmGuiFactory implements IModGuiFactory {
     }
     public static class ConfigGuiScreen extends GuiConfig
     {
-
-        public ConfigGuiScreen(GuiScreen parent)
+        public ConfigGuiScreen(GuiScreen parent,ConfigElement ce)
         {
-            super(parent, (new ConfigElement(ConfigCore.cfg.getCategory(ConfigCore.root))).getChildElements(), Jntm.MODID, false, false, Jntm.MODID);
+            super(parent, ce.getChildElements(), Jntm.MODID, false, false, Jntm.MODID);
         }
     }
-
 }

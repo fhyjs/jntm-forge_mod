@@ -98,7 +98,14 @@ public class EventHandler {
         TickrateContainer.TC.key(event);
     }
     public List<BlockPos> poses = new ArrayList<>();
-
+    @SubscribeEvent
+    public void onConfigGuiClosed(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.getModID().equals(Jntm.MODID)) {
+            System.out.println(event.getConfigID());
+            // 例如重新加载配置或执行其他相关的处理
+            // ...
+        }
+    }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void highlightGhostBlock(DrawBlockHighlightEvent event) {

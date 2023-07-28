@@ -41,6 +41,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID == GUIs.LandmineConf.getId()) {
             return new LandMineConC(player,player.inventory, new BlockPos(x,y,z),world);
         }
+        if (ID == GUIs.CheckMMDR.getId()) {
+            return new Jvav_C();
+        }
         return null;
     }
 
@@ -85,6 +88,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID == GUIs.LandmineConf.getId()) {
             return new LandMineConG(player,player.inventory, new BlockPos(x,y,z),world);
         }
+        if (ID == GUIs.CheckMMDR.getId()) {
+            return new CheckMDR();
+        }
         return null;
     }
 
@@ -105,7 +111,8 @@ public class JntmGuiHandler implements IGuiHandler {
         RSMPlayer(16),
         Ji_Crafting(17),
         Th_JNTM(18),
-        LandmineConf(19);
+        LandmineConf(19),
+        CheckMMDR(20);
 
 
         private final int id;

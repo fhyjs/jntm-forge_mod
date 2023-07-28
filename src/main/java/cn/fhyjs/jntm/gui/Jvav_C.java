@@ -16,6 +16,11 @@ public class Jvav_C extends Container {
         this.player = player;
         //JOptionPane.showMessageDialog(null,"4");
     }
+
+    public Jvav_C() {
+
+    }
+
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return open;
