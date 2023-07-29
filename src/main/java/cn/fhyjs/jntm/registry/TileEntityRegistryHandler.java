@@ -10,5 +10,6 @@ public class TileEntityRegistryHandler {
         GameRegistry.registerTileEntity(CXKIMAGE.getTileEntityClass(), CXKIMAGE.getRegistryName());
         GameRegistry.registerTileEntity(JI_CRAFTING_TABLE.getTileEntityClass(), JI_CRAFTING_TABLE.getRegistryName());
         GameRegistry.registerTileEntity(blockLandmine.getTileEntityClass(), blockLandmine.getRegistryName());
+        GameRegistry.registerTileEntity(blockPmxModel.getTileEntityClass(), blockPmxModel.getRegistryName());
     }
 }

@@ -1,9 +1,7 @@
 package cn.fhyjs.jntm.registry;
 
 
-import cn.fhyjs.jntm.block.TEJimPlayer;
-import cn.fhyjs.jntm.block.TELandmine;
-import cn.fhyjs.jntm.block.TileEntityCxkImage;
+import cn.fhyjs.jntm.block.*;
 import cn.fhyjs.jntm.entity.*;
 import cn.fhyjs.jntm.renderer.*;
 import net.minecraft.client.Minecraft;
@@ -30,5 +28,6 @@ public class RenderRegistryHandler {
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ListeningAnimatedTESR<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TELandmine.class, new BLRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TEPmxModel.class, new KAIMyEntityTESR<>("reimu"));
     }
 }

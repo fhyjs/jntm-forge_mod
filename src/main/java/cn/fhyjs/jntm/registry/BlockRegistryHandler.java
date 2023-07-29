@@ -16,6 +16,7 @@ public class BlockRegistryHandler {
     public static final Ji_Crafting_Table JI_CRAFTING_TABLE = new Ji_Crafting_Table();
     public static final BlockLandmine blockLandmine = new BlockLandmine();
     public static final BlockLandmineConfigurator blockLandmineConfigurator = new BlockLandmineConfigurator();
+    public static final BlockPmxModel blockPmxModel = new BlockPmxModel();
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -26,5 +27,6 @@ public class BlockRegistryHandler {
         registry.register(JI_CRAFTING_TABLE);
         registry.register(blockLandmine);
         registry.register(blockLandmineConfigurator);
+        registry.register(blockPmxModel);
     }
 }

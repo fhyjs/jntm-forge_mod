@@ -64,5 +64,6 @@ public class JEIModPlugin implements IModPlugin {
         registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JCTCategory.JI_CRAFTING);
         registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JCTCategory.JI_CRAFTING);
         registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JCTCategory.JI_CRAFTING);
+
     }
 }

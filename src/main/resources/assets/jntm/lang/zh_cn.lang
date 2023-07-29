@@ -140,3 +140,7 @@ tooltip.landmine.Broadcast=探测
 config.jntm.prop.isenabledTelnet=远程访问
 telnet.reg=注册
 commands.generic.unreg=未注册的命令:
+gui.jntm.plugin.not=未安装%s
+gui.jntm.plugin.future.not=功能不可用
+btn.install=安装
+gui.tip.restart=需要重启

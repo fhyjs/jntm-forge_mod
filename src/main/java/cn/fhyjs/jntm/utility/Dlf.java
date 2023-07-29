@@ -27,7 +27,7 @@ public class Dlf {
             new Thread( pbt ).start(); //开启线程，刷新进度条
             byte[] buf = new byte[1024];
             int size = 0;
-            FileOutputStream fos = new FileOutputStream( new File( p ) ); //
+            FileOutputStream fos = new FileOutputStream(p); //
 
             while ((size = is.read( buf )) > -1) { //循环读取
                 fos.write( buf, 0, size );

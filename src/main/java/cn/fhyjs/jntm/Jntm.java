@@ -2,6 +2,7 @@ package cn.fhyjs.jntm;
 
 import cn.fhyjs.jntm.command.GetSideCmd;
 import cn.fhyjs.jntm.command.IdSetblockCmd;
+import cn.fhyjs.jntm.command.OpenGuiCmd;
 import cn.fhyjs.jntm.command.TelnetExecCmd;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
@@ -116,6 +117,7 @@ public class Jntm {
         event.registerServerCommand(new IdSetblockCmd());
         event.registerServerCommand(new TickrateCommand());
         event.registerServerCommand(new GetSideCmd());
+        event.registerServerCommand(new OpenGuiCmd());
     }
     @SubscribeEvent
     public void ClientConnectedToServer(FMLNetworkEvent.ClientConnectedToServerEvent event){
