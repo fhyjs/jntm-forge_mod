@@ -9,6 +9,7 @@ import net.minecraft.block.BlockBarrier;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -78,7 +79,9 @@ public class KAIMyEntityTESR<T extends TileEntity> extends TileEntitySpecialRend
                     ya=0;
                     break;
             }
+            GlStateManager.enableNormalize();
             model.model.Render(x+.5, y+.1, z+.5, ya);
+            GlStateManager.disableNormalize();
         }else {
             renderHT(te,new TextComponentString(String.format("No model named '%s'!!",((IhasMMDRender) te).getModelName())),x,y,z);
         }

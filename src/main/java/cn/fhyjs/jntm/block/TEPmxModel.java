@@ -10,10 +10,17 @@ import net.minecraft.util.ITickable;
 import org.jetbrains.annotations.NotNull;
 
 public class TEPmxModel extends TileEntity implements ITickable, IhasMMDRender {
-    public String modelName,idleActionName,redStoneActionName,currentActionName;
+    public String modelName,idleActionName,redStoneActionName,currentActionName="idle";
     @Override
     public void update() {
-
+        TileEntity te = world.getTileEntity(pos);
+        if(te instanceof TEPmxModel){
+            if (world.isBlockPowered(pos)) {
+                this.currentActionName=redStoneActionName;
+            }else {
+                this.currentActionName=idleActionName;
+            }
+        }
     }
 
     @Override

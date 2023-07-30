@@ -4,6 +4,8 @@ import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.gui.CheckMDR;
 import cn.fhyjs.jntm.gui.JntmGuiFactory;
 import cn.fhyjs.jntm.network.JntmGuiHandler;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRedstoneLight;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
@@ -102,6 +105,12 @@ public class BlockPmxModel extends BlockTileEntity<TEPmxModel> {
             playerIn.openGui(Jntm.INSTANCE, JntmGuiHandler.GUIs.SetPmxModel.getId(), worldIn,pos.getX(),pos.getY(),pos.getZ());
         }
         return true;
+    }
+
+
+    @Override
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
+        super.onNeighborChange(world, pos, neighbor);
     }
 
     @Override
