@@ -51,6 +51,7 @@ public class ItemRegistryHandler {
     public static Jiguangpao JGP = new Jiguangpao();
     public  static final Ji_Games JI_GAMES = new Ji_Games();
     public static final ItemBlock CXKIMAGE = new ItemBlock(BlockRegistryHandler.CXKIMAGE);
+    public static final ItemBlock PmxModelBlockItem = new ItemBlock(BlockRegistryHandler.blockPmxModel);
     public static final ItemBlock IJCT = new ItemBlock(BlockRegistryHandler.JI_CRAFTING_TABLE);
     public static final InsJvav INS_JVAV=new InsJvav();
     public static final Danmaku_Gun DANMAKU_GUN = new Danmaku_Gun();
@@ -68,6 +69,7 @@ public class ItemRegistryHandler {
     @SubscribeEvent
     public static void onRegistry(RegistryEvent.Register<Item> event){
         JimplayerBlock.setRegistryName(Objects.requireNonNull(JimplayerBlock.getBlock().getRegistryName()));
+        PmxModelBlockItem.setRegistryName(Objects.requireNonNull(PmxModelBlockItem.getBlock().getRegistryName()));
         ItemLandmine.setRegistryName(Objects.requireNonNull(ItemLandmine.getBlock().getRegistryName()));
         ItemLandmineConf.setRegistryName(Objects.requireNonNull(ItemLandmineConf.getBlock().getRegistryName()));
         IJCT.setRegistryName(Objects.requireNonNull(IJCT.getBlock().getRegistryName()));
@@ -134,6 +136,7 @@ public class ItemRegistryHandler {
         registry.register(watcherUpgrade);
         registry.register(explosionUpgrade);
         registry.register(camouflageUpgrade);
+        registry.register(PmxModelBlockItem);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -167,6 +170,7 @@ public class ItemRegistryHandler {
         registryModel(watcherUpgrade);
         registryModel(explosionUpgrade);
         registryModel(camouflageUpgrade);
+        registryModel(PmxModelBlockItem);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

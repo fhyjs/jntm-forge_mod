@@ -1,6 +1,8 @@
 package cn.fhyjs.jntm.network;
 
+import cn.fhyjs.jntm.block.TEPmxModel;
 import cn.fhyjs.jntm.gui.*;
+import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -42,6 +44,9 @@ public class JntmGuiHandler implements IGuiHandler {
             return new LandMineConC(player,player.inventory, new BlockPos(x,y,z),world);
         }
         if (ID == GUIs.CheckMMDR.getId()) {
+            return new Jvav_C();
+        }
+        if (ID == GUIs.SetPmxModel.getId()) {
             return new Jvav_C();
         }
         return null;
@@ -91,6 +96,9 @@ public class JntmGuiHandler implements IGuiHandler {
         if (ID == GUIs.CheckMMDR.getId()) {
             return new CheckMDR();
         }
+        if (ID == GUIs.SetPmxModel.getId()) {
+            return new SetPmxModel((TEPmxModel) world.getTileEntity(new BlockPos(x,y,z)));
+        }
         return null;
     }
 
@@ -112,7 +120,8 @@ public class JntmGuiHandler implements IGuiHandler {
         Ji_Crafting(17),
         Th_JNTM(18),
         LandmineConf(19),
-        CheckMMDR(20);
+        CheckMMDR(20),
+        SetPmxModel(21);
 
 
         private final int id;

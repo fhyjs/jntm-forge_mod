@@ -28,6 +28,6 @@ public class RenderRegistryHandler {
         ItemRegistryHandler.CXKIMAGE.setTileEntityItemStackRenderer(new CIIRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ListeningAnimatedTESR<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TELandmine.class, new BLRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEPmxModel.class, new KAIMyEntityTESR<>("reimu"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TEPmxModel.class, new KAIMyEntityTESR<>());
     }
 }

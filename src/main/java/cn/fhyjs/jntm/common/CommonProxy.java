@@ -82,6 +82,8 @@ public class CommonProxy  {
         INSTANCE.registerMessage(SCINMessageHandler.class, SCINMessage.class, 1, Side.SERVER);
         INSTANCE.registerMessage(Opt_Play_M_Handler.class, Opt_Ply_Message.class, 2, Side.CLIENT);
         INSTANCE.registerMessage(Opt_Play_M_Handler.class, Opt_Ply_Message.class, 2, Side.SERVER);
+        INSTANCE.registerMessage(TESyncPackageHandel.class, PacketUpdateTileNBT.class, 3, Side.CLIENT);
+        INSTANCE.registerMessage(TESyncPackageHandel.class, PacketUpdateTileNBT.class, 3, Side.SERVER);
     }
     public void OpenFE(String e) throws IOException {}
     public void showToase(String type,String i18n,String i18nt){

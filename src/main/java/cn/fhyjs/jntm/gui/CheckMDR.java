@@ -80,6 +80,12 @@ public class CheckMDR extends GuiContainer {
     }
 
     public static boolean isInstallMMDR(){
+        try {
+            Class<?> c = Class.forName("com.kAIS.KAIMyEntity.KAIMyEntity");
+            c.getField("isRenderPlayer");
+        } catch (ClassNotFoundException | NoSuchFieldException e) {
+            return false;
+        }
         return Loader.isModLoaded("kaimyentity");
     }
     public void exdrawString(int x, int y, float size,int color, String str){

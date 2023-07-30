@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": [{"model":"jntm:blockpmxmodel"}],
+    "inventory": [{ "transform": "forge:default-block" ,"model":"jntm:blockpmxmodel"}],
+    "facing=east": [{"model":"jntm:blockpmxmodel"}],
+    "facing=south": [{"model":"jntm:blockpmxmodel"}],
+    "facing=west": [{"model":"jntm:blockpmxmodel"}],
+    "facing=north": [{"model":"jntm:blockpmxmodel"}],
+    "facing=up": [{"model":"jntm:blockpmxmodel"}],
+    "facing=down": [{"model":"jntm:blockpmxmodel"}]
+  }
+}
