@@ -2,30 +2,25 @@ package cn.fhyjs.jntm.renderer;
 
 import cn.fhyjs.jntm.gui.CheckMDR;
 import cn.fhyjs.jntm.interfaces.IhasMMDRender;
+import com.kAIS.KAIMyEntity.NativeFunc;
 import com.kAIS.KAIMyEntity.renderer.MMDAnimManager;
 import com.kAIS.KAIMyEntity.renderer.MMDModelManager;
-import net.minecraft.block.BlockBanner;
-import net.minecraft.block.BlockBarrier;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.common.util.EnumHelper;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL14;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class KAIMyEntityTESR<T extends TileEntity> extends TileEntitySpecialRenderer<T>
 {
     private Map<TileEntity,String> oldmN = new HashMap<>();
+    private Map<TileEntity,String> oldaN = new HashMap<>();
     @Override
     public void render(T te, double x, double y, double z, float partialTicks, int destroyStage,  float alpha)
     {
@@ -59,7 +54,7 @@ public class KAIMyEntityTESR<T extends TileEntity> extends TileEntitySpecialRend
         if (model != null)
         {
             if (((IhasMMDRender) te).getActionName()!=null)
-                AnimStateChangeOnce(model, ((IhasMMDRender) te).getActionName());
+                AnimStateChangeOnce(te,model, ((IhasMMDRender) te).getActionName());
             model.unuseTime = 0;
             int ya;
             switch (getWorld().getBlockState(te.getPos()).getValue(BlockDirectional.FACING).getOpposite()) {
@@ -96,12 +91,30 @@ public class KAIMyEntityTESR<T extends TileEntity> extends TileEntitySpecialRend
         }
     }
     String oldan;
-    void AnimStateChangeOnce(MMDModelManager.Model model, String animName)
+    void AnimStateChangeOnce(TileEntity te,MMDModelManager.Model model, String animName)
     {
-        if (!Objects.equals(oldan, animName))
-        {
-            oldan=animName;
+        if (!oldaN.containsKey(te)) oldaN.put(te,"");
+        if (!oldaN.get(te).equals(animName)){
+            oldaN.put(te,animName);
+            model.model.ResetPhysics();
             model.model.ChangeAnim(MMDAnimManager.GetAnimModel(model.model, animName), 0);
+            model.model.ResetPhysics();
+            new Thread(new resetMP(model)).start();
+        }
+    }
+    static class resetMP implements Runnable {
+        final MMDModelManager.Model model ;
+        public resetMP(MMDModelManager.Model model){
+            this.model=model;
+        }
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(100);
+                model.model.ResetPhysics();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
