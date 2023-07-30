@@ -99,22 +99,6 @@ public class KAIMyEntityTESR<T extends TileEntity> extends TileEntitySpecialRend
             model.model.ResetPhysics();
             model.model.ChangeAnim(MMDAnimManager.GetAnimModel(model.model, animName), 0);
             model.model.ResetPhysics();
-            new Thread(new resetMP(model)).start();
-        }
-    }
-    static class resetMP implements Runnable {
-        final MMDModelManager.Model model ;
-        public resetMP(MMDModelManager.Model model){
-            this.model=model;
-        }
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(100);
-                model.model.ResetPhysics();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 }
