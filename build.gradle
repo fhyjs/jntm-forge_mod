@@ -125,6 +125,7 @@ dependencies {
     implementation "net.lingala.zip4j:zip4j:2.11.2"
     compile fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
     compile("li.cil.oc:OpenComputers:${oc_version}:api")
+    //compile fg.deobf(fileTree("fglibs"))
     //compile "li.cil.oc:OpenComputers:MC1.12.2-1.7.5.221:api"
     //compile "li.cil.oc:OpenComputers:MC1.12.2-1.7.5.221"
     //implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.12.2:3.0.31')
