@@ -1,0 +1,24 @@
+{
+	"pack_name": "{maid_pack.jntm_pack.name}",
+	"model_list": [
+		{
+			"model_id": "jntm_pack:jntm_modle1",
+			"animation": [
+				"touhou_little_maid:animation/maid/default/head/default.js",
+				"touhou_little_maid:animation/maid/default/head/beg.js",
+				"touhou_little_maid:animation/maid/default/head/music_shake.js",
+				"touhou_little_maid:animation/maid/default/head/blink.js",
+				"touhou_little_maid:animation/maid/default/arm/default.js",
+				"touhou_little_maid:animation/maid/default/arm/swing.js",
+				"touhou_little_maid:animation/maid/default/leg/default.js",
+				"touhou_little_maid:animation/maid/default/sit/skirt_rotation.js",
+				"touhou_little_maid:animation/maid/default/sit/default.js"
+			],
+			"description": ["{model.jntm_pack.jntm_modle1.desc}"]
+		}
+	],
+	"version": "11.4.5",
+	"author": ["fhyjs"],
+	"date": "2023-08-05",
+	"icon": "jntm_pack:textures/maid_icon.png"
+}

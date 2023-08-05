@@ -7,23 +7,29 @@ import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.item.SpellCardBase;
 import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
+import com.github.tartaricacid.touhoulittlemaid.client.event.BakeModelEvent;
+import com.github.tartaricacid.touhoulittlemaid.client.resources.CustomResourcesLoader;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ScreenShotHelper;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -34,6 +40,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
@@ -59,6 +66,20 @@ public class EventHandler {
             played = true;
             ClientProxy.TIl.displayMessage(I18n.format("mod.jntm.name"), I18n.format("jntm.tips.mcsf"), TrayIcon.MessageType.INFO);//弹出一个info级别消息框
 
+        }
+    }
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void onKeyInput(InputEvent.KeyInputEvent event){
+        if (Keyboard.isKeyDown(Keyboard.KEY_F3)&&Keyboard.isKeyDown(Keyboard.KEY_Q)){
+            if (Loader.isModLoaded("touhou_little_maid"))
+                Minecraft.getMinecraft().player.sendMessage(new TextComponentString(I18n.format("debug.tip.f3_z")));
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_F3)&&Keyboard.isKeyDown(Keyboard.KEY_Z)) {
+            if (Loader.isModLoaded("touhou_little_maid")){
+                CustomResourcesLoader.reloadResources();
+                Minecraft.getMinecraft().player.sendMessage(new TextComponentString("§e"+I18n.format("debug.prefix")+"§fTLM"+I18n.format("debug.reload_resourcepacks.message")));
+            }
         }
     }
     @SubscribeEvent

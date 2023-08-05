@@ -294,7 +294,6 @@ commands.spreadplayers.info.players=(小黑子间的平均距离在迭代 %2$s �
 commands.spreadplayers.info.teams=(队伍间的平均距离在迭代 %2$s 次后为 %1$s 个方坤)
 commands.spreadplayers.spreading.players=已将 %1$s 个小黑子扩散至离(%3$s，%4$s) %2$s 个方坤远的地方 (至少相隔 %5$s 个方坤)
 commands.spreadplayers.spreading.teams=已将 %1$s 个队伍扩散至离(%3$s，%4$s%) 2$s 个方坤远的地方 (至少相隔 %5$s 个方坤)
- 
 commands.spreadplayers.success.players=成功地将 %s 个小黑子在 (%s，%s) 周围扩散
 commands.spreadplayers.success.teams=成功地将 %s 个队伍在 (%s，%s) 周围扩散
 commands.spreadplayers.usage=/spreadplayers <x> <z> <扩散距离> <最远距离> <分组 true|false> <小黑子 ...>

@@ -5,3 +5,4 @@ tip.jntm.landmine.broadcast=Block[%s](%d,%d,%d) was triggered.
 telnet.reg=Register
 commands.generic.unreg=unregister command:
 gui.jntm.plugin.not=not install %s
+debug.tip.f3_z=F3 + Z = Reload Touhou Little Mod Model

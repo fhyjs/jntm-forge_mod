@@ -8,12 +8,15 @@ import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiOverlayDebug;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.client.resources.FileResourcePack;
+import net.minecraft.client.resources.FolderResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -28,6 +31,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.FMLFileResourcePack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -47,6 +51,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,6 +134,16 @@ public class ClientProxy extends CommonProxy {
         } catch (Exception e) {
             Jntm.logger.error(new RuntimeException(e));
         }
+
+        List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
+        try {
+            defaultResourcePacks.add(new FolderResourcePack(new File(Jntm.class.getClassLoader().getResource("assets/jntm_pack-11.1.4").toURI())));
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        //defaultResourcePacks.add(new FMLFolderResourcePack());
+        ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
+        FMLClientHandler.instance().refreshResources();
     }
     public static Jntm_RP JRP = new Jntm_RP();
     @SideOnly(Side.CLIENT)
