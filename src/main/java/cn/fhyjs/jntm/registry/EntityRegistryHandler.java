@@ -63,5 +63,12 @@ public class EntityRegistryHandler {
                 .tracker(80, 3, false)
                 .build()
         );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityRope.class)
+                .id(new ResourceLocation(Jntm.MODID, "rope"), 116)
+                .name("rope")
+                .tracker(80, 3, false)
+                .build()
+        );
     }
 }
