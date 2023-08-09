@@ -62,6 +62,7 @@ public class ItemRegistryHandler {
     public  static final WatcherUpgrade watcherUpgrade = new WatcherUpgrade();
     public  static final ExplosionUpgrade explosionUpgrade = new ExplosionUpgrade();
     public  static final CamouflageUpgrade camouflageUpgrade = new CamouflageUpgrade();
+    public  static final ItemRope itemRope = new ItemRope();
     public  static Item Gouhei;
     public  static Item EXPLOSION_CARD;
     public  static Item Fire_CARD;
@@ -137,6 +138,7 @@ public class ItemRegistryHandler {
         registry.register(explosionUpgrade);
         registry.register(camouflageUpgrade);
         registry.register(PmxModelBlockItem);
+        registry.register(itemRope);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -171,6 +173,7 @@ public class ItemRegistryHandler {
         registryModel(explosionUpgrade);
         registryModel(camouflageUpgrade);
         registryModel(PmxModelBlockItem);
+        registryModel(itemRope);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
