@@ -30,6 +30,6 @@ public class RenderRegistryHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TEJimPlayer.class, new ListeningAnimatedTESR<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TELandmine.class, new BLRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TEPmxModel.class, new KAIMyEntityTESR<>());
-        RenderingRegistry.registerEntityRenderingHandler(EntityRope.class,new RenderSnowball<>(Minecraft.getMinecraft().getRenderManager(), Items.LEAD,Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRope.class,new RenderRope<>(Minecraft.getMinecraft().getRenderManager(), Items.LEAD,Minecraft.getMinecraft().getRenderItem()));
     }
 }

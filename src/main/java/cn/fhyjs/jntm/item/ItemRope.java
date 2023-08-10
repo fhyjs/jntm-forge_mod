@@ -8,6 +8,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityEgg;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -28,6 +29,7 @@ public class ItemRope extends ItemEgg {
         this.setMaxStackSize(64);
         this.setCreativeTab(jntm_Group);
     }
+
     @Override
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         // TODO Auto-generated method stub
@@ -38,14 +40,14 @@ public class ItemRope extends ItemEgg {
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack item = player.getHeldItem(hand);
         // 播放雪球被抛出去的声音,这个会在后面的章节中详细解释
-        world.playSound(null, player.posX, player.posY, player.posZ, SoundEventRegistryHandler.ji, SoundCategory.PLAYERS, 1F, 1);
+        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_FIREWORK_LAUNCH, SoundCategory.PLAYERS, 1F, 1);
         // world.isRemote 用于判断是服务端还是客户端，这里我们要做的逻辑显然应该只在服务端执行
         // 这个字段的细节在第七章有详细阐述。
         if (!world.isRemote) {
             //生成雪球实体——关于实体的内容在第八章会详细解释，我们现在丢雪球就好了
             EntityRope rope = new EntityRope(world,player);
             rope.setPosition(player.posX,player.posY+player.getEyeHeight(),player.posZ);
-            rope.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            rope.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 0.2F);
             world.spawnEntity(rope);
         }
         // 互动成功，返回EnumActionResult.SUCCESS，item 是互动结束以后的 item

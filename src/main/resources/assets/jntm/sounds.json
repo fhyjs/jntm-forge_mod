@@ -1,4 +1,11 @@
 {
+  "prerope": {
+    "category": "player",
+    "subtitle": "sound.jntm.prerope.name",
+    "sounds": [
+      "jntm:music/prerope"
+    ]
+  },
   "xianga": {
     "category": "player",
     "subtitle": "sound.jntmxianga.name",

@@ -152,3 +152,6 @@ gui.action.idle.name=闲置动作名称
 debug.tip.f3_z=F3 + Z = 重载车万女仆模型
 item.jntm.rope.name=绳子
 tooltip.rope.n1=将生物绳之以法.
+sound.jntm.prerope.name=绳之以法
+tooltip.rope.fail=无法绳之以法.
+tooltip.rope.succ=绳之以法了%s

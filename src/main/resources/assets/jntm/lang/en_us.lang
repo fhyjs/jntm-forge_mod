@@ -8,3 +8,5 @@ gui.jntm.plugin.not=not install %s
 debug.tip.f3_z=F3 + Z = Reload Touhou Little Mod Model
 item.jntm.rope.name=Rope
 tooltip.rope.n1=Catch entity.
+tooltip.rope.fail=can not rope this entity.
+tooltip.rope.succ=roped %s.
