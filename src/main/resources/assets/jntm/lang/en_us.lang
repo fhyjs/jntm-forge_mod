@@ -10,3 +10,4 @@ item.jntm.rope.name=Rope
 tooltip.rope.n1=Catch entity.
 tooltip.rope.fail=can not rope this entity.
 tooltip.rope.succ=roped %s.
+tooltip.rope.empty=<Empty>

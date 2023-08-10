@@ -2,20 +2,19 @@ package cn.fhyjs.jntm.item;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.entity.EntityRope;
-import cn.fhyjs.jntm.entity.kundan_st;
-import cn.fhyjs.jntm.registry.SoundEventRegistryHandler;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
 
@@ -34,6 +33,17 @@ public class ItemRope extends ItemEgg {
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         // TODO Auto-generated method stub
         tooltip.add(I18n.format("tooltip.rope.n1"));
+        if (!(stack.getTagCompound()!=null&&stack.getTagCompound().hasKey("data")&&stack.getTagCompound().hasKey("entity"))){
+            tooltip.add(I18n.format("tooltip.rope.empty"));
+        }else {
+            try {
+                Entity entity = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(stack.getTagCompound().getString("entity"))).newInstance(player);
+                entity.readFromNBT(stack.getTagCompound().getCompoundTag("data"));
+                tooltip.add(String.format("<%s>(+NBT)", entity.getDisplayName().setStyle(new Style().setColor(TextFormatting.YELLOW)).getFormattedText()));
+            }catch (NullPointerException e){
+                stack.setTagCompound(null);
+            }
+        }
         super.addInformation(stack, player, tooltip, advanced);
     }
     @Override
@@ -48,11 +58,14 @@ public class ItemRope extends ItemEgg {
             EntityRope rope = new EntityRope(world,player);
             rope.setPosition(player.posX,player.posY+player.getEyeHeight(),player.posZ);
             rope.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 0.2F);
+            if (item.getTagCompound() != null) {
+                rope.readEntityFromNBT(item.getTagCompound());
+            }
             world.spawnEntity(rope);
         }
         // 互动成功，返回EnumActionResult.SUCCESS，item 是互动结束以后的 item
         // 因为这是个可以无限丢的雪球，所以这里数量没有减去 1。减去 1 的话丢出去就会少一个。
-        item.shrink(1); // 数量 - 1
+        player.setHeldItem(hand,new ItemStack(item.getItem(),item.getCount()-1));
         // 自然地，减去 2 的话丢出去就会少两个。
         return new ActionResult<>(EnumActionResult.SUCCESS, item);
     }
