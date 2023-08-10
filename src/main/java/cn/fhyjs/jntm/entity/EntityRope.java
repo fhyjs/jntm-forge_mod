@@ -49,7 +49,7 @@ public class EntityRope extends EntityThrowable {
             if (entityTag != null && entityName != null) {
                 if (result.typeOfHit.equals(RayTraceResult.Type.ENTITY)&&result.entityHit.equals(thrower)) return;
                 if (result.typeOfHit.equals(RayTraceResult.Type.ENTITY)){
-                    ObfuscationReflectionHelper.setPrivateValue(RayTraceResult.class,result,new BlockPos(result.entityHit.posX));
+                    ObfuscationReflectionHelper.setPrivateValue(RayTraceResult.class,result,new BlockPos(result.entityHit.posX,result.entityHit.posY, result.entityHit.posZ),"field_178783_e");
                 }
                 Entity entity = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entityName)).newInstance(world);
                 entity.readFromNBT(entityTag);
