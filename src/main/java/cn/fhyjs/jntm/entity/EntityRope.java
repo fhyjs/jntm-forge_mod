@@ -25,6 +25,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -34,7 +35,7 @@ public class EntityRope extends EntityThrowable {
     public Entity thrower;
     public NBTTagCompound entityTag;
     public String entityName;
-    public EntityRope(World worldIn) {
+    private EntityRope(World worldIn) {
         super(worldIn);
         this.setSize(0.5F, 0.5F); // 设置实体大小
         this.setNoGravity(true);
@@ -45,6 +46,10 @@ public class EntityRope extends EntityThrowable {
     }
     @Override
     protected void onImpact(RayTraceResult result) {
+        if (thrower==null) {
+            this.setDead();
+            return;
+        }
         try {
             if (entityTag != null && entityName != null) {
                 if (result.typeOfHit.equals(RayTraceResult.Type.ENTITY)&&result.entityHit.equals(thrower)) return;
@@ -106,6 +111,9 @@ public class EntityRope extends EntityThrowable {
                         ((EntityPlayer) thrower).sendStatusMessage(new TextComponentTranslation("tooltip.rope.fail").setStyle(new Style().setColor(TextFormatting.RED)), true);
                     }
                 }
+                EntityItem eif = new EntityItem(world, posX, posY, posZ, new ItemStack(ItemRegistryHandler.itemRope));
+                eif.setPosition(thrower.posX,thrower.posY,thrower.posZ);
+                world.spawnEntity(eif);
             }
         }catch (Throwable e){
             e.printStackTrace();
@@ -163,6 +171,10 @@ public class EntityRope extends EntityThrowable {
     @Override
     public void onUpdate() {
         super.onUpdate();
+        if (thrower==null) {
+            this.setDead();
+            return;
+        }
         int liveTime=getAliveTime();
         liveTime++;
         if (liveTime>100){
@@ -174,6 +186,16 @@ public class EntityRope extends EntityThrowable {
                 if (thrower instanceof EntityPlayer){
                     ((EntityPlayer) thrower).sendStatusMessage(new TextComponentTranslation("tooltip.rope.fail").setStyle(new Style().setColor(TextFormatting.RED)),true);
                 }
+                ItemStack is = new ItemStack(ItemRegistryHandler.itemRope);
+                if(entityTag!=null) {
+                    NBTTagCompound tag = new NBTTagCompound();
+                    tag.setTag("data", entityTag);
+                    tag.setString("entity", entityName);
+                    is.setTagCompound(tag);
+                }
+                EntityItem eif = new EntityItem(world, posX, posY, posZ, is);
+                eif.setPosition(thrower.posX,thrower.posY,thrower.posZ);
+                world.spawnEntity(eif);
             }
         }
         setAliveTime(liveTime);

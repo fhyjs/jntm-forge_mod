@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -60,7 +61,9 @@ public class CommonProxy  {
     }
     public void postInit(FMLPostInitializationEvent event){
         DispenserBehaviorRegistryHandler.run();
-
+        if (Loader.isModLoaded("touhou_little_maid")){
+            cn.fhyjs.jntm.compat.tlm.TlmRegistry.run();
+        }
     }
     public void openhelpGui(GuiScreen e){}
 
