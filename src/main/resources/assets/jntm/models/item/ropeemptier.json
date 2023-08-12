@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "jntm:items/ropeemptier",
+		"particle": "jntm:items/ropeemptier"
+	},
+	"elements": [
+		{
+			"from": [1, 1, 8],
+			"to": [15, 15, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"east": {"uv": [4, 0, 4.25, 4], "texture": "#0"},
+				"south": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"west": {"uv": [4, 4, 4.25, 8], "texture": "#0"},
+				"up": {"uv": [8.25, 0.25, 4.25, 0], "texture": "#0"},
+				"down": {"uv": [8.25, 0.25, 4.25, 0.5], "texture": "#0"}
+			}
+		}
+	]
+}
