@@ -32,6 +32,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class EntityRope extends EntityThrowable {
     private static final DataParameter<Integer> aliveTime = EntityDataManager.createKey(EntityRope.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> throwerID = EntityDataManager.createKey(EntityRope.class, DataSerializers.VARINT);
     public Entity thrower;
     public NBTTagCompound entityTag;
     public String entityName;
@@ -124,6 +125,7 @@ public class EntityRope extends EntityThrowable {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(aliveTime, 0);
+        this.dataManager.register(throwerID, 0);
     }
 
     public int getAliveTime() {
@@ -166,38 +168,39 @@ public class EntityRope extends EntityThrowable {
             entityTag=compound.getCompoundTag("data");
         if (compound.hasKey("entity"))
             entityName=compound.getString("entity");
+
     }
 
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (thrower==null) {
-            this.setDead();
-            return;
-        }
-        int liveTime=getAliveTime();
-        liveTime++;
-        if (liveTime>100){
-            setDead();
-            if (world instanceof WorldServer){
-                WorldServer worldServer = (WorldServer) world;
-                worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE,posX,posY,posZ,20,0,0,0,1,new int[0]);
-                worldServer.playSound(null,new BlockPos(posX,posY,posZ), SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.PLAYERS,1,1);
-                if (thrower instanceof EntityPlayer){
-                    ((EntityPlayer) thrower).sendStatusMessage(new TextComponentTranslation("tooltip.rope.fail").setStyle(new Style().setColor(TextFormatting.RED)),true);
+        try {
+            int liveTime = getAliveTime();
+            liveTime++;
+            if (liveTime > 100) {
+                setDead();
+                if (world instanceof WorldServer) {
+                    WorldServer worldServer = (WorldServer) world;
+                    worldServer.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 20, 0, 0, 0, 1, new int[0]);
+                    worldServer.playSound(null, new BlockPos(posX, posY, posZ), SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.PLAYERS, 1, 1);
+                    if (thrower instanceof EntityPlayer) {
+                        ((EntityPlayer) thrower).sendStatusMessage(new TextComponentTranslation("tooltip.rope.fail").setStyle(new Style().setColor(TextFormatting.RED)), true);
+                    }
+                    ItemStack is = new ItemStack(ItemRegistryHandler.itemRope);
+                    if (entityTag != null) {
+                        NBTTagCompound tag = new NBTTagCompound();
+                        tag.setTag("data", entityTag);
+                        tag.setString("entity", entityName);
+                        is.setTagCompound(tag);
+                    }
+                    EntityItem eif = new EntityItem(world, posX, posY, posZ, is);
+                    eif.setPosition(thrower.posX, thrower.posY, thrower.posZ);
+                    world.spawnEntity(eif);
                 }
-                ItemStack is = new ItemStack(ItemRegistryHandler.itemRope);
-                if(entityTag!=null) {
-                    NBTTagCompound tag = new NBTTagCompound();
-                    tag.setTag("data", entityTag);
-                    tag.setString("entity", entityName);
-                    is.setTagCompound(tag);
-                }
-                EntityItem eif = new EntityItem(world, posX, posY, posZ, is);
-                eif.setPosition(thrower.posX,thrower.posY,thrower.posZ);
-                world.spawnEntity(eif);
             }
+            setAliveTime(liveTime);
+        }catch (Throwable throwable){
+            throwable.printStackTrace();
         }
-        setAliveTime(liveTime);
     }
 }

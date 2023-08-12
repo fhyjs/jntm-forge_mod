@@ -98,6 +98,7 @@ public class EntityAiRope<T extends EntityLiving & IRangedAttackMob> extends Ent
             entity.getHeldItem(EnumHand.OFF_HAND).setCount(entity.getHeldItem(EnumHand.OFF_HAND).getCount()-1);
         }
     }
+    private int ac;
     public void updateTask()
     {
         EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
@@ -175,9 +176,13 @@ public class EntityAiRope<T extends EntityLiving & IRangedAttackMob> extends Ent
                 }
                 else if (flag)
                 {
-                    this.entity.resetActiveHand();
-                    this.attackEntityWithRangedAttack(entitylivingbase, ItemBow.getArrowVelocity(40));
-                    this.attackTime = this.attackCooldown;
+                    ac++;
+                    if (attackCooldown<ac) {
+                        ac=0;
+                        this.entity.resetActiveHand();
+                        this.attackEntityWithRangedAttack(entitylivingbase, ItemBow.getArrowVelocity(40));
+                        this.attackTime = this.attackCooldown;
+                    }
                 }
             }
             else if (--this.attackTime <= 0 && this.seeTime >= -60)

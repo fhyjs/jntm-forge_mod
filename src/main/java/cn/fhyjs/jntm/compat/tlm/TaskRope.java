@@ -50,7 +50,7 @@ public class TaskRope implements IMaidTask {
 
     @Override
     public EntityAIBase createAI(AbstractEntityMaid maid) {
-        return new EntityAiRope<>(maid, .6f, 40, 50);
+        return new EntityAiRope<>(maid, .6f, 20, 50);
     }
 
     @Override
