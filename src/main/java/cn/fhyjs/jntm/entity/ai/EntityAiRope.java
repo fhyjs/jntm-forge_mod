@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.Loader;
 
@@ -84,7 +85,11 @@ public class EntityAiRope<T extends EntityLiving & IRangedAttackMob> extends Ent
             if (entity instanceof AbstractEntityMaid){
                 for (int i = 0; i < ((AbstractEntityMaid) entity).getAvailableInv(true).getSlots(); i++) {
                     if (((AbstractEntityMaid) entity).getAvailableInv(true).getStackInSlot(i).getItem() instanceof ItemRope) {
-                        ((AbstractEntityMaid) entity).getAvailableInv(true).getStackInSlot(i).setCount(((AbstractEntityMaid) entity).getAvailableInv(true).getStackInSlot(i).getCount() - 1);
+                        ItemStack is = ((AbstractEntityMaid) entity).getAvailableInv(true).getStackInSlot(i);
+                        if (is.getTagCompound() != null && is.getTagCompound().hasKey("data")) {
+                            continue;
+                        }
+                        is.setCount(is.getCount() - 1);
                         return;
                     }
                 }

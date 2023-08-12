@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.registry;
 
 import cn.fhyjs.jntm.ItemGroup.jntmGroup;
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.compat.tlm.ItemRopeEmptier;
 import cn.fhyjs.jntm.item.*;
 import cn.fhyjs.jntm.item.LandminePlugins.CamouflageUpgrade;
 import cn.fhyjs.jntm.item.LandminePlugins.ExplosionUpgrade;
@@ -20,6 +21,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -63,6 +65,7 @@ public class ItemRegistryHandler {
     public  static final ExplosionUpgrade explosionUpgrade = new ExplosionUpgrade();
     public  static final CamouflageUpgrade camouflageUpgrade = new CamouflageUpgrade();
     public  static final ItemRope itemRope = new ItemRope();
+    public  static final ItemRopeEmptier itemRopeEmptier = new ItemRopeEmptier();
     public  static Item Gouhei;
     public  static Item EXPLOSION_CARD;
     public  static Item Fire_CARD;
@@ -139,6 +142,9 @@ public class ItemRegistryHandler {
         registry.register(camouflageUpgrade);
         registry.register(PmxModelBlockItem);
         registry.register(itemRope);
+        if (Loader.isModLoaded("touhou_little_maid")){
+            registry.register(itemRopeEmptier);
+        }
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -174,6 +180,9 @@ public class ItemRegistryHandler {
         registryModel(camouflageUpgrade);
         registryModel(PmxModelBlockItem);
         registryModel(itemRope);
+        if (Loader.isModLoaded("touhou_little_maid")){
+           registryModel(itemRopeEmptier);
+        }
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
