@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,7 +45,7 @@ public class TELandmine extends TileEntity implements ITickable {
         //System.out.println(EntitiesOn);
         IsTriggered=false;
         for (Entity entity : EntitiesOn) {
-            if (TPlayer&&(entity.getClass() == EntityPlayerMP.class||entity.getClass()== EntityPlayerSP.class)) {
+            if (TPlayer&&(entity instanceof EntityPlayer)) {
                 IsTriggered = true;
                 break;
             }
