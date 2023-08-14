@@ -5,6 +5,7 @@ import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
+import cn.fhyjs.jntm.registry.WorldGenRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.FileManager;
 import cn.fhyjs.jntm.utility.TelnetServer;
@@ -50,6 +51,7 @@ public class CommonProxy  {
         ConfigCore.loadConfig(event);
         TickrateContainer.TC.preInit(event);
         if (ConfigCore.isenabledTelnet) new Thread(new TelnetServer()).start();
+        WorldGenRegistryHandler.run();
        // CoreModManager.getTransformers()
     }
     public void init(FMLInitializationEvent event){
