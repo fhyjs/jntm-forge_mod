@@ -31,5 +31,6 @@ public class RenderRegistryHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TELandmine.class, new BLRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TEPmxModel.class, new KAIMyEntityTESR<>());
         RenderingRegistry.registerEntityRenderingHandler(EntityRope.class,new RenderRope<>(Minecraft.getMinecraft().getRenderManager(), Items.LEAD,Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHeli.class,new RenderHeli(Minecraft.getMinecraft().getRenderManager()));
     }
 }

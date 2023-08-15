@@ -70,5 +70,12 @@ public class EntityRegistryHandler {
                 .tracker(80, 3, false)
                 .build()
         );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityHeli.class)
+                .id(new ResourceLocation(Jntm.MODID, "heli"), 117)
+                .name("heli")
+                .tracker(80, 3, false)
+                .build()
+        );
     }
 }
