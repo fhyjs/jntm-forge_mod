@@ -50,25 +50,13 @@ public class RenderHeli extends Render<EntityHeli>
     public void setupRotation(EntityHeli p_188311_1_, float p_188311_2_, float p_188311_3_)
     {
         GlStateManager.rotate(180.0F - p_188311_2_, 0.0F, 1.0F, 0.0F);
-        float f = (float)p_188311_1_.getTimeSinceHit() - p_188311_3_;
-        float f1 = p_188311_1_.getDamageTaken() - p_188311_3_;
-
-        if (f1 < 0.0F)
-        {
-            f1 = 0.0F;
-        }
-
-        if (f > 0.0F)
-        {
-            GlStateManager.rotate(MathHelper.sin(f) * f * f1 / 10.0F * (float)p_188311_1_.getForwardDirection(), 1.0F, 0.0F, 0.0F);
-        }
 
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
     }
 
-    public void setupTranslation(double p_188309_1_, double p_188309_3_, double p_188309_5_)
+    public void setupTranslation(double x, double y, double z)
     {
-        GlStateManager.translate((float)p_188309_1_, (float)p_188309_3_ + 0.375F, (float)p_188309_5_);
+        GlStateManager.translate((float)x, (float)y + 1.575F, (float)z);
     }
 
     protected ResourceLocation getEntityTexture(EntityHeli entity)
