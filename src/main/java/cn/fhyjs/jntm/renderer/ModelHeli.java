@@ -4,6 +4,7 @@ package cn.fhyjs.jntm.renderer;
 // Paste this class into your mod and generate all required imports
 
 
+import cn.fhyjs.jntm.entity.EntityHeli;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
@@ -126,6 +127,10 @@ public class ModelHeli extends ModelBase {
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+		if (entity instanceof EntityHeli&&entity.getControllingPassenger()!=null) {
+			bone_propeller.rotateAngleY += 0.1f;
+			if (bone_propeller.rotateAngleY > 360) bone_propeller.rotateAngleY = 0;
+		}
 		p.render(f5);
 		Body.render(f5);
 		top.render(f5);
