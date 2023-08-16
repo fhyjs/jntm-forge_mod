@@ -136,11 +136,7 @@ public class ClientProxy extends CommonProxy {
         }
 
         List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
-        try {
-            defaultResourcePacks.add(new FolderResourcePack(new File(Jntm.class.getClassLoader().getResource("assets/jntm_pack-11.1.4").toURI())));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        defaultResourcePacks.add(new FolderResourcePack(new File(Jntm.class.getClassLoader().getResource("assets/jntm_pack-11.1.4").getFile())));
         //defaultResourcePacks.add(new FMLFolderResourcePack());
         ObfuscationReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), defaultResourcePacks, "field_110449_ao");
         FMLClientHandler.instance().refreshResources();

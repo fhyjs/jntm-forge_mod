@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -30,6 +31,7 @@ public class EntityHeli extends EntityLivingBase {
     private boolean keyRun = false;
     private boolean keyLeft = false;
     private boolean keyRight = false;
+    private boolean isReplay = false;
     public EntityHeli(World worldIn) {
         super(worldIn);
         this.setSize(2, 2.5625F);
@@ -96,6 +98,19 @@ public class EntityHeli extends EntityLivingBase {
     public void travel(float strafe, float vertical, float forward) {
         Entity entity = getControllingPassenger();
         if (entity instanceof EntityPlayer && this.isBeingRidden()) {
+            if (world.isRemote) {
+                keyForward = keyForward();
+                keyBack = keyBack();
+                keyLeft = keyLeft();
+                keyRight = keyRight();
+                keyJump = keyJump();
+                keyRun = keyRun();
+                isReplay = isReply();
+            }
+            if (isReplay){
+                super.travel(strafe, vertical, forward);
+                return;
+            }
             EntityPlayer player = (EntityPlayer) entity;
 
             player.fallDistance = 0;
@@ -108,14 +123,6 @@ public class EntityHeli extends EntityLivingBase {
             this.rotationYawHead = this.rotationYaw;
             this.setRotation(this.rotationYaw, this.rotationPitch);
 
-            if (world.isRemote) {
-                keyForward = keyForward();
-                keyBack = keyBack();
-                keyLeft = keyLeft();
-                keyRight = keyRight();
-                keyJump = keyJump();
-                keyRun = keyRun();
-            }
             if (keyJump){
                 this.move(MoverType.SELF,motionX,motionY+0.3,motionZ);
             }
@@ -200,6 +207,11 @@ public class EntityHeli extends EntityLivingBase {
     @SideOnly(Side.CLIENT)
     private static boolean keyJump() {
         return Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
+    }
+    @SideOnly(Side.CLIENT)
+    private boolean isReply() {
+        if (this.getControllingPassenger()==null) return false;
+        return !this.getControllingPassenger().equals(Minecraft.getMinecraft().player);
     }
     @SideOnly(Side.CLIENT)
     private static boolean keyRun() {
