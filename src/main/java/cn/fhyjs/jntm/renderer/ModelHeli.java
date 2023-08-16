@@ -128,8 +128,10 @@ public class ModelHeli extends ModelBase {
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		if (entity instanceof EntityHeli&&entity.getControllingPassenger()!=null) {
-			bone_propeller.rotateAngleY += 0.1f;
+			bone_propeller.rotateAngleY += (float) (0.05 * entity.posY/10);
+			bone_propeller2.rotateAngleX += (float) (0.05 * entity.posY/10);
 			if (bone_propeller.rotateAngleY > 360) bone_propeller.rotateAngleY = 0;
+			if (bone_propeller2.rotateAngleX > 360) bone_propeller2.rotateAngleX = 0;
 		}
 		p.render(f5);
 		Body.render(f5);

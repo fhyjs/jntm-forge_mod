@@ -39,6 +39,7 @@ import static cn.fhyjs.jntm.registry.SoundEventRegistryHandler.prefix;
 public class ItemRegistryHandler {
     public static Fsms xiguaegg =new Fsms("xigua");
     public static Fsms fsms =new Fsms("bosscxk");
+    public final static Fsms heliEgg =new Fsms("heli");
     public static ggxdd ggxdd = new ggxdd();
     public static Tickstop tickstop = new Tickstop();
     public static JGPDTEX jgpdtex =new JGPDTEX();
@@ -145,6 +146,7 @@ public class ItemRegistryHandler {
         if (Loader.isModLoaded("touhou_little_maid")){
             registry.register(itemRopeEmptier);
         }
+        registry.register(heliEgg);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -183,6 +185,7 @@ public class ItemRegistryHandler {
         if (Loader.isModLoaded("touhou_little_maid")){
            registryModel(itemRopeEmptier);
         }
+        registryModel(heliEgg);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

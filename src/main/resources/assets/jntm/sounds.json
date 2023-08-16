@@ -1,4 +1,11 @@
 {
+  "laodaxq": {
+    "category": "player",
+    "subtitle": "sound.jntm.laodaxq.name",
+    "sounds": [
+      "jntm:music/laodaxq"
+    ]
+  },
   "prerope": {
     "category": "player",
     "subtitle": "sound.jntm.prerope.name",

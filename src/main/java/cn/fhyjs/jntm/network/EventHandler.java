@@ -7,8 +7,10 @@ import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.item.SpellCardBase;
 import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
+import cn.fhyjs.jntm.utility.MediaPlayer;
 import com.github.tartaricacid.touhoulittlemaid.client.event.BakeModelEvent;
 import com.github.tartaricacid.touhoulittlemaid.client.resources.CustomResourcesLoader;
+import javazoom.jl.player.advanced.AdvancedPlayer;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
 import net.minecraft.block.Block;
@@ -66,6 +68,13 @@ public class EventHandler {
             played = true;
             ClientProxy.TIl.displayMessage(I18n.format("mod.jntm.name"), I18n.format("jntm.tips.mcsf"), TrayIcon.MessageType.INFO);//弹出一个info级别消息框
 
+        }
+        if (event.getGui() instanceof GuiMainMenu){
+            for (Object value : MediaPlayer.tasks.values()) {
+                if (value instanceof AdvancedPlayer){
+                    ((AdvancedPlayer) value).stop();
+                }
+            }
         }
     }
     @SideOnly(Side.CLIENT)

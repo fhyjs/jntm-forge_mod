@@ -1,34 +1,33 @@
 package cn.fhyjs.jntm.entity;
 
-import com.github.tartaricacid.touhoulittlemaid.config.GeneralConfig;
+import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.utility.MediaPlayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.xml.stream.util.EventReaderDelegate;
 import java.util.Collections;
 
 public class EntityHeli extends EntityLivingBase {
     private boolean keyForward = false;
     private boolean keyJump = false;
     private boolean keyBack = false;
+    private boolean keyRun = false;
     private boolean keyLeft = false;
     private boolean keyRight = false;
     public EntityHeli(World worldIn) {
@@ -67,6 +66,32 @@ public class EntityHeli extends EntityLivingBase {
     public Entity getControllingPassenger() {
         return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
     }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        if (!world.isRemote&& !getPassengers().isEmpty()) {
+            if (rand.nextDouble()<0.05)
+                world.playSound(null, getPosition(),SoundEvents.ENTITY_MINECART_RIDING, SoundCategory.PLAYERS,.4f,1);
+        }
+        if (getPassengers().isEmpty()) {
+            if (world.isRemote && MediaPlayer.getPlayer(this) != null) {
+                MediaPlayer.getPlayer(this).stop();
+            }
+        }
+    }
+
+    @Override
+    public void onDeath(DamageSource p_70645_1_) {
+        super.onDeath(p_70645_1_);
+        if (!world.isRemote) {
+            world.newExplosion(this,posX,posY,posZ,8,true,true);
+        }
+        if (world.isRemote && MediaPlayer.getPlayer(this) != null) {
+            MediaPlayer.getPlayer(this).stop();
+        }
+    }
+
     @Override
     public void travel(float strafe, float vertical, float forward) {
         Entity entity = getControllingPassenger();
@@ -89,9 +114,13 @@ public class EntityHeli extends EntityLivingBase {
                 keyLeft = keyLeft();
                 keyRight = keyRight();
                 keyJump = keyJump();
+                keyRun = keyRun();
             }
             if (keyJump){
                 this.move(MoverType.SELF,motionX,motionY+0.3,motionZ);
+            }
+            if (keyRun){
+                this.move(MoverType.SELF,motionX,motionY-0.3,motionZ);
             }
             strafe = keyLeft ? 0.5f : (keyRight ? -0.5f : 0);
             vertical = keyForward ? -(player.rotationPitch - 10) / 45 : 0;
@@ -116,6 +145,10 @@ public class EntityHeli extends EntityLivingBase {
         }
         if (!player.isSneaking() && !this.world.isRemote && !this.isBeingRidden() && !this.isRiding()) {
             player.startRiding(this);
+            return true;
+        }
+        if (!player.isSneaking() && this.world.isRemote && !this.isBeingRidden() && !this.isRiding()) {
+            MediaPlayer.mp3Player(this,Jntm.class.getClassLoader().getResourceAsStream("assets/jntm/sounds/music/laodaxq.mp3"));
             return true;
         }
         return super.processInitialInteract(player, hand);
@@ -167,5 +200,9 @@ public class EntityHeli extends EntityLivingBase {
     @SideOnly(Side.CLIENT)
     private static boolean keyJump() {
         return Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
+    }
+    @SideOnly(Side.CLIENT)
+    private static boolean keyRun() {
+        return Minecraft.getMinecraft().gameSettings.keyBindSprint.isKeyDown();
     }
 }

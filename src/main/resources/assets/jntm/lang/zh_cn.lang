@@ -158,3 +158,4 @@ tooltip.rope.succ=绳之以法了%s
 tooltip.rope.empty=<空>
 task.jntm.rope=绳之以法
 item.jntm.tml.ropeemptier.name=绳子清空器
+entity.heli.name=直升机
