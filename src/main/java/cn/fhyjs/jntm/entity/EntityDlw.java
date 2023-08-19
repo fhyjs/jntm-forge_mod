@@ -17,7 +17,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 @Optional.Interface(iface = "software.bernie.geckolib3.core.IAnimatable",modid = "geckolib3")
 public class EntityDlw extends EntityIronGolem implements IAnimatable {
     protected static final AnimationBuilder WALK_ANIM = new AnimationBuilder().addAnimation("animation.dlw.walk", ILoopType.EDefaultLoopTypes.LOOP);
-    protected static final AnimationBuilder IDLE_ANIM = new AnimationBuilder().addAnimation("animation.dlw.idle", ILoopType.EDefaultLoopTypes.PLAY_ONCE);
+    protected static final AnimationBuilder IDLE_ANIM = new AnimationBuilder().addAnimation("animation.dlw.idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
     private final Object factory;
     public EntityDlw(World worldIn) {
         super(worldIn);
@@ -35,8 +35,10 @@ public class EntityDlw extends EntityIronGolem implements IAnimatable {
     }
     protected <E extends IAnimatable> PlayState idleAnimController(final AnimationEvent<E> event) {
         if (!event.isMoving()) {
-            event.getController().setAnimation(IDLE_ANIM);
-
+            if (rand.nextDouble()>0.999) {
+                event.getController().setAnimation(null );
+                event.getController().setAnimation(IDLE_ANIM);
+            }
             return PlayState.CONTINUE;
         }
 
