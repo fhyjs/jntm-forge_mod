@@ -127,7 +127,7 @@ dependencies {
     compile("li.cil.oc:OpenComputers:${oc_version}:api")
     //compile "li.cil.oc:OpenComputers:MC1.12.2-1.7.5.221:api"
     //compile "li.cil.oc:OpenComputers:MC1.12.2-1.7.5.221"
-    //implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.12.2:3.0.31')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.12.2:3.0.31')
 }
 
 

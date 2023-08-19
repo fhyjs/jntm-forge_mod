@@ -45,6 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
+import software.bernie.geckolib3.resource.GeckoLibCache;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -88,6 +89,16 @@ public class EventHandler {
             if (Loader.isModLoaded("touhou_little_maid")){
                 CustomResourcesLoader.reloadResources();
                 Minecraft.getMinecraft().player.sendMessage(new TextComponentString("§e"+I18n.format("debug.prefix")+"§fTLM"+I18n.format("debug.reload_resourcepacks.message")));
+            }
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_F3)&&Keyboard.isKeyDown(Keyboard.KEY_Q)){
+            if (Loader.isModLoaded("geckolib3"))
+                Minecraft.getMinecraft().player.sendMessage(new TextComponentString(I18n.format("debug.tip.f3_m")));
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_F3)&&Keyboard.isKeyDown(Keyboard.KEY_M)) {
+            if (Loader.isModLoaded("geckolib3")){
+                GeckoLibCache.getInstance().onResourceManagerReload(Minecraft.getMinecraft().getResourceManager());
+                Minecraft.getMinecraft().player.sendMessage(new TextComponentString("§e"+I18n.format("debug.prefix")+"§fGeckoLib3"+I18n.format("debug.reload_resourcepacks.message")));
             }
         }
     }

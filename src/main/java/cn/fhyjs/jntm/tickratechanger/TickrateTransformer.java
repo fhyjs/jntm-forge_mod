@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.tickratechanger;
 
+import cn.fhyjs.jntm.common.JntmTransformer;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
@@ -22,11 +23,6 @@ public class TickrateTransformer implements IClassTransformer {
                 return patchServerTickrate(bytes);
             } else if(name.equals("paulscode.sound.SoundSystem")) {
                 return patchSoundSystem(bytes);
-            } else if(name.equals("net.minecraft.server.management.PlayerChunkMap")) {
-                //return patchPlayerChunkMap(bytes);
-            }
-            else if(name.equals("net.minecraft.world.WorldServer")) {
-                //return patchWorldServer(bytes);
             }
         } catch(Exception ex) {
             ex.printStackTrace();

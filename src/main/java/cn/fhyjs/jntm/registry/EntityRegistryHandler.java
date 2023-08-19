@@ -77,5 +77,12 @@ public class EntityRegistryHandler {
                 .tracker(80, 3, false)
                 .build()
         );
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityDlw.class)
+                .id(new ResourceLocation(Jntm.MODID, "dlw"), 118)
+                .name("dlw")
+                .tracker(80, 3, false)
+                .build()
+        );
     }
 }
