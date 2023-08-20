@@ -40,6 +40,7 @@ public class ItemRegistryHandler {
     public static Fsms xiguaegg =new Fsms("xigua");
     public static Fsms fsms =new Fsms("bosscxk");
     public final static Fsms heliEgg =new Fsms("heli");
+    public final static Fsms dlwEgg =new Fsms("dlw");
     public static ggxdd ggxdd = new ggxdd();
     public static Tickstop tickstop = new Tickstop();
     public static JGPDTEX jgpdtex =new JGPDTEX();
@@ -147,6 +148,9 @@ public class ItemRegistryHandler {
             registry.register(itemRopeEmptier);
         }
         registry.register(heliEgg);
+        if (Loader.isModLoaded("geckolib3")){
+            registry.register(dlwEgg);
+        }
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -186,6 +190,9 @@ public class ItemRegistryHandler {
            registryModel(itemRopeEmptier);
         }
         registryModel(heliEgg);
+        if (Loader.isModLoaded("geckolib3")){
+            registryModel(dlwEgg);
+        }
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){

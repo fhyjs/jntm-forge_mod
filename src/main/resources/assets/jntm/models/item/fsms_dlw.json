@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "jntm:entity/daliwang",
+		"particle": "jntm:entity/daliwang"
+	},
+	"elements": [
+		{
+			"from": [0, 3, 7],
+			"to": [16, 16, 8],
+			"faces": {
+				"north": {"uv": [3.4375, 3.21875, 4.0625, 4.15625], "texture": "#0"},
+				"east": {"uv": [8, 1, 8.5, 7.5], "texture": "#0"},
+				"south": {"uv": [3.5, 3.375, 4.125, 4.21875], "texture": "#0"},
+				"west": {"uv": [8, 7.5, 8.5, 14], "texture": "#0"},
+				"up": {"uv": [16, 0.5, 8, 0], "texture": "#0"},
+				"down": {"uv": [16, 0.5, 8, 1], "texture": "#0"}
+			}
+		}
+	]
+}
