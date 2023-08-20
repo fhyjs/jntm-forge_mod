@@ -70,12 +70,16 @@ public class EventHandler {
             ClientProxy.TIl.displayMessage(I18n.format("mod.jntm.name"), I18n.format("jntm.tips.mcsf"), TrayIcon.MessageType.INFO);//弹出一个info级别消息框
 
         }
-        if (event.getGui() instanceof GuiMainMenu){
-            for (Object value : MediaPlayer.tasks.values()) {
-                if (value instanceof AdvancedPlayer){
-                    ((AdvancedPlayer) value).stop();
+        try {
+            if (event.getGui() instanceof GuiMainMenu) {
+                for (Object value : MediaPlayer.tasks.values()) {
+                    if (value instanceof AdvancedPlayer) {
+                        ((AdvancedPlayer) value).stop();
+                    }
                 }
             }
+        }catch (Throwable e){
+            e.printStackTrace();
         }
     }
     @SideOnly(Side.CLIENT)

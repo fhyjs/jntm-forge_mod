@@ -93,8 +93,8 @@ public class EntityHeli extends EntityLivingBase {
                 world.playSound(null, getPosition(),SoundEvents.ENTITY_MINECART_RIDING, SoundCategory.PLAYERS,.4f,1);
         }
         if (getPassengers().isEmpty()) {
-            if (world.isRemote && MediaPlayer.getPlayer(this) != null) {
-                MediaPlayer.getPlayer(this).stop();
+            if (world.isRemote && MediaPlayer.getMp3Player(this) != null) {
+                MediaPlayer.getMp3Player(this).stop();
             }
         }
     }
@@ -105,8 +105,8 @@ public class EntityHeli extends EntityLivingBase {
         if (!world.isRemote) {
             world.newExplosion(this,posX,posY,posZ,8,true,true);
         }
-        if (world.isRemote && MediaPlayer.getPlayer(this) != null) {
-            MediaPlayer.getPlayer(this).stop();
+        if (world.isRemote && MediaPlayer.getMp3Player(this) != null) {
+            MediaPlayer.getMp3Player(this).stop();
         }
     }
 

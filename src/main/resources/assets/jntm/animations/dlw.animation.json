@@ -195,7 +195,7 @@
 		},
 		"animation.dlw.idle": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 0.33333,
+			"animation_length": 5,
 			"bones": {
 				"lFoot": {
 					"rotation": {
@@ -389,6 +389,9 @@
 					}
 				}
 			}
+		},
+		"animation.dlw.attack": {
+			"loop": true
 		}
 	},
 	"geckolib_format_version": 2
