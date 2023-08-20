@@ -3,16 +3,22 @@ package cn.fhyjs.jntm.entity;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.utility.MediaPlayer;
 import com.google.common.base.Predicate;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -29,6 +35,7 @@ import javax.annotation.Nullable;
 public class EntityDlw extends EntityIronGolem implements IAnimatable {
     protected static final AnimationBuilder WALK_ANIM = new AnimationBuilder().addAnimation("animation.dlw.walk", ILoopType.EDefaultLoopTypes.LOOP);
     protected static final AnimationBuilder IDLE_ANIM = new AnimationBuilder().addAnimation("animation.dlw.idle", ILoopType.EDefaultLoopTypes.PLAY_ONCE);
+    protected static final AnimationBuilder ATT_ANIM = new AnimationBuilder().addAnimation("animation.dlw.attack", ILoopType.EDefaultLoopTypes.LOOP);
     private final Object factory;
     @Override
     protected void initEntityAI()
@@ -45,6 +52,12 @@ public class EntityDlw extends EntityIronGolem implements IAnimatable {
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 10, false, false, input -> input != null && IMob.VISIBLE_MOB_SELECTOR.apply(input)));
     }
     @Override
+    public boolean attackEntityAsMob(Entity entityIn)
+    {
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(20 + this.rand.nextInt(30)));
+        return flag||super.attackEntityAsMob(entityIn);
+    }
+    @Override
     public boolean canAttackClass(Class <? extends EntityLivingBase> cls)
     {
         return cls == EntityCreeper.class || super.canAttackClass(cls);
@@ -57,20 +70,42 @@ public class EntityDlw extends EntityIronGolem implements IAnimatable {
         else
             factory=null;
     }
-
     @Override
-    public void onUpdate() {
-        super.onUpdate();
+    @SideOnly(Side.CLIENT)
+    public void handleStatusUpdate(byte id)
+    {
+        if (id == 4)
+        {
+            att=true;
+        }
+        super.handleStatusUpdate(id);
     }
-
+    protected boolean att;
     @Optional.Method(modid = "geckolib3")
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<>(this, "Walking", 5, this::walkAnimController));
         data.addAnimationController(new AnimationController<>(this, "Idle", 5, this::idleAnimController));
+        data.addAnimationController(new AnimationController<>(this, "Attack", 5, this::attAnimController));
+    }
+    protected <E extends IAnimatable> PlayState attAnimController(final AnimationEvent<E> event) {
+        if (att) {
+            event.getController().setAnimation(ATT_ANIM);
+            return PlayState.CONTINUE;
+        }
+        return PlayState.STOP;
+    }
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1000.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
     }
     protected <E extends IAnimatable> PlayState idleAnimController(final AnimationEvent<E> event) {
         if (!event.isMoving()) {
+            att=false;
             if (rand.nextDouble()>0.999) {
                 event.getController().markNeedsReload();
                 event.getController().setAnimation(IDLE_ANIM);
