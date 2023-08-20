@@ -14,3 +14,5 @@ tooltip.rope.empty=<Empty>
 task.jntm.rope=Rope
 item.jntm.tml.ropeemptier.name=Rope Emptier
 entity.heli.name=heli
+entity.dlw.name=PowerfulMan
+debug.tip.f3_m=F3 + M = Reload GeckoLib3

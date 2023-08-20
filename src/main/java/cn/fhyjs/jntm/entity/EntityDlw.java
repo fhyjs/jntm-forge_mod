@@ -55,7 +55,7 @@ public class EntityDlw extends EntityIronGolem implements IAnimatable {
     public boolean attackEntityAsMob(Entity entityIn)
     {
         boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(20 + this.rand.nextInt(30)));
-        return flag||super.attackEntityAsMob(entityIn);
+        return flag&&super.attackEntityAsMob(entityIn);
     }
     @Override
     public boolean canAttackClass(Class <? extends EntityLivingBase> cls)
