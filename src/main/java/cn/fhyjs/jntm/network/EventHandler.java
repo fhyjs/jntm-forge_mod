@@ -142,7 +142,7 @@ public class EventHandler {
     public void key(InputEvent.KeyInputEvent event) {
         TickrateContainer.TC.key(event);
     }
-    public List<BlockPos> poses = new ArrayList<>();
+    public static List<BlockPos> poses = new ArrayList<>();
     @SubscribeEvent
     public void onConfigGuiClosed(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(Jntm.MODID)) {

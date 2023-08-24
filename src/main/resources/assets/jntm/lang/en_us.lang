@@ -16,3 +16,5 @@ item.jntm.tml.ropeemptier.name=Rope Emptier
 entity.heli.name=heli
 entity.dlw.name=PowerfulMan
 debug.tip.f3_m=F3 + M = Reload GeckoLib3
+item.jntm.screenbuider.name=Screen Builder
+tooltip.screenbuider.n1=Right click to build a screen.

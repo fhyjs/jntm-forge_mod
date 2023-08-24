@@ -68,6 +68,7 @@ public class ItemRegistryHandler {
     public  static final CamouflageUpgrade camouflageUpgrade = new CamouflageUpgrade();
     public  static final ItemRope itemRope = new ItemRope();
     public  static final ItemRopeEmptier itemRopeEmptier = new ItemRopeEmptier();
+    public  static final ItemScreenBuilder itemScreenBuilder = new ItemScreenBuilder();
     public  static Item Gouhei;
     public  static Item EXPLOSION_CARD;
     public  static Item Fire_CARD;
@@ -151,6 +152,7 @@ public class ItemRegistryHandler {
         if (Loader.isModLoaded("geckolib3")){
             registry.register(dlwEgg);
         }
+        registry.register(itemScreenBuilder);
         proxy.regitem_end();
     }
     @SideOnly(Side.CLIENT)
@@ -193,6 +195,7 @@ public class ItemRegistryHandler {
         if (Loader.isModLoaded("geckolib3")){
             registryModel(dlwEgg);
         }
+        registryModel(itemScreenBuilder);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item){
