@@ -1,9 +1,13 @@
 package cn.fhyjs.jntm.screen;
 
+import cn.fhyjs.jntm.utility.BlockDrawsGenerator;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IThreadListener;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraft.world.storage.WorldSavedDataCallableSave;
@@ -14,9 +18,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.FutureTask;
 
 public class ScreenM extends WorldSavedData {
     public List<Screen> screens = new ArrayList<>();
+    public Map<Screen, BlockDrawsGenerator> generators=new HashMap<>();
     private static ScreenM Instance;
     public ScreenM(String name) {
         super(name);
@@ -82,7 +89,12 @@ public class ScreenM extends WorldSavedData {
             screens.add(new Screen(nbt.getCompoundTag(s)));
         }
     }
-
+    IThreadListener mainThread = FMLCommonHandler.instance().getMinecraftServerInstance();
+    public void updateScreen(Screen screen, Vec3i vec3i, IBlockState blockState){
+        BlockPos bp = new BlockPos(screen.pos.getX()+vec3i.getX(),screen.pos.getY()+vec3i.getY(),screen.pos.getZ()+vec3i.getZ());
+        Runnable task = () -> screen.world.setBlockState(bp,blockState,Constants.BlockFlags.SEND_TO_CLIENTS);
+        mainThread.addScheduledTask(task);
+    }
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         for (Screen screen : screens) {
@@ -94,6 +106,7 @@ public class ScreenM extends WorldSavedData {
     public void rmScreen(Screen screen) {
         screens.remove(screen);
         screen.rm();
+        generators.remove(screen);
         markDirty();
     }
 }

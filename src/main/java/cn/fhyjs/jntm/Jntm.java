@@ -1,9 +1,6 @@
 package cn.fhyjs.jntm;
 
-import cn.fhyjs.jntm.command.GetSideCmd;
-import cn.fhyjs.jntm.command.IdSetblockCmd;
-import cn.fhyjs.jntm.command.OpenGuiCmd;
-import cn.fhyjs.jntm.command.TelnetExecCmd;
+import cn.fhyjs.jntm.command.*;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigHandler;
 import cn.fhyjs.jntm.item.Danmaku_Gun;
@@ -118,6 +115,7 @@ public class Jntm {
         event.registerServerCommand(new TickrateCommand());
         event.registerServerCommand(new GetSideCmd());
         event.registerServerCommand(new OpenGuiCmd());
+        event.registerServerCommand(new UpdateScreenCmd());
     }
     @SubscribeEvent
     public void ClientConnectedToServer(FMLNetworkEvent.ClientConnectedToServerEvent event){

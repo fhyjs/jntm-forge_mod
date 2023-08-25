@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.screen;
 
 import cn.fhyjs.jntm.item.ItemScreenBuilder;
+import cn.fhyjs.jntm.utility.BlockDrawsGenerator;
 import cn.fhyjs.jntm.utility.WorldUitls;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,6 +48,7 @@ public class Screen {
                         world.setBlockState(new BlockPos(x,y, pos.getZ()), Blocks.WOOL.getDefaultState(),Constants.BlockFlags.SEND_TO_CLIENTS| Constants.BlockFlags.RERENDER_MAIN_THREAD);
                 break;
         }
+        ScreenM.getInstance().generators.put(this,new BlockDrawsGenerator(this));
     }
     public NBTTagCompound getNbtTag(){
         NBTTagCompound nbt = new NBTTagCompound();
