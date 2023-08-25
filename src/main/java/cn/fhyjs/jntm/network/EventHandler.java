@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.item.SpellCardBase;
 import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
+import cn.fhyjs.jntm.screen.ScreenM;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.MediaPlayer;
 import com.github.tartaricacid.touhoulittlemaid.client.event.BakeModelEvent;
@@ -26,10 +27,12 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ScreenShotHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -49,7 +52,9 @@ import software.bernie.geckolib3.resource.GeckoLibCache;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mod.EventBusSubscriber
 public class EventHandler {
@@ -77,6 +82,7 @@ public class EventHandler {
                         ((AdvancedPlayer) value).stop();
                     }
                 }
+                poses.clear();
             }
         }catch (Throwable e){
             e.printStackTrace();
@@ -151,6 +157,19 @@ public class EventHandler {
             // ...
         }
     }
+     static Map<World,Boolean> worldLoad = new HashMap<>();
+    @SubscribeEvent
+    public static void onWorldInit(WorldEvent.Load event){
+        ScreenM.getInstance();
+        worldLoad.put(event.getWorld(),false);
+    }
+    @SubscribeEvent
+    public static void onWorldPotentialSpawns(WorldEvent.PotentialSpawns event){
+        if (!worldLoad.get(event.getWorld())) {
+            worldLoad.put(event.getWorld(),true);
+            ScreenM.getInstance().init();
+        }
+    }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void highlightGhostBlock(DrawBlockHighlightEvent event) {
@@ -164,6 +183,7 @@ public class EventHandler {
         BlockRendererDispatcher renderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
 
         for (BlockPos toPlace : new ArrayList<>(poses)) { //positions is just a Collection filled with BlockPos
+            if (toPlace==null) continue;
             GlStateManager.pushMatrix();
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);

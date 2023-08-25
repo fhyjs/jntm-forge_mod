@@ -163,3 +163,4 @@ debug.tip.f3_m=F3 + M = 重载GeckoLib3
 entity.dlw.name=大力王
 item.jntm.screenbuider.name=屏幕构造器
 tooltip.screenbuider.n1=右键使用
+tip.jntm.item.sb.fail.thick=厚度>1
