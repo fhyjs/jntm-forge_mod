@@ -5,6 +5,16 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "HELLO MINECRAFT!"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 11, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 35
+				"y": 45
+				"width": 340
+				"height": 125
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 400, 300 )

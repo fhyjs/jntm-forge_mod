@@ -20,10 +20,17 @@ public class FormScreenBackend extends JFrame {
     }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+        label1 = new JLabel();
 
         //======== this ========
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
+
+        //---- label1 ----
+        label1.setText("HELLO MINECRAFT!");
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 11f));
+        contentPane.add(label1);
+        label1.setBounds(35, 45, 340, 125);
 
         {
             // compute preferred size
@@ -45,5 +52,6 @@ public class FormScreenBackend extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
