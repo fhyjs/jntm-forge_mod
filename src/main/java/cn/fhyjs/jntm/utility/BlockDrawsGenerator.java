@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.utility;
 
+import cn.fhyjs.jntm.command.FormScreenBackend;
 import cn.fhyjs.jntm.screen.Screen;
 import cn.fhyjs.jntm.screen.ScreenM;
 import com.diamondpants.spritecraft.Blueprint;
@@ -8,15 +9,23 @@ import com.diamondpants.spritecraft.MaterialSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BlockDrawsGenerator extends Thread{
@@ -29,7 +38,12 @@ public class BlockDrawsGenerator extends Thread{
         this.screen=screen;
         this.start();
     }
-
+    @Override
+    public void finalize() throws Throwable {
+        super.finalize();
+        this.stop();
+    }
+    FormScreenBackend backend;
     @Override
     public void run() {
         try {
@@ -38,14 +52,52 @@ public class BlockDrawsGenerator extends Thread{
             generator.getMaterialSet().setAll();
             generator.setMaxHeight(screen.height);
             generator.setMaxWidth(screen.width);
-            generate(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png"))),1);
+            // 创建Robot对象
+            Robot robot = new Robot();
 
-            generate(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("jntm","textures/logo.png"))),1);
+            // 指定要截图的区域，这里是整个屏幕
+            backend = new FormScreenBackend(0,0,screen.width*50,screen.height*50);
+            backend.setVisible(true);
+            backend.setTitle("Screen-"+screen.getId());
+            while (!isInterrupted()){
+                Rectangle screenRect = backend.getBounds();
+                if (FMLCommonHandler.instance().getMinecraftServerInstance()==null){
+                    this.finalize();
+                }
+                // 通过Robot对象获取屏幕截图
+                BufferedImage screenshot = robot.createScreenCapture(screenRect);
+                    processImage(screenshot);
+            }
+            backend.dispose();
         } catch (Throwable e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        }finally {
+
         }
     }
+    public void processImage(BufferedImage originalImage){
+        int numBlocks = 8; // 设置要分割的块数
 
+        // 计算每个子图像的宽度和高度
+        int subImageWidth = originalImage.getWidth() / numBlocks;
+        int subImageHeight = originalImage.getHeight();
+        List<Thread> threads = new ArrayList<>();
+        // 逐个分割并保存子图像
+        for (int i = 0; i < numBlocks; i++) {
+            BufferedImage subImage = originalImage.getSubimage(i * subImageWidth, 0, subImageWidth, subImageHeight);
+            threads.add(new Worker(subImage,i));
+        }
+        for (Thread thread : threads) {
+            thread.start();
+        }
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     public void generate(BufferedImage inputImage, int thn){
         if (!blockToSet.containsKey(thn)) blockToSet.put(thn,new HashMap<>());
         if (!oldBlockToSet.containsKey(thn)) oldBlockToSet.put(thn,new HashMap<>());
@@ -56,8 +108,8 @@ public class BlockDrawsGenerator extends Thread{
             MaterialSet materialSet = blueprint.getMaterialSet();
             byte[][] usedMaterials = blueprint.getUsedMaterials();
 
-            for(int i = usedMaterials.length - 1; i >= 0; --i) {
-                for(int j = usedMaterials[i].length - 1; j >= 0; --j) {
+            for(int i = 0; i < usedMaterials.length; ++i) {
+                for(int j = 0; j < usedMaterials[1].length; ++j) {
                     byte materialNum = usedMaterials[i][j];
                     if (materialNum != -128) {
                         if (materialNum==18)
@@ -67,7 +119,7 @@ public class BlockDrawsGenerator extends Thread{
                         if (screen.facing.equals(EnumFacing.Axis.X))
                             tbos.put(new BlockPos(0,i,j+(usedMaterials[i].length)*(thn-1)),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
                         if (screen.facing.equals(EnumFacing.Axis.Z))
-                            tbos.put(new BlockPos(j+(usedMaterials[i].length)*(thn-1),i,0),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
+                            tbos.put(new BlockPos(j+(usedMaterials[i].length)*(thn),i,0),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
                     }
                 }
             }
@@ -87,5 +139,24 @@ public class BlockDrawsGenerator extends Thread{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private class Worker extends Thread{
+        private final BufferedImage image;
+        private final int thn;
+
+        public Worker(BufferedImage image,int thn) {
+            this.image=image;
+            this.thn=thn;
+        }
+        @Override
+        public void run() {
+            generate(image,thn);
+        }
+    }
+    public static BufferedImage flip(BufferedImage image) {
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, -1);
+        tx.translate(-image.getWidth(null), 0);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        return op.filter(image, null);
     }
 }

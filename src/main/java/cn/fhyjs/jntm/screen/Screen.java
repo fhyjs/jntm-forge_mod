@@ -86,5 +86,10 @@ public class Screen {
                         world.setBlockState(new BlockPos(x,y, pos.getZ()), Blocks.AIR.getDefaultState(),Constants.BlockFlags.SEND_TO_CLIENTS| Constants.BlockFlags.RERENDER_MAIN_THREAD);
                 break;
         }
+        try {
+            ScreenM.getInstance().generators.get(this).stop();
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
     }
 }
