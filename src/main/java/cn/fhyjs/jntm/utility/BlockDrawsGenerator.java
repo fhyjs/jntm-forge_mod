@@ -8,6 +8,7 @@ import com.diamondpants.spritecraft.MaterialSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
@@ -39,7 +40,7 @@ public class BlockDrawsGenerator extends Thread{
             generator.setMaxWidth(screen.width);
             generate(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("textures/gui/title/mojang.png"))),1);
 
-            generate(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("jntm:textures/gui/mojang.png"))),1);
+            generate(ImageIO.read(Minecraft.getMinecraft().mcDefaultResourcePack.getInputStream(new ResourceLocation("jntm","textures/logo.png"))),1);
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
@@ -61,7 +62,12 @@ public class BlockDrawsGenerator extends Thread{
                     if (materialNum != -128) {
                         if (materialNum==18)
                             materialNum=2;
-                        tbos.put(new BlockPos(i,0,j+(usedMaterials[i].length)*thn),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
+                        if (screen.facing.equals(EnumFacing.Axis.Y))
+                            tbos.put(new BlockPos(i,0,j+(usedMaterials[i].length)*(thn-1)),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
+                        if (screen.facing.equals(EnumFacing.Axis.X))
+                            tbos.put(new BlockPos(0,i,j+(usedMaterials[i].length)*(thn-1)),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
+                        if (screen.facing.equals(EnumFacing.Axis.Z))
+                            tbos.put(new BlockPos(j+(usedMaterials[i].length)*(thn-1),i,0),Block.getBlockById(materialSet.getMaterial(materialNum).getBlockID()).getStateFromMeta(materialSet.getMaterial(materialNum).getBlockData()));
                     }
                 }
             }
