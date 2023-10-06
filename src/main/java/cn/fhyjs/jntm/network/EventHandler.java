@@ -25,10 +25,12 @@ import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -36,6 +38,7 @@ import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -60,6 +63,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber
 public class EventHandler {
@@ -149,6 +154,65 @@ public class EventHandler {
 
             GlStateManager.disableLighting();
         }
+    }
+    // 创建一个方法来处理聊天事件
+    @SubscribeEvent
+    public void onServerChat(ServerChatEvent event) {
+        // 获取发送聊天消息的玩家
+        EntityPlayer player = event.getPlayer();
+        // 获取聊天消息内容
+        String message = event.getMessage();
+
+        // 定义正则表达式模式，匹配CI{...}形式的内容
+        String pattern = "(CI\\{.*?\\})";
+
+        // 创建正则表达式模式对象
+        Pattern regex = Pattern.compile(pattern);
+
+        // 创建匹配器对象
+        Matcher matcher = regex.matcher(message);
+
+        // 创建一个List来存储提取的内容和原始内容
+        List<String> extractedContents = new ArrayList<>();
+
+        // 记录上一个匹配的结束位置
+        int lastEnd = 0;
+
+        // 使用匹配器查找匹配的子字符串
+        while (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+
+            // 添加原始内容（从上一个结束位置到当前匹配的开始位置）
+            extractedContents.add(message.substring(lastEnd, start));
+
+            // 添加提取的内容
+            String jsonContent = matcher.group(1); // 获取匹配的内容，不包括CI{}
+            extractedContents.add(jsonContent);
+
+            // 更新上一个结束位置
+            lastEnd = end;
+        }
+
+        // 添加剩余的原始内容（从最后一个匹配的结束位置到字符串末尾）
+        if (lastEnd < message.length()) {
+            extractedContents.add(message.substring(lastEnd));
+        }
+        ITextComponent textComponent = new TextComponentTranslation("chat.type.text", event.getPlayer().getName(), "");
+        // 打印List中的内容
+        for (String content : extractedContents) {
+            if (content.startsWith("CI{")) {
+                try {
+                    ChatImage ci = ChatImage.getChatImage(content);
+                    textComponent.appendSibling(new ChatImage.ChatImageData(ci).getChatMsg());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            }
+            else
+                textComponent.appendSibling(new TextComponentString(content));
+        }
+        event.setComponent(textComponent);
     }
     @SubscribeEvent
     public static void onSpellCardRegister(RegistryEvent.Register<Spellcard> event){

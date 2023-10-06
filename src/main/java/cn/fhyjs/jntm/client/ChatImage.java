@@ -122,11 +122,38 @@ public class ChatImage {
         }
         return chatImage;
     }
+    public static ChatImage  getChatImage(String data) throws MalformedURLException {
+        ChatImage chatImage = null;
+        if (data.startsWith("CI")) {
+            data = data.substring(2);
+            Gson gson = new Gson();
+            ChatImageData cid = gson.fromJson(data, ChatImageData.class);
+            chatImage = new ChatImage();
+            chatImage.getImage(new URL(cid.url));
+            chatImage.information = Collections.singletonList(cid.information);
+            chatImage.width = cid.w;
+            chatImage.height = cid.h;
+
+        }
+        return chatImage;
+    }
     public static class ChatImageData{
         public String information;
         public String url;
         public int w,h;
+        public ChatImageData(){}
+        public ChatImageData(ChatImage ci){
+            information="";
+            for (String s : ci.information) {
+                information+=s;
+                if (ci.information.indexOf(s)!=ci.information.size()-1)
+                    information+='\n';
+            }
+            url=ci.source.toString();
+            w=ci.width;
+            h=ci.height;
 
+        }
         public ITextComponent getChatMsg(){
             return new TextComponentString(FMLCommonHandler.instance().getCurrentLanguage().equalsIgnoreCase("zh_cn")?"[图片]":"[photo]").setStyle(new Style().setColor(TextFormatting.GREEN).setHoverEvent(new HoverEvent(Actions.SHOW_IMAGE,new TextComponentString(this.toString()))));
         }
