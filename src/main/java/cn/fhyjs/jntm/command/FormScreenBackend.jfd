@@ -8,12 +8,12 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "HELLO MINECRAFT!"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 11, false )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 100, false )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 35
-				"y": 45
-				"width": 340
-				"height": 125
+				"width": 1140
+				"height": 175
+				"x": 10
+				"y": 40
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

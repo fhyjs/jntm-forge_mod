@@ -28,9 +28,9 @@ public class FormScreenBackend extends JFrame {
 
         //---- label1 ----
         label1.setText("HELLO MINECRAFT!");
-        label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 11f));
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 100f));
         contentPane.add(label1);
-        label1.setBounds(35, 45, 340, 125);
+        label1.setBounds(10, 40, 1140, 175);
 
         {
             // compute preferred size

@@ -8,9 +8,12 @@ import cn.fhyjs.jntm.registry.RenderRegistryHandler;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiOverlayDebug;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -81,6 +84,82 @@ public class ClientProxy extends CommonProxy {
             }
         }
         return ret;
+    }
+    public static void  drawHoveringImage(List<String> textLines, int x, int y, FontRenderer font)
+    {
+        net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(textLines, x, y, width, height, -1, font);
+        if (false && !textLines.isEmpty())
+        {
+            GlStateManager.disableRescaleNormal();
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
+            int i = 0;
+
+            for (String s : textLines)
+            {
+                int j = this.fontRenderer.getStringWidth(s);
+
+                if (j > i)
+                {
+                    i = j;
+                }
+            }
+
+            int l1 = x + 12;
+            int i2 = y - 12;
+            int k = 8;
+
+            if (textLines.size() > 1)
+            {
+                k += 2 + (textLines.size() - 1) * 10;
+            }
+
+            if (l1 + i > this.width)
+            {
+                l1 -= 28 + i;
+            }
+
+            if (i2 + k + 6 > this.height)
+            {
+                i2 = this.height - k - 6;
+            }
+
+            this.zLevel = 300.0F;
+            this.itemRender.zLevel = 300.0F;
+            int l = -267386864;
+            this.drawGradientRect(l1 - 3, i2 - 4, l1 + i + 3, i2 - 3, -267386864, -267386864);
+            this.drawGradientRect(l1 - 3, i2 + k + 3, l1 + i + 3, i2 + k + 4, -267386864, -267386864);
+            this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 + k + 3, -267386864, -267386864);
+            this.drawGradientRect(l1 - 4, i2 - 3, l1 - 3, i2 + k + 3, -267386864, -267386864);
+            this.drawGradientRect(l1 + i + 3, i2 - 3, l1 + i + 4, i2 + k + 3, -267386864, -267386864);
+            int i1 = 1347420415;
+            int j1 = 1344798847;
+            this.drawGradientRect(l1 - 3, i2 - 3 + 1, l1 - 3 + 1, i2 + k + 3 - 1, 1347420415, 1344798847);
+            this.drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, 1347420415, 1344798847);
+            this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, 1347420415, 1347420415);
+            this.drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, 1344798847, 1344798847);
+
+            for (int k1 = 0; k1 < textLines.size(); ++k1)
+            {
+                String s1 = textLines.get(k1);
+                this.fontRenderer.drawStringWithShadow(s1, (float)l1, (float)i2, -1);
+
+                if (k1 == 0)
+                {
+                    i2 += 2;
+                }
+
+                i2 += 10;
+            }
+
+            this.zLevel = 0.0F;
+            this.itemRender.zLevel = 0.0F;
+            GlStateManager.enableLighting();
+            GlStateManager.enableDepth();
+            RenderHelper.enableStandardItemLighting();
+            GlStateManager.enableRescaleNormal();
+        }
     }
     public Image[] TIs;
     public List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();

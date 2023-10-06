@@ -56,7 +56,7 @@ public class BlockDrawsGenerator extends Thread{
             Robot robot = new Robot();
 
             // 指定要截图的区域，这里是整个屏幕
-            backend = new FormScreenBackend(0,0,screen.width*50,screen.height*50);
+            backend = new FormScreenBackend(0,0,screen.width*10,screen.height*10);
             backend.setVisible(true);
             backend.setTitle("Screen-"+screen.getId());
             while (!isInterrupted()){
