@@ -162,6 +162,7 @@ public class EventHandler {
         EntityPlayer player = event.getPlayer();
         // 获取聊天消息内容
         String message = event.getMessage();
+        if (message.startsWith("/")) return;
 
         // 定义正则表达式模式，匹配CI{...}形式的内容
         String pattern = "(CI\\{.*?\\})";
