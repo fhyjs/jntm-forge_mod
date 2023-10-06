@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.network;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.client.ChatImage;
 import cn.fhyjs.jntm.client.ClientProxy;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
@@ -10,32 +11,24 @@ import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
 import cn.fhyjs.jntm.screen.ScreenM;
 import cn.fhyjs.jntm.tickratechanger.TickrateContainer;
 import cn.fhyjs.jntm.utility.MediaPlayer;
-import com.github.tartaricacid.touhoulittlemaid.client.event.BakeModelEvent;
 import com.github.tartaricacid.touhoulittlemaid.client.resources.CustomResourcesLoader;
-import com.google.common.collect.Lists;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouCharacter;
 import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.JsonToNBT;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTException;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ScreenShotHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -63,10 +56,8 @@ import org.lwjgl.opengl.GL14;
 import software.bernie.geckolib3.resource.GeckoLibCache;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Mod.EventBusSubscriber
 public class EventHandler {
@@ -143,7 +134,11 @@ public class EventHandler {
 
             if (hoverevent.getAction() == Actions.SHOW_IMAGE)
             {
-                ClientProxy.drawHoveringImage();
+                ChatImage image = new ChatImage();
+                image.information= Collections.singletonList("1ddd");
+                image.height=40;
+                image.width=50;
+                ClientProxy.drawHoveringImage(image,x,y, gui.width, gui.height,-1, gui.mc.fontRenderer);
             }
 
             GlStateManager.disableLighting();

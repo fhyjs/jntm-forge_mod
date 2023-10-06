@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.client;
 
+import cn.fhyjs.jntm.Event.RenderTooltipImageEvent;
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.common.CommonProxy;
 import cn.fhyjs.jntm.config.ConfigCore;
@@ -29,8 +30,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -44,6 +47,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.Display;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -59,6 +63,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static net.minecraftforge.fml.client.config.GuiUtils.drawGradientRect;
 
 
 public class ClientProxy extends CommonProxy {
@@ -85,76 +91,162 @@ public class ClientProxy extends CommonProxy {
         }
         return ret;
     }
-    public static void  drawHoveringImage(List<String> textLines, int x, int y, FontRenderer font)
+    public static void  drawHoveringImage(ChatImage chatImage, int mouseX, int mouseY, int screenWidth, int screenHeight, int maxTextWidth, FontRenderer font)
     {
-        net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(textLines, x, y, width, height, -1, font);
-        if (false && !textLines.isEmpty())
+        if (chatImage!=null)
         {
+            List<String> textLines = chatImage.information;
+
+            RenderTooltipImageEvent.Pre event = new RenderTooltipImageEvent.Pre(chatImage, mouseX, mouseY, screenWidth, screenHeight, maxTextWidth, font);
+            if (MinecraftForge.EVENT_BUS.post(event)) {
+                return;
+            }
+            mouseX = event.getX();
+            mouseY = event.getY();
+            screenWidth = event.getScreenWidth();
+            screenHeight = event.getScreenHeight();
+            maxTextWidth = event.getMaxWidth();
+            font = event.getFontRenderer();
+
             GlStateManager.disableRescaleNormal();
             RenderHelper.disableStandardItemLighting();
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
-            int i = 0;
+            int tooltipTextWidth = 0;
 
-            for (String s : textLines)
+            for (String textLine : textLines)
             {
-                int j = this.fontRenderer.getStringWidth(s);
+                int textLineWidth = font.getStringWidth(textLine);
 
-                if (j > i)
+                if (textLineWidth > tooltipTextWidth)
                 {
-                    i = j;
+                    tooltipTextWidth = textLineWidth;
                 }
             }
 
-            int l1 = x + 12;
-            int i2 = y - 12;
-            int k = 8;
+            boolean needsWrap = false;
+
+            int titleLinesCount = 1;
+            int tooltipX = mouseX + 12;
+            if (tooltipX + tooltipTextWidth + 4 > screenWidth)
+            {
+                tooltipX = mouseX - 16 - tooltipTextWidth;
+                if (tooltipX < 4) // if the tooltip doesn't fit on the screen
+                {
+                    if (mouseX > screenWidth / 2)
+                    {
+                        tooltipTextWidth = mouseX - 12 - 8;
+                    }
+                    else
+                    {
+                        tooltipTextWidth = screenWidth - 16 - mouseX;
+                    }
+                    needsWrap = true;
+                }
+            }
+
+            if (maxTextWidth > 0 && tooltipTextWidth > maxTextWidth)
+            {
+                tooltipTextWidth = maxTextWidth;
+                needsWrap = true;
+            }
+
+            if (needsWrap)
+            {
+                int wrappedTooltipWidth = 0;
+                List<String> wrappedTextLines = new ArrayList<String>();
+                for (int i = 0; i < textLines.size(); i++)
+                {
+                    String textLine = textLines.get(i);
+                    List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
+                    if (i == 0)
+                    {
+                        titleLinesCount = wrappedLine.size();
+                    }
+
+                    for (String line : wrappedLine)
+                    {
+                        int lineWidth = font.getStringWidth(line);
+                        if (lineWidth > wrappedTooltipWidth)
+                        {
+                            wrappedTooltipWidth = lineWidth;
+                        }
+                        wrappedTextLines.add(line);
+                    }
+                }
+                tooltipTextWidth = wrappedTooltipWidth;
+                textLines = wrappedTextLines;
+
+                if (mouseX > screenWidth / 2)
+                {
+                    tooltipX = mouseX - 16 - tooltipTextWidth;
+                }
+                else
+                {
+                    tooltipX = mouseX + 12;
+                }
+            }
+
+            int tooltipY = mouseY - 12;
+            int tooltipHeight = 8;
 
             if (textLines.size() > 1)
             {
-                k += 2 + (textLines.size() - 1) * 10;
+                tooltipHeight += (textLines.size() - 1) * 10;
+                if (textLines.size() > titleLinesCount) {
+                    tooltipHeight += 2; // gap between title lines and next lines
+                }
             }
 
-            if (l1 + i > this.width)
+            if (tooltipY < 4)
             {
-                l1 -= 28 + i;
+                tooltipY = 4;
+            }
+            else if (tooltipY + tooltipHeight + 4 > screenHeight)
+            {
+                tooltipY = screenHeight - tooltipHeight - 4;
             }
 
-            if (i2 + k + 6 > this.height)
+            tooltipTextWidth+= chatImage.width;
+            tooltipHeight+= chatImage.height;
+
+            final int zLevel = 300;
+            int backgroundColor = 0xF0100010;
+            int borderColorStart = 0x505000FF;
+            int borderColorEnd = (borderColorStart & 0xFEFEFE) >> 1 | borderColorStart & 0xFF000000;
+            RenderTooltipImageEvent.Color colorEvent = new RenderTooltipImageEvent.Color(chatImage, tooltipX, tooltipY, font, backgroundColor, borderColorStart, borderColorEnd);
+            MinecraftForge.EVENT_BUS.post(colorEvent);
+            backgroundColor = colorEvent.getBackground();
+            borderColorStart = colorEvent.getBorderStart();
+            borderColorEnd = colorEvent.getBorderEnd();
+            drawGradientRect(zLevel, tooltipX - 3, tooltipY - 4, tooltipX + tooltipTextWidth + 3, tooltipY - 3, backgroundColor, backgroundColor);
+            drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 4, backgroundColor, backgroundColor);
+            drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+            drawGradientRect(zLevel, tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+            drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 3, tooltipY - 3, tooltipX + tooltipTextWidth + 4, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+            drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
+            drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
+            drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
+            drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColorEnd, borderColorEnd);
+
+            MinecraftForge.EVENT_BUS.post(new RenderTooltipImageEvent.PostBackground(chatImage, tooltipX, tooltipY, font, tooltipTextWidth, tooltipHeight));
+            int tooltipTop = tooltipY;
+
+            for (int lineNumber = 0; lineNumber < textLines.size(); ++lineNumber)
             {
-                i2 = this.height - k - 6;
-            }
+                String line = textLines.get(lineNumber);
+                font.drawStringWithShadow(line, (float)tooltipX, (float)tooltipY, -1);
 
-            this.zLevel = 300.0F;
-            this.itemRender.zLevel = 300.0F;
-            int l = -267386864;
-            this.drawGradientRect(l1 - 3, i2 - 4, l1 + i + 3, i2 - 3, -267386864, -267386864);
-            this.drawGradientRect(l1 - 3, i2 + k + 3, l1 + i + 3, i2 + k + 4, -267386864, -267386864);
-            this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 + k + 3, -267386864, -267386864);
-            this.drawGradientRect(l1 - 4, i2 - 3, l1 - 3, i2 + k + 3, -267386864, -267386864);
-            this.drawGradientRect(l1 + i + 3, i2 - 3, l1 + i + 4, i2 + k + 3, -267386864, -267386864);
-            int i1 = 1347420415;
-            int j1 = 1344798847;
-            this.drawGradientRect(l1 - 3, i2 - 3 + 1, l1 - 3 + 1, i2 + k + 3 - 1, 1347420415, 1344798847);
-            this.drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, 1347420415, 1344798847);
-            this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, 1347420415, 1347420415);
-            this.drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, 1344798847, 1344798847);
-
-            for (int k1 = 0; k1 < textLines.size(); ++k1)
-            {
-                String s1 = textLines.get(k1);
-                this.fontRenderer.drawStringWithShadow(s1, (float)l1, (float)i2, -1);
-
-                if (k1 == 0)
+                if (lineNumber + 1 == titleLinesCount)
                 {
-                    i2 += 2;
+                    tooltipY += 2;
                 }
 
-                i2 += 10;
+                tooltipY += 10;
             }
 
-            this.zLevel = 0.0F;
-            this.itemRender.zLevel = 0.0F;
+            MinecraftForge.EVENT_BUS.post(new RenderTooltipImageEvent.PostText(chatImage, tooltipX, tooltipTop, font, tooltipTextWidth, tooltipHeight));
+
             GlStateManager.enableLighting();
             GlStateManager.enableDepth();
             RenderHelper.enableStandardItemLighting();
