@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiOverlayDebug;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -57,14 +58,17 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import static net.minecraftforge.fml.client.config.GuiUtils.drawGradientRect;
+import static net.minecraftforge.fml.client.config.GuiUtils.drawTexturedModalRect;
 
 
 public class ClientProxy extends CommonProxy {
@@ -91,7 +95,7 @@ public class ClientProxy extends CommonProxy {
         }
         return ret;
     }
-    public static void  drawHoveringImage(ChatImage chatImage, int mouseX, int mouseY, int screenWidth, int screenHeight, int maxTextWidth, FontRenderer font)
+    public static void  drawHoveringImage(GuiScreen guiScreen,ChatImage chatImage, int mouseX, int mouseY, int screenWidth, int screenHeight, int maxTextWidth, FontRenderer font)
     {
         if (chatImage!=null)
         {
@@ -108,6 +112,7 @@ public class ClientProxy extends CommonProxy {
             maxTextWidth = event.getMaxWidth();
             font = event.getFontRenderer();
 
+            GlStateManager.pushMatrix();
             GlStateManager.disableRescaleNormal();
             RenderHelper.disableStandardItemLighting();
             GlStateManager.disableLighting();
@@ -187,7 +192,7 @@ public class ClientProxy extends CommonProxy {
                 }
             }
 
-            int tooltipY = mouseY - 12;
+            int tooltipY = mouseY - 12 - chatImage.height;
             int tooltipHeight = 8;
 
             if (textLines.size() > 1)
@@ -207,8 +212,10 @@ public class ClientProxy extends CommonProxy {
                 tooltipY = screenHeight - tooltipHeight - 4;
             }
 
-            tooltipTextWidth+= chatImage.width;
-            tooltipHeight+= chatImage.height;
+            int imageX=tooltipX+1;
+            int imageY=tooltipY+1;
+            tooltipTextWidth+= chatImage.width+1;
+            tooltipHeight+= chatImage.height+1;
 
             final int zLevel = 300;
             int backgroundColor = 0xF0100010;
@@ -228,10 +235,32 @@ public class ClientProxy extends CommonProxy {
             drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
             drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
             drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColorEnd, borderColorEnd);
+            GlStateManager.popMatrix();
 
             MinecraftForge.EVENT_BUS.post(new RenderTooltipImageEvent.PostBackground(chatImage, tooltipX, tooltipY, font, tooltipTextWidth, tooltipHeight));
             int tooltipTop = tooltipY;
 
+            // 获取渲染引擎
+            Minecraft mc = Minecraft.getMinecraft();
+
+            if (chatImage.status!= ChatImage.ImageStatus.OK&&chatImage.status!= ChatImage.ImageStatus.WAITING){
+                try {
+                    chatImage.getImage(new URL("https://i0.hdslb.com/bfs/tag/fa9ddae825d329004b69caed8e71f1e21704da7d.png@92w_92h_1c_100q.png"));
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (chatImage.status == ChatImage.ImageStatus.OK) {
+                GlStateManager.pushMatrix();
+                GlStateManager.scale(1F, 1F, 1.0F); // 缩放因子，根据需求调整
+                GlStateManager.color(1,1,1,1);
+                mc.getTextureManager().bindTexture(chatImage.image); // 绑定材质
+                // 绘制材质
+                Gui.drawModalRectWithCustomSizedTexture(imageX,imageY,0,0,chatImage.width,chatImage.height,chatImage.width,chatImage.height);
+                GlStateManager.popMatrix();
+            }
+
+            //显示文字
             for (int lineNumber = 0; lineNumber < textLines.size(); ++lineNumber)
             {
                 String line = textLines.get(lineNumber);
@@ -244,7 +273,6 @@ public class ClientProxy extends CommonProxy {
 
                 tooltipY += 10;
             }
-
             MinecraftForge.EVENT_BUS.post(new RenderTooltipImageEvent.PostText(chatImage, tooltipX, tooltipTop, font, tooltipTextWidth, tooltipHeight));
 
             GlStateManager.enableLighting();
@@ -253,6 +281,7 @@ public class ClientProxy extends CommonProxy {
             GlStateManager.enableRescaleNormal();
         }
     }
+
     public Image[] TIs;
     public List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
     public proadd nt=new proadd();

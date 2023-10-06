@@ -127,6 +127,7 @@ public class EventHandler {
             }
         }
     }
+    ChatImage image = new ChatImage();
     protected void handleComponentHover(GuiScreen gui,ITextComponent component, int x, int y){
         if (component != null && component.getStyle().getHoverEvent() != null)
         {
@@ -134,11 +135,11 @@ public class EventHandler {
 
             if (hoverevent.getAction() == Actions.SHOW_IMAGE)
             {
-                ChatImage image = new ChatImage();
+
                 image.information= Collections.singletonList("1ddd");
-                image.height=40;
-                image.width=50;
-                ClientProxy.drawHoveringImage(image,x,y, gui.width, gui.height,-1, gui.mc.fontRenderer);
+                image.height=100;
+                image.width=100;
+                ClientProxy.drawHoveringImage(gui,image,x,y, gui.width, gui.height,-1, gui.mc.fontRenderer);
             }
 
             GlStateManager.disableLighting();
