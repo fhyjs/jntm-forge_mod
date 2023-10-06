@@ -56,6 +56,8 @@ import org.lwjgl.opengl.GL14;
 import software.bernie.geckolib3.resource.GeckoLibCache;
 
 import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.*;
 
@@ -127,19 +129,22 @@ public class EventHandler {
             }
         }
     }
-    ChatImage image = new ChatImage();
     protected void handleComponentHover(GuiScreen gui,ITextComponent component, int x, int y){
         if (component != null && component.getStyle().getHoverEvent() != null)
         {
             HoverEvent hoverevent = component.getStyle().getHoverEvent();
 
-            if (hoverevent.getAction() == Actions.SHOW_IMAGE)
-            {
-
-                image.information= Collections.singletonList("1ddd");
-                image.height=100;
-                image.width=100;
-                ClientProxy.drawHoveringImage(gui,image,x,y, gui.width, gui.height,-1, gui.mc.fontRenderer);
+            if (hoverevent.getAction() == Actions.SHOW_IMAGE) {
+                ITextComponent value = hoverevent.getValue();
+                ChatImage ci = null;
+                try {
+                    ci = ChatImage.getChatImage(value);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (ci != null) {
+                    ClientProxy.drawHoveringImage(gui, ci, x, y, gui.width, gui.height, -1, gui.mc.fontRenderer);
+                }
             }
 
             GlStateManager.disableLighting();

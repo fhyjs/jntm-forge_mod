@@ -46,6 +46,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.Display;
 
 import javax.annotation.Nonnull;
@@ -95,7 +96,7 @@ public class ClientProxy extends CommonProxy {
         }
         return ret;
     }
-    public static void  drawHoveringImage(GuiScreen guiScreen,ChatImage chatImage, int mouseX, int mouseY, int screenWidth, int screenHeight, int maxTextWidth, FontRenderer font)
+    public static void  drawHoveringImage(GuiScreen guiScreen, @NotNull ChatImage chatImage, int mouseX, int mouseY, int screenWidth, int screenHeight, int maxTextWidth, FontRenderer font)
     {
         if (chatImage!=null)
         {
@@ -244,11 +245,7 @@ public class ClientProxy extends CommonProxy {
             Minecraft mc = Minecraft.getMinecraft();
 
             if (chatImage.status!= ChatImage.ImageStatus.OK&&chatImage.status!= ChatImage.ImageStatus.WAITING){
-                try {
-                    chatImage.getImage(new URL("https://i0.hdslb.com/bfs/tag/fa9ddae825d329004b69caed8e71f1e21704da7d.png@92w_92h_1c_100q.png"));
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                }
+                chatImage.getImage(chatImage.source);
             }
             if (chatImage.status == ChatImage.ImageStatus.OK) {
                 GlStateManager.pushMatrix();

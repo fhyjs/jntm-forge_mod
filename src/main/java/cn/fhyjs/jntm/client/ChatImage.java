@@ -1,20 +1,23 @@
 package cn.fhyjs.jntm.client;
 
+import cn.fhyjs.jntm.enums.Actions;
+import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.*;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ChatImage {
@@ -23,11 +26,13 @@ public class ChatImage {
     public int height,width;
     public ImageStatus status;
     public ResourceLocation image;
+    public URL source;
     public ChatImage(){
         status=ImageStatus.NEW;
     }
     public void getImage(URL url){
         status=ImageStatus.WAITING;
+        source=url;
         if (bufferedImagesRl.containsKey(url)){
             image = bufferedImagesRl.get(url);
             status=ImageStatus.OK;
@@ -100,5 +105,36 @@ public class ChatImage {
         ERROR,
         WAITING,
         NEW
+    }
+    public static ChatImage  getChatImage(ITextComponent v) throws MalformedURLException {
+        String data = v.getUnformattedComponentText();
+        ChatImage chatImage = null;
+        if (data.startsWith("CI")) {
+            data = data.substring(2);
+            Gson gson = new Gson();
+            ChatImageData cid = gson.fromJson(data, ChatImageData.class);
+            chatImage = new ChatImage();
+            chatImage.getImage(new URL(cid.url));
+            chatImage.information = Collections.singletonList(cid.information);
+            chatImage.width = cid.w;
+            chatImage.height = cid.h;
+
+        }
+        return chatImage;
+    }
+    public static class ChatImageData{
+        public String information;
+        public String url;
+        public int w,h;
+
+        public ITextComponent getChatMsg(){
+            return new TextComponentString(FMLCommonHandler.instance().getCurrentLanguage().equalsIgnoreCase("zh_cn")?"[图片]":"[photo]").setStyle(new Style().setColor(TextFormatting.GREEN).setHoverEvent(new HoverEvent(Actions.SHOW_IMAGE,new TextComponentString(this.toString()))));
+        }
+        @Override
+        public String toString() {
+            Gson gson = new Gson();
+            return "CI"+gson.toJson(this);
+
+        }
     }
 }
