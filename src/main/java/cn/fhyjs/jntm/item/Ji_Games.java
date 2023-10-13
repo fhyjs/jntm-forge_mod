@@ -33,6 +33,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.server.FMLServerHandler;
 import scala.collection.JavaConversions;
 
+import javax.swing.*;
 import java.util.List;
 
 import static cn.fhyjs.jntm.ItemGroup.jntmGroup.jntm_Group;
@@ -57,7 +58,7 @@ public class Ji_Games extends Item {
             ChatImage.ChatImageData cid = new ChatImage.ChatImageData();
             cid.h=150;
             cid.w=100;
-            cid.url="https://i0.hdslb.com/bfs/archive/2baa938d85ba419e0c6a6da9e14cd4cd27fb977e.jpg@92w_92h_1c_100q.jpg";
+            cid.url= JOptionPane.showInputDialog("url");
             cid.information="这是ChatImage实例";
             ((EntityPlayerSP) player).sendChatMessage(cid.toString());
         }

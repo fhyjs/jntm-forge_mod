@@ -100,7 +100,7 @@ public class ClientProxy extends CommonProxy {
     {
         if (chatImage!=null)
         {
-            List<String> textLines = chatImage.information;
+            List<String> textLines = new ArrayList<>(chatImage.information);
 
             RenderTooltipImageEvent.Pre event = new RenderTooltipImageEvent.Pre(chatImage, mouseX, mouseY, screenWidth, screenHeight, maxTextWidth, font);
             if (MinecraftForge.EVENT_BUS.post(event)) {
@@ -251,10 +251,16 @@ public class ClientProxy extends CommonProxy {
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(1F, 1F, 1.0F); // 缩放因子，根据需求调整
                 GlStateManager.color(1,1,1,1);
-                mc.getTextureManager().bindTexture(chatImage.image); // 绑定材质
+                mc.getTextureManager().bindTexture(chatImage.getImage()); // 绑定材质
                 // 绘制材质
                 Gui.drawModalRectWithCustomSizedTexture(imageX,imageY,0,0,chatImage.width,chatImage.height,chatImage.width,chatImage.height);
                 GlStateManager.popMatrix();
+            }
+            if (chatImage.status == ChatImage.ImageStatus.WAITING){
+                textLines.add("§4"+ net.minecraft.client.resources.I18n.format("image.waiting"));
+            }
+            if (chatImage.status == ChatImage.ImageStatus.ERROR){
+                textLines.add("§4"+ net.minecraft.client.resources.I18n.format("image.fail"));
             }
 
             //显示文字

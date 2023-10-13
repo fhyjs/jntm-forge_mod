@@ -25,11 +25,25 @@ public class ChatImage {
     public List<String> information;
     public int height,width;
     public ImageStatus status;
-    public ResourceLocation image;
+    private ResourceLocation image;
     public URL source;
     public ChatImage(){
         status=ImageStatus.NEW;
     }
+
+    public ResourceLocation getImage() {
+        if (bufferedImagesRl.containsKey(source)) return bufferedImagesRl.get(source);
+        if (status==ImageStatus.OK){
+            if (image==null) {
+                status=ImageStatus.ERROR;
+                return null;
+            }
+            bufferedImagesRl.put(source,image);
+            return image;
+        }
+        return null;
+    }
+
     public void getImage(URL url){
         status=ImageStatus.WAITING;
         source=url;
