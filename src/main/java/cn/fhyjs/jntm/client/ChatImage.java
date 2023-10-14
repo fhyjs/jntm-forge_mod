@@ -1,5 +1,6 @@
 package cn.fhyjs.jntm.client;
 
+import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.enums.Actions;
 import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
@@ -9,19 +10,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ChatImage {
     private final static Map<Object, ResourceLocation> bufferedImagesRl = new HashMap<>();
+    private final static Map<String, ChatImage> bufferedCI = new HashMap<>();
     public List<String> information;
     public int height,width;
     public ImageStatus status;
@@ -41,19 +46,30 @@ public class ChatImage {
             bufferedImagesRl.put(source,image);
             return image;
         }
+        if (status==ImageStatus.NEW)
+            getImage(source);
         return null;
     }
 
     public void getImage(URL url){
+        if (status==ImageStatus.ERROR) return;
         status=ImageStatus.WAITING;
         source=url;
         if (bufferedImagesRl.containsKey(url)){
             image = bufferedImagesRl.get(url);
             status=ImageStatus.OK;
         }
-        new ImageGetter(url).start();
+        if (FMLCommonHandler.instance().getSide().isClient())
+            new ImageGetter(url).start();
     }
     public static void clearCache(){
+        for (ChatImage value : bufferedCI.values()) {
+            value.status=ImageStatus.ERROR;
+        }
+        for (ResourceLocation value : bufferedImagesRl.values()) {
+            Minecraft.getMinecraft().getTextureManager().deleteTexture(value);
+        }
+        bufferedCI.clear();
         bufferedImagesRl.clear();
     }
     private class ImageGetter extends Thread{
@@ -70,6 +86,7 @@ public class ChatImage {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                bufferedImagesRl.put(url,null);
                 status=ImageStatus.ERROR;
             }
         }
@@ -124,30 +141,38 @@ public class ChatImage {
         String data = v.getUnformattedComponentText();
         ChatImage chatImage = null;
         if (data.startsWith("CI")) {
+            if (bufferedCI.containsKey(data)){
+                return bufferedCI.get(data);
+            }
             data = data.substring(2);
             Gson gson = new Gson();
             ChatImageData cid = gson.fromJson(data, ChatImageData.class);
             chatImage = new ChatImage();
-            chatImage.getImage(new URL(cid.url));
+            chatImage.source=new URL(cid.url);
+            chatImage.getImage();
             chatImage.information = Collections.singletonList(cid.information);
             chatImage.width = cid.w;
             chatImage.height = cid.h;
-
+            bufferedCI.put("CI"+data,chatImage);
         }
         return chatImage;
     }
     public static ChatImage  getChatImage(String data) throws MalformedURLException {
         ChatImage chatImage = null;
         if (data.startsWith("CI")) {
+            if (bufferedCI.containsKey(data)){
+                return bufferedCI.get(data);
+            }
             data = data.substring(2);
             Gson gson = new Gson();
             ChatImageData cid = gson.fromJson(data, ChatImageData.class);
             chatImage = new ChatImage();
-            chatImage.getImage(new URL(cid.url));
+            chatImage.source=new URL(cid.url);
+            chatImage.getImage();
             chatImage.information = Collections.singletonList(cid.information);
             chatImage.width = cid.w;
             chatImage.height = cid.h;
-
+            bufferedCI.put("CI"+data,chatImage);
         }
         return chatImage;
     }
@@ -176,6 +201,45 @@ public class ChatImage {
             Gson gson = new Gson();
             return "CI"+gson.toJson(this);
 
+        }
+    }
+    public static class ChatImageHandlerFactory implements URLStreamHandlerFactory {
+        @Override
+        public URLStreamHandler createURLStreamHandler(String protocol) {
+            if (protocol.equalsIgnoreCase("ci")) {
+                return new ChatImageProtocolHandler();
+            }
+            return null;
+        }
+        public static class ChatImageProtocolHandler extends URLStreamHandler {
+            @Override
+            protected URLConnection openConnection(URL url) throws IOException {
+                // 在这里实现自定义协议的连接逻辑
+                return new ChatImageProtocolURLConnection(url);
+            }
+        }
+        public static class ChatImageProtocolURLConnection extends URLConnection {
+            protected ChatImageProtocolURLConnection(URL url) {
+                super(url);
+            }
+
+            @Override
+            public InputStream getInputStream() throws IOException {
+                String url = getURL().toString();
+                if (!url.toLowerCase().startsWith("ci:")){
+                    return null;
+                }
+                url=url.substring(3);
+                if (url.startsWith("mod")) {
+                    return ClassLoader.getSystemResourceAsStream(url.substring(3));
+                }
+                return null;
+            }
+
+            @Override
+            public void connect() throws IOException {
+                Jntm.logger.info(getURL());
+            }
         }
     }
 }

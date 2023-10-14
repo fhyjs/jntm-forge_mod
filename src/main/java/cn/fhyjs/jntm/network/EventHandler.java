@@ -28,9 +28,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -93,6 +91,7 @@ public class EventHandler {
                     }
                 }
                 poses.clear();
+                ChatImage.clearCache();
             }
         }catch (Throwable e){
             e.printStackTrace();
@@ -122,6 +121,7 @@ public class EventHandler {
             }
         }
     }
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onDrawScreen(GuiScreenEvent.DrawScreenEvent.Post event) {
         // 在这里执行你的自定义操作
@@ -134,6 +134,7 @@ public class EventHandler {
             }
         }
     }
+    @SideOnly(Side.CLIENT)
     protected void handleComponentHover(GuiScreen gui,ITextComponent component, int x, int y){
         if (component != null && component.getStyle().getHoverEvent() != null)
         {
@@ -207,6 +208,7 @@ public class EventHandler {
                     ChatImage ci = ChatImage.getChatImage(content);
                     textComponent.appendSibling(new ChatImage.ChatImageData(ci).getChatMsg());
                 } catch (MalformedURLException e) {
+                    textComponent.appendSibling(new TextComponentString(e.toString()).setStyle(new Style().setColor(TextFormatting.RED)));
                     e.printStackTrace();
                 }
             }

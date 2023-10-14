@@ -244,17 +244,23 @@ public class ClientProxy extends CommonProxy {
             // 获取渲染引擎
             Minecraft mc = Minecraft.getMinecraft();
 
-            if (chatImage.status!= ChatImage.ImageStatus.OK&&chatImage.status!= ChatImage.ImageStatus.WAITING){
+            if (chatImage.status!= ChatImage.ImageStatus.OK&&chatImage.status!= ChatImage.ImageStatus.WAITING&&chatImage.status!= ChatImage.ImageStatus.ERROR){
                 chatImage.getImage(chatImage.source);
             }
             if (chatImage.status == ChatImage.ImageStatus.OK) {
-                GlStateManager.pushMatrix();
-                GlStateManager.scale(1F, 1F, 1.0F); // 缩放因子，根据需求调整
-                GlStateManager.color(1,1,1,1);
-                mc.getTextureManager().bindTexture(chatImage.getImage()); // 绑定材质
-                // 绘制材质
-                Gui.drawModalRectWithCustomSizedTexture(imageX,imageY,0,0,chatImage.width,chatImage.height,chatImage.width,chatImage.height);
-                GlStateManager.popMatrix();
+
+                ResourceLocation resourceLocation = chatImage.getImage();
+                if (resourceLocation==null){
+                    textLines.add("§4"+ net.minecraft.client.resources.I18n.format("image.fail"));
+                }else {
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(1F, 1F, 1.0F); // 缩放因子，根据需求调整
+                    GlStateManager.color(1, 1, 1, 1);
+                    mc.getTextureManager().bindTexture(resourceLocation); // 绑定材质
+                    // 绘制材质
+                    Gui.drawModalRectWithCustomSizedTexture(imageX, imageY, 0, 0, chatImage.width, chatImage.height, chatImage.width, chatImage.height);
+                    GlStateManager.popMatrix();
+                }
             }
             if (chatImage.status == ChatImage.ImageStatus.WAITING){
                 textLines.add("§4"+ net.minecraft.client.resources.I18n.format("image.waiting"));
@@ -294,6 +300,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event)  {
         super.preInit(event);
+
+        // 注册自定义协议处理程序
+        URL.setURLStreamHandlerFactory(new ChatImage.ChatImageHandlerFactory());
 
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
         if(SystemTray.isSupported()&& ConfigCore.isenabledTrayIcon) {

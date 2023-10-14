@@ -51,7 +51,6 @@ public class ItemScreenBuilder extends Item {
     BlockPos bpS,bpE;
     EnumFacing.Axis facing;
     int minX,minY,minZ,maxX,maxY,maxZ;
-    @SideOnly(Side.CLIENT)
     int bpPosC=-1,bpPosE=-1;
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected) {

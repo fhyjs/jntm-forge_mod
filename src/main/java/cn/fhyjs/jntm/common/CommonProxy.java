@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.common;
 
 import cn.fhyjs.jntm.Jntm;
 import cn.fhyjs.jntm.config.ConfigCore;
+import cn.fhyjs.jntm.enums.Actions;
 import cn.fhyjs.jntm.network.*;
 import cn.fhyjs.jntm.registry.DispenserBehaviorRegistryHandler;
 import cn.fhyjs.jntm.registry.TileEntityRegistryHandler;
@@ -14,12 +15,14 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -30,6 +33,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import javax.annotation.Nullable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +56,8 @@ public class CommonProxy  {
         TickrateContainer.TC.preInit(event);
         if (ConfigCore.isenabledTelnet) new Thread(new TelnetServer()).start();
         WorldGenRegistryHandler.run();
-       // CoreModManager.getTransformers()
+        // CoreModManager.getTransformers()
+        ((Map<String, HoverEvent.Action>) ObfuscationReflectionHelper.getPrivateValue(HoverEvent.Action.class, null, "field_150690_d")).put(Actions.SHOW_IMAGE.getCanonicalName(),Actions.SHOW_IMAGE);
     }
     public void init(FMLInitializationEvent event){
         // 初始化GeckoLib
