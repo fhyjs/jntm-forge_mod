@@ -7,13 +7,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SetCxkimage_C extends Container {
-    public static EntityPlayer player;
+    public  EntityPlayer player;
     private ItemStack album;
-    public static boolean open=true;
+    public  boolean open=true;
 
     public SetCxkimage_C(EntityPlayer player, World world, BlockPos bp){
         super();
-        Jvav_C.open=true;
         this.player = player;
         //JOptionPane.showMessageDialog(null,"4");
     }

@@ -1,6 +1,7 @@
 package cn.fhyjs.jntm.common;
 
 import cn.fhyjs.jntm.Jntm;
+import cn.fhyjs.jntm.client.ChatImage;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.enums.Actions;
 import cn.fhyjs.jntm.network.*;
@@ -58,6 +59,8 @@ public class CommonProxy  {
         WorldGenRegistryHandler.run();
         // CoreModManager.getTransformers()
         ((Map<String, HoverEvent.Action>) ObfuscationReflectionHelper.getPrivateValue(HoverEvent.Action.class, null, "field_150690_d")).put(Actions.SHOW_IMAGE.getCanonicalName(),Actions.SHOW_IMAGE);
+        // 注册自定义协议处理程序
+        URL.setURLStreamHandlerFactory(new ChatImage.ChatImageHandlerFactory());
     }
     public void init(FMLInitializationEvent event){
         // 初始化GeckoLib
@@ -94,6 +97,8 @@ public class CommonProxy  {
         INSTANCE.registerMessage(Opt_Play_M_Handler.class, Opt_Ply_Message.class, 2, Side.SERVER);
         INSTANCE.registerMessage(TESyncPackageHandel.class, PacketUpdateTileNBT.class, 3, Side.CLIENT);
         INSTANCE.registerMessage(TESyncPackageHandel.class, PacketUpdateTileNBT.class, 3, Side.SERVER);
+        INSTANCE.registerMessage(ScreenMSyncPackageHandel.class, PacketUpdateScreenM.class, 4, Side.CLIENT);
+        INSTANCE.registerMessage(ScreenMSyncPackageHandel.class, PacketUpdateScreenM.class, 4, Side.SERVER);
     }
     public void OpenFE(String e) throws IOException {}
     public void showToase(String type,String i18n,String i18nt){

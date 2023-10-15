@@ -6,6 +6,7 @@ import cn.fhyjs.jntm.client.ClientProxy;
 import cn.fhyjs.jntm.config.ConfigCore;
 import cn.fhyjs.jntm.entity.spallcardentity.CustomSCE;
 import cn.fhyjs.jntm.enums.Actions;
+import cn.fhyjs.jntm.gui.ScreenCIChat;
 import cn.fhyjs.jntm.item.SpellCardBase;
 import cn.fhyjs.jntm.registry.RecipeRegistryHandler;
 import cn.fhyjs.jntm.screen.ScreenM;
@@ -18,6 +19,8 @@ import net.katsstuff.teamnightclipse.danmakucore.entity.spellcard.Spellcard;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundHandler;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -26,7 +29,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.HoverEvent;
@@ -39,6 +45,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -48,6 +55,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -123,16 +131,28 @@ public class EventHandler {
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
+    public void onInitGui(GuiScreenEvent.InitGuiEvent.Post event) {
+        if (event.getGui() instanceof GuiChat){
+            event.getButtonList().add(new GuiButton(event.getButtonList().size(),0,0,20,20,"+"){
+                @Override
+                public void playPressSound(SoundHandler soundHandlerIn) {
+                    super.playPressSound(soundHandlerIn);
+                    event.getGui().mc.displayGuiScreen(new ScreenCIChat());
+                }
+            });
+        }
+    }
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
     public void onDrawScreen(GuiScreenEvent.DrawScreenEvent.Post event) {
         // 在这里执行你的自定义操作
-        if (event.getGui() instanceof GuiChat) {
-            ITextComponent itextcomponent = event.getGui().mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
+        ITextComponent itextcomponent = event.getGui().mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
 
-            if (itextcomponent != null && itextcomponent.getStyle().getHoverEvent() != null)
-            {
-                this.handleComponentHover(event.getGui(),itextcomponent, event.getMouseX(), event.getMouseY());
-            }
+        if (itextcomponent != null && itextcomponent.getStyle().getHoverEvent() != null)
+        {
+            this.handleComponentHover(event.getGui(),itextcomponent, event.getMouseX(), event.getMouseY());
         }
+
     }
     @SideOnly(Side.CLIENT)
     protected void handleComponentHover(GuiScreen gui,ITextComponent component, int x, int y){
@@ -265,14 +285,20 @@ public class EventHandler {
      static Map<World,Boolean> worldLoad = new HashMap<>();
     @SubscribeEvent
     public static void onWorldInit(WorldEvent.Load event){
-        ScreenM.getInstance();
+        if (FMLCommonHandler.instance().getSide().isServer())
+            ScreenM.getInstance();
         worldLoad.put(event.getWorld(),false);
     }
     @SubscribeEvent
+    public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event){
+        if (FMLCommonHandler.instance().getSide().isServer())
+            ClientProxy.INSTANCE.sendTo(new PacketUpdateScreenM(ScreenM.getInstance().writeToNBT(new NBTTagCompound())), (EntityPlayerMP) event.player);
+    }
+    @SubscribeEvent
     public static void onWorldPotentialSpawns(WorldEvent.PotentialSpawns event){
-        if (!worldLoad.get(event.getWorld())) {
+        if (!worldLoad.get(event.getWorld())&&FMLCommonHandler.instance().getSide().isServer()) {
             worldLoad.put(event.getWorld(),true);
-            ScreenM.getInstance().init();
+            Objects.requireNonNull(ScreenM.getInstance()).init();
         }
     }
     @SideOnly(Side.CLIENT)

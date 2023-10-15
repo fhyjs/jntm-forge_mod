@@ -160,6 +160,7 @@ public class ItemScreenBuilder extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         ItemStack stack = playerIn.getHeldItem(handIn);
+        if (ScreenM.getInstance()==null) return ActionResult.newResult(EnumActionResult.FAIL,stack);
         if (traceResult.typeOfHit.equals(RayTraceResult.Type.BLOCK)){
             Screen screen=ScreenM.getInstance().screenAt(traceResult.getBlockPos());
             if (screen!=null){

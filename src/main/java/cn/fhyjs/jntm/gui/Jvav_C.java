@@ -6,13 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class Jvav_C extends Container {
-    public static EntityPlayer player;
+    public EntityPlayer player;
     private ItemStack album;
-    public static boolean open=true;
+    public boolean open=true;
 
     public Jvav_C(EntityPlayer player, World world){
         super();
-        Jvav_C.open=true;
         this.player = player;
         //JOptionPane.showMessageDialog(null,"4");
     }

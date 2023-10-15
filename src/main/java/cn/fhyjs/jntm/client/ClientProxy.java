@@ -301,8 +301,7 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event)  {
         super.preInit(event);
 
-        // 注册自定义协议处理程序
-        URL.setURLStreamHandlerFactory(new ChatImage.ChatImageHandlerFactory());
+
 
         Display.setTitle(I18n.translateToLocal("window.jntmtitle.name")+Display.getTitle());
         if(SystemTray.isSupported()&& ConfigCore.isenabledTrayIcon) {

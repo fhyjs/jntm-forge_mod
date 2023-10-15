@@ -2,6 +2,7 @@ package cn.fhyjs.jntm.screen;
 
 import cn.fhyjs.jntm.utility.BlockDrawsGenerator;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -12,8 +13,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraft.world.storage.WorldSavedDataCallableSave;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +32,7 @@ public class ScreenM extends WorldSavedData {
     public ScreenM(String name) {
         super(name);
     }
-    @NotNull
+    @UnknownNullability
     public static ScreenM getInstance(){
         if (Instance == null) {
             Instance = (ScreenM) FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().loadData(ScreenM.class, "jntm_screens");
