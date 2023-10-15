@@ -138,7 +138,7 @@ public class ScreenCIChat extends GuiContainer {
                     chatImageData.w=Integer.parseInt(textFieldCIW.getText());
                     chatImageData.h=Integer.parseInt(textFieldCIH.getText());
                     chatImageData.information=textFieldCIINFO.getText();
-                    textFieldPV.setText(textFieldPV.getText()+chatImageData.getChatMsg().toString());
+                    textFieldPV.setText(textFieldPV.getText()+chatImageData);
                 }catch (Throwable e){
                     mc.getToastGui().add(new SystemToast(SystemToast.Type.TUTORIAL_HINT,new TextComponentString("ERROR:"+(lang_cn?"请检查文本输入":"Please Check Your Inputs")).setStyle(new Style().setColor(TextFormatting.RED)),new TextComponentString(e.toString())));
                 }
