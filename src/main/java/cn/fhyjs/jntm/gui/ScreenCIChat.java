@@ -64,16 +64,17 @@ public class ScreenCIChat extends GuiContainer {
         textFieldCIINFO = new GuiTextField(3, this.fontRenderer, guiLeft+12, guiTop+130, 100, 15);
         textFieldPV = new GuiTextField(4, this.fontRenderer, guiLeft+12, guiTop+20, 100, 15);
         textFieldPV.setMaxStringLength(Integer.MAX_VALUE);
+        textFieldCIURL.setMaxStringLength(Integer.MAX_VALUE);
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-        fontRenderer.drawString(lang_cn?"宽":"Width",35,105,0,true);
-        fontRenderer.drawString("URL",15,70,0,true);
-        fontRenderer.drawString(lang_cn?"高":"Height",85,105,0,true);
-        fontRenderer.drawString(lang_cn?"图片信息":"Information",15,120,0,true);
-        fontRenderer.drawString(lang_cn?"文本":"Text",15,10,0,true);
+        fontRenderer.drawString(lang_cn?"宽":"Width",35,105,0);
+        fontRenderer.drawString("URL",15,70,0);
+        fontRenderer.drawString(lang_cn?"高":"Height",85,105,0);
+        fontRenderer.drawString(lang_cn?"图片信息":"Information",15,120,0);
+        fontRenderer.drawString(lang_cn?"文本":"Text",15,10,0);
         // 使用字体渲染方法在GUI上绘制文本
         //this.fontRenderer.drawString(iTextComponent., 50, 50, 0xFFFFFF);
     }
